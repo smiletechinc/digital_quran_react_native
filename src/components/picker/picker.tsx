@@ -33,7 +33,7 @@ const LanguagePicker:React.FunctionComponent<PickerProps> = (props) => {
         >
           <Picker.Item label="Please select language" value="en" />
           <Picker.Item label="English" value="en" />
-          <Picker.Item label="Arabic" value={'ar'}/>
+          <Picker.Item label="Arabic" value="ar"/>
           <Picker.Item label="Urdu" value="ur" />
           <Picker.Item label="Hindi" value="hi" />
         </Picker>

@@ -17,6 +17,7 @@ const { t } = useTranslation();
         <View style={styles.itemContainer}>
           <Text style={styles.surahIndex}>{Number(surah.index)}.</Text>
           <Text style={styles.surahName}>{t(surah.title)}</Text>
+          <Text style={styles.surahName}>{surah.titleArabic}</Text>
           <Text style={styles.surahType}>{surah.type}</Text>
         </View>
       </TouchableOpacity> 

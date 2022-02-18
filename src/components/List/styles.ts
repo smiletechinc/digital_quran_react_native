@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   flexDirection: "row",
   },
   surahType: {
+    
     textAlign: "justify",
     fontSize: 16,
   },
@@ -34,8 +35,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   surahIndex: {
-    textAlign: "justify",
+    display:'flex',
+    flexDirection: "row",
+    marginRight:16,
+    paddingTop:4,
+    textAlign: "center",
     fontSize: 16,
+    borderStyle: "solid",
+    width:32,
+    height:32,
+    borderRadius: 10,
+    borderWidth: 1,
   }
 });
 export default styles  ;

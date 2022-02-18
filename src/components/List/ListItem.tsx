@@ -15,10 +15,14 @@ const { t } = useTranslation();
     return (
         <TouchableOpacity onPress={onPress}>
         <View style={styles.itemContainer}>
-          <Text style={styles.surahIndex}>{Number(surah.index)}.</Text>
-          <Text style={styles.surahName}>{t(surah.title)}</Text>
-          <Text style={styles.surahName}>{surah.titleArabic}</Text>
-          <Text style={styles.surahType}>{surah.type}</Text>
+          <Text style={styles.surahIndex}>{Number(surah.index)}</Text>
+          <View style={{display:"flex",flex:1, justifyContent:"space-between", flexDirection:"row"}}>
+            <View style={{display:'flex',flex:1, }}>
+              <Text style={styles.surahName}>{t(surah.title)}</Text>
+              <Text style={styles.surahType}>{surah.type}</Text>
+            </View>
+            <Text style={{textAlign:"right",}}>{surah.titleArabic}</Text>
+          </View>
         </View>
       </TouchableOpacity> 
     );

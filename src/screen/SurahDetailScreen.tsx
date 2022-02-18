@@ -28,7 +28,7 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
     useEffect(()=>{
           navigation.setOptions({headerStyle: {
             backgroundColor: '#57BBC1'
-          },title:`${route.params.title}`});
+          },title:`${route.params.titleArabic}`});
           const ayats:object = surrahSelect(Number(route.params.index)).verse;
           console.log("ayats:", Object.values(ayats));
           if(Number(route.params.index)===1){

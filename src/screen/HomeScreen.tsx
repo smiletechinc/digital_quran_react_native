@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {styles} from './index';
 import surahMeta from '../resources/surahMeta.json';
 import {ListItem} from '../components/List/index';
@@ -22,7 +20,7 @@ const HomeScreen: React.FunctionComponent<Props> = (props) => {
     },});
   })
   const SampleFunction=(surahdata)=>{
-    navigation.navigate('SurahScreen', surahdata);
+    navigation.navigate('MushafReading', surahdata);
 }
 const renderItem = ({item}) => {
     

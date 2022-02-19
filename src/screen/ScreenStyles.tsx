@@ -62,9 +62,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     bismillahText:{
-        // justifyContent: "center",
-        // alignItems: "center",
        textAlign: "center",
+       marginTop:32,
        marginHorizontal: 16,
        marginVertical: 16,
         fontSize: 32,

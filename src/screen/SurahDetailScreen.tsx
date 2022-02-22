@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList,ScrollView} from 'react-native';
-import { ListItem } from '../components/List';
 import Quran from '../resources/SurahIndex';
 import {styles} from './index';
+import {MushafButton} from '../components/buttons/index';
+
+const MushafImage = require("../resources/images/MushafMode.png");
 
 type Props = {
     navigation: any;
@@ -18,6 +20,10 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
     console.log("routeParams: ", route.params);
     console.log("index:", index);
 
+    const MushafNavigation = () => {  
+      navigation.navigate('MushafReading', route.params);
+  } 
+
     const surrahSelect = (index) => {
       console.log("surrahSelect:", index);  
       if (index === null) {
@@ -25,10 +31,17 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
       }
       return Quran.name[index];
     };
+
     useEffect(()=>{
-          navigation.setOptions({headerStyle: {
+          navigation.setOptions({
+          headerStyle: {
             backgroundColor: '#57BBC1'
-          },title:`${route.params.titleArabic}`});
+          },
+          title:`${route.params.titleArabic}`,
+          headerRight: () => (
+            <MushafButton icon={MushafImage} onPress={MushafNavigation}/>
+          ),
+        });
           const ayats:object = surrahSelect(Number(route.params.index)).verse;
           console.log("ayats:", Object.values(ayats));
           if(Number(route.params.index)===1){

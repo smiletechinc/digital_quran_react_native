@@ -20,7 +20,7 @@ const HomeScreen: React.FunctionComponent<Props> = (props) => {
     },});
   })
   const SampleFunction=(surahdata)=>{
-    navigation.navigate('MushafReading', surahdata);
+    navigation.navigate('SurahScreen', surahdata);
 }
 const renderItem = ({item}) => {
     

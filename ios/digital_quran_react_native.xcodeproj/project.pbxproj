@@ -31,6 +31,7 @@
 		00E356EE1AD99517003FC87E /* digital_quran_react_nativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = digital_quran_react_nativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* digital_quran_react_nativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = digital_quran_react_nativeTests.m; sourceTree = "<group>"; };
+		01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoNaskhArabic-VariableFont_wght.ttf"; path = "../src/resources/fonts/NotoNaskhArabic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* digital_quran_react_native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digital_quran_react_native.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = digital_quran_react_native/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = digital_quran_react_native/AppDelegate.m; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.debug.xcconfig"; sourceTree = "<group>"; };
 		9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "NotoNaskhArabic-VariableFont_wght.ttf"; path = "../src/resources/fonts/NotoNaskhArabic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +108,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6B036CD4C5014EB38A189013 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,15 +160,6 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		6B036CD4C5014EB38A189013 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

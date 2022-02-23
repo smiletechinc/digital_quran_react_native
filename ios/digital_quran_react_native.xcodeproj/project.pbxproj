@@ -11,9 +11,10 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		77549F844F205FEBD79CA998 /* libPods-digital_quran_react_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6312BAB1336066C547F87363 /* libPods-digital_quran_react_native.a */; };
+		471F2EB11B741FB90B4F79A4 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		F701F15FA11399018AE09EE1 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B3891EBD3A6447387CD9B0 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */; };
+		96D8B04BA7763DE0B530B93A /* libPods-digital_quran_react_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */; };
+		D12240C0F3044A2B8A2CE4E0 /* NotoNaskhArabic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +31,20 @@
 		00E356EE1AD99517003FC87E /* digital_quran_react_nativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = digital_quran_react_nativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* digital_quran_react_nativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = digital_quran_react_nativeTests.m; sourceTree = "<group>"; };
+		01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoNaskhArabic-VariableFont_wght.ttf"; path = "../src/resources/fonts/NotoNaskhArabic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* digital_quran_react_native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digital_quran_react_native.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = digital_quran_react_native/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = digital_quran_react_native/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = digital_quran_react_native/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = digital_quran_react_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = digital_quran_react_native/main.m; sourceTree = "<group>"; };
-		17F73B203D6366A7CB27D849 /* Pods-digital_quran_react_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.release.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.release.xcconfig"; sourceTree = "<group>"; };
-		24B3891EBD3A6447387CD9B0 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native-digital_quran_react_nativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6312BAB1336066C547F87363 /* libPods-digital_quran_react_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B31635588303E147F727009 /* Pods-digital_quran_react_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.release.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.release.xcconfig"; sourceTree = "<group>"; };
+		3F4DD3D7E6ADC4ED95E91F1F /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig"; sourceTree = "<group>"; };
+		63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native-digital_quran_react_nativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81982F234CD46E5965F27BFE /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = digital_quran_react_native/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		95A780E7824A3534E2DEE4D0 /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		985DD25A295321360C31C5D9 /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig"; sourceTree = "<group>"; };
-		DF183B3359C05EEB5F9597B7 /* Pods-digital_quran_react_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.debug.xcconfig"; sourceTree = "<group>"; };
+		9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.debug.xcconfig"; sourceTree = "<group>"; };
+		9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -51,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F701F15FA11399018AE09EE1 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */,
+				471F2EB11B741FB90B4F79A4 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77549F844F205FEBD79CA998 /* libPods-digital_quran_react_native.a in Frameworks */,
+				96D8B04BA7763DE0B530B93A /* libPods-digital_quran_react_native.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,26 +98,23 @@
 			name = digital_quran_react_native;
 			sourceTree = "<group>";
 		};
-		1A4F3E728349C8AAA79022D0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DF183B3359C05EEB5F9597B7 /* Pods-digital_quran_react_native.debug.xcconfig */,
-				17F73B203D6366A7CB27D849 /* Pods-digital_quran_react_native.release.xcconfig */,
-				95A780E7824A3534E2DEE4D0 /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */,
-				985DD25A295321360C31C5D9 /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				6312BAB1336066C547F87363 /* libPods-digital_quran_react_native.a */,
-				24B3891EBD3A6447387CD9B0 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */,
+				9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */,
+				63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6B036CD4C5014EB38A189013 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -133,7 +132,8 @@
 				00E356EF1AD99517003FC87E /* digital_quran_react_nativeTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				1A4F3E728349C8AAA79022D0 /* Pods */,
+				B2BC2E4D4C54120A3F49EBC6 /* Pods */,
+				6B036CD4C5014EB38A189013 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +149,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B2BC2E4D4C54120A3F49EBC6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */,
+				2B31635588303E147F727009 /* Pods-digital_quran_react_native.release.xcconfig */,
+				81982F234CD46E5965F27BFE /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */,
+				3F4DD3D7E6ADC4ED95E91F1F /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,12 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "digital_quran_react_nativeTests" */;
 			buildPhases = (
-				59352AD1B6EA018F485A94C6 /* [CP] Check Pods Manifest.lock */,
+				9CF0C2F23B09E64FD04BB0B8 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				A86E2E8770894FB13772F03E /* [CP] Embed Pods Frameworks */,
-				D1FEF5B13BAD4C3AB93668F1 /* [CP] Copy Pods Resources */,
+				520734FC671E96A4A5D03252 /* [CP] Embed Pods Frameworks */,
+				39606B2B3CD598D37FB1AA3F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,14 +189,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "digital_quran_react_native" */;
 			buildPhases = (
-				FDF208066302FEC063A63764 /* [CP] Check Pods Manifest.lock */,
+				8981D610194B5EFFE8A5015D /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				EE08FFDDE87EAD5F05AF6F36 /* [CP] Embed Pods Frameworks */,
-				299102353DDB34BFFD03869C /* [CP] Copy Pods Resources */,
+				9B460E40CCBE5EE23638D4DF /* [CP] Embed Pods Frameworks */,
+				BB4C193165377A9BC5414615 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,6 +257,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D12240C0F3044A2B8A2CE4E0 /* NotoNaskhArabic-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,24 +278,80 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		299102353DDB34BFFD03869C /* [CP] Copy Pods Resources */ = {
+		39606B2B3CD598D37FB1AA3F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		59352AD1B6EA018F485A94C6 /* [CP] Check Pods Manifest.lock */ = {
+		520734FC671E96A4A5D03252 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8981D610194B5EFFE8A5015D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-digital_quran_react_native-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B460E40CCBE5EE23638D4DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CF0C2F23B09E64FD04BB0B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -304,55 +373,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A86E2E8770894FB13772F03E /* [CP] Embed Pods Frameworks */ = {
+		BB4C193165377A9BC5414615 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1FEF5B13BAD4C3AB93668F1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/Pods-digital_quran_react_native-digital_quran_react_nativeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE08FFDDE87EAD5F05AF6F36 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -372,28 +407,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FDF208066302FEC063A63764 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-digital_quran_react_native-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -429,7 +442,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95A780E7824A3534E2DEE4D0 /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */;
+			baseConfigurationReference = 81982F234CD46E5965F27BFE /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -456,7 +469,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 985DD25A295321360C31C5D9 /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */;
+			baseConfigurationReference = 3F4DD3D7E6ADC4ED95E91F1F /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -480,7 +493,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF183B3359C05EEB5F9597B7 /* Pods-digital_quran_react_native.debug.xcconfig */;
+			baseConfigurationReference = 9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -506,7 +519,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17F73B203D6366A7CB27D849 /* Pods-digital_quran_react_native.release.xcconfig */;
+			baseConfigurationReference = 2B31635588303E147F727009 /* Pods-digital_quran_react_native.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

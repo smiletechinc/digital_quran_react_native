@@ -145,7 +145,6 @@
 				81982F234CD46E5965F27BFE /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.debug.xcconfig */,
 				3F4DD3D7E6ADC4ED95E91F1F /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

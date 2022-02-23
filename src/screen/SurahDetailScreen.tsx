@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Text, View, FlatList,ScrollView} from 'react-native';
 import Quran from '../resources/SurahIndex';
 import {styles} from './index';
@@ -17,11 +17,14 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
     const {index} = route.params;
     const [surahData, setSurahData] = useState<string[]>();
     const [bismillahAyah, setBismillahAyah] = useState();
+    const [mushafState, setMushafState] = useState(false);
+
     console.log("routeParams: ", route.params);
     console.log("index:", index);
 
     const MushafNavigation = () => {  
-      navigation.navigate('MushafReading', route.params);
+      setMushafState(true);
+      // navigation.navigate('MushafReading', route.params);
   } 
 
     const surrahSelect = (index) => {
@@ -67,16 +70,49 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
              )
        }     
        }
-       return (
-         <View style={styles.readingcontainer}>
-              <Text style={styles.bismillahText}> {bismillahAyah}</Text>
-              <FlatList style = { styles.listDetailContainer }
-                  data = { surahData }
-                  renderItem = {renderItem}
-              />
-         </View>
+       const MyAppText = (text) => {
          
-       );
+       }
+       if(!mushafState){
+        return (
+          <View style={styles.readingcontainer}>
+               <Text style={styles.bismillahText}> {bismillahAyah}</Text>
+               <FlatList style = { styles.listDetailContainer }
+                   data = { surahData }
+                   renderItem = {renderItem}
+               />
+          </View>
+          
+        );
+       }
+       else{
+        return (
+          <ScrollView style={{marginTop: 64}}>
+            <Text style={styles.bismillahText}> {bismillahAyah}</Text>
+             <View style={{display:"flex", flex: 1, justifyContent:"flex-start",
+             flexDirection:"row-reverse",width:"auto",flexWrap:"wrap"}}>
+                <Text style={{textAlign:"right"}}>
+               {surahData && surahData.map((element,index) =>  
+               {
+                 if(index>0) {
+                 return(
+                     <>
+                    <Text style={{fontSize:32, margin:10}}>{element}
+                    <Text style={styles.textIndex} onPress={() => {alert(`ayat no ${index} is clicked`)}}>{index}</Text>
+                    </Text>
+                    
+                   
+                    
+                    </>
+                 )
+                 }
+               }
+               )}
+              </Text>
+             </View>
+          </ScrollView>
+        );
+       }
 }
 
 export default SurahScreen;

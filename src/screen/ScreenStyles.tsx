@@ -67,6 +67,10 @@ const styles = StyleSheet.create({
        marginHorizontal: 16,
        marginVertical: 16,
         fontSize: 32,
+    },
+    textIndex:{
+        fontSize:32,
+            borderWidth:2, borderStyle:"solid"
     }
 });
 

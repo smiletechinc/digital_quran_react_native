@@ -38,9 +38,8 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderWidth: 1,
         borderRadius: 5,
-        // paddingLeft: 32,
         paddingTop: 16,
-        borderColor:'#ff00ff', // if you need 
+        borderColor:'#ff00ff', 
         overflow: 'hidden',
         shadowColor: '#0b1a13',
         shadowOffset: {width: -2, height: 4},
@@ -59,19 +58,50 @@ const styles = StyleSheet.create({
     itemText: {
        flex: 1,
        textAlign: "right",
-        fontSize: 16,
+        fontSize: 20,
     },
     bismillahText:{
        textAlign: "center",
        marginTop:32,
+       fontWeight:"bold",
        marginHorizontal: 16,
        marginVertical: 16,
-        fontSize: 32,
+        fontSize: 20,
     },
     textIndex:{
-        fontSize:32,
-            borderWidth:2, borderStyle:"solid"
+        fontSize:20,
+        borderWidth:2,
+        borderStyle:"solid"
+    },
+    nestedText:{
+        textAlign:"right", 
+        fontSize:20,
+        lineHeight:40
+    },
+    mushafView:{
+        display:"flex", 
+        flex: 1, 
+        justifyContent:"flex-start",
+        flexDirection:"row-reverse",
+        width:"auto",
+        flexWrap:"wrap", 
+        paddingHorizontal:8
     }
 });
-
-export default styles  ;
+const textStyles = StyleSheet.create({
+ 
+    demo: {
+      textShadowOffset: { width: 3, height: 3 },
+      textShadowColor: '#464646',
+      textShadowRadius: 10,
+      fontSize: 16,
+      fontWeight:"bold",
+      color: '#000000',
+      paddingLeft:8,
+      marginLeft:16,
+      borderStyle:"solid",
+      borderWidth:2,
+      borderColor:"#0000"
+      },
+  });
+export  {styles, textStyles}  ;

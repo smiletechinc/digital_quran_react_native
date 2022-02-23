@@ -14,6 +14,7 @@
 		471F2EB11B741FB90B4F79A4 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		96D8B04BA7763DE0B530B93A /* libPods-digital_quran_react_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */; };
+		D12240C0F3044A2B8A2CE4E0 /* NotoNaskhArabic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.debug.xcconfig"; sourceTree = "<group>"; };
 		9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "NotoNaskhArabic-VariableFont_wght.ttf"; path = "../src/resources/fonts/NotoNaskhArabic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B2BC2E4D4C54120A3F49EBC6 /* Pods */,
+				6B036CD4C5014EB38A189013 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -148,6 +151,15 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		6B036CD4C5014EB38A189013 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +257,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D12240C0F3044A2B8A2CE4E0 /* NotoNaskhArabic-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

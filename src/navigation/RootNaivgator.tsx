@@ -19,16 +19,20 @@ const RootNavigator = () => {
 
           if (route.name === 'Reading') {
             iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
+              ? 'ios-reader-outline'
+              : 'ios-reader-outline';
           } else if (route.name === 'Setting') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
+            iconName = focused ? 'ios-list' : 'ios-list';
+          } else if (route.name === 'Search') {
+            iconName = focused ? 'ios-search-outline' : 'ios-search-outline';
+          } else if (route.name === 'Topics') {
+            iconName = focused ? 'ios-bookmarks-outline' : 'ios-bookmarks-outline'; 
           }
 
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#57BBC1',
         tabBarInactiveTintColor: 'gray',
       })}
       >
@@ -45,7 +49,9 @@ const RootNavigator = () => {
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen  name="SplashScreen" component={SplashScreen} options={{ header: () => null}} />
         <Stack.Screen name="LandingScreen" component={LandingScreen} options={{title: "", header: ()=>null}}/>
-        <Stack.Screen name="HomeScreen" component={HomeTabs} options={{title: "Quran"}}/>
+        <Stack.Screen name="HomeScreen" component={HomeTabs} options={{headerStyle: {
+            backgroundColor: '#57BBC1'
+          },title: "Quran"}}/>
         <Stack.Screen name="SurahScreen" component={SurahScreen} options={{title: ""}}/>
         <Stack.Screen name="MushafReading" component={MushafReading} options={{title:""}}/>
 

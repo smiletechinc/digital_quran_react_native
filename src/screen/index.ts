@@ -1,5 +1,5 @@
 import SplashScreen from "./SplashScreen";
-import styles from "./ScreenStyles";
+import {styles,textStyles} from "./ScreenStyles";
 import LandingScreen from "./LandingScreen";
 import HomeScreen from "./HomeScreen";
 import SurahScreen from "./SurahDetailScreen";
@@ -17,5 +17,6 @@ export {
     SearchingScreen,
     SurahScreen,
     MushafReading,
+    textStyles,
     styles
 }

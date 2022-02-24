@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Text, View, FlatList,ScrollView} from 'react-native';
+import StyledText from 'react-native-styled-text';
 import Quran from '../resources/SurahIndex';
-import {styles} from './index';
+import {styles, textStyles} from './index';
 import {MushafButton} from '../components/buttons/index';
 
 const MushafImage = require("../resources/images/MushafMode.png");
@@ -17,13 +18,16 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
     const {index} = route.params;
     const [surahData, setSurahData] = useState<string[]>();
     const [bismillahAyah, setBismillahAyah] = useState();
-    const [mushafState, setMushafState] = useState(false);
+    const [mushafState, setMushafState] = useState(true);
 
     console.log("routeParams: ", route.params);
     console.log("index:", index);
 
     const MushafNavigation = () => {  
-      setMushafState(true);
+      if(mushafState){
+        setMushafState(false);
+      } else { setMushafState(true);}
+     
       // navigation.navigate('MushafReading', route.params);
   } 
 
@@ -54,7 +58,7 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
             setBismillahAyah(ayats['verse_0']);
           }
           setSurahData(Object.values(ayats));  
-      }, [navigation]);
+      }, [navigation, mushafState]);
       
      console.log("SurahData: ",surahData)
 
@@ -70,49 +74,38 @@ const SurahScreen:React.FunctionComponent<Props> = (props) => {
              )
        }     
        }
-       const MyAppText = (text) => {
-         
-       }
-       if(!mushafState){
-        return (
-          <View style={styles.readingcontainer}>
-               <Text style={styles.bismillahText}> {bismillahAyah}</Text>
-               <FlatList style = { styles.listDetailContainer }
-                   data = { surahData }
-                   renderItem = {renderItem}
-               />
-          </View>
+      
+       return (
+
           
-        );
-       }
-       else{
-        return (
-          <ScrollView style={{marginTop: 64}}>
-            <Text style={styles.bismillahText}> {bismillahAyah}</Text>
-             <View style={{display:"flex", flex: 1, justifyContent:"flex-start",
-             flexDirection:"row-reverse",width:"auto",flexWrap:"wrap"}}>
-                <Text style={{textAlign:"right"}}>
-               {surahData && surahData.map((element,index) =>  
-               {
-                 if(index>0) {
-                 return(
-                     <>
-                    <Text style={{fontSize:32, margin:10}}>{element}
-                    <Text style={styles.textIndex} onPress={() => {alert(`ayat no ${index} is clicked`)}}>{index}</Text>
-                    </Text>
-                    
-                   
-                    
-                    </>
-                 )
-                 }
-               }
-               )}
-              </Text>
-             </View>
-          </ScrollView>
-        );
-       }
+        mushafState ?  <View style={styles.readingcontainer}>
+           <Text style={[styles.bismillahText, {justifyContent:"center", alignSelf:"center"}]}> {bismillahAyah}</Text>
+           <FlatList style = { styles.listDetailContainer }
+               data = { surahData }
+               renderItem = {renderItem}
+           />
+      </View>
+      :
+        <ScrollView style={{marginTop: 64}}>
+        <Text style={styles.bismillahText}> {bismillahAyah}</Text>
+         <View style={styles.mushafView}>
+            <Text style={styles.nestedText}>
+           {surahData && surahData.map((element,index) =>  
+           {
+             if(index>0) {
+             return(
+                 <StyledText textStyles={textStyles}>
+                {`${element} <demo>${index} </demo>`}
+                </StyledText>
+             )
+             }
+           }
+           )}
+          </Text>
+         </View>
+         </ScrollView>
+      
+    );
 }
 
 export default SurahScreen;

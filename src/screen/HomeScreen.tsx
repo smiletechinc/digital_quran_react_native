@@ -14,11 +14,12 @@ const HomeScreen: React.FunctionComponent<Props> = (props) => {
   const {navigation, route} = props;
   const [surahIntro, setSurahInto] = useState(surahMeta);
 
-  useEffect(()=>{
-    navigation.setOptions({headerStyle: {
-      backgroundColor: '#57BBC1'
-    },});
-  })
+  // useEffect(()=>{
+  //   navigation.setOptions({headerStyle: {
+  //     backgroundColor: '#57BBC1'
+  //   },title: "Quran"});
+  // }, [navigation])
+  
   const SampleFunction=(surahdata)=>{
     navigation.navigate('SurahScreen', surahdata);
 }

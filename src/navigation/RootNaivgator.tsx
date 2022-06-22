@@ -2,14 +2,46 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {SplashScreen,LandingScreen,HomeScreen, SurahScreen, MushafReading} from '../screen/index';
+import {SplashScreen,LandingScreen,HomeScreen, SurahScreen} from '../screen/index';
 import {TopicsScreen, SearchingScreen,SettingScreen} from '../screen/index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
+const SearchStack = createNativeStackNavigator();
 
 const RootNavigator = () => {
-  const Tab = createBottomTabNavigator();
+  
+
+  function HomeStackScreen() {
+    return (
+      <HomeStack.Navigator>
+        <HomeStack.Screen
+          name="home"
+          component={HomeScreen}
+          options={{headerStyle: {
+            backgroundColor: '#57BBC1'
+          }, title:"Quran" }}
+        />
+      </HomeStack.Navigator>
+    );
+  }
+
+  function SearchStackScreen() {
+    return (
+      <SearchStack.Navigator>
+        <SearchStack.Screen
+          name="home"
+          component={SearchingScreen}
+          options={{headerStyle: {
+            backgroundColor: '#57BBC1'
+          }, title:"search" }}
+        />
+      </SearchStack.Navigator>
+    );
+  }
+
   function HomeTabs() {
     return (
       <Tab.Navigator
@@ -36,8 +68,8 @@ const RootNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
       >
-        <Tab.Screen name="Reading" component={HomeScreen} />
-        <Tab.Screen name="Search" component={SearchingScreen} />
+        <Tab.Screen name="Reading" component={HomeStackScreen} />
+        <Tab.Screen name="Search" component={SearchStackScreen} />
         <Tab.Screen name="Topics" component={TopicsScreen} />
         <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
@@ -49,11 +81,8 @@ const RootNavigator = () => {
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen  name="SplashScreen" component={SplashScreen} options={{ header: () => null}} />
         <Stack.Screen name="LandingScreen" component={LandingScreen} options={{title: "", header: ()=>null}}/>
-        <Stack.Screen name="HomeScreen" component={HomeTabs} options={{headerStyle: {
-            backgroundColor: '#57BBC1'
-          },title: "Quran"}}/>
+        <Stack.Screen name="HomeScreen" component={HomeTabs} options={{header: ()=>null}}/>
         <Stack.Screen name="SurahScreen" component={SurahScreen} options={{title: ""}}/>
-        <Stack.Screen name="MushafReading" component={MushafReading} options={{title:""}}/>
 
       </Stack.Navigator>
     </NavigationContainer>

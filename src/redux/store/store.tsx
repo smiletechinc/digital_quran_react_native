@@ -5,9 +5,11 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import surahReducer from '../reducer/surahReducer';
+import verseReducer from '../reducer/verseReducer';
 
 const rootReducer = combineReducers({
   surahs: surahReducer,
+  verses: verseReducer,
 });
 
 const persistConfig = {

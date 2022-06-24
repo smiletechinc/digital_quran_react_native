@@ -36,6 +36,22 @@ type SurahState = {
   surahs: SurahMeta[];
 };
 
+type QuranMeta = {
+  index: number;
+  name: string;
+  verse: [];
+  count: number;
+  juz: [];
+};
+
+type VerseState = {
+  verses: QuranMeta[];
+};
+
+type VerseAction = {
+  type: string;
+  ayat: QuranMeta;
+};
 type SurahsAction = {
   type: string;
   surah: SurahMeta;

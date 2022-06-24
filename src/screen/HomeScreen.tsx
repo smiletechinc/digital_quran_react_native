@@ -47,8 +47,11 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-const mapStateToProps = (state: {surahs: {surahs: any}}) => {
-  // console.log('data comes from reudx', state.surahs.surahs);
+const mapStateToProps = (state: {
+  surahs: {surahs: any};
+  verses: {verses: any};
+}) => {
+  console.log('data comes from reudx', state.verses.verses);
   return {
     reduxSurahs: state.surahs.surahs,
     updated: !updatedOuter,

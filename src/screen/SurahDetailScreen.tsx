@@ -5,22 +5,27 @@ import Quran from '../resources/SurahIndex';
 import {styles, textStyles} from './index';
 import {MushafButton} from '../components/buttons/index';
 import {Alert} from 'react-native';
+import {connect} from 'react-redux';
 
 const MushafImage = require('../resources/images/MushafMode.png');
 
 type Props = {
   navigation: any;
   route: any;
+  reduxVerses: any;
+  updated: boolean;
 };
+
+let updatedOuter = false;
 const SurahScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, route} = props;
-  const {index} = route.params;
+  const {navigation, route, reduxVerses, updated} = props;
+  const {suarahIndex} = route.params.index;
   const [surahData, setSurahData] = useState<string[]>();
   const [bismillahAyah, setBismillahAyah] = useState();
   const [mushafState, setMushafState] = useState<boolean>(true);
 
-  console.log('routeParams: ', route.params);
-  console.log('index:', index);
+  console.log('routeParams: ', route.params.index);
+  console.log('index:', suarahIndex);
 
   const MushafNavigation = () => {
     if (mushafState) {
@@ -33,14 +38,6 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     // navigation.navigate('MushafReading', route.params);
   };
 
-  const surrahSelect = (index: number) => {
-    console.log('surrahSelect:', index);
-    if (index === null) {
-      return Quran.name;
-    }
-    return Quran.name[index];
-  };
-
   useEffect(() => {
     navigation.setOptions({
       headerStyle: {
@@ -51,19 +48,19 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         <MushafButton icon={MushafImage} onPress={MushafNavigation} />
       ),
     });
-    const ayats: object = surrahSelect(Number(route.params.index)).verse;
-    console.log('ayats:', Object.values(ayats));
-    if (Number(route.params.index) === 1) {
-      setBismillahAyah(ayats['verse_1']);
-    } else {
-      setBismillahAyah(ayats['verse_0']);
-    }
-    setSurahData(Object.values(ayats));
+    var surah: any[] = [];
+    const arr = reduxVerses.map((verses: any, index: any) =>
+      route.params.index === verses.index ? (surah = verses.verse) : '',
+    );
+    setSurahData(Object.values(surah));
   }, [navigation, mushafState]);
 
   console.log('SurahData: ', surahData);
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({item, index}: any) => {
+    if (index === 0) {
+      setBismillahAyah(item);
+    }
     if (index > 0) {
       return (
         <View style={styles.itemContainer}>
@@ -111,4 +108,12 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default SurahScreen;
+const mapStateToProps = (state: {verses: {verses: any}}) => {
+  console.log('data comes from reudx', state.verses.verses);
+  return {
+    reduxVerses: state.verses.verses,
+    updated: !updatedOuter,
+  };
+};
+
+export default connect(mapStateToProps)(SurahScreen);

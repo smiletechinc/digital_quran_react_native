@@ -21,10 +21,10 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, updateSurah, updateAyat} = props;
 
   useEffect(() => {
-    console.log('Surah Meta data from JSOn', Object.values(surahMeta));
+    // console.log('Surah Meta data from JSOn', Object.values(surahMeta));
     updateSurah(Object.values(surahMeta));
     var arr = Object.values(Quran.name).forEach(surahAyat => {
-      console.log('surah Quran', Object.values(surahAyat));
+      // console.log('surah Quran', Object.values(surahAyat));
       updateAyat(surahAyat);
     });
     // if (index === null) {

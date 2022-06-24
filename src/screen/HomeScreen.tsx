@@ -25,14 +25,14 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
       },
     });
     setSurahInto(reduxSurahs);
-    console.log('update suarah intor', surahIntro);
+    // console.log('update suarah intor', surahIntro);
   }, [navigation]);
 
   const SampleFunction = (surahdata: any) => {
     navigation.navigate('SurahScreen', surahdata);
   };
   const renderItem = ({item}: any) => {
-    console.log('item', item);
+    // console.log('item', item);
     return <ListItem surah={item} onPress={() => SampleFunction(item)} />;
   };
 
@@ -51,7 +51,7 @@ const mapStateToProps = (state: {
   surahs: {surahs: any};
   verses: {verses: any};
 }) => {
-  console.log('data comes from reudx', state.verses.verses);
+  // console.log('data comes from reudx', state.verses.verses);
   return {
     reduxSurahs: state.surahs.surahs,
     updated: !updatedOuter,

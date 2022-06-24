@@ -14,6 +14,7 @@
 		471F2EB11B741FB90B4F79A4 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		96D8B04BA7763DE0B530B93A /* libPods-digital_quran_react_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */; };
+<<<<<<< HEAD
 		79B584FEEDA841D9BB3B2E20 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0745C673A4EB49099D27482F /* AntDesign.ttf */; };
 		C84398A9D2FD4B729DD5704D /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBF08131BC9540B29D7AE6C3 /* Entypo.ttf */; };
 		0E02248E047942F8AA73A534 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11F8E6684893427F9276E686 /* EvilIcons.ttf */; };
@@ -30,6 +31,9 @@
 		6A47C3E40DB84AA195CA1710 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 279C690C88D84CF1AF4253A6 /* Octicons.ttf */; };
 		AC366D22459E402B9BCE8206 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D08B65FC62D44E99BE32079 /* SimpleLineIcons.ttf */; };
 		00B26CC5C5D94CB2AAA551E2 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA2F345C5F654417AC114964 /* Zocial.ttf */; };
+=======
+		D12240C0F3044A2B8A2CE4E0 /* NotoNaskhArabic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */; };
+>>>>>>> afd60a0ea825a3397ff679accb22f6ad817c29f3
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,7 @@
 		00E356EE1AD99517003FC87E /* digital_quran_react_nativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = digital_quran_react_nativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* digital_quran_react_nativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = digital_quran_react_nativeTests.m; sourceTree = "<group>"; };
+		01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "NotoNaskhArabic-VariableFont_wght.ttf"; path = "../src/resources/fonts/NotoNaskhArabic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* digital_quran_react_native.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digital_quran_react_native.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = digital_quran_react_native/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = digital_quran_react_native/AppDelegate.m; sourceTree = "<group>"; };
@@ -154,6 +159,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6B036CD4C5014EB38A189013 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				01D77CB9148E49F8B33058D4 /* NotoNaskhArabic-VariableFont_wght.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +185,11 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B2BC2E4D4C54120A3F49EBC6 /* Pods */,
+<<<<<<< HEAD
 				45A41145E06E4CFC85CCF622 /* Resources */,
+=======
+				6B036CD4C5014EB38A189013 /* Resources */,
+>>>>>>> afd60a0ea825a3397ff679accb22f6ad817c29f3
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -341,6 +359,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+<<<<<<< HEAD
 				79B584FEEDA841D9BB3B2E20 /* AntDesign.ttf in Resources */,
 				C84398A9D2FD4B729DD5704D /* Entypo.ttf in Resources */,
 				0E02248E047942F8AA73A534 /* EvilIcons.ttf in Resources */,
@@ -357,6 +376,9 @@
 				6A47C3E40DB84AA195CA1710 /* Octicons.ttf in Resources */,
 				AC366D22459E402B9BCE8206 /* SimpleLineIcons.ttf in Resources */,
 				00B26CC5C5D94CB2AAA551E2 /* Zocial.ttf in Resources */,
+=======
+				D12240C0F3044A2B8A2CE4E0 /* NotoNaskhArabic-VariableFont_wght.ttf in Resources */,
+>>>>>>> afd60a0ea825a3397ff679accb22f6ad817c29f3
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

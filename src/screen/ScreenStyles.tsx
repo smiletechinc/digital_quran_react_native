@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {SCREEN_WIDTH} from '../constants/index';
+import {Platform, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,14 +13,39 @@ const styles = StyleSheet.create({
     height: 80,
   },
   splashText: {
-    color: '#000000',
-    marginTop: 8,
-    marginLeft: 8,
-    fontSize: 32,
+    color: '#FAFAFA',
+    // marginTop: 8,
+    // marginLeft: 8,
+    textAlign: 'center',
+    fontSize: 22,
+    lineHeight: 29,
+    fontWeight: '500',
+  },
+  languageAppText: {
+    color: '#1CB4AC',
+    textAlign: 'center',
+    fontSize: 18,
+    lineHeight: 65,
+    top: 8,
+    // fontFamily: 'Popins',
+    fontWeight: '500',
+  },
+  selectionLanguageText: {
+    color: '#3B3B3B',
+    textAlign: 'center',
+    fontSize: 16,
+    lineHeight: 65,
+    top: 8,
+    // fontFamily: 'Popins',
+    fontWeight: '400',
   },
   selectionContainer: {
+    display: 'flex',
     flex: 1,
-    backgroundColor: '#57BBC1',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'ios' ? (SCREEN_WIDTH / 10) * 2 : 10,
+    paddingHorizontal: SCREEN_WIDTH * 0.02,
   },
   readingcontainer: {
     flex: 1,

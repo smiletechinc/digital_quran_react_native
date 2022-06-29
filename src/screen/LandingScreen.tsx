@@ -1,15 +1,16 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
+import {useEffect} from 'react';
+import {View, Text, Image} from 'react-native';
 import {styles} from './index';
-import {LogoImage} from '../components/images/index';
 import {LanguagePicker} from '../components/picker';
 import {updateSurah} from '../redux/action/surahAction';
 import {updateAyat} from '../redux/action/verseAction';
 import {connect, useDispatch} from 'react-redux';
-
 import surahMeta from '../resources/surahMeta.json';
 import Quran from '../resources/SurahIndex';
-import {useEffect} from 'react';
+import {backgroundAppImage} from '../constants/images';
+import {AppImageHeader} from '../components/images';
+import {LanguageContext, LanguageContextType} from '../context/languageContext';
 
 type Props = {
   navigation: any;
@@ -19,27 +20,32 @@ type Props = {
 
 const LandingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, updateSurah, updateAyat} = props;
+  const {textLanguage} = React.useContext(
+    LanguageContext,
+  ) as LanguageContextType;
 
   useEffect(() => {
-    // console.log('Surah Meta data from JSOn', Object.values(surahMeta));
     updateSurah(Object.values(surahMeta));
     var arr = Object.values(Quran.name).forEach(surahAyat => {
-      // console.log('surah Quran', Object.values(surahAyat));
       updateAyat(surahAyat);
     });
-    // if (index === null) {
-    //   return Quran.name;
-    // }
-    // return Quran.name[index];
   }, [navigation]);
+
   const LogFunc = () => {
     navigation.replace('HomeScreen');
   };
 
   return (
     <View style={styles.selectionContainer}>
-      <LogoImage />
-      <LanguagePicker onPress={LogFunc} />
+      <View style={{zIndex: 50}}>
+        <AppImageHeader />
+        <Text style={styles.languageAppText}>Digital Quran</Text>
+        <Text style={styles.selectionLanguageText}>Select Language</Text>
+        <LanguagePicker onPress={LogFunc} />
+      </View>
+      <View style={{position: 'absolute', opacity: 1, right: 2}}>
+        <Image source={backgroundAppImage} style={{resizeMode: 'cover'}} />
+      </View>
     </View>
   );
 };
@@ -57,5 +63,4 @@ const mapDispatchToProps = (
   };
 };
 
-// export default LandingScreen;
 export default connect(null, mapDispatchToProps)(LandingScreen);

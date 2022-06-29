@@ -49,7 +49,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       ),
     });
     var surah: any[] = [];
-    const arr = reduxVerses.map((verses: any, index: any) =>
+    reduxVerses.map((verses: any, index: any) =>
       route.params.index === verses.index ? (surah = verses.verse) : '',
     );
     setSurahData(Object.values(surah));

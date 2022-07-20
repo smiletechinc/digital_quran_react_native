@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   AppImageHeaderContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    // marginTop: Platform.OS === 'ios' ? MULTIPLIER * 64 : 10,
+    paddingVertical: 8,
   },
 });
 

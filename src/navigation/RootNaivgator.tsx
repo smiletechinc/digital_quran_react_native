@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
@@ -7,27 +7,37 @@ import {
   LandingScreen,
   HomeScreen,
   SurahScreen,
+  ReadingScreen,
+  UserAccountScreen,
 } from '../screen/index';
 import {TopicsScreen, SearchingScreen, SettingScreen} from '../screen/index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {setStatusBarBackgroundColor} from 'expo-status-bar';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const SearchStack = createNativeStackNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'black',
+  },
+};
+
 const RootNavigator = () => {
-  function HomeStackScreen() {
+  function ReadingStackScreen() {
     return (
       <HomeStack.Navigator>
         <HomeStack.Screen
-          name="home"
-          component={HomeScreen}
+          name="reading"
+          component={ReadingScreen}
           options={{
-            headerStyle: {
-              backgroundColor: '#57BBC1',
-            },
-            title: 'Quran',
+            header: () => null,
           }}
         />
       </HomeStack.Navigator>
@@ -51,7 +61,7 @@ const RootNavigator = () => {
     );
   }
 
-  function HomeTabs() {
+  function ReadingTabs() {
     return (
       <Tab.Navigator
         screenOptions={({route}) => ({
@@ -75,8 +85,9 @@ const RootNavigator = () => {
           },
           tabBarActiveTintColor: '#57BBC1',
           tabBarInactiveTintColor: 'gray',
+          headerShown: false,
         })}>
-        <Tab.Screen name="Reading" component={HomeStackScreen} />
+        <Tab.Screen name="Reading" component={ReadingStackScreen} />
         <Tab.Screen name="Search" component={SearchStackScreen} />
         <Tab.Screen name="Topics" component={TopicsScreen} />
         <Tab.Screen name="Setting" component={SettingScreen} />
@@ -85,30 +96,37 @@ const RootNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
-          name="LandingScreen"
-          component={LandingScreen}
-          options={{title: '', header: () => null}}
-        />
-        <Stack.Screen
-          name="HomeScreen"
-          component={HomeTabs}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
-          name="SurahScreen"
-          component={SurahScreen}
-          options={{title: ''}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="SplashScreen">
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{header: () => null}}
+          />
+          <Stack.Screen
+            name="LandingScreen"
+            component={LandingScreen}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{header: () => null}}
+          />
+          <Stack.Screen
+            name="ReadingScreen"
+            component={ReadingTabs}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="SurahScreen"
+            component={SurahScreen}
+            options={{title: ''}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

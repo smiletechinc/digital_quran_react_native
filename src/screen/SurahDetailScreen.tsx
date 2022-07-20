@@ -1,11 +1,10 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Text, View, FlatList, ScrollView, StyleSheet} from 'react-native';
 import StyledText from 'react-native-styled-text';
-import Quran from '../resources/SurahIndex';
 import {styles, textStyles} from './index';
 import {MushafButton} from '../components/buttons/index';
-import {Alert} from 'react-native';
 import {connect} from 'react-redux';
+import {SurahContext, SurahContextType} from '../context/surahContext';
 
 const MushafImage = require('../resources/images/MushafMode.png');
 
@@ -18,14 +17,14 @@ type Props = {
 
 let updatedOuter = false;
 const SurahScreen: React.FunctionComponent<Props> = props => {
+  const {surahObject} = React.useContext(SurahContext) as SurahContextType;
   const {navigation, route, reduxVerses, updated} = props;
-  const {suarahIndex} = route.params.index;
   const [surahData, setSurahData] = useState<string[]>();
   const [bismillahAyah, setBismillahAyah] = useState();
   const [mushafState, setMushafState] = useState<boolean>(true);
 
-  console.log('routeParams: ', route.params.index);
-  console.log('index:', suarahIndex);
+  console.log('routeParams: ', Object.values(surahObject)[5]);
+  console.log('index:', Object.values(surahObject)[5]);
 
   const MushafNavigation = () => {
     if (mushafState) {
@@ -35,7 +34,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     }
 
     console.log('mushafstate:', mushafState);
-    // navigation.navigate('MushafReading', route.params);
+    navigation.navigate('MushafReading', surahObject);
   };
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       headerStyle: {
         backgroundColor: '#57BBC1',
       },
-      title: `${route.params.titleArabic}`,
+      title: `${Object.values(surahObject)[4]}`,
       headerRight: () => (
         <MushafButton icon={MushafImage} onPress={MushafNavigation} />
       ),
@@ -53,6 +52,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       route.params.index === verses.index ? (surah = verses.verse) : '',
     );
     setSurahData(Object.values(surah));
+    console.log('suraHObject', Object.values(surahObject));
   }, [navigation, mushafState]);
 
   console.log('SurahData: ', surahData);
@@ -72,21 +72,22 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     }
   };
   return mushafState ? (
-    <View style={styles.readingcontainer}>
-      <Text
-        style={[
-          styles.bismillahText,
-          {justifyContent: 'center', alignSelf: 'center'},
-        ]}>
-        {' '}
-        {bismillahAyah}
-      </Text>
-      <FlatList
-        style={styles.listDetailContainer}
-        data={surahData}
-        renderItem={renderItem}
-      />
-    </View>
+    // <View style={styles.readingcontainer}>
+    //   <Text
+    //     style={[
+    //       styles.bismillahText,
+    //       {justifyContent: 'center', alignSelf: 'center'},
+    //     ]}>
+    //     {' '}
+    //     {bismillahAyah}
+    //   </Text>
+    //   <FlatList
+    //     style={styles.listDetailContainer}
+    //     data={surahData}
+    //     renderItem={renderItem}
+    //   />
+    // </View>
+    <></>
   ) : (
     <ScrollView style={{marginTop: 64}}>
       <Text style={styles.bismillahText}> {bismillahAyah}</Text>
@@ -117,3 +118,4 @@ const mapStateToProps = (state: {verses: {verses: any}}) => {
 };
 
 export default connect(mapStateToProps)(SurahScreen);
+// export default SurahScreen;

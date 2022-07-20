@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useEffect} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import {styles} from './index';
 import {LanguagePicker} from '../components/picker';
 import {updateSurah} from '../redux/action/surahAction';
@@ -11,6 +11,7 @@ import Quran from '../resources/SurahIndex';
 import {backgroundAppImage} from '../constants/images';
 import {AppImageHeader} from '../components/images';
 import {LanguageContext, LanguageContextType} from '../context/languageContext';
+import {StatusBar} from 'expo-status-bar';
 
 type Props = {
   navigation: any;
@@ -36,17 +37,28 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <View style={styles.selectionContainer}>
-      <View style={{zIndex: 50}}>
-        <AppImageHeader />
-        <Text style={styles.languageAppText}>Digital Quran</Text>
-        <Text style={styles.selectionLanguageText}>Select Language</Text>
-        <LanguagePicker onPress={LogFunc} />
+    <ScrollView>
+      <View style={styles.selectionContainer}>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+            zIndex: 50,
+          }}>
+          <AppImageHeader />
+          <View>
+            <Text style={styles.languageAppText}>Digital Quran</Text>
+            <Text style={styles.selectionLanguageText}>Select Language</Text>
+          </View>
+          <LanguagePicker onPress={LogFunc} />
+        </View>
+        <View style={{position: 'absolute', opacity: 1, right: 2}}>
+          <Image source={backgroundAppImage} style={{resizeMode: 'cover'}} />
+        </View>
+        <StatusBar style="dark" />
       </View>
-      <View style={{position: 'absolute', opacity: 1, right: 2}}>
-        <Image source={backgroundAppImage} style={{resizeMode: 'cover'}} />
-      </View>
-    </View>
+    </ScrollView>
   );
 };
 

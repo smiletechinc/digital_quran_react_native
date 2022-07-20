@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 65,
     top: 8,
-    // fontFamily: 'Popins',
     fontWeight: '500',
   },
   selectionLanguageText: {
@@ -36,7 +35,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 65,
     top: 8,
-    // fontFamily: 'Popins',
     fontWeight: '400',
   },
   selectionContainer: {
@@ -45,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingTop: Platform.OS === 'ios' ? (SCREEN_WIDTH / 10) * 2 : 10,
-    paddingHorizontal: SCREEN_WIDTH * 0.02,
+    paddingHorizontal: SCREEN_WIDTH * 0.03,
   },
   readingcontainer: {
     flex: 1,
@@ -56,9 +54,12 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   listContainer: {
-    width: '100%',
-    paddingleft: 64,
-    marginTop: 100,
+    // width: '100%',
+    // paddingHorizontal: SCREEN_WIDTH * 0.4,
+    // marginTop: 100,
+    // borderStyle: 'solid',
+    // borderWidth: 2,
+    // borderColor: 'pink',
   },
   listDetailContainer: {
     width: '100%',
@@ -116,6 +117,31 @@ const styles = StyleSheet.create({
     width: 'auto',
     flexWrap: 'wrap',
     paddingHorizontal: 8,
+  },
+  homeScreenButton: {
+    display: 'flex',
+    flex: 1,
+    paddingBottom: 36,
+    marginLeft: 4,
+    paddingTop: 36,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: '#707070',
+    backgroundColor: 'rgba(59,59,59,0.5)',
+  },
+  homeScreenImageView: {
+    position: 'absolute',
+    right: 12,
+    top: 8,
+    alignSelf: 'flex-end',
+  },
+  homeScreenText: {
+    fontSize: 16,
+    fontWeight: '300',
+    lineHeight: 58,
+    textAlign: 'center',
+    color: '#ffffff',
   },
 });
 const textStyles = StyleSheet.create({

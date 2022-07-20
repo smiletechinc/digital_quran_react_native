@@ -15,32 +15,7 @@ export const LanguageContext = React.createContext<LanguageContextType | null>(
 
 const LanguageContextProvider = ({children}: any) => {
   const [textLanguage, setTextLanguage] = React.useState<string>('');
-  //   const soundCheckedFunction = (sound: boolean) => {
-  //     console.log('sound before update', sound);
-  //     setSoundChecked(sound);
-  //     console.log('sound after update', soundChecked);
-  //   };
 
-  //   const vibrationCheckedFunction = (vibration: boolean) => {
-  //     setVibratinChecked(vibration);
-  //   };
-
-  //   const currentCountVibrationCheckedFunction = (vibration: boolean) => {
-  //     setCurrentCountVibration(vibration);
-  //   };
-
-  //   const targetCountVibratonCheckedFunction = (targetVibration: boolean) => {
-  //     setTargetCountVibration(targetVibration);
-  //   };
-
-  //   const muteFunction = () => {
-  //     console.log('hello');
-  //     setSoundChecked(false);
-  //   };
-
-  //   const removeBookmarkFunction = (setBook: boolean) => {
-  //     setRemoveBookmark(setBook);
-  //   };
   return (
     <LanguageContext.Provider
       value={{

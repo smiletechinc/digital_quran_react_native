@@ -3,15 +3,7 @@ import {AnyAction} from 'redux';
 import * as actionTypes from '../action/actionTypes';
 
 const initialState: VerseState = {
-  verses: [
-    {
-      index: 0,
-      name: '',
-      verse: [],
-      count: 0,
-      juz: [],
-    },
-  ],
+  verses: [],
 };
 
 const verseReducer = (

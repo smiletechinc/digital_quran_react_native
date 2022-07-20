@@ -23,43 +23,45 @@ const ListItem: React.FunctionComponent<Props> = props => {
       <View style={styles.circleView1}>
         <Text style={styles.circleText1}>hi</Text>
       </View>
-      <View style={styles.rectangleView} onTouchEnd={onPress}>
-        <View style={styles.itemContainer}>
-          <View
-            style={{
-              display: 'flex',
-              borderStyle: 'solid',
-              alignItems: 'center',
-              justifyContent: 'center',
-              left: 32,
-            }}>
-            <Text style={styles.surahName}>{t(surah.title)}</Text>
-            <Text style={styles.surahType}>{`${surah.count} verses`}</Text>
-          </View>
-          <View
-            style={{
-              minWidth: '56%',
-              borderTopLeftRadius: 8,
-              borderTopRightRadius: 0,
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
-              backgroundColor: 'rgba(0,180,172,0.2)',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingHorizontal: 4,
-              paddingVertical: 24,
-            }}>
-            <Text
+      <View style={styles.rectangleView}>
+        <TouchableOpacity onPress={onPress}>
+          <View style={styles.itemContainer}>
+            <View
               style={{
-                textAlign: 'right',
-                color: '#00B4AC',
-                fontSize: 26,
-                lineHeight: 28,
+                display: 'flex',
+                borderStyle: 'solid',
+                alignItems: 'center',
+                justifyContent: 'center',
+                left: 32,
               }}>
-              {surah.titleArabic}
-            </Text>
+              <Text style={styles.surahName}>{t(surah.title)}</Text>
+              <Text style={styles.surahType}>{`${surah.count} verses`}</Text>
+            </View>
+            <View
+              style={{
+                minWidth: '56%',
+                borderTopLeftRadius: 8,
+                borderTopRightRadius: 0,
+                borderBottomLeftRadius: 8,
+                borderBottomRightRadius: 8,
+                backgroundColor: 'rgba(0,180,172,0.2)',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingHorizontal: 4,
+                paddingVertical: 24,
+              }}>
+              <Text
+                style={{
+                  textAlign: 'right',
+                  color: '#00B4AC',
+                  fontSize: 26,
+                  lineHeight: 28,
+                }}>
+                {surah.titleArabic}
+              </Text>
+            </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

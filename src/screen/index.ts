@@ -6,8 +6,11 @@ import SurahScreen from './SurahDetailScreen';
 import SettingScreen from './SettingScreen';
 import SearchingScreen from './SearchHomeScreen';
 import TopicsScreen from './TopicHomeScreen';
-import ReadingScreen from './ReadingScreen';
+import SuraReadingScreen from './ReadingScreen';
 import UserAccountScreen from './UserScreen';
+import ParaReadingScreen from './ParaReadingScreen';
+import ParaDetailScreen from './ParaDetailScreen';
+
 export {
   SplashScreen,
   LandingScreen,
@@ -16,7 +19,9 @@ export {
   TopicsScreen,
   SearchingScreen,
   SurahScreen,
-  ReadingScreen,
+  SuraReadingScreen,
+  ParaReadingScreen,
+  ParaDetailScreen,
   UserAccountScreen,
   textStyles,
   styles,

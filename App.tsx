@@ -5,12 +5,18 @@ import {Card} from 'react-native-paper';
 import {
   LanguageContextProvider,
   SurahContextProvider,
+  ParaContextProvider,
+  VerseContextProvider,
 } from './src/context/index';
 const App = () => {
   return (
     <LanguageContextProvider>
       <SurahContextProvider>
-        <RootNavigator />
+        <ParaContextProvider>
+          <VerseContextProvider>
+            <RootNavigator />
+          </VerseContextProvider>
+        </ParaContextProvider>
       </SurahContextProvider>
     </LanguageContextProvider>
   );

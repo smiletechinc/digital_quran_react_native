@@ -7,7 +7,9 @@ import {
   LandingScreen,
   HomeScreen,
   SurahScreen,
-  ReadingScreen,
+  SuraReadingScreen,
+  ParaReadingScreen,
+  ParaDetailScreen,
   UserAccountScreen,
 } from '../screen/index';
 import {TopicsScreen, SearchingScreen, SettingScreen} from '../screen/index';
@@ -20,6 +22,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const SearchStack = createNativeStackNavigator();
+const ParaStack = createNativeStackNavigator();
 
 const MyTheme = {
   ...DefaultTheme,
@@ -34,13 +37,27 @@ const RootNavigator = () => {
     return (
       <HomeStack.Navigator>
         <HomeStack.Screen
-          name="reading"
-          component={ReadingScreen}
+          name="SuraReadingScreen"
+          component={SuraReadingScreen}
           options={{
             header: () => null,
           }}
         />
       </HomeStack.Navigator>
+    );
+  }
+
+  function ParaStackScreen() {
+    return (
+      <ParaStack.Navigator>
+        <ParaStack.Screen
+          name="ParaReadingScreen"
+          component={ParaReadingScreen}
+          options={{
+            header: () => null,
+          }}
+        />
+      </ParaStack.Navigator>
     );
   }
 
@@ -68,8 +85,10 @@ const RootNavigator = () => {
           tabBarIcon: ({focused, color, size}) => {
             let iconName;
 
-            if (route.name === 'Reading') {
+            if (route.name === 'Surah') {
               iconName = focused ? 'ios-reader-outline' : 'ios-reader-outline';
+            } else if (route.name === 'Para') {
+              iconName = focused ? 'list' : 'list';
             } else if (route.name === 'Setting') {
               iconName = focused ? 'ios-list' : 'ios-list';
             } else if (route.name === 'Search') {
@@ -86,8 +105,57 @@ const RootNavigator = () => {
           tabBarActiveTintColor: '#57BBC1',
           tabBarInactiveTintColor: 'gray',
           headerShown: false,
+          tabBarStyle: {
+            borderTopLeftRadius: 35,
+            borderTopRightRadius: 35,
+            // backgroundColor: "#000",
+          },
         })}>
-        <Tab.Screen name="Reading" component={ReadingStackScreen} />
+        <Tab.Screen name="Surah" component={ReadingStackScreen} />
+        <Tab.Screen name="Para" component={ParaStackScreen} />
+        <Tab.Screen name="Search" component={SearchStackScreen} />
+        <Tab.Screen name="Topics" component={TopicsScreen} />
+        <Tab.Screen name="Setting" component={SettingScreen} />
+      </Tab.Navigator>
+    );
+  }
+
+  function ParaReadingTabs() {
+    return (
+      <Tab.Navigator
+        initialRouteName="Para"
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+
+            if (route.name === 'Surah') {
+              iconName = focused ? 'ios-reader-outline' : 'ios-reader-outline';
+            } else if (route.name === 'Para') {
+              iconName = focused ? 'list' : 'list';
+            } else if (route.name === 'Setting') {
+              iconName = focused ? 'ios-list' : 'ios-list';
+            } else if (route.name === 'Search') {
+              iconName = focused ? 'ios-search-outline' : 'ios-search-outline';
+            } else if (route.name === 'Topics') {
+              iconName = focused
+                ? 'ios-bookmarks-outline'
+                : 'ios-bookmarks-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#57BBC1',
+          tabBarInactiveTintColor: 'gray',
+          headerShown: false,
+          tabBarStyle: {
+            borderTopLeftRadius: 35,
+            borderTopRightRadius: 35,
+            // backgroundColor: "#000",
+          },
+        })}>
+        <Tab.Screen name="Surah" component={ReadingStackScreen} />
+        <Tab.Screen name="Para" component={ParaStackScreen} />
         <Tab.Screen name="Search" component={SearchStackScreen} />
         <Tab.Screen name="Topics" component={TopicsScreen} />
         <Tab.Screen name="Setting" component={SettingScreen} />
@@ -115,13 +183,23 @@ const RootNavigator = () => {
             options={{header: () => null}}
           />
           <Stack.Screen
-            name="ReadingScreen"
+            name="SuraReadingScreen"
             component={ReadingTabs}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="ParaReadingScreen"
+            component={ParaReadingTabs}
             options={{title: '', header: () => null}}
           />
           <Stack.Screen
             name="SurahScreen"
             component={SurahScreen}
+            options={{title: ''}}
+          />
+          <Stack.Screen
+            name="ParaDetailScreen"
+            component={ParaDetailScreen}
             options={{title: ''}}
           />
         </Stack.Navigator>

@@ -6,38 +6,36 @@ import {ListItem} from '../components/List/index';
 import ScreenWrapperWithHeader from '../components/wrapper/HeaderWrapper';
 import {StatusBar} from 'expo-status-bar';
 import {SurahContext, SurahContextType} from '../context/surahContext';
+import {ParaContext, ParaContextType} from '../context/paraContext';
+import ParaListItem from '../components/List/paraListItem';
 
 type Props = {
   navigation: any;
   route: any;
   reduxSurahs: any;
+  reduxParahs: any;
   updated: boolean;
 };
 
 let updatedOuter = false;
 
-const SuraReadingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, route, reduxSurahs, updated} = props;
-  const [surahIntro, setSurahInto] = useState();
-  const {surahObject, setSurahObject} = React.useContext(
-    SurahContext,
-  ) as SurahContextType;
-
+const ParaReadingScreen: React.FunctionComponent<Props> = props => {
+  const {navigation, route, reduxSurahs, reduxParahs, updated} = props;
+  const [paraIntro, setParaIntro] = useState([]);
+  const {setParaObject} = React.useContext(ParaContext) as ParaContextType;
   useEffect(() => {
-    navigation.setOptions({
-      cardStyle: {backgroundColor: 'yellow'},
-    });
-    setSurahInto(reduxSurahs);
+    setParaIntro(Object.values(reduxParahs));
   }, [navigation]);
 
-  const moveFunction = (surahdata: any) => {
-    setSurahObject(surahdata);
-    console.log('surhaObject ', surahObject);
+  const moveFunction = (paraData: any) => {
+    setParaObject(paraData);
+    navigation.navigate('ParaDetailScreen');
+    // setSurahObject(surahdata);
+    // console.log('surhaObject ', surahObject);
     // navigation.navigate('SurahScreen', surahdata);
-    navigation.navigate('SurahScreen');
   };
   const renderItem = ({item}: any) => {
-    return <ListItem surah={item} onPress={() => moveFunction(item)} />;
+    return <ParaListItem parah={item} onPress={() => moveFunction(item)} />;
   };
 
   return (
@@ -53,8 +51,11 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
           },
         ]}>
         <FlatList
-          style={styles.listContainer}
-          data={surahIntro}
+          style={{
+            paddingRight: 32,
+            paddingLeft: 16,
+          }}
+          data={paraIntro}
           renderItem={renderItem}
         />
       </View>
@@ -63,11 +64,16 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-const mapStateToProps = (state: {surahs: {surahs: any}}) => {
+const mapStateToProps = (state: {
+  surahs: {surahs: any};
+  verses: {verses: any};
+  parahs: {parahs: any};
+}) => {
   return {
-    reduxSurahs: state.surahs.surahs,
+    reduxParahs: state.parahs.parahs,
     updated: !updatedOuter,
   };
 };
 
-export default connect(mapStateToProps)(SuraReadingScreen);
+export default connect(mapStateToProps)(ParaReadingScreen);
+// export default ParaReadingScreen;

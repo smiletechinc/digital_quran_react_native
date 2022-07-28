@@ -1,34 +1,158 @@
 import * as React from 'react';
-import {useEffect} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import {styles} from './index';
 import {backgroundAppImage, selectionIcon} from '../constants/images';
 import {AppImageHeader} from '../components/images';
 import {LanguageContext, LanguageContextType} from '../context/languageContext';
+import {ParaContext, ParaContextType} from '../context/paraContext';
+import {VerseContext, QuranContextType} from '../context/quranContext';
 import {StatusBar} from 'expo-status-bar';
-import ScreenWrapperWithHeader from '../components/wrapper/HeaderWrapper';
 import {PrimaryButton} from '../components/buttons';
 import {useTranslation} from 'react-i18next';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {updateSurah} from '../redux/action/surahAction';
+import {connect, useDispatch} from 'react-redux';
 
 type Props = {
   navigation: any;
   updateSurah: any;
   updateAyat: any;
+  route: any;
+  reduxVerses: any;
+  reduxSurahs: any;
+  reduxParahs: any;
+  updated: any;
 };
 
+let updatedOuter = false;
+
 const HomeScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, updateSurah, updateAyat} = props;
+  // const {navigation, updateSurah, updateAyat} = props;
+  const {
+    navigation,
+    route,
+    updateSurah,
+    reduxSurahs,
+    reduxParahs,
+    updateAyat,
+    reduxVerses,
+    updated,
+  } = props;
   const {t} = useTranslation();
   const {textLanguage} = React.useContext(
     LanguageContext,
   ) as LanguageContextType;
+  const {addPara} = React.useContext(ParaContext) as ParaContextType;
+  const {setVersesObject} = React.useContext(VerseContext) as QuranContextType;
   const [surahSelectIconVisible, setSurahSelectIconVisible] =
     React.useState(false);
   const [paraSelectIconVisible, setParaSelectIconVisible] =
     React.useState(false);
+  React.useEffect(() => {
+    // console.log('SurahVerses from Quran', reduxVerses);
+    // console.log('SurahDetails', reduxSurahs);
+    // console.log('paraDetails', reduxParahs);
+    if (reduxVerses) {
+      setVersesObject(reduxVerses);
+      let allSurah: any = [];
+      Object.values(reduxVerses).forEach(surahAyat => {
+        allSurah.push(surahAyat);
+      });
+
+      console.log('allSurah', allSurah);
+      var arrayParaIndex: any = [];
+      Object.values(reduxParahs).forEach((para: any) => {
+        // console.log('para', para.paraIndex);
+        arrayParaIndex.push(para.paraIndex);
+      });
+
+      let allPara: any = [];
+      for (
+        let currentParaIndex = 0;
+        currentParaIndex < reduxParahs.length;
+        currentParaIndex++
+      ) {
+        // console.log('paraMeta', reduxParahs[currentParaIndex].ayahOfSurah);
+        var currentParah: any = [];
+
+        let firstSurahNumber = Number(
+          reduxParahs[currentParaIndex].ayahOfSurah[0].firstAyah.surahIndex,
+        );
+        let firstSurahIndex = firstSurahNumber - 1;
+        let firstIndex = Number(
+          reduxParahs[
+            currentParaIndex
+          ].ayahOfSurah[0].firstAyah.ayahIndex.split('_')[1],
+        );
+        let lastIndex =
+          reduxParahs[currentParaIndex].ayahOfSurah[0].lastAyah.ayahIndex.split(
+            '_',
+          )[1];
+
+        let lastSurahNumber = Number(
+          reduxParahs[currentParaIndex].ayahOfSurah[
+            reduxParahs[currentParaIndex].ayahOfSurah.length - 1
+          ].lastAyah.surahIndex,
+        );
+        let lastSurahIndex = lastSurahNumber - 1;
+        let lastIndex_ = Number(
+          reduxParahs[currentParaIndex].ayahOfSurah[
+            reduxParahs[currentParaIndex].ayahOfSurah.length - 1
+          ].lastAyah.ayahIndex.split('_')[1],
+        );
+
+        // console.log('firstSurahIndex', lastIndex);
+        for (
+          let currentSuahIndex = firstSurahIndex;
+          currentSuahIndex <= lastSurahIndex;
+          currentSuahIndex++
+        ) {
+          let currentSurahAyats = Object.values(
+            allSurah[currentSuahIndex].verse,
+          );
+          let currentVerses: any = [];
+
+          for (let i = firstIndex; i < currentSurahAyats.length; i++) {
+            if (i > lastIndex_ && lastSurahIndex === currentSuahIndex) {
+              break;
+            } else {
+              currentVerses.push(currentSurahAyats[i]);
+            }
+          }
+
+          let currentSurah = {
+            surah_number: currentSuahIndex + 1,
+            verses: currentVerses,
+          };
+          currentParah.push(currentSurah);
+        }
+        console.log('firstSurahNumber', currentParah);
+        // addPara(currentParah);
+        let para = {
+          para_number: currentParaIndex + 1,
+          paraDetail: currentParah,
+        };
+        console.log('paraInfo', para);
+        allPara.push(para);
+      }
+      addPara(allPara);
+    }
+  }, [navigation]);
+
   const LogFunc = () => {
-    navigation.navigate('ReadingScreen');
+    if (surahSelectIconVisible) {
+      navigation.navigate('SuraReadingScreen');
+    } else if (paraSelectIconVisible) {
+      navigation.navigate('ParaReadingScreen');
+    } else {
+      Alert.alert('nothing');
+    }
   };
 
   return (
@@ -128,4 +252,26 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default HomeScreen;
+const mapStateToProps = (state: {
+  verses: {verses: any};
+  parahs: {parahs: any};
+  surahs: {surahs: any};
+}) => {
+  return {
+    reduxVerses: state.verses.verses,
+    reduxParahs: state.parahs.parahs,
+    reduxSurahs: state.surahs.surahs,
+    updated: !updatedOuter,
+  };
+};
+const mapDispatchToProps = (
+  dispatch: (arg0: {type: string; surah?: SurahMeta; ayat?: QuranMeta}) => void,
+) => {
+  return {
+    updateSurah: (updateSurahData: SurahMeta) => {
+      dispatch(updateSurah(updateSurahData));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

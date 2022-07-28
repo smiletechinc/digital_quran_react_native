@@ -1,22 +1,30 @@
 export interface paraContextType {
-  paraObject: object;
+  paraObject: any;
 }
 
 export type ParaContextType = {
-  paraObject: object;
-  setParaObject: (setObject: object) => void;
+  addPara: (paraObject: void) => void;
+  paraData: any;
+  setParaObject: (paraObject: Object) => void;
+  paraObject: any;
 };
 
 import * as React from 'react';
 
 export const ParaContext = React.createContext<ParaContextType | null>(null);
-
 const ParaContextProvider = ({children}: any) => {
-  const [paraObject, setParaObject] = React.useState<object>({});
+  const [paraObject, setParaObject] = React.useState<Object>([]);
+  const [paraData, setParaData] = React.useState<any>([]);
 
+  const addPara = (para: any) => {
+    console.log('para in context', para);
+    setParaData(para);
+  };
   return (
     <ParaContext.Provider
       value={{
+        addPara,
+        paraData,
         setParaObject,
         paraObject,
       }}>

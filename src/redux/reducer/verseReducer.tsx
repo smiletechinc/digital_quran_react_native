@@ -27,7 +27,7 @@ const verseReducer = (
     case actionTypes.UPDATE_AYATS:
       //   console.log('update quran in reducer', action.ayat);
       const newAyat: QuranMeta = action.ayat;
-      console.log('update quran in reducer', newAyat);
+      // console.log('update quran in reducer', newAyat);
       return {
         ...state,
         verses: state.verses.concat(action.ayat),

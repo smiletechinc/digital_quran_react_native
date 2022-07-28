@@ -20,6 +20,7 @@ type VerseMeta = {
   start: string;
   end: string;
 };
+
 type SurahMeta = {
   place: string;
   type: string;
@@ -52,6 +53,24 @@ type VerseAction = {
   type: string;
   ayat: QuranMeta;
 };
+
+type ParaMeta = {
+  title: string;
+  titleArabic: string;
+  paraIndex: Number;
+  count: Number;
+  AyahofSurah: [];
+};
+
+type ParaState = {
+  parahs: ParaMeta[];
+};
+
+type ParaAction = {
+  type: string;
+  para: ParaMeta;
+};
+
 type SurahsAction = {
   type: string;
   surah: SurahMeta;
@@ -82,4 +101,5 @@ type ErrorObject = {
 };
 
 type verses = Array<Verse>;
+type parahs = Array<ParaMeta>;
 type Surahs = Array<SurahMeta>;

@@ -68,40 +68,40 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
     }
     // console.log('paraDataDisplay', paraDataDisplay.length);
 
-    let paraVerses: any = [];
-    let paraSurah: any = [];
+    // let paraVerses: any = [];
+    // let paraSurah: any = [];
 
-    for (
-      let paraDivided = 0;
-      paraDivided < paraDataDisplay.length;
-      paraDivided++
-    ) {
-      // console.log('paraDivided', paraDataDisplay[paraDivided]);
-      paraSurah.push(paraDataDisplay[paraDivided].surah_number);
-      paraVerses.push(paraDataDisplay[paraDivided].verses);
-      // console.log('paraSurahIndex', paraSurah.indexOf(paraSurah[paraDivided]));
-      // console.log(
-      //   'paraVerseIndex',
-      //   paraVerses.indexOf(paraVerses[paraDivided]),
-      // );
-      if (
-        paraSurah.indexOf(paraSurah[paraDivided]) ===
-        paraVerses.indexOf(paraVerses[paraDivided])
-      ) {
-        console.log('paraSurah', paraSurah[paraDivided]);
-        console.log('paraVerses', paraVerses[paraDivided]);
-      } else {
-        console.log('NotparaSurah', paraSurah[paraDivided]);
-      }
-      // for (
-      //   let paraVersesLength = 0;
-      //   paraVersesLength < paraDataDisplay[paraDivided].verses.length;
-      //   paraVersesLength++
-      // ) {
-      //   console.log('paraVerseLength', paraVersesLength);
-      // }
-      // console.log('paraDivided', paraVerses);
-    }
+    // for (
+    //   let paraDivided = 0;
+    //   paraDivided < paraDataDisplay.length;
+    //   paraDivided++
+    // ) {
+    //   // console.log('paraDivided', paraDataDisplay[paraDivided]);
+    //   paraSurah.push(paraDataDisplay[paraDivided].surah_number);
+    //   paraVerses.push(paraDataDisplay[paraDivided].verses);
+    //   // console.log('paraSurahIndex', paraSurah.indexOf(paraSurah[paraDivided]));
+    //   // console.log(
+    //   //   'paraVerseIndex',
+    //   //   paraVerses.indexOf(paraVerses[paraDivided]),
+    //   // );
+    //   if (
+    //     paraSurah.indexOf(paraSurah[paraDivided]) ===
+    //     paraVerses.indexOf(paraVerses[paraDivided])
+    //   ) {
+    //     console.log('paraSurah', paraSurah[paraDivided]);
+    //     console.log('paraVerses', paraVerses[paraDivided]);
+    //   } else {
+    //     console.log('NotparaSurah', paraSurah[paraDivided]);
+    //   }
+    //   // for (
+    //   //   let paraVersesLength = 0;
+    //   //   paraVersesLength < paraDataDisplay[paraDivided].verses.length;
+    //   //   paraVersesLength++
+    //   // ) {
+    //   //   console.log('paraVerseLength', paraVersesLength);
+    //   // }
+    //   // console.log('paraDivided', paraVerses);
+    // }
     // console.log('paraSurah', paraSurah);
     // console.log('paraVerses', paraVerses);
     // paraDataDisplay.forEach((para: any) => {
@@ -148,15 +148,112 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
       <Text style={styles.bismillahText}> {bismillahAyah}</Text>
       <View style={styles.mushafView}>
         <Text style={styles.nestedText}>
-          {paraDataDisplay &&
-            paraDataDisplay.map((element, index) => {
-              // console.log('paraDataDisplay', element);
-              return (
-                <StyledText textStyles={textStyles}>
-                  {`${element.verses} <demo>${index} </demo>`}
-                </StyledText>
-              );
-            })}
+          {
+            paraDataDisplay &&
+              // paraDataDisplay.map((element, index) => {
+              //   // console.log('paraDataDisplay', element);
+              //   return (
+              //     <StyledText textStyles={textStyles}>
+              //       {`${element.verses} <demo>${index} </demo>`}
+              //     </StyledText>
+              //   );
+              // })
+              paraDataDisplay.map((element, index) => {
+                let paraSurha = element.surah_number;
+
+                let paraVerse = element.verses;
+                // console.log('paraDataDisplay', paraVerse);
+                return (
+                  <View>
+                    <Text
+                      style={{
+                        textShadowOffset: {width: 3, height: 3},
+                        textShadowColor: '#464646',
+                        textShadowRadius: 10,
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        color: 'red',
+                        paddingLeft: 8,
+                        marginLeft: 16,
+                        borderStyle: 'solid',
+                        borderWidth: 2,
+                        borderColor: '#0000',
+                      }}>
+                      {' '}
+                      {`Surah Number ${paraSurha}`}
+                    </Text>
+                    {paraVerse &&
+                      paraVerse.map((verses: any, index: any) => {
+                        console.log('verses', verses);
+                        return (
+                          <StyledText textStyles={textStyles}>
+                            {`${verses} <demo>${index} </demo>`}
+                          </StyledText>
+                        );
+                      })}
+                  </View>
+                );
+                // Object.values(element.surah_number).map(
+                //   (para: any, index: any) => {
+                //     return (
+                //       <Text
+                //         style={{
+                //           textShadowOffset: {width: 3, height: 3},
+                //           textShadowColor: '#464646',
+                //           textShadowRadius: 10,
+                //           fontSize: 16,
+                //           fontWeight: 'bold',
+                //           color: 'red',
+                //           paddingLeft: 8,
+                //           marginLeft: 16,
+                //           borderStyle: 'solid',
+                //           borderWidth: 2,
+                //           borderColor: '#0000',
+                //         }}>
+                //         {' '}
+                //         {para}
+                //       </Text>
+                //     );
+                //   },
+                // );
+                // return (
+                //   <StyledText textStyles={textStyles}>
+                //     {`${element.verses} <demo>${index} </demo>`}
+                //   </StyledText>
+                // );
+              })
+            // for (
+            //   let paraDivided = 0;
+            //   paraDivided < 1;
+            //   paraDivided++
+            // ) {
+            //   // console.log('paraDivided', paraDataDisplay[paraDivided]);
+            //   paraSurah.push(paraDataDisplay[paraDivided].surah_number);
+            //   paraVerses.push(paraDataDisplay[paraDivided].verses);
+            //   // console.log('paraSurahIndex', paraSurah.indexOf(paraSurah[paraDivided]));
+            //   // console.log(
+            //   //   'paraVerseIndex',
+            //   //   paraVerses.indexOf(paraVerses[paraDivided]),
+            //   // );
+            //   if (
+            //     paraSurah.indexOf(paraSurah[paraDivided]) ===
+            //     paraVerses.indexOf(paraVerses[paraDivided])
+            //   ) {
+            //     console.log('paraSurah', paraSurah[paraDivided]);
+            //     console.log('paraVerses', paraVerses[paraDivided]);
+            //   } else {
+            //     console.log('NotparaSurah', paraSurah[paraDivided]);
+            //   }
+            //   // for (
+            //   //   let paraVersesLength = 0;
+            //   //   paraVersesLength < paraDataDisplay[paraDivided].verses.length;
+            //   //   paraVersesLength++
+            //   // ) {
+            //   //   console.log('paraVerseLength', paraVersesLength);
+            //   // }
+            //   // console.log('paraDivided', paraVerses);
+            // }
+          }
         </Text>
       </View>
     </ScrollView>

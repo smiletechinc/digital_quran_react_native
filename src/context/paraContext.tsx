@@ -17,7 +17,7 @@ const ParaContextProvider = ({children}: any) => {
   const [paraData, setParaData] = React.useState<any>([]);
 
   const addPara = (para: any) => {
-    console.log('para in context', para);
+    // console.log('para in context', para);
     setParaData(para);
   };
   return (

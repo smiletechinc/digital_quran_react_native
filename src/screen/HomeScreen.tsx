@@ -55,9 +55,6 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
   const [paraSelectIconVisible, setParaSelectIconVisible] =
     React.useState(false);
   React.useEffect(() => {
-    // console.log('SurahVerses from Quran', reduxVerses);
-    // console.log('SurahDetails', reduxSurahs);
-    // console.log('paraDetails', reduxParahs);
     if (reduxVerses) {
       setVersesObject(reduxVerses);
       let allSurah: any = [];

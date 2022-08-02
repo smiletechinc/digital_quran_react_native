@@ -30,9 +30,6 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
   const moveFunction = (paraData: any) => {
     setParaObject(paraData);
     navigation.navigate('ParaDetailScreen');
-    // setSurahObject(surahdata);
-    // console.log('surhaObject ', surahObject);
-    // navigation.navigate('SurahScreen', surahdata);
   };
   const renderItem = ({item}: any) => {
     return <ParaListItem parah={item} onPress={() => moveFunction(item)} />;

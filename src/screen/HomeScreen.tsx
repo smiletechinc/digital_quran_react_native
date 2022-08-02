@@ -76,7 +76,6 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
 
       var arrayParaIndex: any = [];
       Object.values(reduxParahs).forEach((para: any) => {
-        // console.log('para', para.paraIndex);
         arrayParaIndex.push(para.paraIndex);
       });
 
@@ -86,50 +85,33 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
         currentParaIndex < 30;
         currentParaIndex++
       ) {
-        console.log('paraMeta', reduxParahs[currentParaIndex].ayahOfSurah);
         var currentParah: any = [];
 
         let paraFirstSurahNumber = Number(
           reduxParahs[currentParaIndex].ayahOfSurah[0].firstAyah.surahIndex,
         );
-        console.log('firsSurahNumber', paraFirstSurahNumber);
         let paraFirstSurahIndex = paraFirstSurahNumber - 1;
-        console.log('firsSurahIndex', paraFirstSurahIndex);
-        let lastFirstSurahVerseIndex =
-          reduxParahs[
-            currentParaIndex
-          ].ayahOfSurah[0].firstAyah.ayahIndex.split('_')[1];
-        console.log('lastFirstSurahVerseIndex', lastFirstSurahVerseIndex);
         let paraLastSurahNumber = Number(
           reduxParahs[currentParaIndex].ayahOfSurah[
             reduxParahs[currentParaIndex].ayahOfSurah.length - 1
           ].lastAyah.surahIndex,
         );
-        console.log('paraLastSurahNumber', paraLastSurahNumber);
         let paraLastSurahIndex = paraLastSurahNumber - 1;
-        console.log('paraLastSurahIndex', paraLastSurahIndex);
         let lastParaSurahVerseIndex = Number(
           reduxParahs[currentParaIndex].ayahOfSurah[
             reduxParahs[currentParaIndex].ayahOfSurah.length - 1
           ].lastAyah.ayahIndex.split('_')[1],
         );
-        console.log('lastParaSurahVerseIndex', lastParaSurahVerseIndex);
         let startValue = 0;
         for (
           let currentSuahIndex = paraFirstSurahIndex;
           currentSuahIndex <= paraLastSurahIndex;
           currentSuahIndex++
         ) {
-          console.log('currentSurahIndex', currentSuahIndex);
           let currentSurahAyats = Object.values(
             allSurah[currentSuahIndex].verse,
           );
-          console.log('currentSurahAyats', currentSurahAyats.length);
           let currentVerses: any = [];
-          console.log(
-            'fistSurahVersesLength',
-            reduxParahs[currentParaIndex].ayahOfSurah.length,
-          );
 
           let firstSurahVerseIndex = Number(
             reduxParahs[currentParaIndex].ayahOfSurah[
@@ -142,7 +124,6 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
             i < currentSurahAyats.length;
             i++
           ) {
-            console.log('i', i);
             if (
               i > lastParaSurahVerseIndex &&
               paraLastSurahIndex === currentSuahIndex
@@ -152,9 +133,9 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
               currentVerses.push(currentSurahAyats[i]);
             }
           }
-
           let currentSurah = {
             surah_number: currentSuahIndex + 1,
+            surah_name: reduxSurahs[currentSuahIndex].titleArabic,
             verses: currentVerses,
           };
           currentParah.push(currentSurah);

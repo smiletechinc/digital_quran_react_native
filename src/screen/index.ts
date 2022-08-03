@@ -1,5 +1,5 @@
 import SplashScreen from './SplashScreen';
-import {styles, textStyles} from './ScreenStyles';
+import styles from './ScreenStyles';
 import LandingScreen from './LandingScreen';
 import HomeScreen from './HomeScreen';
 import SurahScreen from './SurahDetailScreen';
@@ -23,6 +23,5 @@ export {
   ParaReadingScreen,
   ParaDetailScreen,
   UserAccountScreen,
-  textStyles,
   styles,
 };

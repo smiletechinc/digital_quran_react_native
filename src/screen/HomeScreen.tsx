@@ -54,19 +54,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
     React.useState(false);
   const [paraSelectIconVisible, setParaSelectIconVisible] =
     React.useState(false);
-  // React.useEffect(() => {}, [navigation]);
-
-  const LogFunc = () => {
-    if (surahSelectIconVisible) {
-      navigation.navigate('SuraReadingScreen');
-    } else if (paraSelectIconVisible) {
-      navigation.navigate('ParaReadingScreen');
-    } else {
-      Alert.alert('nothing');
-    }
-  };
-
-  const paraArray = () => {
+  React.useEffect(() => {
     if (reduxVerses) {
       setVersesObject(reduxVerses);
       let allSurah: any = [];
@@ -148,6 +136,19 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
       }
       addPara(allPara);
     }
+  }, [navigation]);
+
+  const LogFunc = () => {
+    if (surahSelectIconVisible) {
+      navigation.navigate('SuraReadingScreen');
+    } else if (paraSelectIconVisible) {
+      navigation.navigate('ParaReadingScreen');
+    } else {
+      Alert.alert('nothing');
+    }
+  };
+
+  const paraArray = () => {
     setParaSelectIconVisible(true), setSurahSelectIconVisible(false);
   };
   return (

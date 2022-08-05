@@ -6,6 +6,10 @@ import {useTranslation} from 'react-i18next';
 import {PrimaryButton} from '../buttons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import CountryFlag from 'react-native-country-flag';
+import {
+  LanguageContext,
+  LanguageContextType,
+} from '../../context/languageContext';
 
 type PickerProps = {
   onPress: any;
@@ -14,6 +18,9 @@ const LanguagePicker: React.FunctionComponent<PickerProps> = props => {
   const {t} = useTranslation();
   const {onPress} = props;
   const [currentLanguage, setLanguage] = useState('');
+  const {textLanguage, setTextLanguage} = React.useContext(
+    LanguageContext,
+  ) as LanguageContextType;
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -48,6 +55,7 @@ const LanguagePicker: React.FunctionComponent<PickerProps> = props => {
       .then(() => {
         console.log('value', value);
         setLanguage(value);
+        setTextLanguage(value);
       })
       .catch(err => console.log(err));
   };

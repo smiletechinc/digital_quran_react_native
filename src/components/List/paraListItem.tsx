@@ -42,14 +42,14 @@ const ParaListItem: React.FunctionComponent<Props> = props => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingHorizontal: 4,
-                paddingVertical: 24,
+                // paddingTop: 24,
               }}>
               <Text
                 style={{
                   textAlign: 'right',
                   color: '#00B4AC',
-                  fontSize: 26,
-                  lineHeight: 28,
+                  fontSize: 24,
+                  lineHeight: 36,
                 }}>
                 {parah.titleArabic}
               </Text>

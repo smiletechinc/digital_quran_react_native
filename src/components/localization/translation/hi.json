@@ -1,7 +1,10 @@
 {
   "translation": {
-    "hello": "नमस्ते",
-    "this line is translated": "यह पंक्ति अनुवादित है",
-    "next": "अगला"
+    "digital quran": "डिजिटल कुरान",
+    "select language": "भाषा चुने",
+    "next": "अगला",
+    "select option search": "विकल्प खोजें चुनें",
+    "para": "পারা",
+    "surah": "सूरा"
   }
 }

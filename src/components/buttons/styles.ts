@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignSelf: 'center',
     marginTop: '90%',
+    // borderWidth: 2,
+    // borderColor: 'red',
   },
   secondaryButtonContainer: {
     width: '70%',
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 14,
     fontWeight: '500',
-    lineHeight: 14,
+    lineHeight: 22,
     textAlign: 'center',
   },
   textbuttoncontainer: {

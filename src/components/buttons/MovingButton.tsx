@@ -18,6 +18,8 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
           {
             flex: 1,
             padding: 12,
+            // paddingTop: 18,
+            // height: 50,
             borderRadius: 10,
             alignItems: 'center',
           },

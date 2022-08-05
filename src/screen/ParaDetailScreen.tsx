@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Text, View, FlatList, ScrollView, StyleSheet} from 'react-native';
 import StyledText from 'react-native-styled-text';
-import {styles, textStyles} from './index';
+import {styles} from './index';
 import {MushafButton} from '../components/buttons/index';
 import {connect, useSelector} from 'react-redux';
 import {SurahContext, SurahContextType} from '../context/surahContext';
@@ -44,46 +44,55 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
         }
       });
     }
+    // console.log('paraDataDisplay', paraDataDisplay);
   }, [navigation, mushafState, paraDataDisplay]);
   return (
-    <ScrollView style={{marginTop: 64}}>
+    <ScrollView
+      style={[
+        {
+          backgroundColor: '#57BBC1',
+          // marginTop: 4,
+        },
+      ]}>
       <Text style={styles.bismillahText}> {bismillahAyah}</Text>
-      <View style={styles.mushafView}>
-        <Text style={styles.nestedText}>
+      <View style={[styles.mushafView, {marginTop: 0}]}>
+        <Text
+          style={{
+            flex: 1,
+            textAlign: 'right',
+          }}>
           {paraDataDisplay &&
             paraDataDisplay.map((element, index) => {
-              console.log('element', element);
               let paraSurha = element.surah_name;
-
               let paraVerse = element.verses;
               return (
                 <View>
                   <Text
                     style={{
-                      textShadowOffset: {width: 3, height: 3},
-                      textShadowColor: '#464646',
-                      textShadowRadius: 10,
-                      fontSize: 16,
-                      fontWeight: 'bold',
+                      textAlign: 'center',
                       color: 'red',
-                      paddingLeft: 8,
-                      marginLeft: 16,
-                      borderStyle: 'solid',
-                      borderWidth: 2,
-                      borderColor: '#0000',
+                      fontSize: 26,
                     }}>
-                    {' '}
                     {paraSurha}
                   </Text>
-                  {paraVerse &&
-                    paraVerse.map((verses: any, index: any) => {
-                      console.log('verses', verses);
-                      return (
-                        <StyledText textStyles={textStyles}>
-                          {`${verses} <demo>${index} </demo>`}
-                        </StyledText>
-                      );
-                    })}
+                  <Text>
+                    {paraVerse &&
+                      paraVerse.map((ayat: any, index: any) => (
+                        <Text
+                          key={index}
+                          allowFontScaling={false}
+                          selectable={true}>
+                          <Text
+                            selectable={true}
+                            style={[styles.elementTextStyle, {fontSize: 16}]}>
+                            {ayat}
+                          </Text>
+                          <Text style={[styles.indexTextStyle]}>
+                            &#xFD3F;{index}&#xFD3E;
+                          </Text>
+                        </Text>
+                      ))}
+                  </Text>
                 </View>
               );
             })}

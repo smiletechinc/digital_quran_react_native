@@ -1,11 +1,10 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Text, View, FlatList, ScrollView, Image} from 'react-native';
 import {styles} from './index';
-import {MushafButton} from '../components/buttons/index';
 import {SurahContext, SurahContextType} from '../context/surahContext';
 import {VerseContext, QuranContextType} from '../context/quranContext';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import {roundAyahSVG} from '../constants/images';
+
 const MushafImage = require('../resources/images/MushafMode.png');
 
 type Props = {
@@ -47,16 +46,20 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       }
     });
     console.log('suraHObject', surahData);
-  }, [navigation, mushafState]);
-
+  }, [navigation]);
   const renderItem = ({item, index}: any) => {
     return (
       <View style={styles.itemContainer}>
-        {/* <Text style={styles.itemText}>{item}</Text> */}
-        <View>
-          <Image source={roundAyahSVG} style={{width: 32, height: 32}} />
-        </View>
-        {/* <Text style={{right: 16}}>{index}</Text> */}
+        <Text style={styles.itemText}>{item}</Text>
+        <Text
+          style={{
+            right: 18,
+            marginVertical: 4,
+            color: '#C7AA35',
+            fontSize: 16,
+          }}>
+          &#xFD3E;{index}&#xFD3F;
+        </Text>
       </View>
     );
   };
@@ -100,21 +103,29 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         ) : (
           <ScrollView>
             <View style={styles.mushafView}>
-              {surahData &&
-                surahData.map((element, index) => {
-                  if (index > 0) {
-                    return (
-                      <View style={styles.nestedText}>
-                        <View>
-                          <Text style={styles.elementTextStyle}>{element}</Text>
-                        </View>
-                        <View style={styles.indexViewStyle}>
-                          <Text style={styles.indexTextStyle}>{index}</Text>
-                        </View>
-                      </View>
-                    );
-                  }
-                })}
+              <Text
+                style={{
+                  flex: 1,
+                  fontSize: 20,
+                  marginTop: 15,
+                  textAlign: 'right',
+                }}
+                adjustsFontSizeToFit>
+                {surahData &&
+                  surahData.map((ayat, index) => (
+                    <Text
+                      key={index}
+                      allowFontScaling={false}
+                      selectable={true}>
+                      <Text selectable={true} style={[styles.elementTextStyle]}>
+                        {ayat}
+                      </Text>
+                      <Text style={[styles.indexTextStyle]}>
+                        &#xFD3F;{index}&#xFD3E;
+                      </Text>
+                    </Text>
+                  ))}
+              </Text>
             </View>
           </ScrollView>
         )}

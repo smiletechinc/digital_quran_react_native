@@ -165,7 +165,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
           <View style={{top: '4%'}}>
             <View>
               <Text style={styles.selectionLanguageText}>
-                Select Option Search
+                {t('select option search')}
               </Text>
             </View>
             <View
@@ -190,7 +190,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
                   style={{
                     alignSelf: 'center',
                   }}>
-                  <Text style={styles.homeScreenText}>Para</Text>
+                  <Text style={styles.homeScreenText}>{t('para')}</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -205,7 +205,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
                   </View>
                 )}
                 <View style={{alignSelf: 'center'}}>
-                  <Text style={styles.homeScreenText}>Surah</Text>
+                  <Text style={styles.homeScreenText}>{t('surah')}</Text>
                 </View>
               </TouchableOpacity>
             </View>

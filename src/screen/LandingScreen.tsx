@@ -5,6 +5,7 @@ import {styles} from './index';
 import {LanguagePicker} from '../components/picker';
 import {updateAyat} from '../redux/action/verseAction';
 import {connect, useDispatch} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 import Quran from '../resources/SurahIndex';
 import {backgroundAppImage} from '../constants/images';
 import {AppImageHeader} from '../components/images';
@@ -27,82 +28,15 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   const {textLanguage} = React.useContext(
     LanguageContext,
   ) as LanguageContextType;
+  // const {t} = useTranslation();
 
   useEffect(() => {
-    // let allSurah: any = [];
-    var arr = Object.values(Quran.name).forEach(surahAyat => {
+    Object.values(Quran.name).forEach(surahAyat => {
       updateAyat(surahAyat);
-      // allSurah.push(surahAyat);
     });
 
     updateSurah(Object.values(surahMeta));
     updatePara(Object.values(paraMeta));
-    // var arrayParaIndex: any = [];
-    // Object.values(paraMeta).forEach(para => {
-    //   console.log('para', para.paraIndex), arrayParaIndex.push(para.paraIndex);
-    // });
-
-    // // let allPara: any = [];
-    // for (
-    //   let currentParaIndex = 0;
-    //   currentParaIndex < paraMeta.length;
-    //   currentParaIndex++
-    // ) {
-    //   console.log('paraMeta', paraMeta[currentParaIndex].ayahOfSurah);
-    //   var currentParah: any = [];
-
-    //   let firstSurahNumber = Number(
-    //     paraMeta[currentParaIndex].ayahOfSurah[0].firstAyah.surahIndex,
-    //   );
-    //   let firstSurahIndex = firstSurahNumber - 1;
-    //   let firstIndex = Number(
-    //     paraMeta[currentParaIndex].ayahOfSurah[0].firstAyah.ayahIndex.split(
-    //       '_',
-    //     )[1],
-    //   );
-    //   let lastIndex =
-    //     paraMeta[currentParaIndex].ayahOfSurah[0].lastAyah.ayahIndex.split(
-    //       '_',
-    //     )[1];
-
-    //   let lastSurahNumber = Number(
-    //     paraMeta[currentParaIndex].ayahOfSurah[
-    //       paraMeta[currentParaIndex].ayahOfSurah.length - 1
-    //     ].lastAyah.surahIndex,
-    //   );
-    //   let lastSurahIndex = lastSurahNumber - 1;
-    //   let lastIndex_ = Number(
-    //     paraMeta[currentParaIndex].ayahOfSurah[
-    //       paraMeta[currentParaIndex].ayahOfSurah.length - 1
-    //     ].lastAyah.ayahIndex.split('_')[1],
-    //   );
-
-    //   console.log('firstSurahIndex', lastIndex);
-    //   for (
-    //     let currentSuahIndex = firstSurahIndex;
-    //     currentSuahIndex <= lastSurahIndex;
-    //     currentSuahIndex++
-    //   ) {
-    //     let currentSurahAyats = Object.values(allSurah[currentSuahIndex].verse);
-    //     let currentVerses: any = [];
-
-    //     for (let i = firstIndex; i < currentSurahAyats.length; i++) {
-    //       if (i > lastIndex_ && lastSurahIndex === currentSuahIndex) {
-    //         break;
-    //       } else {
-    //         currentVerses.push(currentSurahAyats[i]);
-    //         // currentParah.push(currentSurahAyats[i]);
-    //       }
-    //     }
-
-    //     let currentSurah = {
-    //       surah_number: currentSuahIndex + 1,
-    //       verses: currentVerses,
-    //     };
-    //     currentParah.push(currentSurah);
-    //   }
-    //   console.log('firstSurahNumber', currentParah);
-    // }
   }, [navigation]);
 
   const LogFunc = () => {

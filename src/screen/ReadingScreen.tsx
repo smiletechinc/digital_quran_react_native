@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, FlatList, SafeAreaView} from 'react-native';
+import {View, FlatList, TextInput, Image} from 'react-native';
 import {styles} from './index';
 import {connect, useDispatch} from 'react-redux';
 import {ListItem} from '../components/List/index';
 import ScreenWrapperWithHeader from '../components/wrapper/HeaderWrapper';
 import {StatusBar} from 'expo-status-bar';
 import {SurahContext, SurahContextType} from '../context/surahContext';
+import {SCREEN_WIDTH} from '../constants/index';
+import {searchIcon} from '../constants/images';
 
 type Props = {
   navigation: any;
@@ -22,7 +24,7 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
   const {surahObject, setSurahObject} = React.useContext(
     SurahContext,
   ) as SurahContextType;
-
+  const [textValue, setChangeText] = React.useState('');
   useEffect(() => {
     navigation.setOptions({
       cardStyle: {backgroundColor: 'yellow'},
@@ -52,6 +54,16 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
             backgroundColor: '#00B4AC',
           },
         ]}>
+        <View
+          style={styles.searchBarView}
+          onTouchEnd={() => navigation.navigate('Search')}>
+          <TextInput
+            value={textValue}
+            onChangeText={text => setChangeText(text)}
+            placeholder="Search here"
+          />
+          <Image source={searchIcon} />
+        </View>
         <FlatList
           style={styles.listContainer}
           data={surahIntro}

@@ -109,6 +109,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
                   fontSize: 20,
                   marginTop: 15,
                   textAlign: 'right',
+                  paddingHorizontal: 16,
                 }}
                 adjustsFontSizeToFit>
                 {surahData &&

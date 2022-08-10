@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, FlatList, SafeAreaView} from 'react-native';
+import {TextInput, View, FlatList, Image} from 'react-native';
 import {styles} from './index';
 import {connect, useDispatch} from 'react-redux';
 import {ListItem} from '../components/List/index';
@@ -8,6 +8,7 @@ import {StatusBar} from 'expo-status-bar';
 import {SurahContext, SurahContextType} from '../context/surahContext';
 import {ParaContext, ParaContextType} from '../context/paraContext';
 import ParaListItem from '../components/List/paraListItem';
+import {searchIcon} from '../constants/images';
 
 type Props = {
   navigation: any;
@@ -22,6 +23,7 @@ let updatedOuter = false;
 const ParaReadingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route, reduxSurahs, reduxParahs, updated} = props;
   const [paraIntro, setParaIntro] = useState([]);
+  const [textValue, setChangeText] = React.useState('');
   const {setParaObject} = React.useContext(ParaContext) as ParaContextType;
   useEffect(() => {
     setParaIntro(Object.values(reduxParahs));
@@ -47,6 +49,16 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
             backgroundColor: '#00B4AC',
           },
         ]}>
+        <View
+          style={styles.searchBarView}
+          onTouchEnd={() => navigation.navigate('Search')}>
+          <TextInput
+            value={textValue}
+            onChangeText={text => setChangeText(text)}
+            placeholder="Search here"
+          />
+          <Image source={searchIcon} />
+        </View>
         <FlatList
           style={{
             paddingRight: 32,

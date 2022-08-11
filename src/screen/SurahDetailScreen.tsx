@@ -4,7 +4,6 @@ import {styles} from './index';
 import {SurahContext, SurahContextType} from '../context/surahContext';
 import {VerseContext, QuranContextType} from '../context/quranContext';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-const MushafImage = require('../resources/images/MushafMode.png');
 
 type Props = {
   navigation: any;

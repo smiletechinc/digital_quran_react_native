@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, TextInput, TouchableOpacity, Text} from 'react-native';
+import {View, Image, TextInput, TouchableOpacity, FlatList} from 'react-native';
 import {styles} from './index';
 import {clearSearchBar, searchIcon} from '../constants/images';
 import {VerseContext, QuranContextType} from '../context/quranContext';
-
+import {debounce} from 'lodash';
+import {SearchList} from '../components/List/index';
 type Props = {
   navigation: any;
 };
@@ -12,37 +13,49 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {navigation} = props;
   const {versesObject} = React.useContext(VerseContext) as QuranContextType;
   const [textValue, setChangeText] = React.useState('');
+  const [characters, setCharacters] = React.useState<any[]>([]);
   const [clicked, setClicked] = React.useState(false);
-  const [arrayFilter, setArrayFilter] = useState<any>();
+
   const LogFunc = () => {
     navigation.replace('HomeScreen');
   };
 
-  const searchValue = async (value: string) => {
-    setChangeText(value);
-    setClicked(true);
-    console.log('value in search bar', value);
-    // console.log('values from context', versesObject);
-    const arrayFilter = versesObject.map((verseObject: any) => {
-      const arr = Object.values(verseObject.verse);
-      if (
-        JSON.stringify(arr)
-          .replace(
-            /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-            '',
-          )
-          .includes(value)
-      ) {
-        // console.log('values from context', arr);
-        setArrayFilter(arr);
-      }
+  const search = async (criteria: string) => {
+    let ayatArr: any = [];
+    const response = versesObject.map((verseObj: any) => {
+      return Object.values(verseObj.verse);
     });
-    // console.log(
-    //   'value in context',
-    //   versesObject.filter((verseObject: any) =>
-    //     Object.values(verseObject.verse).includes(value),
-    //   ),
-    // );
+    const results = await Promise.all(
+      response.map((verseObject: any) => {
+        Object.values(verseObject).filter(
+          (ayat: any, index: string | number) => {
+            if (
+              JSON.stringify(ayat)
+                .replace(
+                  /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
+                  '',
+                )
+                .includes(criteria)
+            ) {
+              console.log('ayat', ayat);
+              ayatArr.push(ayat);
+            }
+          },
+        );
+      }),
+    );
+    console.log('resultsed', ayatArr);
+    setCharacters(ayatArr);
+  };
+  const handleChange = async (e: string) => {
+    setChangeText(e);
+    setClicked(true);
+    var debounce_fun = await debounce(() => search(e), 3000);
+    debounce_fun();
+  };
+
+  const renderItem = ({item}: any) => {
+    return <SearchList surah={item} />;
   };
 
   return (
@@ -58,7 +71,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
           }>
           <TextInput
             value={textValue}
-            onChangeText={text => searchValue(text)}
+            onChangeText={text => handleChange(text)}
             placeholder="Search here"
             onFocus={() => {
               setClicked(true);
@@ -70,15 +83,17 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
         {clicked && (
           <TouchableOpacity
             onPress={() => {
-              setChangeText(''), setClicked(false);
+              setChangeText(''), setClicked(false), setCharacters([]);
             }}>
             <Image source={clearSearchBar} />
           </TouchableOpacity>
         )}
       </View>
-      <View>
-        <Text>{arrayFilter}</Text>
-      </View>
+      <FlatList
+        style={styles.listContainer}
+        data={characters}
+        renderItem={renderItem}
+      />
     </View>
   );
 };

@@ -1,16 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  ActivityIndicator,
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  Alert,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {ActivityIndicator, View, Text, SafeAreaView} from 'react-native';
 import {styles} from './index';
 import {LogoImage} from '../components/images/index';
 
@@ -48,7 +37,6 @@ const SplashScreen: React.FunctionComponent<Props> = props => {
             />
           }
         </View>
-        {/* <StatusBar style="light" /> */}
       </View>
     </SafeAreaView>
   );

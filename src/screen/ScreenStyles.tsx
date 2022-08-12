@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#fff',
   },
   activityIndicator: {
     alignItems: 'center',
@@ -34,6 +33,12 @@ const styles = StyleSheet.create({
     lineHeight: 65,
     top: 8,
     fontWeight: '400',
+  },
+  homeView: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    zIndex: 50,
   },
   searchContainer: {
     margin: 15,
@@ -99,9 +104,9 @@ const styles = StyleSheet.create({
     width: 'auto',
     flexWrap: 'wrap',
     borderRadius: 16,
-    marginTop: 64,
+    marginTop: 8,
     alignContent: 'center',
-    backgroundColor: 'rgba(112,112,112,0.14)',
+    // backgroundColor: 'rgba(255,255,255,0.4)',
   },
   listContainer: {},
   listDetailContainer: {
@@ -128,13 +133,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FFFFFF',
   },
+  bismillahView: {
+    // display: 'flex',
+    // flexDirection: 'row-reverse',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    borderRadius: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
+    // marginVertical: 8,
+    marginTop: 12,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row-reverse',
+    backgroundColor: 'rgba(255,255,255,0.34)',
+  },
   bismillahText: {
     textAlign: 'center',
-    marginTop: 32,
-    fontWeight: 'bold',
-    marginHorizontal: 16,
-    marginVertical: 16,
+    color: '#D49C35',
     fontSize: 20,
+    fontFamily: 'Arial',
+    fontWeight: '700',
+    letterSpacing: 3,
   },
   textIndex: {
     fontSize: 20,
@@ -166,6 +187,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffffff',
   },
+  segementedView: {
+    borderRadius: 48,
+    marginTop: 16,
+    backgroundColor: '#FFFFFF',
+  },
   tabsContainerStyle: {
     borderRadius: 24,
     padding: 2,
@@ -176,7 +202,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0)',
   },
   activeTabStyle: {
-    backgroundColor: '#00B4AC',
+    backgroundColor: '#C7AA35',
   },
   tabTextStyle: {textAlign: 'left', fontSize: 16, color: '#00B4AC'},
   activeTabTextStyle: {
@@ -186,12 +212,13 @@ const styles = StyleSheet.create({
   },
   mushafView: {
     paddingVertical: 16,
+    paddingBottom: 64,
     borderRadius: 16,
-    marginTop: 64,
+    marginTop: 36,
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
   elementTextStyle: {
-    textAlign: 'justify',
+    textAlign: 'center',
     fontSize: 24,
     color: '#1A1A1A',
     letterSpacing: 0,

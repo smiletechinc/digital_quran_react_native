@@ -1,9 +1,14 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Text, View, FlatList, ScrollView, Image} from 'react-native';
+import {Text, View, FlatList} from 'react-native';
 import {styles} from './index';
 import {SurahContext, SurahContextType} from '../context/surahContext';
 import {VerseContext, QuranContextType} from '../context/quranContext';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import {useTranslation} from 'react-i18next';
+import bismillah from '../resources/bismillah.json';
+import {SurahDetailList} from '../components/List/index';
+import HeaderDetail from '../components/Header/headerDetail';
+import MusufView from '../components/musuafView';
 
 type Props = {
   navigation: any;
@@ -15,12 +20,16 @@ type Props = {
 const SurahScreen: React.FunctionComponent<Props> = props => {
   const {surahObject} = React.useContext(SurahContext) as SurahContextType;
   const {versesObject} = React.useContext(VerseContext) as QuranContextType;
-  const {navigation, route, reduxVerses, updated} = props;
+  const {navigation} = props;
   const [surahData, setSurahData] = useState<Object[]>();
-  const [bismillahAyah, setBismillahAyah] = useState();
+  const [surahTitle, setSurahTitle] = useState<Object[]>();
+  const [surahVerseCount, setSurahVerseCount] = useState<number>();
+  const [bismillahAyah, setBismillahAyah] = useState<Object[]>();
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
-
+  const [isSurahFatiha, setIsSurahFathia] = useState(false);
+  const [isSurahToba, setIsSurahToba] = useState(true);
+  const {t} = useTranslation();
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
     if (selectedIndexValue === 1) {
@@ -31,34 +40,29 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   };
 
   useEffect(() => {
-    navigation.setOptions({
-      headerStyle: {
-        backgroundColor: '#57BBC1',
-      },
-      title: `${Object.values(surahObject)[4]}`,
-    });
-
     versesObject.forEach((element: any) => {
       if (Object.values(surahObject)[5] === element.index) {
         setSurahData(Object.values(element.verse));
+        setSurahVerseCount(element.count);
       }
     });
-    console.log('suraHObject', surahData);
+    setSurahTitle(t(Object.values(surahObject)[3]));
+    setBismillahAyah(Object.values(bismillah[0]));
+    Object.values(surahObject)[5] === '001'
+      ? setIsSurahFathia(true)
+      : setIsSurahFathia(false);
+    Object.values(surahObject)[5] === '009'
+      ? setIsSurahToba(false)
+      : setIsSurahToba(true);
   }, [navigation]);
+
   const renderItem = ({item, index}: any) => {
     return (
-      <View style={styles.itemContainer}>
-        <Text style={styles.itemText}>{item}</Text>
-        <Text
-          style={{
-            right: 18,
-            marginVertical: 4,
-            color: '#C7AA35',
-            fontSize: 16,
-          }}>
-          &#xFD3E;{index}&#xFD3F;
-        </Text>
-      </View>
+      <SurahDetailList
+        verse={item}
+        index={index}
+        isSurahFathia={isSurahFatiha}
+      />
     );
   };
 
@@ -68,17 +72,16 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         styles.selectionContainer,
         {
           backgroundColor: '#57BBC1',
-          marginTop: 48,
         },
       ]}>
-      <View
-        style={{
-          borderWidth: 1,
-          borderColor: 'rgba(255,255,255,0)',
-          borderRadius: 48,
-        }}>
+      <HeaderDetail
+        surahTitle={surahTitle}
+        surahVerseCount={surahVerseCount}
+        navigation={navigation}
+      />
+      <View style={styles.segementedView}>
         <SegmentedControlTab
-          values={['Musuaf', 'Translation']}
+          values={['Surah', 'Ayat']}
           selectedIndex={selectedIndexValue}
           onTabPress={value => MushafNavigation(value)}
           tabsContainerStyle={styles.tabsContainerStyle}
@@ -91,42 +94,30 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       </View>
       <View>
         {mushafState ? (
-          <View style={styles.readingcontainer}>
-            <FlatList
-              style={styles.listContainer}
-              data={surahData}
-              renderItem={renderItem}
-            />
+          <View>
+            {isSurahToba && (
+              <View style={styles.bismillahView}>
+                <Text style={styles.bismillahText}>{bismillahAyah}</Text>
+                <Text style={[styles.indexTextStyle]}>
+                  &#xFD3E;{isSurahFatiha ? 1 : 0} &#xFD3F;
+                </Text>
+              </View>
+            )}
+            <View style={styles.readingcontainer}>
+              <FlatList
+                style={styles.listContainer}
+                data={surahData}
+                renderItem={renderItem}
+              />
+            </View>
           </View>
         ) : (
-          <ScrollView>
-            <View style={styles.mushafView}>
-              <Text
-                style={{
-                  flex: 1,
-                  fontSize: 20,
-                  marginTop: 15,
-                  textAlign: 'right',
-                  paddingHorizontal: 16,
-                }}
-                adjustsFontSizeToFit>
-                {surahData &&
-                  surahData.map((ayat, index) => (
-                    <Text
-                      key={index}
-                      allowFontScaling={false}
-                      selectable={true}>
-                      <Text selectable={true} style={[styles.elementTextStyle]}>
-                        {ayat}
-                      </Text>
-                      <Text style={[styles.indexTextStyle]}>
-                        &#xFD3F;{index}&#xFD3E;
-                      </Text>
-                    </Text>
-                  ))}
-              </Text>
-            </View>
-          </ScrollView>
+          <MusufView
+            isSurahFatiha={isSurahFatiha}
+            isSurahToba={isSurahToba}
+            surahData={surahData}
+            bismillahAyah={bismillahAyah}
+          />
         )}
       </View>
     </View>

@@ -54,8 +54,8 @@ const ListItem: React.FunctionComponent<Props> = props => {
                 style={{
                   textAlign: 'right',
                   color: '#00B4AC',
-                  fontSize: 26,
-                  lineHeight: 28,
+                  fontSize: 24,
+                  lineHeight: 36,
                 }}>
                 {surah.titleArabic}
               </Text>

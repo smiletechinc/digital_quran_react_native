@@ -49,7 +49,10 @@ const RootNavigator = () => {
 
   function ParaStackScreen() {
     return (
-      <ParaStack.Navigator>
+      <ParaStack.Navigator
+        screenOptions={{
+          header: () => null,
+        }}>
         <ParaStack.Screen
           name="ParaReadingScreen"
           component={ParaReadingScreen}
@@ -195,7 +198,7 @@ const RootNavigator = () => {
           <Stack.Screen
             name="SurahScreen"
             component={SurahScreen}
-            options={{title: ''}}
+            options={{title: '', header: () => null}}
           />
           <Stack.Screen
             name="ParaDetailScreen"

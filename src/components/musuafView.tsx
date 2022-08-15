@@ -1,6 +1,7 @@
-import React, {FunctionComponent, useEffect, useState} from 'react';
+import React, {FunctionComponent, useEffect, useRef, useState} from 'react';
 import {Text, View, ScrollView, Alert, StyleSheet} from 'react-native';
-
+import {ClipboardHook} from '../hooks/clipboardHook';
+import Toast from 'react-native-fast-toast';
 type Props = {
   isSurahToba: boolean;
   isSurahFatiha: boolean;
@@ -9,15 +10,27 @@ type Props = {
 };
 const MusufView: FunctionComponent<Props> = props => {
   const {isSurahFatiha, isSurahToba, bismillahAyah, surahData} = props;
+  const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
+  const toast = useRef(null);
+  useEffect(() => {
+    if (textCopyStatus) {
+      toast.current.show('Copy to Clipboard', {
+        type: 'success',
+        duration: 2000,
+      });
+      setTextCopyStatus(false);
+    }
+  }, [textCopyStatus]);
+
   return (
     <ScrollView>
       <View style={styles.mushafView}>
         {isSurahToba && (
           <View style={styles.bismillahView}>
             <Text style={styles.bismillahText}>{bismillahAyah}</Text>
-            <Text style={[styles.indexTextStyle]}>
-              &#xFD3E;{isSurahFatiha ? 1 : 0} &#xFD3F;
-            </Text>
+            {isSurahFatiha && (
+              <Text style={[styles.indexTextStyle]}>&#xFD3E;1 &#xFD3F;</Text>
+            )}
           </View>
         )}
 
@@ -35,7 +48,7 @@ const MusufView: FunctionComponent<Props> = props => {
                 <Text
                   selectable={true}
                   style={[styles.elementTextStyle]}
-                  onPress={() => Alert.alert('hello')}
+                  onPress={() => copyToClipboard(ayat)}
                   adjustsFontSizeToFit={true}>
                   {ayat}
                 </Text>
@@ -46,6 +59,7 @@ const MusufView: FunctionComponent<Props> = props => {
             ))}
         </Text>
       </View>
+      <Toast ref={toast} placement="bottom" />
     </ScrollView>
   );
 };

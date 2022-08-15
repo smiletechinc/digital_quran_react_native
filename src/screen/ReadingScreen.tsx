@@ -6,7 +6,6 @@ import {ListItem} from '../components/List/index';
 import ScreenWrapperWithHeader from '../components/wrapper/HeaderWrapper';
 import {StatusBar} from 'expo-status-bar';
 import {SurahContext, SurahContextType} from '../context/surahContext';
-import {SCREEN_WIDTH} from '../constants/index';
 import {searchIcon} from '../constants/images';
 
 type Props = {
@@ -34,8 +33,6 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
 
   const moveFunction = (surahdata: any) => {
     setSurahObject(surahdata);
-    console.log('surhaObject ', surahObject);
-    // navigation.navigate('SurahScreen', surahdata);
     navigation.navigate('SurahScreen');
   };
   const renderItem = ({item}: any) => {

@@ -36,6 +36,7 @@ export const ParaMakeHook = () => {
         let paraFirstSurahNumber = Number(
           paraMetaObject[currentParaIndex].ayahOfSurah[0].firstAyah.surahIndex,
         );
+
         let paraFirstSurahIndex = paraFirstSurahNumber - 1;
         let paraLastSurahNumber = Number(
           paraMetaObject[currentParaIndex].ayahOfSurah[
@@ -57,21 +58,24 @@ export const ParaMakeHook = () => {
           let currentSurahAyats = Object.values(
             allSurah[currentSuahIndex].verse,
           );
+
           let currentVerses: any = [];
 
           let firstSurahVerseIndex = Number(
             paraMetaObject[currentParaIndex].ayahOfSurah[
               startValue
-            ].firstAyah.ayahIndex.split('_')[1],
+            ].firstAyah.ayahIndex.split('_')[1] - 1,
           );
+
           startValue = startValue + 1;
+
           for (
             let i = firstSurahVerseIndex;
             i < currentSurahAyats.length;
             i++
           ) {
             if (
-              i > lastParaSurahVerseIndex &&
+              i >= lastParaSurahVerseIndex &&
               paraLastSurahIndex === currentSuahIndex
             )
               break;
@@ -84,12 +88,14 @@ export const ParaMakeHook = () => {
             surah_name: paraSurahs[currentSuahIndex].titleArabic,
             verses: currentVerses,
           };
+
           currentParah.push(currentSurah);
         }
         let para = {
           para_number: currentParaIndex + 1,
           paraDetail: currentParah,
         };
+
         allPara.push(para);
       }
       addPara(allPara);

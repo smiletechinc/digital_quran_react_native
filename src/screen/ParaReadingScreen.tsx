@@ -2,10 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {TextInput, View, FlatList, Image} from 'react-native';
 import {styles} from './index';
 import {connect, useDispatch} from 'react-redux';
-import {ListItem} from '../components/List/index';
 import ScreenWrapperWithHeader from '../components/wrapper/HeaderWrapper';
 import {StatusBar} from 'expo-status-bar';
-import {SurahContext, SurahContextType} from '../context/surahContext';
 import {ParaContext, ParaContextType} from '../context/paraContext';
 import ParaListItem from '../components/List/paraListItem';
 import {searchIcon} from '../constants/images';
@@ -25,6 +23,7 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
   const [paraIntro, setParaIntro] = useState([]);
   const [textValue, setChangeText] = React.useState('');
   const {setParaObject} = React.useContext(ParaContext) as ParaContextType;
+
   useEffect(() => {
     setParaIntro(Object.values(reduxParahs));
   }, [navigation]);
@@ -85,4 +84,3 @@ const mapStateToProps = (state: {
 };
 
 export default connect(mapStateToProps)(ParaReadingScreen);
-// export default ParaReadingScreen;

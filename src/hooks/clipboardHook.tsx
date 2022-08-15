@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-// import Clipboard from "@react-native-clipboard/clipboard";
+import Clipboard from '@react-native-clipboard/clipboard';
 
 interface Props {
   arabictext: any;
@@ -7,10 +7,11 @@ interface Props {
 
 export const ClipboardHook = () => {
   const [textCopyStatus, setTextCopyStatus] = useState(false);
-  const copyToClipboard = async (arabicText: string) => {
+  const copyToClipboard = async (arabicText: any) => {
     try {
-      //   Clipboard.setString(arabicText);
-      //   const text = await Clipboard.getString();
+      console.log('araci', arabicText);
+      Clipboard.setString(arabicText);
+      const text = await Clipboard.getString();
       setTextCopyStatus(true);
     } catch (error) {
       console.log(error);

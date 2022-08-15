@@ -1,13 +1,11 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Text, View, FlatList, ScrollView, StyleSheet} from 'react-native';
-import StyledText from 'react-native-styled-text';
 import {styles} from './index';
-import {MushafButton} from '../components/buttons/index';
-import {connect, useSelector} from 'react-redux';
 import {SurahContext, SurahContextType} from '../context/surahContext';
 import {ParaContext, ParaContextType} from '../context/paraContext';
-import {createIconSetFromFontello} from 'react-native-vector-icons';
-const MushafImage = require('../resources/images/MushafMode.png');
+import HeaderDetail from '../components/Header/headerDetail';
+import {SurahDetailHook} from '../hooks/surahDetailHook';
+import bismillah from '../resources/bismillah.json';
 
 type Props = {
   navigation: any;
@@ -16,89 +14,109 @@ type Props = {
   updated: boolean;
 };
 
-let updatedOuter = false;
-
-// const selectVerses = (state: {verses: any}) => state.verses;
-
 const ParaDetailScreen: React.FunctionComponent<Props> = props => {
-  const {surahObject} = React.useContext(SurahContext) as SurahContextType;
   const {paraData, paraObject} = React.useContext(
     ParaContext,
   ) as ParaContextType;
   const {navigation, route, reduxVerses, updated} = props;
   const [paraDataDisplay, setParaDataDisplay] = useState<any[]>([]);
-  const [bismillahAyah, setBismillahAyah] = useState();
-  const [mushafState, setMushafState] = useState<boolean>(true);
+  const [bismillahAyah, setBismillahAyah] = useState<Object[]>();
 
   useEffect(() => {
-    navigation.setOptions({
-      headerStyle: {
-        backgroundColor: '#57BBC1',
-      },
-      title: `${paraObject.titleArabic}`,
-    });
     if (paraData) {
       Object.values(paraData).forEach((element: any) => {
         if (Number(paraObject.paraIndex) === element.para_number) {
           setParaDataDisplay(element.paraDetail);
         }
       });
+      setBismillahAyah(Object.values(bismillah[0]));
     }
-    // console.log('paraDataDisplay', paraDataDisplay);
-  }, [navigation, mushafState, paraDataDisplay]);
+  }, [navigation, paraDataDisplay]);
+
   return (
-    <ScrollView
+    <View
       style={[
+        styles.selectionContainer,
         {
           backgroundColor: '#57BBC1',
-          // marginTop: 4,
         },
       ]}>
-      <Text style={styles.bismillahText}> {bismillahAyah}</Text>
-      <View style={[styles.mushafView, {marginTop: 0}]}>
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'right',
-          }}>
-          {paraDataDisplay &&
-            paraDataDisplay.map((element, index) => {
-              let paraSurha = element.surah_name;
-              let paraVerse = element.verses;
-              return (
-                <View>
-                  <Text
-                    style={{
-                      textAlign: 'center',
-                      color: 'red',
-                      fontSize: 26,
-                    }}>
-                    {paraSurha}
-                  </Text>
-                  <Text>
-                    {paraVerse &&
-                      paraVerse.map((ayat: any, index: any) => (
-                        <Text
-                          key={index}
-                          allowFontScaling={false}
-                          selectable={true}>
-                          <Text
-                            selectable={true}
-                            style={[styles.elementTextStyle, {fontSize: 16}]}>
-                            {ayat}
+      <HeaderDetail
+        surahTitle={Object.values(paraObject.title)}
+        surahVerseCount={Object.values(paraObject.titleArabic)}
+        navigation={navigation}
+        fromSurah={false}
+      />
+      <View
+        style={[
+          {
+            backgroundColor: '#57BBC1',
+            borderRadius: 16,
+            marginBottom: 128,
+          },
+        ]}>
+        <ScrollView>
+          <View style={[styles.mushafView, {marginTop: 0}]}>
+            <Text
+              style={{
+                flex: 1,
+                textAlign: 'right',
+              }}>
+              {paraDataDisplay &&
+                paraDataDisplay.map((element, index) => {
+                  let paraSurha = element.surah_name;
+                  let paraVerse = element.verses;
+                  return (
+                    <View>
+                      <View>
+                        <View style={styles.paraSurahTitleView}>
+                          <Text style={styles.paraSurahTitleText}>
+                            {paraSurha}
                           </Text>
-                          <Text style={[styles.indexTextStyle]}>
-                            &#xFD3F;{index}&#xFD3E;
-                          </Text>
-                        </Text>
-                      ))}
-                  </Text>
-                </View>
-              );
-            })}
-        </Text>
+                        </View>
+                        {element.surah_number !== 9 && (
+                          <View style={styles.bismillahView}>
+                            <Text style={styles.bismillahText}>
+                              {bismillahAyah}
+                            </Text>
+                            {element.surah_number === 1 && (
+                              <Text style={[styles.indexTextStyle]}>
+                                &#xFD3E;1 &#xFD3F;
+                              </Text>
+                            )}
+                          </View>
+                        )}
+                      </View>
+                      <Text>
+                        {paraVerse &&
+                          paraVerse.map((ayat: any, index: any) => (
+                            <Text
+                              key={index}
+                              allowFontScaling={false}
+                              selectable={true}>
+                              <Text
+                                selectable={true}
+                                style={[styles.elementTextStyle]}>
+                                {ayat}
+                              </Text>
+                              <Text style={[styles.indexTextStyle]}>
+                                &#xFD3F;
+                                {element.surah_number === 1
+                                  ? index + 2
+                                  : index + 1}{' '}
+                                &#xFD3E;
+                              </Text>
+                            </Text>
+                          ))}
+                      </Text>
+                    </View>
+                  );
+                })}
+            </Text>
+          </View>
+        </ScrollView>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

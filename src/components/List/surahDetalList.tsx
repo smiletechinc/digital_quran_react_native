@@ -18,16 +18,21 @@ const SurahDetailList: React.FunctionComponent<Props> = props => {
   });
   return (
     <View style={styles.itemContainer} onTouchEnd={onPress}>
+      {/* <View> */}
       <Text style={styles.itemText}>{verse}</Text>
+      {/* </View> */}
+      {/* <View> */}
       <Text
         style={{
-          right: 18,
+          textAlign: 'left',
+          // right: 18,
           marginVertical: 4,
           fontSize: 20,
           color: '#C7AA35',
         }}>
         &#xFD3E;{isSurahFathia ? index + 2 : index + 1}&#xFD3F;
       </Text>
+      {/* </View> */}
     </View>
   );
 };
@@ -35,11 +40,11 @@ const SurahDetailList: React.FunctionComponent<Props> = props => {
 export default SurahDetailList;
 const styles = StyleSheet.create({
   itemContainer: {
+    display: 'flex',
     borderRadius: 8,
     paddingVertical: 16,
     paddingHorizontal: 12,
     marginVertical: 4,
-    display: 'flex',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

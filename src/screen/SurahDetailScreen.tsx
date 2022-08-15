@@ -1,15 +1,13 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {Text, View, FlatList} from 'react-native';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
+import {Text, View, FlatList, ScrollView} from 'react-native';
 import {styles} from './index';
-import {SurahContext, SurahContextType} from '../context/surahContext';
-import {VerseContext, QuranContextType} from '../context/quranContext';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import {useTranslation} from 'react-i18next';
-import bismillah from '../resources/bismillah.json';
 import {SurahDetailList} from '../components/List/index';
 import HeaderDetail from '../components/Header/headerDetail';
 import MusufView from '../components/musuafView';
-
+import {SurahDetailHook} from '../hooks/surahDetailHook';
+import {ClipboardHook} from '../hooks/clipboardHook';
+import Toast from 'react-native-fast-toast';
 type Props = {
   navigation: any;
   route: any;
@@ -18,42 +16,37 @@ type Props = {
 };
 
 const SurahScreen: React.FunctionComponent<Props> = props => {
-  const {surahObject} = React.useContext(SurahContext) as SurahContextType;
-  const {versesObject} = React.useContext(VerseContext) as QuranContextType;
+  const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
+  const toast = useRef(null);
   const {navigation} = props;
-  const [surahData, setSurahData] = useState<Object[]>();
-  const [surahTitle, setSurahTitle] = useState<Object[]>();
-  const [surahVerseCount, setSurahVerseCount] = useState<number>();
-  const [bismillahAyah, setBismillahAyah] = useState<Object[]>();
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
-  const [isSurahFatiha, setIsSurahFathia] = useState(false);
-  const [isSurahToba, setIsSurahToba] = useState(true);
-  const {t} = useTranslation();
+  const {
+    surahDetaillMake,
+    surahData,
+    surahVerseCount,
+    surahTitle,
+    bismillahAyah,
+    isSurahFatiha,
+    isSurahToba,
+  } = SurahDetailHook();
+
+  useEffect(() => {
+    if (textCopyStatus) {
+      toast.current.show('Copy to Clipboard', {
+        type: 'success',
+        duration: 2000,
+      });
+      setTextCopyStatus(false);
+    }
+  }, [textCopyStatus]);
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
-    if (selectedIndexValue === 1) {
-      setMushafState(false);
-    } else {
-      setMushafState(true);
-    }
+    selectedIndexValue === 1 ? setMushafState(false) : setMushafState(true);
   };
 
   useEffect(() => {
-    versesObject.forEach((element: any) => {
-      if (Object.values(surahObject)[5] === element.index) {
-        setSurahData(Object.values(element.verse));
-        setSurahVerseCount(element.count);
-      }
-    });
-    setSurahTitle(t(Object.values(surahObject)[3]));
-    setBismillahAyah(Object.values(bismillah[0]));
-    Object.values(surahObject)[5] === '001'
-      ? setIsSurahFathia(true)
-      : setIsSurahFathia(false);
-    Object.values(surahObject)[5] === '009'
-      ? setIsSurahToba(false)
-      : setIsSurahToba(true);
+    surahDetaillMake();
   }, [navigation]);
 
   const renderItem = ({item, index}: any) => {
@@ -62,6 +55,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         verse={item}
         index={index}
         isSurahFathia={isSurahFatiha}
+        onPress={() => copyToClipboard(item)}
       />
     );
   };
@@ -77,6 +71,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       <HeaderDetail
         surahTitle={surahTitle}
         surahVerseCount={surahVerseCount}
+        fromSurah={true}
         navigation={navigation}
       />
       <View style={styles.segementedView}>
@@ -93,24 +88,33 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         />
       </View>
       <View>
+        <Toast ref={toast} placement="top" />
         {mushafState ? (
-          <View>
+          <ScrollView
+            style={{
+              display: 'flex',
+              marginBottom: 64,
+            }}>
             {isSurahToba && (
-              <View style={styles.bismillahView}>
+              <View
+                style={[
+                  styles.bismillahView,
+                  {backgroundColor: 'rgba(255,255,255,0.34)'},
+                ]}>
                 <Text style={styles.bismillahText}>{bismillahAyah}</Text>
-                <Text style={[styles.indexTextStyle]}>
-                  &#xFD3E;{isSurahFatiha ? 1 : 0} &#xFD3F;
-                </Text>
+                {isSurahFatiha && (
+                  <Text style={[styles.indexTextStyle]}>
+                    &#xFD3E;1 &#xFD3F;
+                  </Text>
+                )}
               </View>
             )}
-            <View style={styles.readingcontainer}>
-              <FlatList
-                style={styles.listContainer}
-                data={surahData}
-                renderItem={renderItem}
-              />
-            </View>
-          </View>
+            <FlatList
+              style={styles.listContainer}
+              data={surahData}
+              renderItem={renderItem}
+            />
+          </ScrollView>
         ) : (
           <MusufView
             isSurahFatiha={isSurahFatiha}

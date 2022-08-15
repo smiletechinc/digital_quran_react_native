@@ -5,27 +5,40 @@ type Props = {
   surahTitle: any;
   navigation: any;
   surahVerseCount: any;
+  styleOption?: any;
+  fromSurah: boolean;
 };
 const HeaderDetail: FunctionComponent<Props> = props => {
-  const {surahTitle, navigation, surahVerseCount} = props;
+  const {surahTitle, navigation, styleOption, surahVerseCount, fromSurah} =
+    props;
 
   return (
-    <View style={styles.mainView}>
+    <View style={[styles.mainView, styleOption]}>
       <View>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={backBtn} style={{borderColor: '#E9EEF0'}} />
         </TouchableOpacity>
-        <View style={styles.textView}>
-          <Text style={styles.surahText}>Surah {surahTitle}</Text>
-          <Text style={styles.countText}>{surahVerseCount} Verses</Text>
-          <TouchableOpacity style={{top: 2}}>
-            <Image source={favIcon} />
-          </TouchableOpacity>
-        </View>
+        {fromSurah ? (
+          <View style={styles.textView}>
+            <Text style={styles.surahText}>Surah {surahTitle}</Text>
+            <Text style={styles.countText}>{surahVerseCount} Verses</Text>
+            <TouchableOpacity style={{top: 2}}>
+              <Image source={favIcon} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.textView}>
+            <Text style={styles.surahText}>{surahTitle}</Text>
+            <Text style={[styles.countText, {textAlign: 'right'}]}>
+              {surahVerseCount}
+            </Text>
+          </View>
+        )}
       </View>
       <View
         style={{
           backgroundColor: 'rgba(199,170,53,0.68)',
+          opacity: 0.8,
         }}>
         <Image source={quranPic} style={{resizeMode: 'contain'}} />
       </View>
@@ -40,7 +53,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: '#707070',
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 8,
     backgroundColor: '#C7AA35',
   },
   textView: {

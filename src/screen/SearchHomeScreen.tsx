@@ -35,7 +35,12 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
                   /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
                   '',
                 )
-                .includes(criteria)
+                .includes(
+                  JSON.stringify(criteria).replace(
+                    /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
+                    '',
+                  ),
+                )
             ) {
               console.log('ayat', ayat);
               ayatArr.push(ayat);

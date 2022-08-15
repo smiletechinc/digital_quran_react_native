@@ -203,7 +203,7 @@ const RootNavigator = () => {
           <Stack.Screen
             name="ParaDetailScreen"
             component={ParaDetailScreen}
-            options={{title: ''}}
+            options={{title: '', header: () => null}}
           />
         </Stack.Navigator>
       </NavigationContainer>

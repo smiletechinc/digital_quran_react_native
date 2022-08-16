@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {favIcon} from '../../constants/images';
 
 type Props = {
   verse: any;
@@ -17,22 +18,22 @@ const SurahDetailList: React.FunctionComponent<Props> = props => {
     console.log('surah', verse);
   });
   return (
-    <View style={styles.itemContainer} onTouchEnd={onPress}>
-      {/* <View> */}
-      <Text style={styles.itemText}>{verse}</Text>
-      {/* </View> */}
-      {/* <View> */}
+    <View style={styles.itemContainer}>
+      <TouchableOpacity style={{padding: 8}}>
+        <Image source={favIcon} />
+      </TouchableOpacity>
+      <Text style={styles.itemText} onPress={onPress}>
+        {verse}
+      </Text>
       <Text
         style={{
           textAlign: 'left',
-          // right: 18,
           marginVertical: 4,
           fontSize: 20,
           color: '#C7AA35',
         }}>
         &#xFD3E;{isSurahFathia ? index + 2 : index + 1}&#xFD3F;
       </Text>
-      {/* </View> */}
     </View>
   );
 };

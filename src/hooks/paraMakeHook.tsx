@@ -87,6 +87,7 @@ export const ParaMakeHook = () => {
             surah_number: currentSuahIndex + 1,
             surah_name: paraSurahs[currentSuahIndex].titleArabic,
             verses: currentVerses,
+            surahfirstayatindex: firstSurahVerseIndex,
           };
 
           currentParah.push(currentSurah);

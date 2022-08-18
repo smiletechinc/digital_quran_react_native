@@ -1,26 +1,50 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {favIcon} from '../../constants/images';
-
+import {favIcon, favSelectIcon, selectionIcon} from '../../constants/images';
+import {
+  BookmarkVerseContext,
+  BookmarkVerseContextType,
+} from '../../context/favouriteVerseContext';
 type Props = {
   verse: any;
-  index: any;
+  indexAyat: any;
   onPress?: any;
   isSurahFathia: any;
+  favButtonPress: any;
+  favImage?: any;
+  ayaObject: Object;
 };
 
 const SurahDetailList: React.FunctionComponent<Props> = props => {
-  const {verse, onPress, index, isSurahFathia} = props;
+  const {
+    verse,
+    onPress,
+    indexAyat,
+    isSurahFathia,
+    favButtonPress,
+    favImage,
+    ayaObject,
+  } = props;
   const {t} = useTranslation();
+  const {isBookmarked, checkBookmarked} = React.useContext(
+    BookmarkVerseContext,
+  ) as BookmarkVerseContextType;
+  const [isFavorite, setIsFavorite] = useState(isBookmarked);
 
   useEffect(() => {
-    console.log('surah', verse);
-  });
+    // checkBookmarked(ayaObject);
+    // setIsFavorite(isBookmarked);
+  }, []);
+
   return (
     <View style={styles.itemContainer}>
-      <TouchableOpacity style={{padding: 8}}>
-        <Image source={favIcon} />
+      <TouchableOpacity
+        style={{padding: 8}}
+        onPress={() => {
+          setIsFavorite(!isFavorite), favButtonPress();
+        }}>
+        <Image source={checkBookmarked(ayaObject) ? favSelectIcon : favIcon} />
       </TouchableOpacity>
       <Text style={styles.itemText} onPress={onPress}>
         {verse}
@@ -32,7 +56,7 @@ const SurahDetailList: React.FunctionComponent<Props> = props => {
           fontSize: 20,
           color: '#C7AA35',
         }}>
-        &#xFD3E;{isSurahFathia ? index + 2 : index + 1}&#xFD3F;
+        &#xFD3E;{indexAyat}&#xFD3F;
       </Text>
     </View>
   );

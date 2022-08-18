@@ -75,6 +75,20 @@ type SurahsAction = {
   type: string;
   surah: SurahMeta;
 };
+
+type FavVerseMeta = {
+  surahNumber: Number;
+  ayatNumber: Number;
+  ayatText: any;
+};
+
+type FavVerseState = {
+  favVerses: FavVerseMeta[];
+};
+type FavVerseAction = {
+  type: string;
+  favVerse: FavVerseMeta;
+};
 type AuthObject = {
   email: string;
   password: string;

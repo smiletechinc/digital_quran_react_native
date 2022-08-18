@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     margin: 15,
+    // marginTop: 15,
+    // marginLeft: 15,
+    // marginRight: 15,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',

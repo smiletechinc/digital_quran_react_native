@@ -26,6 +26,7 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
     if (paraData) {
       Object.values(paraData).forEach((element: any) => {
         if (Number(paraObject.paraIndex) === element.para_number) {
+          // console.log('element', element);
           setParaDataDisplay(element.paraDetail);
         }
       });
@@ -89,25 +90,32 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
                       </View>
                       <Text>
                         {paraVerse &&
-                          paraVerse.map((ayat: any, index: any) => (
-                            <Text
-                              key={index}
-                              allowFontScaling={false}
-                              selectable={true}>
+                          paraVerse.map((ayat: any, index: number) => {
+                            index = element.surahfirstayatindex + index;
+                            // console.log(
+                            //   'ind',
+                            //   Number(element.surahfirstayatindex) + index,
+                            // );
+                            return (
                               <Text
-                                selectable={true}
-                                style={[styles.elementTextStyle]}>
-                                {ayat}
+                                key={index}
+                                allowFontScaling={false}
+                                selectable={true}>
+                                <Text
+                                  selectable={true}
+                                  style={[styles.elementTextStyle]}>
+                                  {ayat}
+                                </Text>
+                                <Text style={[styles.indexTextStyle]}>
+                                  &#xFD3F;
+                                  {element.surah_number === 1
+                                    ? index + 2
+                                    : index + 1}{' '}
+                                  &#xFD3E;
+                                </Text>
                               </Text>
-                              <Text style={[styles.indexTextStyle]}>
-                                &#xFD3F;
-                                {element.surah_number === 1
-                                  ? index + 2
-                                  : index + 1}{' '}
-                                &#xFD3E;
-                              </Text>
-                            </Text>
-                          ))}
+                            );
+                          })}
                       </Text>
                     </View>
                   );

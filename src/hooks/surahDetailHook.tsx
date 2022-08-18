@@ -21,6 +21,7 @@ export const SurahDetailHook = () => {
   const [bismillahAyah, setBismillahAyah] = useState<Object[]>();
   const [isSurahFatiha, setIsSurahFathia] = useState(false);
   const [isSurahToba, setIsSurahToba] = useState(true);
+  const [surahIndex, setSurahIndex] = useState<any>();
 
   const surahDetaillMake = async () => {
     try {
@@ -32,6 +33,7 @@ export const SurahDetailHook = () => {
       });
       setSurahTitle(t(Object.values(surahObject)[3]));
       setBismillahAyah(Object.values(bismillah[0]));
+      setSurahIndex(Number(Object.values(surahObject)[5]));
       Object.values(surahObject)[5] === '001'
         ? setIsSurahFathia(true)
         : setIsSurahFathia(false);
@@ -48,6 +50,7 @@ export const SurahDetailHook = () => {
     surahData,
     surahVerseCount,
     surahTitle,
+    surahIndex,
     bismillahAyah,
     isSurahFatiha,
     isSurahToba,

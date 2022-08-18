@@ -8,17 +8,26 @@ import MusufView from '../components/musuafView';
 import {SurahDetailHook} from '../hooks/surahDetailHook';
 import {ClipboardHook} from '../hooks/clipboardHook';
 import Toast from 'react-native-fast-toast';
+import {connect, useDispatch} from 'react-redux';
+import {addFavVerse} from '../redux/action/favVerseAction';
+import {
+  BookmarkVerseContext,
+  BookmarkVerseContextType,
+} from '../context/favouriteVerseContext';
+import {favIcon, favSelectIcon} from '../constants/images';
+
 type Props = {
   navigation: any;
   route: any;
   reduxVerses: any;
   updated: boolean;
+  addFavVerse: any;
 };
 
 const SurahScreen: React.FunctionComponent<Props> = props => {
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const toast = useRef(null);
-  const {navigation} = props;
+  const {navigation, addFavVerse} = props;
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
   const {
@@ -28,8 +37,12 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     surahTitle,
     bismillahAyah,
     isSurahFatiha,
+    surahIndex,
     isSurahToba,
   } = SurahDetailHook();
+  const {addInVerseBook, checkBookmarked, removeInVerseBook} = React.useContext(
+    BookmarkVerseContext,
+  ) as BookmarkVerseContextType;
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -40,6 +53,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       setTextCopyStatus(false);
     }
   }, [textCopyStatus]);
+
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
     selectedIndexValue === 1 ? setMushafState(false) : setMushafState(true);
@@ -49,13 +63,40 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     surahDetaillMake();
   }, [navigation]);
 
+  const favFunctionCalled = (
+    verseSelect: string,
+    verseNumber: Number,
+    index: number,
+  ) => {
+    var bookVerse = {
+      surahNumber: surahIndex,
+      ayatNumber: verseNumber,
+      ayatText: verseSelect,
+    };
+
+    if (!checkBookmarked(bookVerse)) {
+      addInVerseBook(bookVerse);
+    } else {
+      removeInVerseBook(bookVerse);
+    }
+  };
+
   const renderItem = ({item, index}: any) => {
+    let indexNumber = isSurahFatiha ? index + 2 : index + 1;
+    // console.log('value', item);
     return (
       <SurahDetailList
         verse={item}
-        index={index}
+        indexAyat={indexNumber}
         isSurahFathia={isSurahFatiha}
         onPress={() => copyToClipboard(item)}
+        favButtonPress={() => favFunctionCalled(item, indexNumber, index)}
+        // favImage={isBookmarked ? favSelectIcon : favIcon}
+        ayaObject={{
+          surahNumber: surahIndex,
+          ayatNumber: indexNumber,
+          ayatText: item,
+        }}
       />
     );
   };
@@ -127,5 +168,14 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     </View>
   );
 };
+const mapDispatchToProps = (
+  dispatch: (arg0: {type: string; favVerseSelect?: FavVerseMeta}) => void,
+) => {
+  return {
+    addFavVerse: (addFavourite: FavVerseMeta) => {
+      dispatch(addFavVerse(addFavourite));
+    },
+  };
+};
 
-export default SurahScreen;
+export default connect(null, mapDispatchToProps)(SurahScreen);

@@ -8,3 +8,4 @@ export const searchIcon = require('../resources/images/search_ico.png');
 export const clearSearchBar = require('../resources/images/ic_clear.png');
 export const quranPic = require('../resources/images/quranpic.png');
 export const favIcon = require('../resources/images/Icon_awesome-heart.png');
+export const favSelectIcon = require('../resources/images/favIconSelect.png');

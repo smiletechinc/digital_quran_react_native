@@ -7,18 +7,21 @@ import {
   SurahContextProvider,
   ParaContextProvider,
   VerseContextProvider,
+  BookmarkVerseContextProvider,
 } from './src/context/index';
 const App = () => {
   return (
-    <LanguageContextProvider>
-      <SurahContextProvider>
-        <ParaContextProvider>
-          <VerseContextProvider>
-            <RootNavigator />
-          </VerseContextProvider>
-        </ParaContextProvider>
-      </SurahContextProvider>
-    </LanguageContextProvider>
+    <BookmarkVerseContextProvider>
+      <LanguageContextProvider>
+        <SurahContextProvider>
+          <ParaContextProvider>
+            <VerseContextProvider>
+              <RootNavigator />
+            </VerseContextProvider>
+          </ParaContextProvider>
+        </SurahContextProvider>
+      </LanguageContextProvider>
+    </BookmarkVerseContextProvider>
   );
 };
 

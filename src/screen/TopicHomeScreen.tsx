@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {View, Image, TouchableOpacity, FlatList, Text} from 'react-native';
 import {styles} from './index';
 import {connect, useDispatch} from 'react-redux';
-import {favIcon, favSelectIcon} from '../constants/images';
+import {BookmarkListItem} from '../components/List';
 import {
   BookmarkVerseContext,
   BookmarkVerseContextType,
 } from '../context/favouriteVerseContext';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
+import EmptyState from '../components/emptyState';
+import {SurahContext, SurahContextType} from '../context/surahContext';
 
 type Props = {
   navigation: any;
@@ -17,76 +20,72 @@ type Props = {
 let updatedOuter = false;
 
 const TopicsScreen: React.FunctionComponent<Props> = props => {
-  const {favoriteVerses, removeInVerseBook} = React.useContext(
-    BookmarkVerseContext,
-  ) as BookmarkVerseContextType;
-
+  const {navigation} = props;
+  const {favoriteVerses, removeInVerseBook, favoriteSurahs, removeInSurahBook} =
+    React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
+  const {surahObject, setSurahObject} = React.useContext(
+    SurahContext,
+  ) as SurahContextType;
+  const [favouirteVerseData, setFavouriteVersesData] = useState([]);
+  const [favouirteSurahsData, setFavouriteSurahsData] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [selectedIndexValue, setSelectedIndexValue] = useState(0);
+  const [surahState, setSurahState] = useState<boolean>(true);
+  const [lisDataObject, setListDataObject] = useState([]);
 
   useEffect(() => {
-    if (favoriteVerses) {
+    if (favoriteVerses || favoriteSurahs) {
+      setFavouriteSurahsData(favoriteSurahs);
+      setFavouriteVersesData(favoriteVerses);
       setIsFavorite(false);
     }
-  }, [favoriteVerses, isFavorite]);
+  }, [favoriteVerses, isFavorite, favoriteSurahs]);
 
+  useEffect(() => {
+    setListDataObject(surahState ? favouirteSurahsData : favouirteVerseData);
+  });
   const favFunctionCalled = (item: any) => {
-    console.log('item in function called', item);
-    var bookVerse = {
-      surahNumber: item.surahNumber,
-      ayatNumber: item.ayatNumber,
-      ayatText: item.ayatText,
-    };
-    removeInVerseBook(bookVerse);
-    setIsFavorite(true);
+    if (!surahState) {
+      var bookVerse = {
+        surahNumber: item.surahNumber,
+        ayatNumber: item.ayatNumber,
+        ayatText: item.ayatText,
+      };
+      removeInVerseBook(bookVerse);
+      setIsFavorite(true);
+    } else {
+      removeInSurahBook(Number(item.index));
+      setIsFavorite(true);
+    }
+  };
+
+  const MushafNavigation = (value: any) => {
+    setSelectedIndexValue(value);
+    selectedIndexValue === 0 ? setSurahState(false) : setSurahState(true);
+  };
+
+  const moveFunction = (surahdata: any) => {
+    setSurahObject(surahdata);
+    navigation.navigate('SurahScreen');
   };
 
   const renderItem = ({item}: any) => {
     return (
-      <View
-        style={[
-          {
-            display: 'flex',
-            flex: 1,
-            flexDirection: 'row-reverse',
-            alignItems: 'center',
-            marginTop: 16,
-            borderStyle: 'solid',
-            borderRadius: 8,
-            borderColor: 'rgba(112,112,112,0.5)',
-            backgroundColor: 'rgba(255,255,255,0.795)',
-            marginHorizontal: 16,
-            paddingVertical: 16,
-            paddingHorizontal: 12,
-            marginVertical: 4,
-            justifyContent: 'center',
-          },
-        ]}>
-        <TouchableOpacity
-          style={{padding: 32}}
-          onPress={value => {
-            favFunctionCalled(item);
-          }}>
-          <Image source={favSelectIcon} />
-        </TouchableOpacity>
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'center',
-            fontSize: 20,
-            fontFamily: 'Arial',
-            color: '#1A1A1A',
-          }}>
-          {item.ayatText}
-        </Text>
-        <Text
-          style={{
-            textAlign: 'left',
-            marginVertical: 4,
-            fontSize: 20,
-            color: '#C7AA35',
-          }}>{`(${item.surahNumber}:${item.ayatNumber})`}</Text>
-      </View>
+      <BookmarkListItem
+        ayaObject={item}
+        isSurah={surahState ? true : false}
+        onPress={() => {
+          favFunctionCalled(item);
+        }}
+        onTouchEnd={() => {
+          moveFunction(item);
+        }}
+      />
     );
+  };
+
+  const LogFunc = () => {
+    navigation.navigate('Surah');
   };
 
   return (
@@ -95,11 +94,32 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         styles.selectionContainer,
         {backgroundColor: '#00B4AC', paddingTop: 68},
       ]}>
-      <FlatList
-        style={[styles.listContainer]}
-        data={favoriteVerses}
-        renderItem={renderItem}
-      />
+      <View style={styles.segementedView}>
+        <SegmentedControlTab
+          values={['Surah', 'Ayat']}
+          selectedIndex={selectedIndexValue}
+          onTabPress={value => MushafNavigation(value)}
+          tabsContainerStyle={styles.tabsContainerStyle}
+          tabStyle={styles.tabStyle}
+          tabTextStyle={styles.tabTextStyle}
+          activeTabStyle={styles.activeTabStyle}
+          activeTabTextStyle={styles.activeTabTextStyle}
+          borderRadius={24}
+        />
+      </View>
+      {lisDataObject.length > 0 ? (
+        <FlatList
+          style={[styles.listContainer]}
+          data={lisDataObject}
+          renderItem={renderItem}
+        />
+      ) : (
+        <EmptyState
+          buttonTitle={'Read Quran'}
+          onPress={LogFunc}
+          surahStateValue={surahState}
+        />
+      )}
     </View>
   );
 };

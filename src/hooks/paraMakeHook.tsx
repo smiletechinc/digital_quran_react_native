@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-// import Clipboard from "@react-native-clipboard/clipboard";
 import {ParaContext, ParaContextType} from '../context/paraContext';
 
 interface Props {
@@ -7,7 +6,6 @@ interface Props {
 }
 
 export const ParaMakeHook = () => {
-  //   const [textCopyStatus, setTextCopyStatus] = useState(false);
   const {addPara} = React.useContext(ParaContext) as ParaContextType;
   const makePara = async (
     paraVerses: any,

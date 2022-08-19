@@ -39,10 +39,16 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     isSurahFatiha,
     surahIndex,
     isSurahToba,
+    surahObject,
   } = SurahDetailHook();
-  const {addInVerseBook, checkBookmarked, removeInVerseBook} = React.useContext(
-    BookmarkVerseContext,
-  ) as BookmarkVerseContextType;
+  const {
+    addInVerseBook,
+    checkBookmarked,
+    removeInVerseBook,
+    removeInSurahBook,
+    addInSurahBook,
+    checkSurahBookmarked,
+  } = React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -63,11 +69,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     surahDetaillMake();
   }, [navigation]);
 
-  const favFunctionCalled = (
-    verseSelect: string,
-    verseNumber: Number,
-    index: number,
-  ) => {
+  const favFunctionCalled = (verseSelect: string, verseNumber: Number) => {
     var bookVerse = {
       surahNumber: surahIndex,
       ayatNumber: verseNumber,
@@ -81,6 +83,15 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const surahFavFunction = () => {
+    if (!checkSurahBookmarked(surahIndex)) {
+      console.log('hello', surahIndex);
+      addInSurahBook(surahObject);
+    } else {
+      console.log('hello1', surahIndex);
+      removeInSurahBook(surahIndex);
+    }
+  };
   const renderItem = ({item, index}: any) => {
     let indexNumber = isSurahFatiha ? index + 2 : index + 1;
     // console.log('value', item);
@@ -90,7 +101,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         indexAyat={indexNumber}
         isSurahFathia={isSurahFatiha}
         onPress={() => copyToClipboard(item)}
-        favButtonPress={() => favFunctionCalled(item, indexNumber, index)}
+        favButtonPress={() => favFunctionCalled(item, indexNumber)}
         // favImage={isBookmarked ? favSelectIcon : favIcon}
         ayaObject={{
           surahNumber: surahIndex,
@@ -113,7 +124,9 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         surahTitle={surahTitle}
         surahVerseCount={surahVerseCount}
         fromSurah={true}
+        surahIndex={surahIndex}
         navigation={navigation}
+        onPress={() => surahFavFunction()}
       />
       <View style={styles.segementedView}>
         <SegmentedControlTab

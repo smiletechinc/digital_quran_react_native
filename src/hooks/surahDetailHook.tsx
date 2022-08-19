@@ -54,5 +54,6 @@ export const SurahDetailHook = () => {
     bismillahAyah,
     isSurahFatiha,
     isSurahToba,
+    surahObject,
   };
 };

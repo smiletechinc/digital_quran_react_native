@@ -1,17 +1,39 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View, Image, StyleSheet} from 'react-native';
-import {quranPic, backBtn, favIcon} from '../../constants/images';
+import {
+  quranPic,
+  backBtn,
+  favIcon,
+  favSelectIcon,
+} from '../../constants/images';
+import {
+  BookmarkVerseContext,
+  BookmarkVerseContextType,
+} from '../../context/favouriteVerseContext';
+import {SurahContext, SurahContextType} from '../../context/surahContext';
+
 type Props = {
   surahTitle: any;
   navigation: any;
   surahVerseCount: any;
   styleOption?: any;
   fromSurah: boolean;
+  onPress: any;
+  surahIndex: number;
 };
 const HeaderDetail: FunctionComponent<Props> = props => {
-  const {surahTitle, navigation, styleOption, surahVerseCount, fromSurah} =
-    props;
-
+  const {
+    surahTitle,
+    navigation,
+    styleOption,
+    surahVerseCount,
+    fromSurah,
+    onPress,
+    surahIndex,
+  } = props;
+  const {checkSurahBookmarked} = React.useContext(
+    BookmarkVerseContext,
+  ) as BookmarkVerseContextType;
   return (
     <View style={[styles.mainView, styleOption]}>
       <View>
@@ -22,8 +44,12 @@ const HeaderDetail: FunctionComponent<Props> = props => {
           <View style={styles.textView}>
             <Text style={styles.surahText}>Surah {surahTitle}</Text>
             <Text style={styles.countText}>{surahVerseCount} Verses</Text>
-            <TouchableOpacity style={{top: 2}}>
-              <Image source={favIcon} />
+            <TouchableOpacity style={{top: 2}} onPress={onPress}>
+              <Image
+                source={
+                  checkSurahBookmarked(surahIndex) ? favSelectIcon : favIcon
+                }
+              />
             </TouchableOpacity>
           </View>
         ) : (

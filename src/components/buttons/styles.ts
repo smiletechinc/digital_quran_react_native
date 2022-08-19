@@ -5,7 +5,11 @@ const styles = StyleSheet.create({
     width: '70%',
     borderRadius: 25,
     alignSelf: 'center',
-    marginTop: '90%',
+  },
+  linearGradientStyle: {
+    padding: 12,
+    borderRadius: 10,
+    alignItems: 'center',
   },
   secondaryButtonContainer: {
     width: '70%',

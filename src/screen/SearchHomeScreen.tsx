@@ -83,6 +83,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const handleChange = async (e: string) => {
     setChangeText(e);
     setClicked(true);
+    console.log('clicked', clicked);
     var debounce_fun = await debounce(() => search(e), 3000);
     debounce_fun();
   };

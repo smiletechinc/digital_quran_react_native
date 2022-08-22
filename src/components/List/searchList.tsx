@@ -1,17 +1,14 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useTranslation} from 'react-i18next';
-// import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-// import {Box, Grid, Button, Skeleton, Container, Stack} from '@mui/material';
 
 type Props = {
   surah: any;
   onPress?: any;
-  isAnimation: boolean;
 };
 
 const SearchList: React.FunctionComponent<Props> = props => {
-  const {surah, onPress, isAnimation} = props;
+  const {surah, onPress} = props;
   const {t} = useTranslation();
 
   useEffect(() => {
@@ -19,52 +16,26 @@ const SearchList: React.FunctionComponent<Props> = props => {
   });
   return (
     <View style={[styles.gridView]}>
-      {isAnimation ? (
-        // <SkeletonPlaceholder>
-        //   <SkeletonPlaceholder.Item flexDirection="row" alignItems="center">
-        //     <SkeletonPlaceholder.Item
-        //       width={60}
-        //       height={60}
-        //       borderRadius={50}
-        //     />
-        //     <SkeletonPlaceholder.Item marginLeft={20}>
-        //       <SkeletonPlaceholder.Item
-        //         width={120}
-        //         height={20}
-        //         borderRadius={4}
-        //       />
-        //       <SkeletonPlaceholder.Item
-        //         marginTop={6}
-        //         width={80}
-        //         height={20}
-        //         borderRadius={4}
-        //       />
-        //     </SkeletonPlaceholder.Item>
-        //   </SkeletonPlaceholder.Item>
-        // </SkeletonPlaceholder>
-        <></>
-      ) : (
-        <View style={styles.itemContainer}>
-          <Text
-            style={{
-              flex: 1,
-              textAlign: 'center',
-              fontSize: 20,
-              fontFamily: 'Arial',
-              color: '#1A1A1A',
-            }}
-            onPress={onPress}>
-            {surah.ayatText}
-          </Text>
-          <Text
-            style={{
-              textAlign: 'left',
-              marginVertical: 4,
-              fontSize: 20,
-              color: '#C7AA35',
-            }}>{`(${t(surah.surhaName)}:${surah.ayatNumber})`}</Text>
-        </View>
-      )}
+      <View style={styles.itemContainer}>
+        <Text
+          style={{
+            flex: 1,
+            textAlign: 'center',
+            fontSize: 20,
+            fontFamily: 'Arial',
+            color: '#1A1A1A',
+          }}
+          onPress={onPress}>
+          {surah.ayatText}
+        </Text>
+        <Text
+          style={{
+            textAlign: 'left',
+            marginVertical: 4,
+            fontSize: 20,
+            color: '#C7AA35',
+          }}>{`(${t(surah.surhaName)}:${surah.ayatNumber})`}</Text>
+      </View>
     </View>
   );
 };

@@ -7,7 +7,7 @@ import {debounce} from 'lodash';
 import {SearchList} from '../components/List/index';
 import {ClipboardHook} from '../hooks/clipboardHook';
 import Toast from 'react-native-fast-toast';
-
+import ContentLoader, {Rect} from 'react-content-loader/native';
 type Props = {
   navigation: any;
 };
@@ -93,11 +93,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
 
   const renderItem = ({item}: any) => {
     return (
-      <SearchList
-        surah={item}
-        onPress={() => copyToClipboard(item.ayatText)}
-        isAnimation={startAnimation}
-      />
+      <SearchList surah={item} onPress={() => copyToClipboard(item.ayatText)} />
     );
   };
 
@@ -133,12 +129,29 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
           </TouchableOpacity>
         )}
       </View>
-
-      <FlatList
-        style={styles.listContainer}
-        data={characters}
-        renderItem={renderItem}
-      />
+      <View>
+        {startAnimation ? (
+          <ContentLoader
+            // height={146}
+            speed={1.8}
+            backgroundColor={'#ffffff'}
+            foregroundColor={'#999'}
+            viewBox="0 26 360 70">
+            {/* Only SVG shapes */}
+            <Rect x="30" y="0" rx="4" ry="8" width="300" height="48" />
+            <Rect x="30" y="64" rx="4" ry="4" width="300" height="48" />
+            <Rect x="30" y="128" rx="4" ry="4" width="300" height="48" />
+            <Rect x="30" y="192" rx="4" ry="4" width="300" height="48" />
+            <Rect x="30" y="256" rx="4" ry="4" width="300" height="48" />
+          </ContentLoader>
+        ) : (
+          <FlatList
+            style={styles.listContainer}
+            data={characters}
+            renderItem={renderItem}
+          />
+        )}
+      </View>
     </View>
   );
 };

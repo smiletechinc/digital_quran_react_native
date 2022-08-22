@@ -18,6 +18,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const [textValue, setChangeText] = React.useState('');
   const [characters, setCharacters] = React.useState<any[]>([]);
   const [clicked, setClicked] = React.useState(false);
+  const [startAnimation, setStartAnimation] = useState(false);
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   useEffect(() => {
@@ -75,6 +76,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
           );
         }),
       );
+      setStartAnimation(false);
       setCharacters(ayatArr);
     } else {
       setCharacters([]);
@@ -84,13 +86,18 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     setChangeText(e);
     setClicked(true);
     console.log('clicked', clicked);
+    setStartAnimation(true);
     var debounce_fun = await debounce(() => search(e), 3000);
     debounce_fun();
   };
 
   const renderItem = ({item}: any) => {
     return (
-      <SearchList surah={item} onPress={() => copyToClipboard(item.ayatText)} />
+      <SearchList
+        surah={item}
+        onPress={() => copyToClipboard(item.ayatText)}
+        isAnimation={startAnimation}
+      />
     );
   };
 

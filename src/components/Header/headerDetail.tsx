@@ -11,17 +11,19 @@ import {
   BookmarkVerseContextType,
 } from '../../context/favouriteVerseContext';
 import {SurahContext, SurahContextType} from '../../context/surahContext';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   surahTitle: any;
   navigation: any;
   surahVerseCount: any;
   styleOption?: any;
-  fromSurah: boolean;
-  onPress: any;
-  surahIndex: number;
+  fromSurah?: boolean;
+  onPress?: any;
+  surahIndex?: number;
 };
 const HeaderDetail: FunctionComponent<Props> = props => {
+  const {t} = useTranslation();
   const {
     surahTitle,
     navigation,
@@ -34,6 +36,7 @@ const HeaderDetail: FunctionComponent<Props> = props => {
   const {checkSurahBookmarked} = React.useContext(
     BookmarkVerseContext,
   ) as BookmarkVerseContextType;
+  console.log('surahTitle', surahTitle);
   return (
     <View style={[styles.mainView, styleOption]}>
       <View>
@@ -42,9 +45,15 @@ const HeaderDetail: FunctionComponent<Props> = props => {
         </TouchableOpacity>
         {fromSurah ? (
           <View style={styles.textView}>
-            <Text style={styles.surahText}>Surah {surahTitle}</Text>
-            <Text style={styles.countText}>{surahVerseCount} Verses</Text>
-            <TouchableOpacity style={{top: 2}} onPress={onPress}>
+            <Text style={styles.surahText}>
+              {t('surah')} {surahTitle}
+            </Text>
+            <Text style={styles.countText}>
+              {surahVerseCount} {t('verses')}
+            </Text>
+            <TouchableOpacity
+              style={{top: 2, marginBottom: 12}}
+              onPress={onPress}>
               <Image
                 source={
                   checkSurahBookmarked(surahIndex) ? favSelectIcon : favIcon
@@ -53,8 +62,8 @@ const HeaderDetail: FunctionComponent<Props> = props => {
             </TouchableOpacity>
           </View>
         ) : (
-          <View style={styles.textView}>
-            <Text style={styles.surahText}>{surahTitle}</Text>
+          <View style={[styles.textView, {marginBottom: 12}]}>
+            <Text style={styles.surahText}>{t(surahTitle)}</Text>
             <Text style={[styles.countText, {textAlign: 'right'}]}>
               {surahVerseCount}
             </Text>
@@ -65,6 +74,8 @@ const HeaderDetail: FunctionComponent<Props> = props => {
         style={{
           backgroundColor: 'rgba(199,170,53,0.68)',
           opacity: 0.8,
+          position: 'absolute',
+          left: '47%',
         }}>
         <Image source={quranPic} style={{resizeMode: 'contain'}} />
       </View>
@@ -83,8 +94,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#C7AA35',
   },
   textView: {
-    marginHorizontal: 22,
-    paddingBottom: 16,
+    marginHorizontal: 48,
+    alignItems: 'center',
+    paddingBottom: 18,
   },
   surahText: {
     fontSize: 18,

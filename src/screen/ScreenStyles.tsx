@@ -208,7 +208,8 @@ const styles = StyleSheet.create({
   },
   mushafView: {
     paddingVertical: 16,
-    paddingBottom: 64,
+    // paddingBottom: 64,
+    marginBottom: 16,
     borderRadius: 16,
     marginTop: 36,
     backgroundColor: 'rgba(255,255,255,0.4)',

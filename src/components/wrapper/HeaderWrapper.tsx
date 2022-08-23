@@ -13,17 +13,18 @@ type Props = {
   route?: any;
   children?: any;
   hideBackButton?: boolean;
+  overrideStyle?: any;
 };
 
 const ScreenWrapperWithHeader: FunctionComponent<Props> = props => {
-  const {title, children, navigation, hideBackButton} = props;
+  const {title, children, navigation, hideBackButton, overrideStyle} = props;
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{
         paddingBottom: 20,
       }}
       showsVerticalScrollIndicator={false}>
-      <View style={styles.header_view}>
+      <View style={[styles.header_view, overrideStyle]}>
         <HeaderWithText
           text={title}
           navigation={navigation}

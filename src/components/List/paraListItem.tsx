@@ -15,7 +15,7 @@ const ParaListItem: React.FunctionComponent<Props> = props => {
   return (
     <View style={[styles.gridView]}>
       <View style={styles.circleView}>
-        <Text style={styles.circleText}>{Number(parah.paraIndex)}</Text>
+        <Text style={styles.circleText}>{t(parah.paraIndex)}</Text>
       </View>
       <View style={styles.rectangleView}>
         <TouchableOpacity onPress={onPress}>
@@ -29,7 +29,9 @@ const ParaListItem: React.FunctionComponent<Props> = props => {
                 left: 28,
               }}>
               <Text style={[styles.surahName]}>{t(parah.title)}</Text>
-              <Text style={styles.surahType}>{`${parah.count} verses`}</Text>
+              <Text style={styles.surahType}>{`${t(parah.count)} ${t(
+                'verses',
+              )}`}</Text>
             </View>
             <View
               style={{
@@ -42,7 +44,6 @@ const ParaListItem: React.FunctionComponent<Props> = props => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingHorizontal: 4,
-                // paddingTop: 24,
               }}>
               <Text
                 style={{

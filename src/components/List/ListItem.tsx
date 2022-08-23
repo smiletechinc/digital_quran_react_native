@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {styles} from './index';
 import {useTranslation} from 'react-i18next';
+import {makkahImage, madinaIamge} from '../../constants/images';
 
 type Props = {
   surah: any;
@@ -11,17 +12,18 @@ type Props = {
 const ListItem: React.FunctionComponent<Props> = props => {
   const {surah, onPress} = props;
   const {t} = useTranslation();
-
-  useEffect(() => {
-    console.log('surah', surah);
-  });
+  console.log('surah', surah);
   return (
     <View style={[styles.gridView]}>
       <View style={styles.circleView}>
         <Text style={styles.circleText}>{Number(surah.index)}</Text>
       </View>
       <View style={styles.circleView1}>
-        <Text style={styles.circleText1}>hi</Text>
+        <Image
+          source={surah.type === 'Madaniyah' ? madinaIamge : makkahImage}
+          style={{resizeMode: 'center'}}
+        />
+        {/* <Text style={styles.circleText1}>HI</Text> */}
       </View>
       <View style={styles.rectangleView}>
         <TouchableOpacity onPress={onPress}>

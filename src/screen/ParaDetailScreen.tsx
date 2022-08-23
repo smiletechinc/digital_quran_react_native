@@ -6,6 +6,7 @@ import {ParaContext, ParaContextType} from '../context/paraContext';
 import HeaderDetail from '../components/Header/headerDetail';
 import {SurahDetailHook} from '../hooks/surahDetailHook';
 import bismillah from '../resources/bismillah.json';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   navigation: any;
@@ -21,12 +22,11 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route, reduxVerses, updated} = props;
   const [paraDataDisplay, setParaDataDisplay] = useState<any[]>([]);
   const [bismillahAyah, setBismillahAyah] = useState<Object[]>();
-
+  const {t} = useTranslation();
   useEffect(() => {
     if (paraData) {
       Object.values(paraData).forEach((element: any) => {
         if (Number(paraObject.paraIndex) === element.para_number) {
-          // console.log('element', element);
           setParaDataDisplay(element.paraDetail);
         }
       });
@@ -43,7 +43,7 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
         },
       ]}>
       <HeaderDetail
-        surahTitle={Object.values(paraObject.title)}
+        surahTitle={paraObject.title}
         surahVerseCount={Object.values(paraObject.titleArabic)}
         navigation={navigation}
         fromSurah={false}
@@ -82,7 +82,7 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
                             </Text>
                             {element.surah_number === 1 && (
                               <Text style={[styles.indexTextStyle]}>
-                                &#xFD3E;1 &#xFD3F;
+                                &#xFD3E;{t(`${1}`)} &#xFD3F;
                               </Text>
                             )}
                           </View>
@@ -92,10 +92,6 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
                         {paraVerse &&
                           paraVerse.map((ayat: any, index: number) => {
                             index = element.surahfirstayatindex + index;
-                            // console.log(
-                            //   'ind',
-                            //   Number(element.surahfirstayatindex) + index,
-                            // );
                             return (
                               <Text
                                 key={index}
@@ -109,8 +105,8 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
                                 <Text style={[styles.indexTextStyle]}>
                                   &#xFD3F;
                                   {element.surah_number === 1
-                                    ? index + 2
-                                    : index + 1}{' '}
+                                    ? t(`${index + 2}`)
+                                    : t(`${index + 1}`)}
                                   &#xFD3E;
                                 </Text>
                               </Text>

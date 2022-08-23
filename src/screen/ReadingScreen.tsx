@@ -7,6 +7,7 @@ import ScreenWrapperWithHeader from '../components/wrapper/HeaderWrapper';
 import {StatusBar} from 'expo-status-bar';
 import {SurahContext, SurahContextType} from '../context/surahContext';
 import {searchIcon} from '../constants/images';
+import {t} from 'i18next';
 
 type Props = {
   navigation: any;
@@ -20,10 +21,9 @@ let updatedOuter = false;
 const SuraReadingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route, reduxSurahs, updated} = props;
   const [surahIntro, setSurahInto] = useState();
-  const {surahObject, setSurahObject} = React.useContext(
-    SurahContext,
-  ) as SurahContextType;
+  const {setSurahObject} = React.useContext(SurahContext) as SurahContextType;
   const [textValue, setChangeText] = React.useState('');
+
   useEffect(() => {
     navigation.setOptions({
       cardStyle: {backgroundColor: 'yellow'},
@@ -43,7 +43,7 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
     <ScreenWrapperWithHeader
       title="Digital Quran"
       navigation={navigation}
-      hideBackButton={false}>
+      hideBackButton={true}>
       <View
         style={[
           styles.container,
@@ -57,7 +57,7 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
           <TextInput
             value={textValue}
             onChangeText={text => setChangeText(text)}
-            placeholder="Search here"
+            placeholder={t('search here')}
           />
           <Image source={searchIcon} />
         </View>

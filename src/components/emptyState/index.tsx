@@ -1,36 +1,55 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {favEmptyStateImage} from '../../constants/images';
 import {PrimaryButton} from '../buttons';
 
 type Props = {
   onPress?: any;
   buttonTitle: any;
-  surahStateValue: boolean;
+  surahStateValue?: boolean;
+  searchScreen?: boolean;
+  imageDisplay: any;
 };
 
 const EmptyState: React.FunctionComponent<Props> = props => {
-  const {onPress, surahStateValue, buttonTitle} = props;
+  const {onPress, surahStateValue, buttonTitle, searchScreen, imageDisplay} =
+    props;
   const {t} = useTranslation();
 
+  let text1 = t('there-is-nothing');
+  let textIdentifier = surahStateValue ? 'surah' : 'ayat';
+  let text2 = t('bookmark on  your screen, please add the');
+  let text3 = t('from reading quran.');
   return (
-    <View style={styles.mainView}>
+    <View
+      style={[
+        styles.mainView,
+        searchScreen ? {paddingTop: 128} : {paddingTop: 180},
+      ]}>
       <View style={styles.imageView}>
-        <Image
-          source={favEmptyStateImage}
-          style={{backgroundColor: 'transparent'}}
-        />
+        <Image source={imageDisplay} style={{backgroundColor: 'transparent'}} />
       </View>
       <View style={styles.TextView}>
-        <Text style={styles.HeadingText}>
-          Add {surahStateValue ? 'Surah' : 'Ayat'}
-        </Text>
-        <Text style={styles.descriptionText}>
-          There is nothing {surahStateValue ? 'Surah' : 'Ayat'} Bookmark on your
-          screen, please add the ayats from reading Quran. For Read Quran, Click
-          on Below Button
-        </Text>
+        {searchScreen ? (
+          <Text style={styles.HeadingText}>{t('nothing to search')}</Text>
+        ) : (
+          <Text style={styles.HeadingText}>{`${t('add')} ${t(
+            textIdentifier,
+          )}`}</Text>
+        )}
+        {searchScreen ? (
+          <Text style={styles.descriptionText}>
+            {`${t('for search click on the above searchbar')}  ${'\n'} ${t(
+              'for read quran, click on below button',
+            )}`}
+          </Text>
+        ) : (
+          <Text style={styles.descriptionText}>{`${text1} ${t(
+            textIdentifier,
+          )} ${text2} ${t(textIdentifier)} ${text3}  ${'\n'} ${t(
+            'for read quran, click on below button',
+          )}`}</Text>
+        )}
         <PrimaryButton
           title={t(buttonTitle)}
           onPress={onPress}
@@ -47,7 +66,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderStyle: 'solid',
     backgroundColor: 'transparent',
-    paddingTop: 180,
   },
   imageView: {display: 'flex', justifyContent: 'center', alignItems: 'center'},
   TextView: {

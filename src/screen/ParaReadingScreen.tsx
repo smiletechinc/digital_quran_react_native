@@ -7,6 +7,7 @@ import {StatusBar} from 'expo-status-bar';
 import {ParaContext, ParaContextType} from '../context/paraContext';
 import ParaListItem from '../components/List/paraListItem';
 import {searchIcon} from '../constants/images';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   navigation: any;
@@ -23,6 +24,7 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
   const [paraIntro, setParaIntro] = useState([]);
   const [textValue, setChangeText] = React.useState('');
   const {setParaObject} = React.useContext(ParaContext) as ParaContextType;
+  const {t} = useTranslation();
 
   useEffect(() => {
     setParaIntro(Object.values(reduxParahs));
@@ -40,7 +42,7 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
     <ScreenWrapperWithHeader
       title="Digital Quran"
       navigation={navigation}
-      hideBackButton={false}>
+      hideBackButton={true}>
       <View
         style={[
           styles.container,
@@ -54,7 +56,7 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
           <TextInput
             value={textValue}
             onChangeText={text => setChangeText(text)}
-            placeholder="Search here"
+            placeholder={t('search here')}
           />
           <Image source={searchIcon} />
         </View>

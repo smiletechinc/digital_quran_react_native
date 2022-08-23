@@ -8,6 +8,9 @@ import {SearchList} from '../components/List/index';
 import {ClipboardHook} from '../hooks/clipboardHook';
 import Toast from 'react-native-fast-toast';
 import ContentLoader, {Rect} from 'react-content-loader/native';
+import EmptyState from '../components/emptyState/index';
+import {searchImage} from '../constants/images';
+import {t} from 'i18next';
 type Props = {
   navigation: any;
 };
@@ -23,7 +26,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   useEffect(() => {
     if (textCopyStatus) {
-      toast.current.show('Copy to Clipboard', {
+      toast.current.show(`${t('copy to clipboard')}`, {
         type: 'success',
         duration: 2000,
       });
@@ -32,7 +35,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   }, [textCopyStatus]);
 
   const LogFunc = () => {
-    navigation.replace('HomeScreen');
+    navigation.navigate('Surah');
   };
 
   const search = async (criteria: string) => {
@@ -85,7 +88,6 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const handleChange = async (e: string) => {
     setChangeText(e);
     setClicked(true);
-    console.log('clicked', clicked);
     setStartAnimation(true);
     var debounce_fun = await debounce(() => search(e), 3000);
     debounce_fun();
@@ -112,7 +114,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
           <TextInput
             value={textValue}
             onChangeText={text => handleChange(text)}
-            placeholder="Search here"
+            placeholder={t('search here')}
             onFocus={() => {
               setClicked(true);
             }}
@@ -129,29 +131,36 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
           </TouchableOpacity>
         )}
       </View>
-      <View>
-        {startAnimation ? (
-          <ContentLoader
-            // height={146}
-            speed={1.8}
-            backgroundColor={'#ffffff'}
-            foregroundColor={'#999'}
-            viewBox="0 26 360 70">
-            {/* Only SVG shapes */}
-            <Rect x="30" y="0" rx="4" ry="8" width="300" height="48" />
-            <Rect x="30" y="64" rx="4" ry="4" width="300" height="48" />
-            <Rect x="30" y="128" rx="4" ry="4" width="300" height="48" />
-            <Rect x="30" y="192" rx="4" ry="4" width="300" height="48" />
-            <Rect x="30" y="256" rx="4" ry="4" width="300" height="48" />
-          </ContentLoader>
-        ) : (
-          <FlatList
-            style={styles.listContainer}
-            data={characters}
-            renderItem={renderItem}
-          />
-        )}
-      </View>
+      {characters.length > 0 || clicked ? (
+        <View>
+          {startAnimation ? (
+            <ContentLoader
+              speed={1.8}
+              backgroundColor={'#ffffff'}
+              foregroundColor={'#999'}
+              viewBox="0 26 360 70">
+              <Rect x="30" y="0" rx="4" ry="8" width="300" height="48" />
+              <Rect x="30" y="64" rx="4" ry="4" width="300" height="48" />
+              <Rect x="30" y="128" rx="4" ry="4" width="300" height="48" />
+              <Rect x="30" y="192" rx="4" ry="4" width="300" height="48" />
+              <Rect x="30" y="256" rx="4" ry="4" width="300" height="48" />
+            </ContentLoader>
+          ) : (
+            <FlatList
+              style={styles.listContainer}
+              data={characters}
+              renderItem={renderItem}
+            />
+          )}
+        </View>
+      ) : (
+        <EmptyState
+          buttonTitle={'read quran'}
+          searchScreen={true}
+          onPress={LogFunc}
+          imageDisplay={searchImage}
+        />
+      )}
     </View>
   );
 };

@@ -28,7 +28,7 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'black',
+    background: '#00B4AC',
   },
 };
 
@@ -72,7 +72,10 @@ const RootNavigator = () => {
           component={SearchingScreen}
           options={{
             headerStyle: {
-              backgroundColor: '#57BBC1',
+              backgroundColor: '#00B4AC',
+            },
+            headerTitleStyle: {
+              color: 'white',
             },
             title: 'search',
           }}
@@ -168,7 +171,7 @@ const RootNavigator = () => {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
         <Stack.Navigator initialRouteName="SplashScreen">
           <Stack.Screen
             name="SplashScreen"

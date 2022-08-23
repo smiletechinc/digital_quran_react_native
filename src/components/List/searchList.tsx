@@ -11,9 +11,6 @@ const SearchList: React.FunctionComponent<Props> = props => {
   const {surah, onPress} = props;
   const {t} = useTranslation();
 
-  useEffect(() => {
-    console.log('surah', surah);
-  });
   return (
     <View style={[styles.gridView]}>
       <View style={styles.itemContainer}>
@@ -34,7 +31,7 @@ const SearchList: React.FunctionComponent<Props> = props => {
             marginVertical: 4,
             fontSize: 20,
             color: '#C7AA35',
-          }}>{`(${t(surah.surhaName)}:${surah.ayatNumber})`}</Text>
+          }}>{`(${t(surah.surhaName)}:${t(surah.ayatNumber)})`}</Text>
       </View>
     </View>
   );

@@ -20,7 +20,7 @@ const BookmarkListItem: React.FunctionComponent<Props> = props => {
       </TouchableOpacity>
       <View style={styles.textView} onTouchEnd={onTouchEnd}>
         <Text style={styles.ayatText}>{t(ayaObject.title)}</Text>
-        <Text style={styles.ayatIndex}>{Number(ayaObject.index)}</Text>
+        <Text style={styles.ayatIndex}>{Number(t(ayaObject.index))}</Text>
       </View>
     </View>
   ) : (
@@ -29,10 +29,9 @@ const BookmarkListItem: React.FunctionComponent<Props> = props => {
         <Image source={favSelectIcon} />
       </TouchableOpacity>
       <Text style={styles.ayatText}>{ayaObject.ayatText}</Text>
-      <Text
-        style={
-          styles.ayatIndex
-        }>{`(${ayaObject.surahNumber}:${ayaObject.ayatNumber})`}</Text>
+      <Text style={styles.ayatIndex}>{`(${t(ayaObject.surahNumber)}:${t(
+        ayaObject.ayatNumber,
+      )})`}</Text>
     </View>
   );
 };

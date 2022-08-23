@@ -67,7 +67,7 @@ const SettingScreen: React.FunctionComponent<Props> = props => {
                 lineHeight: 22,
                 textAlign: 'center',
               }}>
-              {t('Change Language')}
+              {t('change language')}
             </Text>
           </LinearGradient>
         </TouchableOpacity>

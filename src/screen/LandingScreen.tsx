@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useEffect} from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
 import {styles} from './index';
 import {LanguagePicker} from '../components/picker';
 import {updateAyat} from '../redux/action/verseAction';
@@ -15,6 +15,9 @@ import surahMeta from '../resources/surahMeta.json';
 import paraMeta from '../resources/paraMeta.json';
 import {updateSurah} from '../redux/action/surahAction';
 import {updatePara} from '../redux/action/paraAction';
+import {MULTIPLIER, SCREEN_WIDTH, STATUS_BAR_HEIGHT} from '../constants';
+import HeaderWithText from '../components/Header/header';
+import {backBtn2} from '../constants/images';
 
 type Props = {
   navigation: any;
@@ -44,8 +47,18 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.selectionContainer}>
+    <ScrollView style={{backgroundColor: '#FFFFFF'}}>
+      <View style={[styles.selectionContainer, {marginBottom: -48}]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{left: 16}}>
+          <Image
+            source={backBtn2}
+            style={{width: 32, height: 32, backgroundColor: '#FFFFFF'}}
+          />
+        </TouchableOpacity>
         <View
           style={{
             display: 'flex',

@@ -15,6 +15,7 @@ import {
   BookmarkVerseContextType,
 } from '../context/favouriteVerseContext';
 import {favIcon, favSelectIcon} from '../constants/images';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   navigation: any;
@@ -25,6 +26,7 @@ type Props = {
 };
 
 const SurahScreen: React.FunctionComponent<Props> = props => {
+  const {t} = useTranslation();
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const toast = useRef(null);
   const {navigation, addFavVerse} = props;
@@ -52,7 +54,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
 
   useEffect(() => {
     if (textCopyStatus) {
-      toast.current.show('Copy to Clipboard', {
+      toast.current.show(`${t('copy to clipboard')}`, {
         type: 'success',
         duration: 2000,
       });
@@ -85,16 +87,13 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
 
   const surahFavFunction = () => {
     if (!checkSurahBookmarked(surahIndex)) {
-      console.log('hello', surahIndex);
       addInSurahBook(surahObject);
     } else {
-      console.log('hello1', surahIndex);
       removeInSurahBook(surahIndex);
     }
   };
   const renderItem = ({item, index}: any) => {
     let indexNumber = isSurahFatiha ? index + 2 : index + 1;
-    // console.log('value', item);
     return (
       <SurahDetailList
         verse={item}
@@ -102,7 +101,6 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         isSurahFathia={isSurahFatiha}
         onPress={() => copyToClipboard(item)}
         favButtonPress={() => favFunctionCalled(item, indexNumber)}
-        // favImage={isBookmarked ? favSelectIcon : favIcon}
         ayaObject={{
           surahNumber: surahIndex,
           ayatNumber: indexNumber,
@@ -130,7 +128,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       />
       <View style={styles.segementedView}>
         <SegmentedControlTab
-          values={['Surah', 'Ayat']}
+          values={[`${t('surah')}`, `${t('ayat')}`]}
           selectedIndex={selectedIndexValue}
           onTabPress={value => MushafNavigation(value)}
           tabsContainerStyle={styles.tabsContainerStyle}

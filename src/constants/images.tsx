@@ -10,3 +10,7 @@ export const quranPic = require('../resources/images/quranpic.png');
 export const favIcon = require('../resources/images/Icon_awesome-heart.png');
 export const favSelectIcon = require('../resources/images/favIconSelect.png');
 export const favEmptyStateImage = require('../resources/images/bookmarkEmptyStateImage.png');
+export const searchImage = require('../resources/images/searchImage.png');
+export const makkahImage = require('../resources/images/makkah.png');
+export const madinaIamge = require('../resources/images/madinah.png');
+export const backBtn2 = require('../resources/images/back_btn2.png');

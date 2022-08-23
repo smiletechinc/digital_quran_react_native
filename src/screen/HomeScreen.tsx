@@ -58,7 +58,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: '#FFFFFF'}}>
       <View style={[styles.selectionContainer, {paddingTop: '20%'}]}>
         <View style={styles.homeView}>
           <AppImageHeader />

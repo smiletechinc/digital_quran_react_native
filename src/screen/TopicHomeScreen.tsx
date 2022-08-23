@@ -10,6 +10,8 @@ import {
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import EmptyState from '../components/emptyState';
 import {SurahContext, SurahContextType} from '../context/surahContext';
+import {favEmptyStateImage} from '../constants/images';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   navigation: any;
@@ -21,6 +23,7 @@ let updatedOuter = false;
 
 const TopicsScreen: React.FunctionComponent<Props> = props => {
   const {navigation} = props;
+  const {t} = useTranslation();
   const {favoriteVerses, removeInVerseBook, favoriteSurahs, removeInSurahBook} =
     React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
   const {surahObject, setSurahObject} = React.useContext(
@@ -96,7 +99,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
       ]}>
       <View style={styles.segementedView}>
         <SegmentedControlTab
-          values={['Surah', 'Ayat']}
+          values={[`${t('surah')}`, `${t('ayat')}`]}
           selectedIndex={selectedIndexValue}
           onTabPress={value => MushafNavigation(value)}
           tabsContainerStyle={styles.tabsContainerStyle}
@@ -115,9 +118,11 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         />
       ) : (
         <EmptyState
-          buttonTitle={'Read Quran'}
+          buttonTitle={'read quran'}
           onPress={LogFunc}
           surahStateValue={surahState}
+          searchScreen={false}
+          imageDisplay={favEmptyStateImage}
         />
       )}
     </View>

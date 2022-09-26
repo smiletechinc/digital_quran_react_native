@@ -1,6 +1,13 @@
 import * as React from 'react';
 import {useEffect} from 'react';
-import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import {styles} from './index';
 import {LanguagePicker} from '../components/picker';
 import {updateAyat} from '../redux/action/verseAction';
@@ -15,7 +22,12 @@ import surahMeta from '../resources/surahMeta.json';
 import paraMeta from '../resources/paraMeta.json';
 import {updateSurah} from '../redux/action/surahAction';
 import {updatePara} from '../redux/action/paraAction';
-import {MULTIPLIER, SCREEN_WIDTH, STATUS_BAR_HEIGHT} from '../constants';
+import {
+  MULTIPLIER,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  STATUS_BAR_HEIGHT,
+} from '../constants';
 import HeaderWithText from '../components/Header/header';
 import {backBtn2} from '../constants/images';
 
@@ -27,6 +39,8 @@ type Props = {
 };
 
 const LandingScreen: React.FunctionComponent<Props> = props => {
+  const typeIOS =
+    Platform.OS === 'ios' ? Platform.constants.interfaceIdiom : 'phone';
   const {navigation, updateAyat, updateSurah, updatePara} = props;
   const {textLanguage} = React.useContext(
     LanguageContext,
@@ -34,6 +48,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   // const {t} = useTranslation();
 
   useEffect(() => {
+    // console.log('platform', Platform.constants.in);
     Object.values(Quran.name).forEach(surahAyat => {
       updateAyat(surahAyat);
     });
@@ -48,7 +63,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
 
   return (
     <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-      <View style={[styles.selectionContainer, {marginBottom: -48}]}>
+      <View style={[styles.selectionContainer]}>
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();
@@ -64,7 +79,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
             display: 'flex',
             flexDirection: 'column',
             flex: 1,
-            zIndex: 50,
+            zIndex: 500,
           }}>
           <AppImageHeader />
           <View>
@@ -73,8 +88,19 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
           </View>
           <LanguagePicker onPress={LogFunc} />
         </View>
-        <View style={{position: 'absolute', opacity: 1, right: 2}}>
-          <Image source={backgroundAppImage} style={{resizeMode: 'cover'}} />
+        <View
+          style={{
+            position: 'absolute',
+            opacity: 1,
+          }}>
+          <Image
+            source={backgroundAppImage}
+            style={{
+              resizeMode: 'cover',
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT,
+            }}
+          />
         </View>
         <StatusBar style="dark" />
       </View>

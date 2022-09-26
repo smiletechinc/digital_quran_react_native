@@ -37,8 +37,19 @@ const HeaderDetail: FunctionComponent<Props> = props => {
     BookmarkVerseContext,
   ) as BookmarkVerseContextType;
   console.log('surahTitle', surahTitle);
+  const [headerWidth, setHeaderWidth] = useState(0);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const onLayout = (event: any) => {
+    const {x, y, height, width} = event.nativeEvent.layout;
+    console.log('Dimensions : ', x, y, height, width);
+    // cameraLayoutWidth = width;
+    setHeaderWidth(width);
+    // cameraLayoutHeight = height;
+    setHeaderHeight(height);
+  };
+
   return (
-    <View style={[styles.mainView, styleOption]}>
+    <View style={[styles.mainView, styleOption]} onLayout={onLayout}>
       <View>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={backBtn} style={{borderColor: '#E9EEF0'}} />

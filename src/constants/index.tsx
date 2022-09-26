@@ -8,6 +8,10 @@ export const SMALL_DEVICE = SCREEN_WIDTH <= 420 && SCREEN_HEIGHT <= 695;
 export const MULTIPLIER = SMALL_DEVICE ? 1.0 : 1.25;
 
 export const STATUS_BAR_HEIGHT = getStatusBarHeight();
+
+export const typeIOS =
+  Platform.OS === 'ios' ? Platform.constants.interfaceIdiom : 'phone';
+
 export const COLORS = {
   white: '#ffffff',
   full_black: '#000000',

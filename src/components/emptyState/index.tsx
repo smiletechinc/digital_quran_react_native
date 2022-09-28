@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {PrimaryButton} from '../buttons';
-
 type Props = {
   onPress?: any;
   buttonTitle: any;
@@ -39,7 +38,7 @@ const EmptyState: React.FunctionComponent<Props> = props => {
         )}
         {searchScreen ? (
           <Text style={styles.descriptionText}>
-            {`${t('for search click on the above searchbar')}  ${'\n'} ${t(
+            {`${t('for search click on the + icon on the bottom')}  ${'\n'} ${t(
               'for read quran, click on below button',
             )}`}
           </Text>

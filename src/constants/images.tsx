@@ -14,3 +14,4 @@ export const searchImage = require('../resources/images/searchImage.png');
 export const makkahImage = require('../resources/images/makkah.png');
 export const madinaIamge = require('../resources/images/madinah.png');
 export const backBtn2 = require('../resources/images/back_btn2.png');
+export const floatingButtonIcon = require('../resources/images/icon_plus.png');

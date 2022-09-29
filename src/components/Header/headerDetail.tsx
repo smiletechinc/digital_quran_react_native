@@ -14,9 +14,9 @@ import {SurahContext, SurahContextType} from '../../context/surahContext';
 import {useTranslation} from 'react-i18next';
 
 type Props = {
-  surahTitle: any;
+  surahTitle?: any;
   navigation: any;
-  surahVerseCount: any;
+  surahVerseCount?: any;
   styleOption?: any;
   fromSurah?: boolean;
   onPress?: any;

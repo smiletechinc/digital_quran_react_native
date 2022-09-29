@@ -9,6 +9,7 @@ import {
   SurahScreen,
   SuraReadingScreen,
   ParaReadingScreen,
+  CameraSearchScreen,
   ParaDetailScreen,
   UserAccountScreen,
 } from '../screen/index';
@@ -71,14 +72,13 @@ const RootNavigator = () => {
           name="home"
           component={SearchingScreen}
           options={{
-            headerStyle: {
-              backgroundColor: '#00B4AC',
-            },
-            headerTitleStyle: {
-              color: 'white',
-            },
-            title: 'search',
+            header: () => null,
           }}
+        />
+        <SearchStack.Screen
+          name="CameraSearchScreen"
+          component={CameraSearchScreen}
+          options={{header: () => null}}
         />
       </SearchStack.Navigator>
     );
@@ -196,6 +196,11 @@ const RootNavigator = () => {
           <Stack.Screen
             name="ParaReadingScreen"
             component={ParaReadingTabs}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="CameraSearchScreen"
+            component={CameraSearchScreen}
             options={{title: '', header: () => null}}
           />
           <Stack.Screen

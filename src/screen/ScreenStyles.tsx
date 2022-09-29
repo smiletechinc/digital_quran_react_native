@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   selectionContainer: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingTop: Platform.OS === 'ios' ? (SCREEN_WIDTH / 10) * 2 : 10,
     paddingHorizontal: SCREEN_WIDTH * 0.03,

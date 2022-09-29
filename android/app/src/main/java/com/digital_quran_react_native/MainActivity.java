@@ -1,4 +1,6 @@
 package com.digital_quran_react_native;
+import expo.modules.ReactActivityDelegateWrapper;
+import com.facebook.react.ReactActivityDelegate;
 
 import com.facebook.react.ReactActivity;
 
@@ -13,4 +15,11 @@ public class MainActivity extends ReactActivity {
     return "digital_quran_react_native";
   }
   
+
+  @Override
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    return new ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED,
+      new ReactActivityDelegate(this, getMainComponentName())
+    );
+  }
 }

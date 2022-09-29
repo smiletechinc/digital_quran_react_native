@@ -8,6 +8,7 @@ import {
   ParaContextProvider,
   VerseContextProvider,
   BookmarkVerseContextProvider,
+  SearchContextProvider,
 } from './src/context/index';
 const App = () => {
   return (
@@ -16,7 +17,9 @@ const App = () => {
         <SurahContextProvider>
           <ParaContextProvider>
             <VerseContextProvider>
-              <RootNavigator />
+              <SearchContextProvider>
+                <RootNavigator />
+              </SearchContextProvider>
             </VerseContextProvider>
           </ParaContextProvider>
         </SurahContextProvider>

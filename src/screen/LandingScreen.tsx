@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,12 @@ import {
   ScrollView,
   TouchableOpacity,
   Platform,
+  Alert,
 } from 'react-native';
 import {styles} from './index';
 import {LanguagePicker} from '../components/picker';
 import {updateAyat} from '../redux/action/verseAction';
 import {connect, useDispatch} from 'react-redux';
-import {useTranslation} from 'react-i18next';
 import Quran from '../resources/SurahIndex';
 import {backgroundAppImage} from '../constants/images';
 import {AppImageHeader} from '../components/images';
@@ -22,14 +22,11 @@ import surahMeta from '../resources/surahMeta.json';
 import paraMeta from '../resources/paraMeta.json';
 import {updateSurah} from '../redux/action/surahAction';
 import {updatePara} from '../redux/action/paraAction';
-import {
-  MULTIPLIER,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-  STATUS_BAR_HEIGHT,
-} from '../constants';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../constants';
 import HeaderWithText from '../components/Header/header';
 import {backBtn2} from '../constants/images';
+import {usePermissions} from 'expo-media-library';
+import {useeCameraPermissionsHook} from '../hooks/permissionHook';
 
 type Props = {
   navigation: any;
@@ -45,20 +42,88 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   const {textLanguage} = React.useContext(
     LanguageContext,
   ) as LanguageContextType;
+  const [status, requestPermission] = usePermissions();
+  const {getCameraPermission, requestCameraPermission, permissionStatus} =
+    useeCameraPermissionsHook();
+  const [alertModalVisible, setAlertVisibleModal] = useState(false);
+  const [titleText, setTitleText] = useState('');
+  const [descText, setDescText] = useState('');
+  const [buttonText, setButtonText] = useState('');
+  const [galleryPermission, setGalleryPermission] = useState(false);
+  const [cameraPermission, setCameraPermission] = useState(false);
+  // const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    console.log('gallery Permission:', status);
+    if (status) {
+      console.log('gallery Permission:', status.accessPrivileges);
+      if (status.status === 'undetermined') {
+        requestPermission();
+      } else if (status.accessPrivileges === 'all') {
+        setGalleryPermission(true);
+      } else if (status.accessPrivileges === 'limited') {
+        showGalleryPermiisonModal();
+      } else if (
+        status.status === 'denied' &&
+        status.accessPrivileges === 'none'
+      ) {
+        // showGalleryPermiisonModal();
+      }
+    } else {
+      requestPermission();
+    }
+  }, [status]);
+
+  useEffect(() => {
+    console.log('cameraPermissionsStatus, ', permissionStatus);
+    if (permissionStatus === 'unknown') {
+      getCameraPermission();
+    }
+    if (permissionStatus === 'undetermined') {
+      requestCameraPermission();
+    } else if (permissionStatus === 'denied') {
+      showCameraPermissionsModal();
+    } else if (permissionStatus === 'granted') {
+      setCameraPermission(true);
+      // startScreenRecording();
+    }
+  }, [permissionStatus]);
+
+  const showGalleryPermiisonModal = () => {
+    setAlertVisibleModal(true);
+    setTitleText('Gallery Permission Denied');
+    setDescText('Please Allow the All Permissions of Gallery Permission');
+    setButtonText('Go to Settings');
+  };
+
+  const showCameraPermissionsModal = () => {
+    setAlertVisibleModal(true);
+    setTitleText('Camera Permission Denied');
+    setDescText(
+      'This feature uses camera to function. Trainify would like to access your camera to record your tennis serves and rally for performance review.',
+    );
+    setButtonText('Go to Settings');
+  };
   // const {t} = useTranslation();
 
   useEffect(() => {
     // console.log('platform', Platform.constants.in);
-    Object.values(Quran.name).forEach(surahAyat => {
-      updateAyat(surahAyat);
-    });
+    if (cameraPermission && galleryPermission) {
+      Object.values(Quran.name).forEach(surahAyat => {
+        updateAyat(surahAyat);
+      });
 
-    updateSurah(Object.values(surahMeta));
-    updatePara(Object.values(paraMeta));
+      updateSurah(Object.values(surahMeta));
+      updatePara(Object.values(paraMeta));
+    }
   }, [navigation]);
 
   const LogFunc = () => {
-    navigation.replace('HomeScreen');
+    if (cameraPermission && galleryPermission) {
+      navigation.replace('HomeScreen');
+    } else {
+      Alert.alert('set Permission');
+    }
   };
 
   return (

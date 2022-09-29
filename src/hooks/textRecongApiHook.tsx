@@ -1,21 +1,19 @@
 import axios from 'axios';
-import {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 const BASE_URL = 'https://api.ocr.space/parse/image';
 
 export const FetchTextFromImageHook = () => {
-  const [apiResponse, setApiResponse] = useState({});
-  // const [apiResponseError, setApiResponseError] = useState();
+  const [apiResponseTextData, setApiResponseTextData] = useState({});
+
   const getAyahImageHook = async (
     photoUri: any,
     photoName: any,
     photoType: any,
   ) => {
-    setApiResponse({});
     new Promise(async (resolve, reject) => {
       try {
         const URL_ = BASE_URL;
-
         var headers = {
           'Content-Type': 'multipart/form-data',
           apikey: 'K88634971788957',
@@ -48,6 +46,7 @@ export const FetchTextFromImageHook = () => {
                   (responseDataInnder: any) => {
                     if (Object.values(responseDataInnder)[3]) {
                       rawResponse = Object.values(responseDataInnder)[3];
+                      console.log('rawResponse', rawResponse);
                       responseObject = {
                         isErrorProcessing: false,
                         text: JSON.stringify(rawResponse),
@@ -71,7 +70,7 @@ export const FetchTextFromImageHook = () => {
             };
           });
 
-        setApiResponse(responseObject);
+        setApiResponseTextData(responseObject);
       } catch (err) {
         console.log(err);
       }
@@ -79,6 +78,6 @@ export const FetchTextFromImageHook = () => {
   };
   return {
     getAyahImageHook,
-    apiResponse,
+    apiResponseTextData,
   };
 };

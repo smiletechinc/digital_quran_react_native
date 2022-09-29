@@ -1,28 +1,56 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View} from 'react-native';
+import {View, Image, Alert} from 'react-native';
 import Toast from 'react-native-fast-toast';
 import {t} from 'i18next';
 import {FloatingButton} from '../components/buttons';
 import {styles} from './index';
 import {ClipboardHook} from '../hooks/clipboardHook';
-import {SearchAyahHook} from '../hooks/searchHook';
 import EmptyState from '../components/emptyState/index';
 import {searchImage} from '../constants/images';
 import {
   SearchBarText,
   SearchBarDisplayResult,
 } from '../components/searchBar/index';
+import {SearchContext, SearchContextType} from '../context/searchContext';
+import SearchHeaderDetail from '../components/Header/searchHeader';
+import {SearchAyahHook} from '../hooks/searchHook';
 
 type Props = {
   navigation: any;
+  route?: any;
 };
 
 const SearchingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation} = props;
-  const [clicked, setClicked] = React.useState(false);
+  const {navigation, route} = props;
   const toast = useRef(null);
   const {textCopyStatus, setTextCopyStatus} = ClipboardHook();
-  const {characters} = SearchAyahHook();
+  const {searchVerse, handleChange, searchDatainFIle} = SearchAyahHook();
+  const {characters, setCharacters, setStartAnimation, setChangeText} =
+    React.useContext(SearchContext) as SearchContextType;
+  const [clicked, setClicked] = React.useState(false);
+  const [editbaleText, setEditableText] = useState(false);
+  const [isImage, setIsImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (route.params) {
+      setIsImage(route.params.imageObject.imageCapture);
+      setEditableText(true);
+      setCharacters('');
+      setChangeText(
+        JSON.stringify(route.params.imageObject.apiText).replace(
+          /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g,
+          '',
+        ),
+      );
+      setClicked(true);
+      handleChange(
+        JSON.stringify(route.params.imageObject.apiText).replace(
+          /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g,
+          '',
+        ),
+      );
+    }
+  }, [route]);
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -34,6 +62,25 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     }
   }, [textCopyStatus]);
 
+  useEffect(() => {
+    console.log('', isImage);
+    if (searchDatainFIle) {
+      Alert.alert('No data found');
+    }
+  }, [searchDatainFIle]);
+
+  const searchByImage = () => {
+    navigation.navigate('CameraSearchScreen');
+  };
+
+  const clickedCheckFunction = () => {
+    if (clicked) {
+      setClicked(false);
+      setEditableText(false);
+    } else {
+      setClicked(true);
+    }
+  };
   const LogFunc = () => {
     navigation.navigate('Surah');
   };
@@ -42,25 +89,42 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     <View
       style={[
         styles.selectionContainer,
-        {backgroundColor: '#00B4AC', paddingTop: 120},
+        {
+          backgroundColor: '#00B4AC',
+          paddingTop: 120,
+        },
       ]}>
-      <Toast ref={toast} placement="bottom" />
-      <SearchBarText clickCheck={setClicked} clickValue={clicked} />
-      {characters.length > 0 || clicked ? (
-        <SearchBarDisplayResult />
-      ) : (
-        <EmptyState
-          buttonTitle={'read quran'}
-          searchScreen={true}
-          onPress={LogFunc}
-          imageDisplay={searchImage}
+      <View>
+        <Toast ref={toast} placement="bottom" />
+        {isImage != null && (
+          <SearchHeaderDetail navigation={navigation} selectedImage={isImage} />
+        )}
+        <SearchBarText
+          clickCheck={clickedCheckFunction}
+          clickValue={clicked}
+          editableTextCheck={editbaleText}
         />
-      )}
-      <FloatingButton
-        onPress={() => {
-          console.log('hello');
-        }}
-      />
+        {characters.length > 0 || clicked ? (
+          <SearchBarDisplayResult />
+        ) : (
+          <EmptyState
+            buttonTitle={'read quran'}
+            searchScreen={true}
+            onPress={LogFunc}
+            imageDisplay={searchImage}
+          />
+        )}
+      </View>
+      <View
+        style={{
+          marginTop: '102%',
+          justifyContent: 'flex-end',
+          alignSelf: 'flex-end',
+          display: 'flex',
+          position: 'absolute',
+        }}>
+        <FloatingButton onPressImage={searchByImage} />
+      </View>
     </View>
   );
 };

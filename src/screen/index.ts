@@ -10,6 +10,7 @@ import SuraReadingScreen from './ReadingScreen';
 import UserAccountScreen from './UserScreen';
 import ParaReadingScreen from './ParaReadingScreen';
 import ParaDetailScreen from './ParaDetailScreen';
+import CameraSearchScreen from './CameraSearchScreen';
 
 export {
   SplashScreen,
@@ -18,6 +19,7 @@ export {
   SettingScreen,
   TopicsScreen,
   SearchingScreen,
+  CameraSearchScreen,
   SurahScreen,
   SuraReadingScreen,
   ParaReadingScreen,

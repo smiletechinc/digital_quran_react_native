@@ -12,7 +12,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		471F2EB11B741FB90B4F79A4 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */; };
+		5FE856953D0DB6E316A2AE77 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1677CD7FD29B41EA0C4B7ECA /* ExpoModulesProvider.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9280C4860C18FB68D7AF3DA3 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B92119AA803057629FC41A /* ExpoModulesProvider.swift */; };
 		96D8B04BA7763DE0B530B93A /* libPods-digital_quran_react_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */; };
 		99A44E032865F52600A42833 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99A44DF32865F52600A42833 /* Fontisto.ttf */; };
 		99A44E042865F52600A42833 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99A44DF32865F52600A42833 /* Fontisto.ttf */; };
@@ -72,6 +74,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = digital_quran_react_native/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = digital_quran_react_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = digital_quran_react_native/main.m; sourceTree = "<group>"; };
+		1677CD7FD29B41EA0C4B7ECA /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-digital_quran_react_native/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		1D08B65FC62D44E99BE32079 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		279C690C88D84CF1AF4253A6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		2B31635588303E147F727009 /* Pods-digital_quran_react_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.release.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.debug.xcconfig"; sourceTree = "<group>"; };
 		9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2F345C5F654417AC114964 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		D1B92119AA803057629FC41A /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		D750402502D348FFB0BE6DF0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		EBF08131BC9540B29D7AE6C3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -173,6 +177,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		33625C5102838C57B111B536 /* digital_quran_react_native */ = {
+			isa = PBXGroup;
+			children = (
+				1677CD7FD29B41EA0C4B7ECA /* ExpoModulesProvider.swift */,
+			);
+			name = digital_quran_react_native;
+			sourceTree = "<group>";
+		};
 		45A41145E06E4CFC85CCF622 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +226,7 @@
 				B2BC2E4D4C54120A3F49EBC6 /* Pods */,
 				45A41145E06E4CFC85CCF622 /* Resources */,
 				99BEEB812865F20400EE7FB2 /* Recovered References */,
+				C46E13620F9244BB4B77782A /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -227,6 +240,14 @@
 				00E356EE1AD99517003FC87E /* digital_quran_react_nativeTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9965D08FF24DCF85A99BBF84 /* digital_quran_react_nativeTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1B92119AA803057629FC41A /* ExpoModulesProvider.swift */,
+			);
+			name = digital_quran_react_nativeTests;
 			sourceTree = "<group>";
 		};
 		99A44DF22865F49900A42833 /* Fonts */ = {
@@ -269,6 +290,15 @@
 				3F4DD3D7E6ADC4ED95E91F1F /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C46E13620F9244BB4B77782A /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				33625C5102838C57B111B536 /* digital_quran_react_native */,
+				9965D08FF24DCF85A99BBF84 /* digital_quran_react_nativeTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* digital_quran_react_nativeTests.m in Sources */,
+				9280C4860C18FB68D7AF3DA3 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +599,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				5FE856953D0DB6E316A2AE77 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +624,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = digital_quran_react_nativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -603,6 +635,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digital_quran_react_native.app/digital_quran_react_native";
@@ -616,7 +649,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = digital_quran_react_nativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -627,6 +660,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digital_quran_react_native.app/digital_quran_react_native";
@@ -653,6 +687,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smiletech.digitalquran.app;
 				PRODUCT_NAME = digital_quran_react_native;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -683,6 +718,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smiletech.digitalquran.app;
 				PRODUCT_NAME = digital_quran_react_native;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -741,7 +777,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -799,7 +835,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",

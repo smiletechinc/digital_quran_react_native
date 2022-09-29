@@ -4,12 +4,16 @@ import {SearchAyahHook} from '../../hooks/searchHook';
 import ContentLoader, {Rect} from 'react-content-loader/native';
 import {SearchList} from '../../components/List/index';
 import {ClipboardHook} from '../../hooks/clipboardHook';
+import {SearchContext, SearchContextType} from '../../context/searchContext';
 
 const SearchBarDisplayResult = () => {
-  const {startAnimation, characters} = SearchAyahHook();
+  const {startAnimation, characters} = React.useContext(
+    SearchContext,
+  ) as SearchContextType;
   const {copyToClipboard} = ClipboardHook();
 
   const renderItem = ({item}: any) => {
+    console.log('item', item);
     return (
       <SearchList surah={item} onPress={() => copyToClipboard(item.ayatText)} />
     );

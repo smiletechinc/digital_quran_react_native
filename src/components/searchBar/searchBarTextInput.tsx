@@ -10,23 +10,24 @@ import {t} from 'i18next';
 import {debounce} from 'lodash';
 import {SearchAyahHook} from '../../hooks/searchHook';
 import {clearSearchBar, searchIcon} from '../../constants/images';
+import {SearchContext, SearchContextType} from '../../context/searchContext';
 
 type SearchBarProps = {
   clickCheck: any;
   clickValue: boolean;
+  editableTextCheck: boolean;
 };
 const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
-  const {clickCheck, clickValue} = props;
-  const [textValue, setChangeText] = React.useState('');
-  const {searchVerse, setStartAnimation, setCharacters} = SearchAyahHook();
+  const {clickCheck, clickValue, editableTextCheck} = props;
+  const {setCharacters, characters, setChangeText, textValue} =
+    React.useContext(SearchContext) as SearchContextType;
+  const {handleChange} = SearchAyahHook();
 
-  const handleChange = async (e: string) => {
-    setChangeText(e);
-    clickCheck(true);
-    setStartAnimation(true);
-    var debounce_fun = await debounce(() => searchVerse(e), 3000);
-    debounce_fun();
-  };
+  useEffect(() => {
+    if (characters.length > 0) {
+      console.log('charabcter', characters);
+    }
+  }, [characters]);
 
   return (
     <View style={styles.searchContainer}>
@@ -37,10 +38,10 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
         <TextInput
           value={textValue}
           onChangeText={text => handleChange(text)}
-          placeholder={t('search here')}
           onFocus={() => {
             clickCheck(true);
           }}
+          placeholder={t('search here')}
           style={styles.inputSearch}
         />
         <Image source={searchIcon} />
@@ -48,7 +49,7 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
       {clickValue && (
         <TouchableOpacity
           onPress={() => {
-            setChangeText(''), clickCheck(false), setCharacters([]);
+            setChangeText(''), clickCheck(), setCharacters([]);
           }}>
           <Image source={clearSearchBar} />
         </TouchableOpacity>

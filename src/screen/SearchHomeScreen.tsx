@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View, Image, Alert} from 'react-native';
+import {View, Image, Alert, ScrollView} from 'react-native';
 import Toast from 'react-native-fast-toast';
 import {t} from 'i18next';
 import {FloatingButton} from '../components/buttons';
@@ -15,6 +15,7 @@ import {
 import {SearchContext, SearchContextType} from '../context/searchContext';
 import SearchHeaderDetail from '../components/Header/searchHeader';
 import {SearchAyahHook} from '../hooks/searchHook';
+import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
 
 type Props = {
   navigation: any;
@@ -85,53 +86,58 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <View
-      style={[
-        styles.selectionContainer,
-        {
-          backgroundColor: '#00B4AC',
-          paddingTop: 120,
-        },
-      ]}>
-      <View>
-        <Toast ref={toast} placement="bottom" />
-        {isImage != null && (
-          <SearchHeaderDetail navigation={navigation} selectedImage={isImage} />
-        )}
-        <SearchBarText
-          clickCheck={setClicked}
-          clickValue={clicked}
-          editableTextCheck={editbaleText}
-        />
-        {characters.length > 0 || startAnimation ? (
-          <SearchBarDisplayResult />
-        ) : searchDatainFIle && textValue != '' ? (
-          <NoDataFound
-            buttonTitle={'Search In Advanced'}
-            searchScreen={true}
-            onPress={() => searchInAdvanced(textValue)}
-            imageDisplay={searchImage}
-          />
-        ) : (
-          <EmptyState
-            buttonTitle={'read quran'}
-            searchScreen={true}
-            onPress={LogFunc}
-            imageDisplay={searchImage}
-          />
-        )}
-      </View>
+    <ScrollView style={{minHeight: SCREEN_HEIGHT}}>
       <View
-        style={{
-          marginTop: '102%',
-          justifyContent: 'flex-end',
-          alignSelf: 'flex-end',
-          display: 'flex',
-          position: 'absolute',
-        }}>
-        <FloatingButton onPressImage={searchByImage} />
+        style={[
+          styles.selectionContainer,
+          {
+            backgroundColor: '#00B4AC',
+            paddingTop: 120,
+          },
+        ]}>
+        <View>
+          <Toast ref={toast} placement="bottom" />
+          {isImage != null && (
+            <SearchHeaderDetail
+              navigation={navigation}
+              selectedImage={isImage}
+            />
+          )}
+          <SearchBarText
+            clickCheck={setClicked}
+            clickValue={clicked}
+            editableTextCheck={editbaleText}
+          />
+          {characters.length > 0 || startAnimation ? (
+            <SearchBarDisplayResult />
+          ) : searchDatainFIle && textValue != '' ? (
+            <NoDataFound
+              buttonTitle={'Search In Advanced'}
+              searchScreen={true}
+              onPress={() => searchInAdvanced(textValue)}
+              imageDisplay={searchImage}
+            />
+          ) : (
+            <EmptyState
+              buttonTitle={'read quran'}
+              searchScreen={true}
+              onPress={LogFunc}
+              imageDisplay={searchImage}
+            />
+          )}
+        </View>
+        <View
+          style={{
+            marginTop: SCREEN_HEIGHT - 128,
+            justifyContent: 'flex-end',
+            alignSelf: 'flex-end',
+            display: 'flex',
+            position: 'absolute',
+          }}>
+          <FloatingButton onPressImage={searchByImage} />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

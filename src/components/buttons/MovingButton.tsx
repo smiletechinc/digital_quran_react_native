@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import {styles} from './index';
 import LinearGradient from 'react-native-linear-gradient';
+import {SCREEN_HEIGHT} from '../../constants';
 
 type PrimaryButtonProps = {
   title: string;
@@ -17,7 +18,7 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
       onPress={onPress}
       style={[
         styles.primaryButtonContainer,
-        isFavoriteCalled ? {marginTop: '10%'} : {marginTop: marginTopValue},
+        isFavoriteCalled ? {marginTop: '10%'} : {marginTop: SCREEN_HEIGHT / 4},
       ]}>
       <LinearGradient
         colors={['#00B4AC', '#007F79', '#006763']}

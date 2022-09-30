@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, TouchableOpacity, FlatList, Text} from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Text,
+  ScrollView,
+} from 'react-native';
 import {styles} from './index';
 import {connect, useDispatch} from 'react-redux';
 import {BookmarkListItem} from '../components/List';
@@ -92,40 +99,42 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <View
-      style={[
-        styles.selectionContainer,
-        {backgroundColor: '#00B4AC', paddingTop: 68},
-      ]}>
-      <View style={styles.segementedView}>
-        <SegmentedControlTab
-          values={[`${t('surah')}`, `${t('ayat')}`]}
-          selectedIndex={selectedIndexValue}
-          onTabPress={value => MushafNavigation(value)}
-          tabsContainerStyle={styles.tabsContainerStyle}
-          tabStyle={styles.tabStyle}
-          tabTextStyle={styles.tabTextStyle}
-          activeTabStyle={styles.activeTabStyle}
-          activeTabTextStyle={styles.activeTabTextStyle}
-          borderRadius={24}
-        />
+    <ScrollView style={{marginBottom: 8}} scrollEnabled={false}>
+      <View
+        style={[
+          styles.selectionContainer,
+          {backgroundColor: '#00B4AC', paddingTop: 68},
+        ]}>
+        <View style={styles.segementedView}>
+          <SegmentedControlTab
+            values={[`${t('surah')}`, `${t('ayat')}`]}
+            selectedIndex={selectedIndexValue}
+            onTabPress={value => MushafNavigation(value)}
+            tabsContainerStyle={styles.tabsContainerStyle}
+            tabStyle={styles.tabStyle}
+            tabTextStyle={styles.tabTextStyle}
+            activeTabStyle={styles.activeTabStyle}
+            activeTabTextStyle={styles.activeTabTextStyle}
+            borderRadius={24}
+          />
+        </View>
+        {lisDataObject.length > 0 ? (
+          <FlatList
+            style={[styles.listContainer]}
+            data={lisDataObject}
+            renderItem={renderItem}
+          />
+        ) : (
+          <EmptyState
+            buttonTitle={'read quran'}
+            onPress={LogFunc}
+            surahStateValue={surahState}
+            searchScreen={false}
+            imageDisplay={favEmptyStateImage}
+          />
+        )}
       </View>
-      {lisDataObject.length > 0 ? (
-        <FlatList
-          style={[styles.listContainer]}
-          data={lisDataObject}
-          renderItem={renderItem}
-        />
-      ) : (
-        <EmptyState
-          buttonTitle={'read quran'}
-          onPress={LogFunc}
-          surahStateValue={surahState}
-          searchScreen={false}
-          imageDisplay={favEmptyStateImage}
-        />
-      )}
-    </View>
+    </ScrollView>
   );
 };
 const mapStateToProps = (state: {bookMarkVerses: {favVerses: any}}) => {

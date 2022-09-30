@@ -108,14 +108,12 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
 
   useEffect(() => {
     // console.log('platform', Platform.constants.in);
-    if (cameraPermission && galleryPermission) {
-      Object.values(Quran.name).forEach(surahAyat => {
-        updateAyat(surahAyat);
-      });
+    Object.values(Quran.name).forEach(surahAyat => {
+      updateAyat(surahAyat);
+    });
 
-      updateSurah(Object.values(surahMeta));
-      updatePara(Object.values(paraMeta));
-    }
+    updateSurah(Object.values(surahMeta));
+    updatePara(Object.values(paraMeta));
   }, [navigation]);
 
   const LogFunc = () => {

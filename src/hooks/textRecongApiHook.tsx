@@ -5,12 +5,27 @@ const BASE_URL = 'https://api.ocr.space/parse/image';
 
 export const FetchTextFromImageHook = () => {
   const [apiResponseTextData, setApiResponseTextData] = useState({});
+  const [fetching, setFetching] = useState(false);
+  const [cancelRequest, setCancelRequest] = useState(false);
 
+  const cancelAPi = () => {
+    const CancelToken = axios.CancelToken;
+    let cancel;
+    axios.get(BASE_URL, {
+      cancelToken: new CancelToken(function executor(c) {
+        // An executor function receives a cancel function as a parameter
+        cancel = c;
+        setCancelRequest(true);
+        console.log('cancel Request', cancel);
+      }),
+    });
+  };
   const getAyahImageHook = async (
     photoUri: any,
     photoName: any,
     photoType: any,
   ) => {
+    setFetching(true);
     new Promise(async (resolve, reject) => {
       try {
         const URL_ = BASE_URL;
@@ -69,14 +84,18 @@ export const FetchTextFromImageHook = () => {
               text: e.toString(),
             };
           });
-
         setApiResponseTextData(responseObject);
+        setFetching(false);
       } catch (err) {
+        setFetching(false);
         console.log(err);
       }
     });
   };
   return {
+    fetching,
+    cancelAPi,
+    cancelRequest,
     getAyahImageHook,
     apiResponseTextData,
   };

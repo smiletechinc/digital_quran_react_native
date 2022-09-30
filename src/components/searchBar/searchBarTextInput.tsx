@@ -22,6 +22,7 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
   const {setCharacters, characters, setChangeText, textValue} =
     React.useContext(SearchContext) as SearchContextType;
   const {handleChange} = SearchAyahHook();
+  const [clickTextInput, setClickTextInput] = useState(false);
 
   useEffect(() => {
     if (characters.length > 0) {
@@ -49,7 +50,7 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
       {clickValue && (
         <TouchableOpacity
           onPress={() => {
-            setChangeText(''), clickCheck(), setCharacters([]);
+            setChangeText(''), clickCheck(false), setCharacters([]);
           }}>
           <Image source={clearSearchBar} />
         </TouchableOpacity>

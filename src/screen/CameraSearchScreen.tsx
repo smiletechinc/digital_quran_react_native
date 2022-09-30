@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Text,
   Platform,
   Alert,
 } from 'react-native';
@@ -12,16 +13,30 @@ import {SCREEN_WIDTH} from '../constants/index';
 import * as ImagePicker from 'expo-image-picker';
 import {Camera as CameraIcon, Folder} from '../components/cameraIcons';
 import {FetchTextFromImageHook} from '../hooks/textRecongApiHook';
+import ContentLoader, {Rect} from 'react-content-loader/native';
 
 type Props = {
   navigation: any;
 };
 
+const uploadAnimation = require('../resources/animation/fetchingTextApi.json');
+
 const CameraSearchScreen: React.FunctionComponent<Props> = props => {
   const {navigation} = props;
-  const {getAyahImageHook, apiResponseTextData} = FetchTextFromImageHook();
+  const {
+    getAyahImageHook,
+    apiResponseTextData,
+    fetching,
+    cancelAPi,
+    cancelRequest,
+  } = FetchTextFromImageHook();
   const [imagePath, setImagePath] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (cancelRequest) {
+      navigation.goBack();
+    }
+  }, [cancelRequest]);
   useEffect(() => {
     if (apiResponseTextData) {
       if (
@@ -39,7 +54,6 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
           `${Object.values(apiResponseTextData)[1]}, Please Try Again`,
         );
       }
-      console.log('apiResponseTextData', Object.values(apiResponseTextData)[0]);
     }
   }, [apiResponseTextData]);
 
@@ -72,19 +86,26 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
       ]}>
       <TouchableOpacity
         onPress={() => {
-          navigation.goBack();
+          cancelAPi();
         }}
         style={{left: 16}}>
         <Image source={backBtn} style={{width: 32, height: 32}} />
       </TouchableOpacity>
+      {fetching && (
+        <ContentLoader
+          speed={1.8}
+          backgroundColor={'#ffffff'}
+          foregroundColor={'#999'}
+          title="Loading"
+          viewBox="0 26 360 70">
+          <Rect x="30" y="40" rx="8" ry="16" width="300" height="60%" />
+        </ContentLoader>
+      )}
       <TouchableOpacity
         style={styles.mainGalleryButton}
         onPress={() => pickImage()}>
         <Folder />
       </TouchableOpacity>
-      {/* {imagePath && (
-        <Image source={{uri: imagePath}} style={{width: 200, height: 200}} />
-      )} */}
     </View>
   );
 };
@@ -108,6 +129,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: Platform.OS === 'ios' ? (SCREEN_WIDTH / 10) * 2 : 10,
     paddingHorizontal: SCREEN_WIDTH * 0.03,
+  },
+  lottie: {
+    width: 200,
+    height: 200,
   },
   mainCameraButton: {
     width: 60,

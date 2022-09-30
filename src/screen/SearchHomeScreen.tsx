@@ -6,6 +6,7 @@ import {FloatingButton} from '../components/buttons';
 import {styles} from './index';
 import {ClipboardHook} from '../hooks/clipboardHook';
 import EmptyState from '../components/emptyState/index';
+import NoDataFound from '../components/emptyState/noDataFound';
 import {searchImage} from '../constants/images';
 import {
   SearchBarText,
@@ -24,9 +25,15 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route} = props;
   const toast = useRef(null);
   const {textCopyStatus, setTextCopyStatus} = ClipboardHook();
-  const {searchVerse, handleChange, searchDatainFIle} = SearchAyahHook();
-  const {characters, setCharacters, setStartAnimation, setChangeText} =
-    React.useContext(SearchContext) as SearchContextType;
+  const {searchInAdvanced, handleChange, searchDatainFIle} = SearchAyahHook();
+  const {
+    characters,
+    setCharacters,
+    setStartAnimation,
+    startAnimation,
+    setChangeText,
+    textValue,
+  } = React.useContext(SearchContext) as SearchContextType;
   const [clicked, setClicked] = React.useState(false);
   const [editbaleText, setEditableText] = useState(false);
   const [isImage, setIsImage] = useState<string | null>(null);
@@ -50,7 +57,14 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
         ),
       );
     }
-  }, [route]);
+  }, [route.params]);
+
+  useEffect(() => {
+    if (!clicked) {
+      setChangeText('');
+      setIsImage(null);
+    }
+  }, [clicked]);
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -62,25 +76,10 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     }
   }, [textCopyStatus]);
 
-  useEffect(() => {
-    console.log('', isImage);
-    if (searchDatainFIle) {
-      Alert.alert('No data found');
-    }
-  }, [searchDatainFIle]);
-
   const searchByImage = () => {
     navigation.navigate('CameraSearchScreen');
   };
 
-  const clickedCheckFunction = () => {
-    if (clicked) {
-      setClicked(false);
-      setEditableText(false);
-    } else {
-      setClicked(true);
-    }
-  };
   const LogFunc = () => {
     navigation.navigate('Surah');
   };
@@ -100,12 +99,19 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
           <SearchHeaderDetail navigation={navigation} selectedImage={isImage} />
         )}
         <SearchBarText
-          clickCheck={clickedCheckFunction}
+          clickCheck={setClicked}
           clickValue={clicked}
           editableTextCheck={editbaleText}
         />
-        {characters.length > 0 || clicked ? (
+        {characters.length > 0 || startAnimation ? (
           <SearchBarDisplayResult />
+        ) : searchDatainFIle && textValue != '' ? (
+          <NoDataFound
+            buttonTitle={'Search In Advanced'}
+            searchScreen={true}
+            onPress={() => searchInAdvanced(textValue)}
+            imageDisplay={searchImage}
+          />
         ) : (
           <EmptyState
             buttonTitle={'read quran'}

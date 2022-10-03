@@ -99,7 +99,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <ScrollView style={{marginBottom: 8}} scrollEnabled={false}>
+    <ScrollView style={{marginBottom: 8}} showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.selectionContainer,

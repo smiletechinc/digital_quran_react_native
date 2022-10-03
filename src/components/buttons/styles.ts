@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     width: '70%',
     borderRadius: 25,
     alignSelf: 'center',
+    marginBottom: 64,
   },
   linearGradientStyle: {
     padding: 12,

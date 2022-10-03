@@ -117,11 +117,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   }, [navigation]);
 
   const LogFunc = () => {
-    if (cameraPermission && galleryPermission) {
-      navigation.replace('HomeScreen');
-    } else {
-      Alert.alert('set Permission');
-    }
+    navigation.replace('HomeScreen');
   };
 
   return (

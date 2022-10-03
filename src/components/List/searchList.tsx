@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 type Props = {
@@ -14,24 +14,26 @@ const SearchList: React.FunctionComponent<Props> = props => {
   return (
     <View style={[styles.gridView]}>
       <View style={styles.itemContainer}>
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'center',
-            fontSize: 20,
-            fontFamily: 'Arial',
-            color: '#1A1A1A',
-          }}
-          onPress={onPress}>
-          {surah.ayatText}
+        <Text>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'center',
+              fontSize: 20,
+              fontFamily: 'Arial',
+              color: '#1A1A1A',
+            }}
+            onPress={onPress}>
+            {surah.ayatText}
+          </Text>
+          <Text
+            style={{
+              textAlign: 'left',
+              marginVertical: 4,
+              fontSize: 20,
+              color: '#C7AA35',
+            }}>{` (${t(surah.ayatNumber)}:${t(surah.surhaName)})`}</Text>
         </Text>
-        <Text
-          style={{
-            textAlign: 'left',
-            marginVertical: 4,
-            fontSize: 20,
-            color: '#C7AA35',
-          }}>{`(${t(surah.surhaName)}:${t(surah.ayatNumber)})`}</Text>
       </View>
     </View>
   );
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'row-reverse',
+    // flexDirection: 'row-reverse',
     justifyContent: 'center',
     borderStyle: 'solid',
     borderRadius: 8,

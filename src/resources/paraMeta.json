@@ -1,0 +1,1602 @@
+[
+  {
+    "title": "alif laam meem",
+    "titleArabic": "آلم",
+    "paraIndex": "1",
+    "count": "148",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "1",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "1",
+          "ayahIndex": "verse_7"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "2",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "2",
+          "ayahIndex": "verse_141"
+        }
+      }
+    ]
+  },
+  {
+    "title": "sayaqool",
+    "titleArabic": "سَيَقُولُ",
+    "paraIndex": "2",
+    "count": "111",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "2",
+          "ayahIndex": "verse_142"
+        },
+        "lastAyah": {
+          "surahIndex": "2",
+          "ayahIndex": "verse_252"
+        }
+      }
+    ]
+  },
+  {
+    "title": "tilkal rusull",
+    "titleArabic": " تِلْكَ الرُّسُلُ",
+    "paraIndex": "3",
+    "count": "125",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "2",
+          "ayahIndex": "verse_253"
+        },
+        "lastAyah": {
+          "surahIndex": "2",
+          "ayahIndex": "verse_286"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "3",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "3",
+          "ayahIndex": "verse_91"
+        }
+      }
+    ]
+  },
+  {
+    "title": "lan tana loo",
+    "titleArabic": " لَنْ تَنَالُوا",
+    "paraIndex": "4",
+    "count": "132",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "3",
+          "ayahIndex": "verse_92"
+        },
+        "lastAyah": {
+          "surahIndex": "3",
+          "ayahIndex": "verse_200"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "4",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "4",
+          "ayahIndex": "verse_23"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wal mohsanat",
+    "titleArabic": "وَالْمُحْصَنَاتُ",
+    "paraIndex": "5",
+    "count": "124",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "4",
+          "ayahIndex": "verse_24"
+        },
+        "lastAyah": {
+          "surahIndex": "4",
+          "ayahIndex": "verse_147"
+        }
+      }
+    ]
+  },
+  {
+    "title": "la yuhibbullah",
+    "titleArabic": "لَا  يُحِبُّ اللَّهُ",
+    "paraIndex": "6",
+    "count": "111",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "4",
+          "ayahIndex": "verse_148"
+        },
+        "lastAyah": {
+          "surahIndex": "4",
+          "ayahIndex": "verse_176"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "5",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "5",
+          "ayahIndex": "verse_82"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa iza samiu",
+    "titleArabic": "وَإِذَا سَمِعُوا",
+    "paraIndex": "7",
+    "count": "148",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "5",
+          "ayahIndex": "verse_83"
+        },
+        "lastAyah": {
+          "surahIndex": "5",
+          "ayahIndex": "verse_120"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "6",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "6",
+          "ayahIndex": "verse_110"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa lau annana",
+    "titleArabic": "وَلَوْ أَنَّنَا",
+    "paraIndex": "8",
+    "count": "142",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "6",
+          "ayahIndex": "verse_111"
+        },
+        "lastAyah": {
+          "surahIndex": "6",
+          "ayahIndex": "verse_165"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "7",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "7",
+          "ayahIndex": "verse_87"
+        }
+      }
+    ]
+  },
+  {
+    "title": "qalal malao",
+    "titleArabic": "قَالَ الْمَلَأُ",
+    "paraIndex": "9",
+    "count": "159",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "7",
+          "ayahIndex": "verse_88"
+        },
+        "lastAyah": {
+          "surahIndex": "7",
+          "ayahIndex": "verse_206"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "8",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "8",
+          "ayahIndex": "verse_40"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa alamu",
+    "titleArabic": "وَاعْلَمُوا",
+    "paraIndex": "10",
+    "count": "128",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "8",
+          "ayahIndex": "verse_41"
+        },
+        "lastAyah": {
+          "surahIndex": "8",
+          "ayahIndex": "verse_75"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "9",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "9",
+          "ayahIndex": "verse_93"
+        }
+      }
+    ]
+  },
+  {
+    "title": "yatazeroon",
+    "titleArabic": "يَعْتَذِرُونَ",
+    "paraIndex": "11",
+    "count": "150",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "9",
+          "ayahIndex": "verse_94"
+        },
+        "lastAyah": {
+          "surahIndex": "9",
+          "ayahIndex": "verse_129"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "10",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "10",
+          "ayahIndex": "verse_109"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "11",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "11",
+          "ayahIndex": "verse_5"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa mamin daabat",
+    "titleArabic": "وَمَا مِنْ دَابَّةٍ",
+    "paraIndex": "12",
+    "count": "170",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "11",
+          "ayahIndex": "verse_6"
+        },
+        "lastAyah": {
+          "surahIndex": "11",
+          "ayahIndex": "verse_123"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "12",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "12",
+          "ayahIndex": "verse_52"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa ma ubrioo",
+    "titleArabic": "وَمَا بَرِّئُ",
+    "paraIndex": "13",
+    "count": "155",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "12",
+          "ayahIndex": "verse_53"
+        },
+        "lastAyah": {
+          "surahIndex": "12",
+          "ayahIndex": "verse_111"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "13",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "13",
+          "ayahIndex": "verse_43"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "14",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "14",
+          "ayahIndex": "verse_52"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "15",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "15",
+          "ayahIndex": "verse_1"
+        }
+      }
+    ]
+  },
+  {
+    "title": "rubama",
+    "titleArabic": "رُبَمَا",
+    "paraIndex": "14",
+    "count": "226",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "15",
+          "ayahIndex": "verse_2"
+        },
+        "lastAyah": {
+          "surahIndex": "15",
+          "ayahIndex": "verse_99"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "16",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "16",
+          "ayahIndex": "verse_128"
+        }
+      }
+    ]
+  },
+  {
+    "title": "subhanallazi",
+    "titleArabic": "سُبْحَانَ الَّذِي",
+    "paraIndex": "15",
+    "count": "185",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "17",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "17",
+          "ayahIndex": "verse_111"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "18",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "18",
+          "ayahIndex": "verse_74"
+        }
+      }
+    ]
+  },
+  {
+    "title": "qal alam",
+    "titleArabic": "قَالَ أَلَمْ",
+    "paraIndex": "16",
+    "count": "269",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "18",
+          "ayahIndex": "verse_75"
+        },
+        "lastAyah": {
+          "surahIndex": "18",
+          "ayahIndex": "verse_110"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "19",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "19",
+          "ayahIndex": "verse_98"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "20",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "20",
+          "ayahIndex": "verse_135"
+        }
+      }
+    ]
+  },
+  {
+    "title": "aqtarabo",
+    "titleArabic": "اقْتَرَبَ",
+    "paraIndex": "17",
+    "count": "190",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "21",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "21",
+          "ayahIndex": "verse_112"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "22",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "22",
+          "ayahIndex": "verse_78"
+        }
+      }
+    ]
+  },
+  {
+    "title": "qadd aflaha",
+    "titleArabic": "قَدْ أَفْلَحَ",
+    "paraIndex": "18",
+    "count": "202",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "23",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "23",
+          "ayahIndex": "verse_118"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "24",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "24",
+          "ayahIndex": "verse_64"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "25",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "25",
+          "ayahIndex": "verse_20"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa qalallazina",
+    "titleArabic": "وَقَالَ الَّذِينَ",
+    "paraIndex": "19",
+    "count": "343",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "25",
+          "ayahIndex": "verse_21"
+        },
+        "lastAyah": {
+          "surahIndex": "25",
+          "ayahIndex": "verse_77"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "26",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "26",
+          "ayahIndex": "verse_227"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "27",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "27",
+          "ayahIndex": "verse_59"
+        }
+      }
+    ]
+  },
+  {
+    "title": "aman khalaq",
+    "titleArabic": "أَمَّنْ خَلَقَ",
+    "paraIndex": "20",
+    "count": "166",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "27",
+          "ayahIndex": "verse_60"
+        },
+        "lastAyah": {
+          "surahIndex": "27",
+          "ayahIndex": "verse_93"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "28",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "28",
+          "ayahIndex": "verse_88"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "29",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "29",
+          "ayahIndex": "verse_44"
+        }
+      }
+    ]
+  },
+  {
+    "title": "utlu ma oohi",
+    "titleArabic": "اتْلُ مَا أُوحِيَ",
+    "paraIndex": "21",
+    "count": "179",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "29",
+          "ayahIndex": "verse_45"
+        },
+        "lastAyah": {
+          "surahIndex": "29",
+          "ayahIndex": "verse_69"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "30",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "30",
+          "ayahIndex": "verse_60"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "31",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "31",
+          "ayahIndex": "verse_34"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "32",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "32",
+          "ayahIndex": "verse_30"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "33",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "33",
+          "ayahIndex": "verse_30"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa manyaqnut",
+    "titleArabic": "وَمَنْ يَقْنُتْ",
+    "paraIndex": "22",
+    "count": "163",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "33",
+          "ayahIndex": "verse_31"
+        },
+        "lastAyah": {
+          "surahIndex": "33",
+          "ayahIndex": "verse_73"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "34",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "34",
+          "ayahIndex": "verse_54"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "35",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "35",
+          "ayahIndex": "verse_45"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "36",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "36",
+          "ayahIndex": "verse_21"
+        }
+      }
+    ]
+  },
+  {
+    "title": "wa mali",
+    "titleArabic": "وَمَا لِيَ",
+    "paraIndex": "23",
+    "count": "363",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "36",
+          "ayahIndex": "verse_22"
+        },
+        "lastAyah": {
+          "surahIndex": "36",
+          "ayahIndex": "verse_83"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "37",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "37",
+          "ayahIndex": "verse_182"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "38",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "38",
+          "ayahIndex": "verse_88"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "39",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "39",
+          "ayahIndex": "verse_31"
+        }
+      }
+    ]
+  },
+  {
+    "title": "faman azlam",
+    "titleArabic": "فَمَنْ أَظْلَمُ",
+    "paraIndex": "24",
+    "count": "175",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "39",
+          "ayahIndex": "verse_32"
+        },
+        "lastAyah": {
+          "surahIndex": "39",
+          "ayahIndex": "verse_75"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "40",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "40",
+          "ayahIndex": "verse_85"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "41",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "41",
+          "ayahIndex": "verse_46"
+        }
+      }
+    ]
+  },
+  {
+    "title": "elahe yuruddo",
+    "titleArabic": "إِلَيْهِ يُرَدُّ",
+    "paraIndex": "25",
+    "count": "246",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "41",
+          "ayahIndex": "verse_47"
+        },
+        "lastAyah": {
+          "surahIndex": "41",
+          "ayahIndex": "verse_54"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "42",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "42",
+          "ayahIndex": "verse_53"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "43",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "43",
+          "ayahIndex": "verse_89"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "44",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "44",
+          "ayahIndex": "verse_59"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "45",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "45",
+          "ayahIndex": "verse_37"
+        }
+      }
+    ]
+  },
+  {
+    "title": "haa meem",
+    "titleArabic": "حم",
+    "paraIndex": "26",
+    "count": "195",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "46",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "46",
+          "ayahIndex": "verse_35"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "47",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "47",
+          "ayahIndex": "verse_38"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "48",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "48",
+          "ayahIndex": "verse_29"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "49",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "49",
+          "ayahIndex": "verse_18"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "50",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "50",
+          "ayahIndex": "verse_45"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "51",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "51",
+          "ayahIndex": "verse_30"
+        }
+      }
+    ]
+  },
+  {
+    "title": "qala fama khatbukum",
+    "titleArabic": "قَالَ فَمَا خَطْبُكُمْ",
+    "paraIndex": "27",
+    "count": "399",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "51",
+          "ayahIndex": "verse_31"
+        },
+        "lastAyah": {
+          "surahIndex": "51",
+          "ayahIndex": "verse_60"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "52",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "52",
+          "ayahIndex": "verse_49"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "53",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "53",
+          "ayahIndex": "verse_62"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "54",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "54",
+          "ayahIndex": "verse_55"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "55",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "55",
+          "ayahIndex": "verse_78"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "56",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "56",
+          "ayahIndex": "verse_96"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "57",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "57",
+          "ayahIndex": "verse_29"
+        }
+      }
+    ]
+  },
+  {
+    "title": "qadd sami allah",
+    "titleArabic": "قَدْ سَمِعَ اللَّهُ",
+    "paraIndex": "28",
+    "count": "137",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "58",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "58",
+          "ayahIndex": "verse_22"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "59",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "59",
+          "ayahIndex": "verse_24"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "60",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "60",
+          "ayahIndex": "verse_13"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "61",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "61",
+          "ayahIndex": "verse_14"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "62",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "62",
+          "ayahIndex": "verse_11"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "63",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "63",
+          "ayahIndex": "verse_11"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "64",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "64",
+          "ayahIndex": "verse_18"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "65",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "65",
+          "ayahIndex": "verse_12"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "66",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "66",
+          "ayahIndex": "verse_12"
+        }
+      }
+    ]
+  },
+  {
+    "title": "tabarakallazi",
+    "titleArabic": "تَبَارَكَ الَّذِي",
+    "paraIndex": "29",
+    "count": "431",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "67",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "67",
+          "ayahIndex": "verse_30"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "68",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "68",
+          "ayahIndex": "verse_52"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "69",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "69",
+          "ayahIndex": "verse_52"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "70",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "70",
+          "ayahIndex": "verse_44"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "71",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "71",
+          "ayahIndex": "verse_28"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "72",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "72",
+          "ayahIndex": "verse_28"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "73",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "73",
+          "ayahIndex": "verse_20"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "74",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "74",
+          "ayahIndex": "verse_56"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "75",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "75",
+          "ayahIndex": "verse_40"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "76",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "76",
+          "ayahIndex": "verse_31"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "77",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "77",
+          "ayahIndex": "verse_50"
+        }
+      }
+    ]
+  },
+  {
+    "title": "amma yatasaaloon",
+    "titleArabic": "عَمَّ يَتَسَاءَلُونَ",
+    "paraIndex": "30",
+    "count": "564",
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "78",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "78",
+          "ayahIndex": "verse_40"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "79",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "79",
+          "ayahIndex": "verse_46"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "80",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "80",
+          "ayahIndex": "verse_42"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "81",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "81",
+          "ayahIndex": "verse_9"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "82",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "82",
+          "ayahIndex": "verse_19"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "83",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "83",
+          "ayahIndex": "verse_36"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "84",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "84",
+          "ayahIndex": "verse_25"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "85",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "85",
+          "ayahIndex": "verse_22"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "86",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "86",
+          "ayahIndex": "verse_17"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "87",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "87",
+          "ayahIndex": "verse_19"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "88",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "88",
+          "ayahIndex": "verse_26"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "89",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "89",
+          "ayahIndex": "verse_30"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "90",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "90",
+          "ayahIndex": "verse_20"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "91",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "91",
+          "ayahIndex": "verse_15"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "92",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "92",
+          "ayahIndex": "verse_21"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "93",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "93",
+          "ayahIndex": "verse_11"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "94",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "94",
+          "ayahIndex": "verse_8"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "95",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "95",
+          "ayahIndex": "verse_8"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "96",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "96",
+          "ayahIndex": "verse_9"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "97",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "97",
+          "ayahIndex": "verse_5"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "98",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "98",
+          "ayahIndex": "verse_8"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "99",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "99",
+          "ayahIndex": "verse_8"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "100",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "100",
+          "ayahIndex": "verse_11"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "101",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "101",
+          "ayahIndex": "verse_11"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "102",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "102",
+          "ayahIndex": "verse_8"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "103",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "103",
+          "ayahIndex": "verse_3"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "104",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "104",
+          "ayahIndex": "verse_9"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "105",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "105",
+          "ayahIndex": "verse_5"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "106",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "106",
+          "ayahIndex": "verse_4"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "107",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "107",
+          "ayahIndex": "verse_7"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "108",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "108",
+          "ayahIndex": "verse_3"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "109",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "109",
+          "ayahIndex": "verse_6"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "110",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "110",
+          "ayahIndex": "verse_3"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "111",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "111",
+          "ayahIndex": "verse_5"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "112",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "112",
+          "ayahIndex": "verse_4"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "113",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "113",
+          "ayahIndex": "verse_5"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "114",
+          "ayahIndex": "verse_1"
+        },
+        "lastAyah": {
+          "surahIndex": "114",
+          "ayahIndex": "verse_6"
+        }
+      }
+    ]
+  }
+]

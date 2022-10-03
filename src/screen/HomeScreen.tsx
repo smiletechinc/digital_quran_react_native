@@ -1,62 +1,121 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View, FlatList} from 'react-native';
+import * as React from 'react';
+import {View, Image, ScrollView, Alert} from 'react-native';
 import {styles} from './index';
-import surahMeta from '../resources/surahMeta.json';
+import {backgroundAppImage} from '../constants/images';
+import {AppImageHeader} from '../components/images';
+import {VerseContext, QuranContextType} from '../context/quranContext';
+import {StatusBar} from 'expo-status-bar';
+import {
+  PrimaryButton,
+  HomeChoiceButton,
+  SecondaryButton,
+} from '../components/buttons';
+import {useTranslation} from 'react-i18next';
+import {updateSurah} from '../redux/action/surahAction';
 import {connect, useDispatch} from 'react-redux';
-import {ListItem} from '../components/List/index';
+import {ParaMakeHook} from '../hooks/paraMakeHook';
+import {SCREEN_HEIGHT, SCREEN_WIDTH, typeIOS} from '../constants/index';
 
 type Props = {
   navigation: any;
+  updateSurah: any;
+  updateAyat: any;
   route: any;
+  reduxVerses: any;
   reduxSurahs: any;
-  updated: boolean;
+  reduxParahs: any;
+  updated: any;
 };
 
 let updatedOuter = false;
 
 const HomeScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, route, reduxSurahs, updated} = props;
-  const [surahIntro, setSurahInto] = useState();
+  const {navigation, reduxSurahs, reduxParahs, reduxVerses} = props;
+  const {t} = useTranslation();
+  const {setVersesObject} = React.useContext(VerseContext) as QuranContextType;
+  const [surahSelectIconVisible, setSurahSelectIconVisible] =
+    React.useState(false);
+  const [paraSelectIconVisible, setParaSelectIconVisible] =
+    React.useState(false);
+  const {makePara} = ParaMakeHook();
 
-  useEffect(() => {
-    navigation.setOptions({
-      headerStyle: {
-        backgroundColor: '#57BBC1',
-      },
-    });
-    setSurahInto(reduxSurahs);
-    console.log('update suarah intor', surahIntro);
+  React.useEffect(() => {
+    if (reduxVerses) {
+      setVersesObject(reduxVerses);
+      makePara(reduxVerses, reduxParahs, reduxSurahs);
+    }
   }, [navigation]);
 
-  const SampleFunction = (surahdata: any) => {
-    navigation.navigate('SurahScreen', surahdata);
+  const LogFunc = () => {
+    if (surahSelectIconVisible) {
+      navigation.navigate('SuraReadingScreen');
+    } else if (paraSelectIconVisible) {
+      navigation.navigate('ParaReadingScreen');
+    }
   };
-  const renderItem = ({item}: any) => {
-    console.log('item', item);
-    return <ListItem surah={item} onPress={() => SampleFunction(item)} />;
+
+  const paraArray = () => {
+    setParaSelectIconVisible(true), setSurahSelectIconVisible(false);
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        style={styles.listContainer}
-        data={surahIntro}
-        renderItem={renderItem}
-      />
-    </View>
+    <ScrollView style={{backgroundColor: '#FFFFFF'}}>
+      <View style={[styles.selectionContainer, {paddingTop: '20%'}]}>
+        <View style={styles.homeView}>
+          <AppImageHeader />
+          <HomeChoiceButton
+            surahSelectIconVisible={surahSelectIconVisible}
+            setSurahSelectIconVisible={setSurahSelectIconVisible}
+            paraSelectIconVisible={paraSelectIconVisible}
+            setParaSelectIconVisible={setParaSelectIconVisible}
+            paraPress={() => paraArray()}
+          />
+          {surahSelectIconVisible || paraSelectIconVisible ? (
+            <PrimaryButton
+              title={t('next')}
+              onPress={LogFunc}
+              buttonMargin={typeIOS === 'pad' ? '70%' : '90%'}
+            />
+          ) : (
+            <SecondaryButton title={t('next')} />
+          )}
+        </View>
+        <View style={{position: 'absolute', opacity: 1, right: 2}}>
+          <Image
+            source={backgroundAppImage}
+            style={{
+              resizeMode: 'cover',
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT,
+            }}
+          />
+        </View>
+        <StatusBar style="dark" />
+      </View>
+    </ScrollView>
   );
 };
 
 const mapStateToProps = (state: {
-  surahs: {surahs: any};
   verses: {verses: any};
+  parahs: {parahs: any};
+  surahs: {surahs: any};
 }) => {
-  console.log('data comes from reudx', state.verses.verses);
   return {
+    reduxVerses: state.verses.verses,
+    reduxParahs: state.parahs.parahs,
     reduxSurahs: state.surahs.surahs,
     updated: !updatedOuter,
   };
 };
+const mapDispatchToProps = (
+  dispatch: (arg0: {type: string; surah?: SurahMeta; ayat?: QuranMeta}) => void,
+) => {
+  return {
+    updateSurah: (updateSurahData: SurahMeta) => {
+      dispatch(updateSurah(updateSurahData));
+    },
+  };
+};
 
-export default connect(mapStateToProps)(HomeScreen);
-// export default HomeScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

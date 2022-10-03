@@ -1,0 +1,504 @@
+[
+  {
+    "title": "Alif Laam Meem",
+    "titleArabic": "آلم",
+    "paraIndex": "001",
+    "count": "148",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ],
+    "ayah": {
+      "first": {
+        "surahIndex": "01",
+        "ayahIndex": "01"
+      },
+      "last": {
+        "surahIndex": "02",
+        "ayahIndex": "141"
+      }
+    }
+  },
+  {
+    "title": "Sayaqool",
+    "titleArabic": "سَيَقُولُ",
+    "paraIndex": "002",
+    "count": "111",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Tilkal Rusull",
+    "titleArabic": " تِلْكَ الرُّسُلُ",
+    "paraIndex": "003",
+    "count": "125",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Lan Tana Loo",
+    "titleArabic": " لَنْ تَنَالُوا",
+    "paraIndex": "004",
+    "count": "132",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Wal Mohsanat",
+    "titleArabic": "وَالْمُحْصَنَاتُ",
+    "paraIndex": "005",
+    "count": "124",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "La Yuhibbullah",
+    "titleArabic": "لَا  يُحِبُّ اللَّهُ",
+    "paraIndex": "006",
+    "count": "111",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "007",
+    "count": "148",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "008",
+    "count": "142",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "009",
+    "count": "159",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "010",
+    "count": "128",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "011",
+    "count": "150",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "012",
+    "count": "170",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "013",
+    "count": "155",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "016",
+    "count": "269",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "017",
+    "count": "190",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "018",
+    "count": "202",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "019",
+    "count": "343",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "020",
+    "count": "166",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "021",
+    "count": "179",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "022",
+    "count": "163",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "023",
+    "count": "363",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "024",
+    "count": "175",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "025",
+    "count": "246",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "026",
+    "count": "195",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "027",
+    "count": "399",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "028",
+    "count": "137",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "029",
+    "count": "431",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "030",
+    "count": "564",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ],
+    "ayahOfSurah": [
+      {
+        "firstAyah": {
+          "surahIndex": "29",
+          "ayahIndex": "01"
+        },
+        "lastAyah": {
+          "surahIndex": "29",
+          "ayahIndex": "69"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "30",
+          "ayahIndex": "01"
+        },
+        "lastAyah": {
+          "surahIndex": "30",
+          "ayahIndex": "60"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "31",
+          "ayahIndex": "01"
+        },
+        "lastAyah": {
+          "surahIndex": "31",
+          "ayahIndex": "34"
+        }
+      },
+      {
+        "firstAyah": {
+          "surahIndex": "32",
+          "ayahIndex": "01"
+        },
+        "lastAyah": {
+          "surahIndex": "32",
+          "ayahIndex": "30"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "001",
+    "count": "148",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  },
+  {
+    "title": "al-fatiha",
+    "titleArabic": "سُوْرَۃُ الفَاتِحَة",
+    "paraIndex": "001",
+    "count": "148",
+    "juz": [
+      {
+        "index": "01",
+        "verse": {
+          "start": "verse_1",
+          "end": "verse_7"
+        }
+      }
+    ]
+  }
+]

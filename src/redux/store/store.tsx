@@ -6,10 +6,14 @@ import logger from 'redux-logger';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import surahReducer from '../reducer/surahReducer';
 import verseReducer from '../reducer/verseReducer';
+import paraReducer from '../reducer/paraReducer';
+import favVerseReducer from '../reducer/favVerseReducer';
 
 const rootReducer = combineReducers({
   surahs: surahReducer,
   verses: verseReducer,
+  parahs: paraReducer,
+  bookMarkVerses: favVerseReducer,
 });
 
 const persistConfig = {

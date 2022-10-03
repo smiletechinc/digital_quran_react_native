@@ -1,11 +1,16 @@
 import SplashScreen from './SplashScreen';
-import {styles, textStyles} from './ScreenStyles';
+import styles from './ScreenStyles';
 import LandingScreen from './LandingScreen';
 import HomeScreen from './HomeScreen';
 import SurahScreen from './SurahDetailScreen';
 import SettingScreen from './SettingScreen';
 import SearchingScreen from './SearchHomeScreen';
 import TopicsScreen from './TopicHomeScreen';
+import SuraReadingScreen from './ReadingScreen';
+import UserAccountScreen from './UserScreen';
+import ParaReadingScreen from './ParaReadingScreen';
+import ParaDetailScreen from './ParaDetailScreen';
+import CameraSearchScreen from './CameraSearchScreen';
 
 export {
   SplashScreen,
@@ -14,7 +19,11 @@ export {
   SettingScreen,
   TopicsScreen,
   SearchingScreen,
+  CameraSearchScreen,
   SurahScreen,
-  textStyles,
+  SuraReadingScreen,
+  ParaReadingScreen,
+  ParaDetailScreen,
+  UserAccountScreen,
   styles,
 };

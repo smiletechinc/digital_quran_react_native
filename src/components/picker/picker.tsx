@@ -1,46 +1,105 @@
-import React, { useState } from "react";
-import { View, Text} from "react-native";
-import { styles } from "./index";
-import { Picker } from "@react-native-picker/picker";
-import i18n from '../localization/i18n';  
+import React, {useEffect, useState} from 'react';
+import {View, Text, Platform} from 'react-native';
+import {typeIOS} from '../../constants/index';
+import {styles} from './index';
+import i18n from '../localization/i18n';
 import {useTranslation} from 'react-i18next';
-import { PrimaryButton } from "../buttons";
+import {PrimaryButton} from '../buttons';
+import DropDownPicker from 'react-native-dropdown-picker';
+import CountryFlag from 'react-native-country-flag';
+import {
+  LanguageContext,
+  LanguageContextType,
+} from '../../context/languageContext';
 
 type PickerProps = {
   onPress: any;
-}
-const LanguagePicker:React.FunctionComponent<PickerProps> = (props) => {
-
-  const { t } = useTranslation();
+};
+const LanguagePicker: React.FunctionComponent<PickerProps> = props => {
+  const {t} = useTranslation();
   const {onPress} = props;
-  const [currentLanguage,setLanguage] =useState('en');
+  const [currentLanguage, setLanguage] = useState('');
+  const {textLanguage, setTextLanguage} = React.useContext(
+    LanguageContext,
+  ) as LanguageContextType;
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {
+      icon: () => <CountryFlag isoCode="UM" size={25} />,
+      label: 'English',
+      value: 'en',
+    },
+    {
+      icon: () => <CountryFlag isoCode="IR" size={25} />,
+      label: 'عربي',
+      value: 'ar',
+    },
+    {
+      icon: () => <CountryFlag isoCode="PK" size={25} />,
+      label: 'اردو',
+      value: 'ur',
+    },
+    {
+      icon: () => <CountryFlag isoCode="IN" size={25} />,
+      label: 'हिन्दी',
+      value: 'hi',
+    },
+  ]);
+
   console.log(t);
-  const proceedToChangeLanguage = value => {
+
+  const proceedToChangeLanguage = (value: any) => {
+    console.log('value', value);
     i18n
       .changeLanguage(value)
-      .then(() => setLanguage(value))
+      .then(() => {
+        console.log('value', value);
+        setLanguage(value);
+        setTextLanguage(value);
+      })
       .catch(err => console.log(err));
-  };  
+  };
 
   return (
-    <View style={{flex:1}}> 
+    <View>
       <View style={styles.container}>
-        <Picker
-          selectedValue={currentLanguage}
-          onValueChange={(value, index) => proceedToChangeLanguage(value)}
-          mode="dropdown" // Android only
-          style={styles.picker}
-        >
-          <Picker.Item label="Please select language" value="en" />
-          <Picker.Item label="English" value="en" />
-          <Picker.Item label="Arabic" value="ar"/>
-          <Picker.Item label="Urdu" value="ur" />
-          <Picker.Item label="Hindi" value="hi" />
-        </Picker>
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={items}
+          autoScroll={true}
+          style={{
+            borderColor: '#1CB4AC',
+            borderRadius: 10,
+            borderWidth: 1,
+            alignSelf: 'center',
+          }}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          placeholder={`${items[0].label}`}
+          onChangeValue={value => {
+            proceedToChangeLanguage(value);
+          }}
+          dropDownContainerStyle={{
+            backgroundColor: '#ffffff',
+            borderWidth: 1,
+            borderColor: '#1CB4AC',
+            marginTop: 8,
+            borderRadius: 10,
+          }}
+          showArrowIcon={true}
+          showTickIcon={true}
+        />
       </View>
-      <PrimaryButton title={t('next')} onPress={onPress} />
+      <PrimaryButton
+        title={t('next')}
+        onPress={onPress}
+        buttonMargin={typeIOS === 'pad' ? '75%' : '90%'}
+      />
     </View>
   );
-}
+};
 
 export default LanguagePicker;

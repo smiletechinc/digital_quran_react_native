@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {styles} from './index'
-
+import {styles} from './index';
+import {AppIcon} from '../../constants/images';
 const LogoImage = () => {
-    return(
+  return (
     <View style={styles.container}>
-       <Image source={require('../../resources/images/AppIcon.png')}
-       style={styles.LogoImage} />
+      <Image source={AppIcon} />
     </View>
-    )
-}
+  );
+};
 
 export default LogoImage;

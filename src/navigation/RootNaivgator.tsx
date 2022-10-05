@@ -71,13 +71,7 @@ const RootNavigator = () => {
           name="home"
           component={SearchingScreen}
           options={{
-            headerStyle: {
-              backgroundColor: '#00B4AC',
-            },
-            headerTitleStyle: {
-              color: 'white',
-            },
-            title: 'search',
+            header: () => null,
           }}
         />
       </SearchStack.Navigator>

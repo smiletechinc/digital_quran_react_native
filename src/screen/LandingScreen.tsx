@@ -5,7 +5,6 @@ import {styles} from './index';
 import {LanguagePicker} from '../components/picker';
 import {updateAyat} from '../redux/action/verseAction';
 import {connect, useDispatch} from 'react-redux';
-import {useTranslation} from 'react-i18next';
 import Quran from '../resources/SurahIndex';
 import {backgroundAppImage} from '../constants/images';
 import {AppImageHeader} from '../components/images';
@@ -15,7 +14,12 @@ import surahMeta from '../resources/surahMeta.json';
 import paraMeta from '../resources/paraMeta.json';
 import {updateSurah} from '../redux/action/surahAction';
 import {updatePara} from '../redux/action/paraAction';
-import {MULTIPLIER, SCREEN_WIDTH, STATUS_BAR_HEIGHT} from '../constants';
+import {
+  MULTIPLIER,
+  SCREEN_WIDTH,
+  SCREEN_HEIGHT,
+  STATUS_BAR_HEIGHT,
+} from '../constants';
 import HeaderWithText from '../components/Header/header';
 import {backBtn2} from '../constants/images';
 
@@ -31,7 +35,6 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   const {textLanguage} = React.useContext(
     LanguageContext,
   ) as LanguageContextType;
-  // const {t} = useTranslation();
 
   useEffect(() => {
     Object.values(Quran.name).forEach(surahAyat => {
@@ -48,7 +51,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
 
   return (
     <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-      <View style={[styles.selectionContainer, {marginBottom: -48}]}>
+      <View style={[styles.selectionContainer]}>
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();
@@ -73,8 +76,15 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
           </View>
           <LanguagePicker onPress={LogFunc} />
         </View>
-        <View style={{position: 'absolute', opacity: 1, right: 2}}>
-          <Image source={backgroundAppImage} style={{resizeMode: 'cover'}} />
+        <View style={{position: 'absolute', opacity: 1}}>
+          <Image
+            source={backgroundAppImage}
+            style={{
+              resizeMode: 'cover',
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT,
+            }}
+          />
         </View>
         <StatusBar style="dark" />
       </View>

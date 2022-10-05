@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
+import {typeIOS} from '../../constants/index';
 import {styles} from './index';
 import i18n from '../localization/i18n';
 import {useTranslation} from 'react-i18next';
@@ -92,7 +93,11 @@ const LanguagePicker: React.FunctionComponent<PickerProps> = props => {
           showTickIcon={true}
         />
       </View>
-      <PrimaryButton title={t('next')} onPress={onPress} />
+      <PrimaryButton
+        title={t('next')}
+        onPress={onPress}
+        buttonMargin={typeIOS === 'pad' ? '75%' : '90%'}
+      />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, TouchableOpacity, FlatList, Text} from 'react-native';
+import {View, ScrollView, FlatList} from 'react-native';
 import {styles} from './index';
 import {connect, useDispatch} from 'react-redux';
 import {BookmarkListItem} from '../components/List';
@@ -26,9 +26,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   const {t} = useTranslation();
   const {favoriteVerses, removeInVerseBook, favoriteSurahs, removeInSurahBook} =
     React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
-  const {surahObject, setSurahObject} = React.useContext(
-    SurahContext,
-  ) as SurahContextType;
+  const {setSurahObject} = React.useContext(SurahContext) as SurahContextType;
   const [favouirteVerseData, setFavouriteVersesData] = useState([]);
   const [favouirteSurahsData, setFavouriteSurahsData] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -46,7 +44,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
 
   useEffect(() => {
     setListDataObject(surahState ? favouirteSurahsData : favouirteVerseData);
-  });
+  }, []);
   const favFunctionCalled = (item: any) => {
     if (!surahState) {
       var bookVerse = {
@@ -92,40 +90,42 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <View
-      style={[
-        styles.selectionContainer,
-        {backgroundColor: '#00B4AC', paddingTop: 68},
-      ]}>
-      <View style={styles.segementedView}>
-        <SegmentedControlTab
-          values={[`${t('surah')}`, `${t('ayat')}`]}
-          selectedIndex={selectedIndexValue}
-          onTabPress={value => MushafNavigation(value)}
-          tabsContainerStyle={styles.tabsContainerStyle}
-          tabStyle={styles.tabStyle}
-          tabTextStyle={styles.tabTextStyle}
-          activeTabStyle={styles.activeTabStyle}
-          activeTabTextStyle={styles.activeTabTextStyle}
-          borderRadius={24}
-        />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View
+        style={[
+          styles.selectionContainer,
+          {backgroundColor: '#00B4AC', paddingTop: 68, marginBottom: 8},
+        ]}>
+        <View style={styles.segementedView}>
+          <SegmentedControlTab
+            values={[`${t('surah')}`, `${t('ayat')}`]}
+            selectedIndex={selectedIndexValue}
+            onTabPress={value => MushafNavigation(value)}
+            tabsContainerStyle={styles.tabsContainerStyle}
+            tabStyle={styles.tabStyle}
+            tabTextStyle={styles.tabTextStyle}
+            activeTabStyle={styles.activeTabStyle}
+            activeTabTextStyle={styles.activeTabTextStyle}
+            borderRadius={24}
+          />
+        </View>
+        {lisDataObject.length > 0 ? (
+          <FlatList
+            style={[styles.listContainer]}
+            data={lisDataObject}
+            renderItem={renderItem}
+          />
+        ) : (
+          <EmptyState
+            buttonTitle={'read quran'}
+            onPress={LogFunc}
+            surahStateValue={surahState}
+            searchScreen={false}
+            imageDisplay={favEmptyStateImage}
+          />
+        )}
       </View>
-      {lisDataObject.length > 0 ? (
-        <FlatList
-          style={[styles.listContainer]}
-          data={lisDataObject}
-          renderItem={renderItem}
-        />
-      ) : (
-        <EmptyState
-          buttonTitle={'read quran'}
-          onPress={LogFunc}
-          surahStateValue={surahState}
-          searchScreen={false}
-          imageDisplay={favEmptyStateImage}
-        />
-      )}
-    </View>
+    </ScrollView>
   );
 };
 const mapStateToProps = (state: {bookMarkVerses: {favVerses: any}}) => {

@@ -2,20 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import {styles} from './index';
 import LinearGradient from 'react-native-linear-gradient';
+import {SCREEN_HEIGHT} from '../../constants';
 
 type PrimaryButtonProps = {
   title: string;
   onPress: any;
   isFavoriteCalled?: boolean;
+  buttonMargin?: any;
 };
 const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
-  const {title, onPress, isFavoriteCalled} = props;
+  const {title, onPress, isFavoriteCalled, buttonMargin} = props;
+  var marginTopValue = buttonMargin ? buttonMargin : '90%';
+
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
         styles.primaryButtonContainer,
-        isFavoriteCalled ? {marginTop: '10%'} : {marginTop: '90%'},
+        isFavoriteCalled ? {marginTop: '10%'} : {marginTop: SCREEN_HEIGHT / 4},
       ]}>
       <LinearGradient
         colors={['#00B4AC', '#007F79', '#006763']}
@@ -33,5 +37,4 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
     </TouchableOpacity>
   );
 };
-
 export default PrimaryButton;

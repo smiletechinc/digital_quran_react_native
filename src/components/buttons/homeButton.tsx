@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
+import {typeIOS} from '../../constants/index';
 
 type SecondaryButtonProps = {
   title: string;
   onPress?: any;
+  buttonMargin?: any;
 };
 const SecondaryButton: React.FunctionComponent<
   SecondaryButtonProps
 > = props => {
-  const {title, onPress} = props;
+  const {title, onPress, buttonMargin} = props;
   return (
     <TouchableOpacity style={styles.buttonView}>
       <Text style={styles.buttonText}>{title}</Text>
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 10,
     alignSelf: 'center',
-    marginTop: '90%',
+    marginTop: typeIOS === 'pad' ? '70%' : '90%',
     borderColor: '#00B4AC',
     borderWidth: 1,
   },

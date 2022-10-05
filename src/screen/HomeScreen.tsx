@@ -14,6 +14,7 @@ import {useTranslation} from 'react-i18next';
 import {updateSurah} from '../redux/action/surahAction';
 import {connect, useDispatch} from 'react-redux';
 import {ParaMakeHook} from '../hooks/paraMakeHook';
+import {SCREEN_HEIGHT, SCREEN_WIDTH, typeIOS} from '../constants/index';
 
 type Props = {
   navigation: any;
@@ -70,13 +71,24 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
             paraPress={() => paraArray()}
           />
           {surahSelectIconVisible || paraSelectIconVisible ? (
-            <PrimaryButton title={t('next')} onPress={LogFunc} />
+            <PrimaryButton
+              title={t('next')}
+              onPress={LogFunc}
+              buttonMargin={typeIOS === 'pad' ? '70%' : '90%'}
+            />
           ) : (
             <SecondaryButton title={t('next')} />
           )}
         </View>
         <View style={{position: 'absolute', opacity: 1, right: 2}}>
-          <Image source={backgroundAppImage} style={{resizeMode: 'cover'}} />
+          <Image
+            source={backgroundAppImage}
+            style={{
+              resizeMode: 'cover',
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT,
+            }}
+          />
         </View>
         <StatusBar style="dark" />
       </View>

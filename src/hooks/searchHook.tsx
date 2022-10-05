@@ -17,10 +17,12 @@ export const SearchAyahHook = () => {
     setStartAnimation,
     // addSearchTextCharacter,
     setChangeText,
+    setClicked,
+    setSearchDataFileInSearch,
   } = React.useContext(SearchContext) as SearchContextType;
   // const [characters, setCharacters] = React.useState<any[]>([]);
   // const [startAnimation, setStartAnimation] = useState(false);
-  const [searchDatainFIle, setSearchDataFileInSearch] = useState(false);
+  // const [searchDatainFIle, setSearchDataFileInSearch] = useState(false);
   let ayatArr: any = [];
 
   const ayatFind = async (ayatSearchText: string) => {
@@ -132,9 +134,10 @@ export const SearchAyahHook = () => {
     // } catch (error) {
     //   console.log(error);
     // }
+    setCharacters([]);
     if (ayahCriteria != '') {
       let ayatArr: any = [];
-
+      let count = 0;
       await Promise.all(
         versesObject.map((verseObject: any, surahIndex: number) => {
           Object.values(verseObject.verse).filter(
@@ -172,26 +175,38 @@ export const SearchAyahHook = () => {
           );
         }),
       );
-      setStartAnimation(false);
-      setCharacters(ayatArr);
+      console.log('ayatArr', ayahCriteria, ayatArr);
+      if (ayatArr.length > 0) {
+        setStartAnimation(false);
+        setCharacters(ayatArr);
+      } else {
+        setStartAnimation(false);
+        setSearchDataFileInSearch(true);
+      }
     } else {
       setCharacters([]);
+      setStartAnimation(false);
     }
   };
 
   const handleChange = async (e: string) => {
-    setChangeText(e);
-    setStartAnimation(true);
-    setSearchDataFileInSearch(false);
-    var debounce_fun = await debounce(() => searchVerse(e), 3000);
-    debounce_fun();
+    if (e != '') {
+      setClicked(true);
+      setChangeText(e);
+      setStartAnimation(true);
+      setSearchDataFileInSearch(false);
+      var debounce_fun = await debounce(() => searchVerse(e), 3000);
+      debounce_fun();
+    } else {
+      setClicked(false);
+      setChangeText('');
+      setSearchDataFileInSearch(false);
+    }
   };
 
   return {
     searchVerse,
     handleChange,
     searchInAdvanced,
-    searchDatainFIle,
-    setSearchDataFileInSearch,
   };
 };

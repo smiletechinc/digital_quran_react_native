@@ -14,13 +14,13 @@ import {styles} from './index';
 import {ClipboardHook} from '../hooks/clipboardHook';
 import SearchHeaderDetail from '../components/Header/searchHeader';
 import EmptyState from '../components/emptyState/index';
-// import NoDataFound from '../components/emptyState/noDataFound';
+import NoDataFound from '../components/emptyState/noDataFound';
 import {searchImage, clearSearchBar, searchIcon} from '../constants/images';
 import {
   SearchBarText,
   SearchBarDisplayResult,
 } from '../components/searchBar/index';
-// import {SearchContext, SearchContextType} from '../context/searchContext';
+import {SearchContext, SearchContextType} from '../context/searchContext';
 // import SearchHeaderDetail from '../components/Header/searchHeader';
 // import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
@@ -40,10 +40,10 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   // const {searchInAdvanced, handleChange, searchDatainFIle} = SearchAyahHook();
-  const [characters, setCharacters] = React.useState<any[]>([]);
-  const [clicked, setClicked] = React.useState(false);
+  // const [characters, setCharacters] = React.useState<any[]>([]);
   const [isImage, setIsImage] = useState<string | null>(null);
-
+  const {startAnimation, characters, searchDatainFIle, clicked} =
+    React.useContext(SearchContext) as SearchContextType;
   useEffect(() => {
     if (textCopyStatus) {
       toast.current.show(`${t('copy to clipboard')}`, {
@@ -64,7 +64,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <ScrollView style={{marginBottom: 2}} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{marginBottom: 8}} showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.selectionContainer,
@@ -80,11 +80,20 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
               selectedImage={isImage}
             />
           )}
-          <SearchBarText clickCheck={setClicked} clickValue={clicked} />
+          <SearchBarText />
         </View>
 
         {characters.length > 0 || clicked ? (
-          <SearchBarDisplayResult />
+          searchDatainFIle ? (
+            <NoDataFound
+              buttonTitle={'Search In Advanced'}
+              searchScreen={true}
+              onPress={() => console.log('hello')}
+              imageDisplay={searchImage}
+            />
+          ) : (
+            <SearchBarDisplayResult />
+          )
         ) : (
           <EmptyState
             buttonTitle={'read quran'}
@@ -96,7 +105,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
       </View>
       <View
         style={{
-          marginTop: SCREEN_HEIGHT - 32,
+          marginTop: SCREEN_HEIGHT - 64,
           justifyContent: 'flex-end',
           alignSelf: 'flex-end',
           display: 'flex',

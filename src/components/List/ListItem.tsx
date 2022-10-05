@@ -15,16 +15,19 @@ const ListItem: React.FunctionComponent<Props> = props => {
   console.log('surah', surah);
   return (
     <View style={[styles.gridView]}>
+      {/* <View> */}
       <View style={styles.circleView}>
         <Text style={styles.circleText}>{Number(surah.index)}</Text>
       </View>
       <View style={styles.circleView1}>
         <Image
           source={surah.type === 'Madaniyah' ? madinaIamge : makkahImage}
-          style={{resizeMode: 'center'}}
+          style={{resizeMode: 'center', maxHeight: 40, maxWidth: 20}}
         />
         {/* <Text style={styles.circleText1}>HI</Text> */}
       </View>
+      {/* </View> */}
+
       <View style={styles.rectangleView}>
         <TouchableOpacity onPress={onPress}>
           <View style={styles.itemContainer}>

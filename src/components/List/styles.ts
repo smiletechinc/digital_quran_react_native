@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     // marginTop: 128,
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 1)',
-    display: 'flex',
+    // display: 'flex',
     justifyContent: 'center',
     // padding: 8,
     zIndex: 20,

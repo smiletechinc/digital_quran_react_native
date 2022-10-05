@@ -13,13 +13,19 @@ import {clearSearchBar, searchIcon} from '../../constants/images';
 import {SearchContext, SearchContextType} from '../../context/searchContext';
 
 type SearchBarProps = {
-  clickCheck: any;
-  clickValue: boolean;
+  clickCheck?: any;
+  clickValue?: boolean;
 };
 const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
   const {clickCheck, clickValue} = props;
-  const {setCharacters, characters, setChangeText, textValue} =
-    React.useContext(SearchContext) as SearchContextType;
+  const {
+    setCharacters,
+    characters,
+    setChangeText,
+    textValue,
+    setClicked,
+    clicked,
+  } = React.useContext(SearchContext) as SearchContextType;
   const {handleChange} = SearchAyahHook();
   const [clickTextInput, setClickTextInput] = useState(false);
 
@@ -33,23 +39,23 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
     <View style={styles.searchContainer}>
       <View
         style={
-          clickValue ? styles.searchBar__clicked : styles.searchBar__unclicked
+          clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
         }>
         <TextInput
           value={textValue}
           onChangeText={text => handleChange(text)}
           onFocus={() => {
-            clickCheck(true);
+            setClicked(true);
           }}
           placeholder={t('search here')}
           style={styles.inputSearch}
         />
         <Image source={searchIcon} />
       </View>
-      {clickValue && (
+      {clicked && (
         <TouchableOpacity
           onPress={() => {
-            setChangeText(''), clickCheck(false), setCharacters([]);
+            setChangeText(''), setClicked(false), setCharacters([]);
           }}>
           <Image source={clearSearchBar} />
         </TouchableOpacity>

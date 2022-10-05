@@ -6374,6 +6374,11 @@
   "resolved" "https://registry.npmjs.org/react-native-fast-toast/-/react-native-fast-toast-3.0.1.tgz"
   "version" "3.0.1"
 
+"react-native-floating-action@^1.22.0":
+  "integrity" "sha512-m/9ueh2bgV+Dopelam2hu+FIY1wrIOPjpcBNgU3I5J9SqWmPQCarSz5L8zsW5QWE4YgXuaVbYAO/pgb0P8x/gQ=="
+  "resolved" "https://registry.npmjs.org/react-native-floating-action/-/react-native-floating-action-1.22.0.tgz"
+  "version" "1.22.0"
+
 "react-native-gesture-handler@*":
   "integrity" "sha512-djZdcprFf08PZC332D+AeG5wcGeAPhzfCJtB3otUgOgTlvjVXmg/SLFdPJSpzLBqkRAmrC77tM79QgKbuLxkfw=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.5.0.tgz"

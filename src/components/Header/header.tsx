@@ -6,7 +6,7 @@ import {backBtn} from '../../constants/images';
 type Props = {
   text: string;
   hideProfileSection?: boolean;
-  navigation: any;
+  navigation?: any;
   hideBackButton?: boolean;
 };
 const HeaderWithText: FunctionComponent<Props> = props => {

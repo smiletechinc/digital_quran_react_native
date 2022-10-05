@@ -21,7 +21,7 @@ const ListItem: React.FunctionComponent<Props> = props => {
       <View style={styles.circleView1}>
         <Image
           source={surah.type === 'Madaniyah' ? madinaIamge : makkahImage}
-          style={{resizeMode: 'center'}}
+          style={{resizeMode: 'center', width: 100, height: 100}}
         />
         {/* <Text style={styles.circleText1}>HI</Text> */}
       </View>

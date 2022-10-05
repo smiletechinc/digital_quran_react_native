@@ -6,7 +6,7 @@ const BASE_URL = 'https://api.ocr.space/parse/image';
 export const FetchTextFromImageHook = () => {
   const [apiResponseTextData, setApiResponseTextData] = useState({});
   const [fetching, setFetching] = useState(false);
-  const [cancelRequest, setCancelRequest] = useState(false);
+  // const [cancelRequest, setCancelRequest] = useState(false);
 
   // const cancelAPi = () => {
   //   const CancelToken = axios.CancelToken;
@@ -26,6 +26,7 @@ export const FetchTextFromImageHook = () => {
     photoType: any,
   ) => {
     setFetching(true);
+    setApiResponseTextData({});
     new Promise(async (resolve, reject) => {
       try {
         const URL_ = BASE_URL;
@@ -94,7 +95,6 @@ export const FetchTextFromImageHook = () => {
   };
   return {
     fetching,
-    cancelRequest,
     getAyahImageHook,
     apiResponseTextData,
   };

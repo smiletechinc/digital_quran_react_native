@@ -43,7 +43,9 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
         }>
         <TextInput
           value={textValue}
-          onChangeText={text => handleChange(text)}
+          onChangeText={text => {
+            handleChange(text);
+          }}
           onFocus={() => {
             setClicked(true);
           }}

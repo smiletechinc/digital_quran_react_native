@@ -36,14 +36,34 @@ type Props = {
 };
 
 const SearchingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation} = props;
+  const {navigation, route} = props;
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   // const {searchInAdvanced, handleChange, searchDatainFIle} = SearchAyahHook();
   // const [characters, setCharacters] = React.useState<any[]>([]);
   const [isImage, setIsImage] = useState<string | null>(null);
-  const {startAnimation, characters, searchDatainFIle, clicked} =
+  const {startAnimation, characters, searchDatainFIle, clicked, setChangeText} =
     React.useContext(SearchContext) as SearchContextType;
+
+  useEffect(() => {
+    if (route.params) {
+      setIsImage(route.params.imageObject.imageCapture);
+      setChangeText(
+        JSON.stringify(route.params.imageObject.apiText).replace(
+          /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g,
+          '',
+        ),
+      );
+    }
+  }, [route.params]);
+
+  useEffect(() => {
+    if (!clicked) {
+      setIsImage(null);
+      setChangeText('');
+    }
+  }, [clicked]);
+
   useEffect(() => {
     if (textCopyStatus) {
       toast.current.show(`${t('copy to clipboard')}`, {
@@ -64,15 +84,11 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
 
   return (
     <ScrollView style={{marginBottom: 8}} showsVerticalScrollIndicator={false}>
-      <View
-        style={[
-          styles.selectionContainer,
-          {backgroundColor: '#00B4AC', paddingTop: 120},
-        ]}>
+      <View style={[styles.selectionContainer, {backgroundColor: '#00B4AC'}]}>
         <Toast ref={toast} placement="bottom" />
         <View>
           {isImage === null ? (
-            <HeaderWithText text="search" hideBackButton={true} />
+            <HeaderWithText text="Search" hideBackButton={true} />
           ) : (
             <SearchHeaderDetail
               navigation={navigation}

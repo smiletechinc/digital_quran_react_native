@@ -14,7 +14,7 @@ import {SCREEN_WIDTH} from '../constants/index';
 import {Camera} from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import {CameraClickIcon, Folder} from '../components/cameraIcons';
-// import {FetchTextFromImageHook} from '../hooks/textRecongApiHook';
+import {FetchTextFromImageHook} from '../hooks/textRecongApiHook';
 import ContentLoader, {Rect} from 'react-content-loader/native';
 
 type Props = {
@@ -26,13 +26,8 @@ let camera: Camera;
 
 const CameraSearchScreen: React.FunctionComponent<Props> = props => {
   const {navigation} = props;
-  // const {
-  //   getAyahImageHook,
-  //   apiResponseTextData,
-  //   fetching,
-  //   cancelAPi,
-  //   cancelRequest,
-  // } = FetchTextFromImageHook();
+  const {getAyahImageHook, apiResponseTextData, fetching} =
+    FetchTextFromImageHook();
   const [imagePath, setImagePath] = useState<string | null>(null);
 
   // useEffect(() => {
@@ -40,25 +35,26 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
   //     navigation.goBack();
   //   }
   // }, [cancelRequest]);
-  // useEffect(() => {
-  //   if (apiResponseTextData) {
-  //     if (
-  //       !Object.values(apiResponseTextData)[0] &&
-  //       Object.values(apiResponseTextData)[1] != undefined
-  //     ) {
-  //       const imageObject = {
-  //         imageCapture: imagePath,
-  //         apiText: Object.values(apiResponseTextData)[1],
-  //       };
-  //       navigation.navigate('home', {imageObject});
-  //     } else if (Object.values(apiResponseTextData)[0]) {
-  //       Alert.alert(
-  //         'Oops',
-  //         `${Object.values(apiResponseTextData)[1]}, Please Try Again`,
-  //       );
-  //     }
-  //   }
-  // }, [apiResponseTextData]);
+  useEffect(() => {
+    if (apiResponseTextData) {
+      if (
+        !Object.values(apiResponseTextData)[0] &&
+        Object.values(apiResponseTextData)[1] != undefined
+      ) {
+        const imageObject = {
+          imageCapture: imagePath,
+          apiText: Object.values(apiResponseTextData)[1],
+        };
+        console.log('imageObject', imageObject);
+        navigation.navigate('home', {imageObject});
+      } else if (Object.values(apiResponseTextData)[0]) {
+        Alert.alert(
+          'Oops',
+          `${Object.values(apiResponseTextData)[1]}, Please Try Again`,
+        );
+      }
+    }
+  }, [apiResponseTextData]);
 
   const takePictureAsync = async () => {
     const photo = await camera.takePictureAsync({
@@ -83,7 +79,7 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
       // Infer the type of the image
       let match = filename?.split('.');
       let type = match ? `image/${match[1]}` : `image`;
-      // getAyahImageHook(result.uri, filename, type);
+      getAyahImageHook(result.uri, filename, type);
     }
   };
 
@@ -102,7 +98,7 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
         style={{left: 16}}>
         <Image source={backBtn} style={{width: 32, height: 32}} />
       </TouchableOpacity>
-      {/* {fetching && (
+      {fetching && (
         <ContentLoader
           speed={1.8}
           backgroundColor={'#ffffff'}
@@ -111,12 +107,18 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
           viewBox="0 26 360 70">
           <Rect x="30" y="40" rx="8" ry="16" width="300" height="60%" />
         </ContentLoader>
-      )} */}
+      )}
       <TouchableOpacity
         style={styles.mainGalleryButton}
         onPress={() => pickImage()}>
         <Folder />
       </TouchableOpacity>
+
+      {imagePath != null && (
+        <View>
+          <Image source={{uri: imagePath}} />
+        </View>
+      )}
     </View>
   );
 };

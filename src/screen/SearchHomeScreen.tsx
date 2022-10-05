@@ -64,15 +64,25 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <ScrollView style={{marginBottom: 16}} showsVerticalScrollIndicator={false}>
+    <ScrollView style={{marginBottom: 2}} showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.selectionContainer,
           {backgroundColor: '#00B4AC', paddingTop: 120},
         ]}>
-        <SearchHeaderDetail navigation={navigation} selectedImage={isImage} />
         <Toast ref={toast} placement="bottom" />
-        <SearchBarText clickCheck={setClicked} clickValue={clicked} />
+        <View>
+          {isImage === null ? (
+            <HeaderWithText text="search" hideBackButton={true} />
+          ) : (
+            <SearchHeaderDetail
+              navigation={navigation}
+              selectedImage={isImage}
+            />
+          )}
+          <SearchBarText clickCheck={setClicked} clickValue={clicked} />
+        </View>
+
         {characters.length > 0 || clicked ? (
           <SearchBarDisplayResult />
         ) : (
@@ -86,7 +96,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
       </View>
       <View
         style={{
-          marginTop: SCREEN_HEIGHT - 128,
+          marginTop: SCREEN_HEIGHT - 32,
           justifyContent: 'flex-end',
           alignSelf: 'flex-end',
           display: 'flex',

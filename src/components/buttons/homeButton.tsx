@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
-import {typeIOS} from '../../constants/index';
+import {SCREEN_HEIGHT, typeIOS} from '../../constants/index';
 
 type SecondaryButtonProps = {
   title: string;
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 10,
     alignSelf: 'center',
-    marginTop: typeIOS === 'pad' ? '70%' : '90%',
+    marginTop: typeIOS === 'pad' ? '70%' : SCREEN_HEIGHT / 4,
     borderColor: '#00B4AC',
     borderWidth: 1,
   },

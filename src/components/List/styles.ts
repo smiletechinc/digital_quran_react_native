@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     top: '50%',
     // marginTop: 128,
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    backgroundColor: 'rgba(0,180,172,1)',
     // display: 'flex',
     justifyContent: 'center',
     // padding: 8,

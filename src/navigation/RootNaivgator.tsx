@@ -10,6 +10,7 @@ import {
   SuraReadingScreen,
   ParaReadingScreen,
   ParaDetailScreen,
+  CameraSearchScreen,
   UserAccountScreen,
 } from '../screen/index';
 import {TopicsScreen, SearchingScreen, SettingScreen} from '../screen/index';
@@ -73,6 +74,11 @@ const RootNavigator = () => {
           options={{
             header: () => null,
           }}
+        />
+        <SearchStack.Screen
+          name="CameraSearchScreen"
+          component={CameraSearchScreen}
+          options={{header: () => null}}
         />
       </SearchStack.Navigator>
     );

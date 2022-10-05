@@ -59,8 +59,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   const searchByImage = () => {
-    console.log('hello');
-    // navigation.navigate('CameraSearchScreen');
+    navigation.navigate('CameraSearchScreen');
   };
 
   return (

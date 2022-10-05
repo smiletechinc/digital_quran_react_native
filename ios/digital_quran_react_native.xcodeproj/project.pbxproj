@@ -11,6 +11,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		26D2748542C3486FC85EB524 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB41E159DD38AB1563C199F6 /* ExpoModulesProvider.swift */; };
+		29224D9B00E9CEB2FABDCA81 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16282D735E5F4BD6A4D236A9 /* ExpoModulesProvider.swift */; };
 		471F2EB11B741FB90B4F79A4 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D104FA027D8761CAB74090 /* libPods-digital_quran_react_native-digital_quran_react_nativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		96D8B04BA7763DE0B530B93A /* libPods-digital_quran_react_native.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */; };
@@ -56,6 +58,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = digital_quran_react_native/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = digital_quran_react_native/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = digital_quran_react_native/main.m; sourceTree = "<group>"; };
+		16282D735E5F4BD6A4D236A9 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-digital_quran_react_native-digital_quran_react_nativeTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		1D08B65FC62D44E99BE32079 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		279C690C88D84CF1AF4253A6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		2B31635588303E147F727009 /* Pods-digital_quran_react_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.release.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		9A28A7A8C00EB40DB06F5719 /* Pods-digital_quran_react_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digital_quran_react_native.debug.xcconfig"; path = "Target Support Files/Pods-digital_quran_react_native/Pods-digital_quran_react_native.debug.xcconfig"; sourceTree = "<group>"; };
 		9C27983E792AA7263AF1E15C /* libPods-digital_quran_react_native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digital_quran_react_native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2F345C5F654417AC114964 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		CB41E159DD38AB1563C199F6 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-digital_quran_react_native/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		D750402502D348FFB0BE6DF0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		EBF08131BC9540B29D7AE6C3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -131,6 +135,15 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0EA5764659420E059C64EE38 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				DC9F67F565EC2912F3D02215 /* digital_quran_react_native */,
+				7D87E7E1D96AF4C185B7B705 /* digital_quran_react_nativeTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* digital_quran_react_native */ = {
@@ -180,6 +193,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		7D87E7E1D96AF4C185B7B705 /* digital_quran_react_nativeTests */ = {
+			isa = PBXGroup;
+			children = (
+				16282D735E5F4BD6A4D236A9 /* ExpoModulesProvider.swift */,
+			);
+			name = digital_quran_react_nativeTests;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +219,7 @@
 				B2BC2E4D4C54120A3F49EBC6 /* Pods */,
 				45A41145E06E4CFC85CCF622 /* Resources */,
 				99BEEB812865F20400EE7FB2 /* Recovered References */,
+				0EA5764659420E059C64EE38 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -253,6 +275,14 @@
 				3F4DD3D7E6ADC4ED95E91F1F /* Pods-digital_quran_react_native-digital_quran_react_nativeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DC9F67F565EC2912F3D02215 /* digital_quran_react_native */ = {
+			isa = PBXGroup;
+			children = (
+				CB41E159DD38AB1563C199F6 /* ExpoModulesProvider.swift */,
+			);
+			name = digital_quran_react_native;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* digital_quran_react_nativeTests.m in Sources */,
+				29224D9B00E9CEB2FABDCA81 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +567,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				26D2748542C3486FC85EB524 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +592,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = digital_quran_react_nativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -571,6 +603,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digital_quran_react_native.app/digital_quran_react_native";
@@ -584,7 +617,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = digital_quran_react_nativeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -595,6 +628,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/digital_quran_react_native.app/digital_quran_react_native";
@@ -607,10 +641,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = B3RMQ8T7GV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = digital_quran_react_native/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -621,6 +656,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smiletech.digitalquran.app;
 				PRODUCT_NAME = digital_quran_react_native;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -635,9 +671,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = B3RMQ8T7GV;
 				INFOPLIST_FILE = digital_quran_react_native/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -648,6 +685,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.smiletech.digitalquran.app;
 				PRODUCT_NAME = digital_quran_react_native;
 				SWIFT_VERSION = 5.0;
@@ -704,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -762,7 +800,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",

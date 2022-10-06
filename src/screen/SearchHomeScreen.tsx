@@ -48,12 +48,11 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   useEffect(() => {
     if (route.params) {
       setIsImage(route.params.imageObject.imageCapture);
-      setChangeText(
-        JSON.stringify(route.params.imageObject.apiText).replace(
-          /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g,
-          '',
-        ),
-      );
+      var textFetched = JSON.stringify(
+        route.params.imageObject.apiText,
+      ).replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g, '');
+
+      setChangeText(textFetched.trim());
     }
   }, [route.params]);
 

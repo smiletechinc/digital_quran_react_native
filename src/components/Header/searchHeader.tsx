@@ -25,8 +25,6 @@ const SearchHeaderDetail: FunctionComponent<Props> = props => {
         backgroundColor: 'rgba(199,170,53,0.68)',
         opacity: 0.8,
         marginTop: -64,
-        borderWidth: 2,
-        borderColor: 'red',
       }}>
       <Image
         source={{uri: selectedImage}}

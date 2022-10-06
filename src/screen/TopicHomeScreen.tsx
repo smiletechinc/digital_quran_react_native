@@ -35,6 +35,8 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   const [lisDataObject, setListDataObject] = useState([]);
 
   useEffect(() => {
+    console.log('favoriteVerse', favoriteVerses);
+    console.log('favoriteSurah', favoriteSurahs);
     if (favoriteVerses || favoriteSurahs) {
       setFavouriteSurahsData(favoriteSurahs);
       setFavouriteVersesData(favoriteVerses);
@@ -43,8 +45,15 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   }, [favoriteVerses, isFavorite, favoriteSurahs]);
 
   useEffect(() => {
-    setListDataObject(surahState ? favouirteSurahsData : favouirteVerseData);
+    console.log('listObject', lisDataObject);
+    if (surahState) {
+      setListDataObject(favoriteSurahs);
+    } else {
+      setListDataObject(favoriteVerses);
+    }
+    // setListDataObject(surahState ? favouirteSurahsData : favouirteVerseData);
   }, []);
+
   const favFunctionCalled = (item: any) => {
     if (!surahState) {
       var bookVerse = {
@@ -74,10 +83,10 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
     return (
       <BookmarkListItem
         ayaObject={item}
-        isSurah={surahState ? true : false}
         onPress={() => {
           favFunctionCalled(item);
         }}
+        isSurah={surahState ? true : false}
         onTouchEnd={() => {
           moveFunction(item);
         }}
@@ -109,7 +118,45 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
             borderRadius={24}
           />
         </View>
-        {lisDataObject.length > 0 ? (
+        {selectedIndexValue === 0 && (
+          <View>
+            {favouirteSurahsData?.length > 0 ? (
+              <FlatList
+                style={[styles.listContainer]}
+                data={favouirteSurahsData}
+                renderItem={renderItem}
+              />
+            ) : (
+              <EmptyState
+                buttonTitle={'read quran'}
+                onPress={LogFunc}
+                surahStateValue={surahState}
+                searchScreen={false}
+                imageDisplay={favEmptyStateImage}
+              />
+            )}
+          </View>
+        )}
+        {selectedIndexValue === 1 && (
+          <View>
+            {favouirteVerseData?.length > 0 ? (
+              <FlatList
+                style={[styles.listContainer]}
+                data={favouirteVerseData}
+                renderItem={renderItem}
+              />
+            ) : (
+              <EmptyState
+                buttonTitle={'read quran'}
+                onPress={LogFunc}
+                surahStateValue={surahState}
+                searchScreen={false}
+                imageDisplay={favEmptyStateImage}
+              />
+            )}
+          </View>
+        )}
+        {/* {lisDataObject.length > 0 ? (
           <FlatList
             style={[styles.listContainer]}
             data={lisDataObject}
@@ -123,7 +170,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
             searchScreen={false}
             imageDisplay={favEmptyStateImage}
           />
-        )}
+        )} */}
       </View>
     </ScrollView>
   );

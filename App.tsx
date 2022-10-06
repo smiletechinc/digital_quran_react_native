@@ -12,19 +12,19 @@ import {
 } from './src/context/index';
 const App = () => {
   return (
-    <SearchContextProvider>
-      <BookmarkVerseContextProvider>
-        <LanguageContextProvider>
-          <SurahContextProvider>
-            <ParaContextProvider>
-              <VerseContextProvider>
+    <BookmarkVerseContextProvider>
+      <LanguageContextProvider>
+        <SurahContextProvider>
+          <ParaContextProvider>
+            <VerseContextProvider>
+              <SearchContextProvider>
                 <RootNavigator />
-              </VerseContextProvider>
-            </ParaContextProvider>
-          </SurahContextProvider>
-        </LanguageContextProvider>
-      </BookmarkVerseContextProvider>
-    </SearchContextProvider>
+              </SearchContextProvider>
+            </VerseContextProvider>
+          </ParaContextProvider>
+        </SurahContextProvider>
+      </LanguageContextProvider>
+    </BookmarkVerseContextProvider>
   );
 };
 

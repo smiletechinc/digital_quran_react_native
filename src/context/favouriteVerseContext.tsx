@@ -34,13 +34,13 @@ const BookmarkVerseContextProvider = ({children}: any) => {
   useEffect(() => {
     try {
       AsyncStorage.getItem('QURAN_APP::FAVOURITE_AYATS').then(value => {
-        console.log('value in async', value);
+        console.log('ayah in async ', value);
         if (value) {
           setFavoriteVerses(JSON.parse(value));
         }
       });
       AsyncStorage.getItem('QURAN_APP::FAVOURITE_SURAHS').then(value => {
-        console.log('value in async', value);
+        console.log('surah in async', value);
         if (value) {
           setFavoriteSurahs(JSON.parse(value));
         }
@@ -52,12 +52,7 @@ const BookmarkVerseContextProvider = ({children}: any) => {
 
   useEffect(() => {
     if (isUpdatedAyat) {
-      if (
-        favoriteVerses != null ||
-        favoriteVerses != undefined ||
-        favoriteSurahs != null ||
-        favoriteSurahs != undefined
-      ) {
+      if (favoriteVerses != null || favoriteVerses != undefined) {
         let valueStoredStorage = JSON.stringify(favoriteVerses);
         try {
           AsyncStorage.setItem(
@@ -83,6 +78,7 @@ const BookmarkVerseContextProvider = ({children}: any) => {
   }, [isUpdatedAyat, isUpdatedSurah]);
 
   const addInVerseBook = (favouriteVerseObject: any) => {
+    console.log('favortieVerse', favoriteVerses);
     let favoriteVerses_: any = [];
     favoriteVerses.forEach(verse => {
       favoriteVerses_.push(verse);
@@ -93,6 +89,7 @@ const BookmarkVerseContextProvider = ({children}: any) => {
   };
 
   const addInSurahBook = (favoriteSurahObject: any) => {
+    console.log('favourtie', favoriteSurahs);
     let favoriteSurah_: any = [];
     favoriteSurahs.forEach(surah => {
       favoriteSurah_.push(surah);

@@ -26,6 +26,7 @@ export const SearchAyahHook = () => {
   let ayatArr: any = [];
 
   const ayatFind = async (ayatSearchText: string) => {
+    let ayatArr: any = [];
     await Promise.all(
       versesObject.map((verseObject: any, surahIndex: number) => {
         Object.values(verseObject.verse).filter(
@@ -43,7 +44,7 @@ export const SearchAyahHook = () => {
               var res = ayatArr.find((ayatverse: {ayatText: any}) => {
                 return ayatverse.ayatText === ayat;
               });
-              // console.log('response', res);
+              console.log('response', res);
               if (res) {
                 return;
               } else {
@@ -60,6 +61,14 @@ export const SearchAyahHook = () => {
         );
       }),
     );
+    console.log('ayatArr', ayatSearchText, ayatArr);
+    if (ayatArr.length > 0) {
+      setStartAnimation(false);
+      setCharacters(ayatArr);
+    } else {
+      setStartAnimation(false);
+      setSearchDataFileInSearch(true);
+    }
   };
 
   const stringSplitFunc = (textString: string) => {
@@ -117,75 +126,16 @@ export const SearchAyahHook = () => {
   };
 
   const searchVerse = async (ayahCriteria: any) => {
-    // try {
-    //   if (ayahCriteria != '') {
-    //     ayatFind(ayahCriteria);
-    //     if (ayatArr.length > 0) {
-    //       setStartAnimation(false);
-    //       // addSearchTextCharacter(ayatArr);
-    //     } else {
-    //       setStartAnimation(false);
-    //       setSearchDataFileInSearch(true);
-    //       console.log('', ayatArr);
-    //     }
-    //   } else {
-    //     setCharacters([]);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    setCharacters([]);
-    if (ayahCriteria != '') {
-      let ayatArr: any = [];
-      let count = 0;
-      await Promise.all(
-        versesObject.map((verseObject: any, surahIndex: number) => {
-          Object.values(verseObject.verse).filter(
-            (ayat: any, ayatIndex: number) => {
-              if (
-                JSON.stringify(ayat)
-                  .replace(
-                    /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-                    '',
-                  )
-                  .includes(
-                    JSON.stringify(ayahCriteria).replace(
-                      /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z 0-9])/g,
-                      '',
-                    ),
-                  )
-              ) {
-                var res = ayatArr.find((ayatverse: {ayatText: any}) => {
-                  return ayatverse.ayatText === ayat;
-                });
-                console.log('response', res);
-                if (res) {
-                  return;
-                } else {
-                  let verseSearchObj = {
-                    surahNumber: Number(verseObject.index),
-                    surhaName: verseObject.name,
-                    ayatNumber: ayatIndex + 1,
-                    ayatText: ayat,
-                  };
-                  ayatArr.push(verseSearchObj);
-                }
-              }
-            },
-          );
-        }),
-      );
-      console.log('ayatArr', ayahCriteria, ayatArr);
-      if (ayatArr.length > 0) {
-        setStartAnimation(false);
-        setCharacters(ayatArr);
-      } else {
-        setStartAnimation(false);
-        setSearchDataFileInSearch(true);
-      }
-    } else {
+    try {
       setCharacters([]);
-      setStartAnimation(false);
+      if (ayahCriteria != '') {
+        ayatFind(ayahCriteria);
+      } else {
+        setCharacters([]);
+        setStartAnimation(false);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

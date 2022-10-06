@@ -22,7 +22,7 @@ import {
 } from '../components/searchBar/index';
 import {SearchContext, SearchContextType} from '../context/searchContext';
 // import SearchHeaderDetail from '../components/Header/searchHeader';
-// import {SearchAyahHook} from '../hooks/searchHook';
+import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
 import {VerseContext, QuranContextType} from '../context/quranContext';
 import {debounce} from 'lodash';
@@ -39,11 +39,17 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route} = props;
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
-  // const {searchInAdvanced, handleChange, searchDatainFIle} = SearchAyahHook();
+  const {searchInAdvanced} = SearchAyahHook();
   // const [characters, setCharacters] = React.useState<any[]>([]);
   const [isImage, setIsImage] = useState<string | null>(null);
-  const {startAnimation, characters, searchDatainFIle, clicked, setChangeText} =
-    React.useContext(SearchContext) as SearchContextType;
+  const {
+    startAnimation,
+    characters,
+    textValue,
+    searchDatainFIle,
+    clicked,
+    setChangeText,
+  } = React.useContext(SearchContext) as SearchContextType;
 
   useEffect(() => {
     if (route.params) {
@@ -51,7 +57,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
       var textFetched = JSON.stringify(
         route.params.imageObject.apiText,
       ).replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g, '');
-
+      console.log('textFetched', textFetched);
       setChangeText(textFetched.trim());
     }
   }, [route.params]);
@@ -102,7 +108,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
             <NoDataFound
               buttonTitle={'Search In Advanced'}
               searchScreen={true}
-              onPress={() => console.log('hello')}
+              onPress={() => searchInAdvanced(textValue)}
               imageDisplay={searchImage}
             />
           ) : (

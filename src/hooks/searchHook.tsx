@@ -15,15 +15,25 @@ export const SearchAyahHook = () => {
   const {
     setCharacters,
     setStartAnimation,
-    // addSearchTextCharacter,
     setChangeText,
     setClicked,
     setSearchDataFileInSearch,
   } = React.useContext(SearchContext) as SearchContextType;
-  // const [characters, setCharacters] = React.useState<any[]>([]);
-  // const [startAnimation, setStartAnimation] = useState(false);
-  // const [searchDatainFIle, setSearchDataFileInSearch] = useState(false);
-  let ayatArr: any = [];
+  const [searchAgainFunction, setSearchAgainFunction] = useState(false);
+  const [ayatArrData, setAyatArrData] = useState([]);
+
+  const ayatReturnFunction = (ayatObject: []) => {
+    if (ayatObject.length > 0) {
+      setSearchAgainFunction(false);
+      setStartAnimation(false);
+      setCharacters(ayatObject);
+    } else {
+      if (!searchAgainFunction) {
+        setStartAnimation(false);
+        setSearchDataFileInSearch(true);
+      }
+    }
+  };
 
   const ayatFind = async (ayatSearchText: string) => {
     let ayatArr: any = [];
@@ -31,12 +41,16 @@ export const SearchAyahHook = () => {
       versesObject.map((verseObject: any, surahIndex: number) => {
         Object.values(verseObject.verse).filter(
           (ayat: any, ayatIndex: number) => {
+            // console.log('ayat', ayat);
             if (
               JSON.stringify(ayat)
-                .replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669])/g, '')
+                .replace(
+                  /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z])/g,
+                  '',
+                )
                 .includes(
                   JSON.stringify(ayatSearchText).replace(
-                    /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669])/g,
+                    /([^\u0621-\u063A\u0641-\u064A\u0660-\u0669a-zA-Z])/g,
                     '',
                   ),
                 )
@@ -44,7 +58,6 @@ export const SearchAyahHook = () => {
               var res = ayatArr.find((ayatverse: {ayatText: any}) => {
                 return ayatverse.ayatText === ayat;
               });
-              console.log('response', res);
               if (res) {
                 return;
               } else {
@@ -61,68 +74,50 @@ export const SearchAyahHook = () => {
         );
       }),
     );
-    console.log('ayatArr', ayatSearchText, ayatArr);
-    if (ayatArr.length > 0) {
-      setStartAnimation(false);
-      setCharacters(ayatArr);
-    } else {
-      setStartAnimation(false);
-      setSearchDataFileInSearch(true);
-    }
+    ayatReturnFunction(ayatArr);
   };
 
   const stringSplitFunc = (textString: string) => {
     var s = textString;
-    console.log('s', s);
     var middle = Math.floor(s.length / 2);
     var before = s.lastIndexOf(' ', middle);
-    console.log('before', before);
     var after = s.indexOf(' ', middle + 1);
-    console.log('after', after);
-    console.log('middle', middle);
     if (middle - before < after - middle) {
       middle = before;
     } else {
       middle = after;
     }
-    console.log('middle1', middle);
     var s1 = s.substring(0, middle);
-    console.log('s1', s1);
     return s1;
   };
 
   const searchInAdvanced = (ayahSearchAdvanced: any) => {
+    setSearchDataFileInSearch(false);
     setStartAnimation(true);
-    var searchAgain = false;
-    // var halfString = stringSplitFunc(JSON.stringify(ayahCriteria));
-    var textSplit = ayahSearchAdvanced;
-    var i = 0;
+    setSearchAgainFunction(true);
+    // var searchAgain = false;
+    var textSplit = '';
     do {
-      console.log('i', i);
-      textSplit = stringSplitFunc(JSON.stringify(textSplit));
+      textSplit = stringSplitFunc(JSON.stringify(ayahSearchAdvanced));
       if (textSplit.length > 0) {
-        console.log('searchAgain', searchAgain);
+        console.log('textSplit', textSplit);
+        console.log('searchAgainFunction', searchAgainFunction);
         ayatFind(textSplit);
-        if (ayatArr.length > 0) {
-          console.log('searchAgain1', searchAgain);
-          searchAgain = true;
-        }
-        i++;
       } else {
-        console.log('searchAgain2', searchAgain);
-        searchAgain = false;
+        setSearchAgainFunction(false);
         break;
       }
-    } while (!searchAgain);
+    } while (searchAgainFunction);
 
-    if (searchAgain) {
-      setStartAnimation(false);
-      // addSearchTextCharacter(ayatArr);
-    } else {
-      setStartAnimation(false);
-      setSearchDataFileInSearch(true);
-      console.log('', ayatArr);
-    }
+    // if (searchAgain) {
+    //   setStartAnimation(false);
+    //   setCharacters(ayatArrData);
+    //   // addSearchTextCharacter(ayatArr);
+    // } else {
+    //   setStartAnimation(false);
+    //   setSearchDataFileInSearch(true);
+    //   // console.log('', ayatArr);
+    // }
   };
 
   const searchVerse = async (ayahCriteria: any) => {

@@ -24,14 +24,22 @@ const BookmarkListItem: React.FunctionComponent<Props> = props => {
       </View>
     </View>
   ) : (
-    <View style={[styles.itemContainer]}>
-      <TouchableOpacity style={{padding: 32}} onPress={onPress}>
+    <View
+      style={[
+        styles.itemContainer,
+        {justifyContent: 'flex-start', paddingHorizontal: 0},
+      ]}>
+      <TouchableOpacity
+        style={{padding: 32, position: 'absolute'}}
+        onPress={onPress}>
         <Image source={favSelectIcon} />
       </TouchableOpacity>
-      <Text style={styles.ayatText}>{ayaObject.ayatText}</Text>
-      <Text style={styles.ayatIndex}>{`(${t(ayaObject.surahNumber)}:${t(
-        ayaObject.ayatNumber,
-      )})`}</Text>
+      <View style={{marginEnd: 64}}>
+        <Text style={styles.ayatText1}>{ayaObject.ayatText}</Text>
+        <Text style={styles.ayatIndex1}>{` (${t(ayaObject.surahName)}:${t(
+          ayaObject.ayatNumber,
+        )})`}</Text>
+      </View>
     </View>
   );
 };
@@ -70,6 +78,21 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginVertical: 4,
     fontSize: 20,
+    color: '#C7AA35',
+  },
+  ayatText1: {
+    flex: 1,
+    textAlign: 'right',
+    fontSize: 18,
+    fontFamily: 'Arial',
+    // lineSpace: 86,
+    lineHeight: 30,
+    color: '#1A1A1A',
+  },
+  ayatIndex1: {
+    textAlign: 'left',
+    marginTop: 4,
+    fontSize: 16,
     color: '#C7AA35',
   },
 });

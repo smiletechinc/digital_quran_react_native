@@ -14,24 +14,26 @@ const SearchList: React.FunctionComponent<Props> = props => {
   return (
     <View style={[styles.gridView]}>
       <View style={styles.itemContainer}>
-        <Text
-          style={{
-            flex: 1,
-            textAlign: 'center',
-            fontSize: 20,
-            fontFamily: 'Arial',
-            color: '#1A1A1A',
-          }}
-          onPress={onPress}>
-          {surah.ayatText}
+        <Text>
+          <Text
+            style={{
+              flex: 1,
+              textAlign: 'right',
+              fontSize: 20,
+              fontFamily: 'Arial',
+              color: '#1A1A1A',
+            }}
+            onPress={onPress}>
+            {surah.ayatText}
+          </Text>
+          <Text
+            style={{
+              textAlign: 'left',
+              marginVertical: 4,
+              fontSize: 20,
+              color: '#C7AA35',
+            }}>{` (${surah.surahNumber}:${surah.ayatNumber})`}</Text>
         </Text>
-        <Text
-          style={{
-            textAlign: 'left',
-            marginVertical: 4,
-            fontSize: 20,
-            color: '#C7AA35',
-          }}>{`(${t(surah.surhaName)}:${t(surah.ayatNumber)})`}</Text>
       </View>
     </View>
   );
@@ -63,5 +65,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 4,
     paddingVertical: 24,
+    borderWidth: 2,
   },
 });

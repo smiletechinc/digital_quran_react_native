@@ -88,7 +88,8 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <ScrollView style={{marginBottom: 8}} showsVerticalScrollIndicator={false}>
+    // <ScrollView style={{marginBottom: 8}} showsVerticalScrollIndicator={false}>
+    <>
       <View style={[styles.selectionContainer, {backgroundColor: '#00B4AC'}]}>
         <Toast ref={toast} placement="bottom" />
         <View>
@@ -133,7 +134,8 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
         }}>
         <FloatingButton onPressImage={searchByImage} />
       </View>
-    </ScrollView>
+    </>
+    // </ScrollView>
   );
 };
 

@@ -44,9 +44,9 @@ const HeaderDetail: FunctionComponent<Props> = props => {
           <Image source={backBtn} style={{borderColor: '#E9EEF0'}} />
         </TouchableOpacity>
         {fromSurah ? (
-          <View style={styles.textView}>
+          <View style={[styles.textView, {marginRight: 16, marginLeft: 8}]}>
             <Text style={styles.surahText}>
-              {t('surah')} {surahTitle}
+              {`${t('surah')} ${t(`${surahTitle}`)}`}
             </Text>
             <Text style={styles.countText}>
               {surahVerseCount} {t('verses')}
@@ -94,9 +94,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#C7AA35',
   },
   textView: {
-    marginHorizontal: 48,
+    // marginHorizontal: 48,
     alignItems: 'center',
     paddingBottom: 18,
+    paddingLeft: 16,
   },
   surahText: {
     fontSize: 18,

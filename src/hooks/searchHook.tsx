@@ -59,7 +59,7 @@ export const SearchAyahHook = () => {
               } else {
                 let verseSearchObj = {
                   surahNumber: Number(verseObject.index),
-                  surhaName: verseObject.name,
+                  surhaName: Number(verseObject.index),
                   ayatNumber: ayatIndex + 1,
                   ayatText: ayat,
                 };

@@ -47,5 +47,5 @@ const SearchBarDisplayResult = () => {
 export default SearchBarDisplayResult;
 
 const styles = StyleSheet.create({
-  listContainer: {marginBottom: 128},
+  listContainer: {minHeight: '85%'},
 });

@@ -41,8 +41,10 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     isSurahFatiha,
     surahIndex,
     isSurahToba,
+    surahTitleArabic,
     surahObject,
   } = SurahDetailHook();
+
   const {
     addInVerseBook,
     checkBookmarked,
@@ -76,6 +78,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       surahNumber: surahIndex,
       ayatNumber: verseNumber,
       ayatText: verseSelect,
+      surahName: surahTitleArabic,
     };
 
     if (!checkBookmarked(bookVerse)) {

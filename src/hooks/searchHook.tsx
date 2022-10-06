@@ -3,12 +3,10 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import {VerseContext, QuranContextType} from '../context/quranContext';
 import {SearchContext, SearchContextType} from '../context/searchContext';
 import {debounce} from 'lodash';
-import {Alert} from 'react-native';
 
 interface Props {
   arabictext: any;
 }
-var stringSimilarity = require('string-similarity');
 
 export const SearchAyahHook = () => {
   const {versesObject} = React.useContext(VerseContext) as QuranContextType;
@@ -20,7 +18,6 @@ export const SearchAyahHook = () => {
     setSearchDataFileInSearch,
   } = React.useContext(SearchContext) as SearchContextType;
   const [searchAgainFunction, setSearchAgainFunction] = useState(false);
-  const [ayatArrData, setAyatArrData] = useState([]);
 
   const ayatReturnFunction = (ayatObject: []) => {
     if (ayatObject.length > 0) {
@@ -41,7 +38,6 @@ export const SearchAyahHook = () => {
       versesObject.map((verseObject: any, surahIndex: number) => {
         Object.values(verseObject.verse).filter(
           (ayat: any, ayatIndex: number) => {
-            // console.log('ayat', ayat);
             if (
               JSON.stringify(ayat)
                 .replace(
@@ -95,7 +91,6 @@ export const SearchAyahHook = () => {
     setSearchDataFileInSearch(false);
     setStartAnimation(true);
     setSearchAgainFunction(true);
-    // var searchAgain = false;
     var textSplit = '';
     do {
       textSplit = stringSplitFunc(JSON.stringify(ayahSearchAdvanced));
@@ -108,16 +103,6 @@ export const SearchAyahHook = () => {
         break;
       }
     } while (searchAgainFunction);
-
-    // if (searchAgain) {
-    //   setStartAnimation(false);
-    //   setCharacters(ayatArrData);
-    //   // addSearchTextCharacter(ayatArr);
-    // } else {
-    //   setStartAnimation(false);
-    //   setSearchDataFileInSearch(true);
-    //   // console.log('', ayatArr);
-    // }
   };
 
   const searchVerse = async (ayahCriteria: any) => {

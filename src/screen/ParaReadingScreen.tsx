@@ -62,8 +62,8 @@ const ParaReadingScreen: React.FunctionComponent<Props> = props => {
         </View>
         <FlatList
           style={{
-            paddingRight: 32,
-            paddingLeft: 16,
+            paddingRight: '16%',
+            paddingLeft: '3%',
           }}
           data={paraIntro}
           renderItem={renderItem}

@@ -60,7 +60,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
 
   return (
     <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-      <View style={[styles.selectionContainer, {paddingTop: '20%'}]}>
+      <View style={[styles.selectionContainer, {minHeight: SCREEN_HEIGHT}]}>
         <View style={styles.homeView}>
           <AppImageHeader />
           <HomeChoiceButton
@@ -71,11 +71,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
             paraPress={() => paraArray()}
           />
           {surahSelectIconVisible || paraSelectIconVisible ? (
-            <PrimaryButton
-              title={t('next')}
-              onPress={LogFunc}
-              buttonMargin={typeIOS === 'pad' ? '70%' : '90%'}
-            />
+            <PrimaryButton title={t('next')} onPress={LogFunc} />
           ) : (
             <SecondaryButton title={t('next')} />
           )}

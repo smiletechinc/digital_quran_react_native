@@ -149,7 +149,8 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
             style={{
               display: 'flex',
               marginBottom: 64,
-            }}>
+            }}
+            showsVerticalScrollIndicator={false}>
             {isSurahToba && (
               <View
                 style={[

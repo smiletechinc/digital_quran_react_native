@@ -51,7 +51,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
 
   return (
     <ScrollView style={{backgroundColor: '#FFFFFF'}}>
-      <View style={[styles.selectionContainer]}>
+      <View style={[styles.selectionContainer, {minHeight: SCREEN_HEIGHT}]}>
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();

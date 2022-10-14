@@ -12,7 +12,7 @@ const SecondaryButton: React.FunctionComponent<
 > = props => {
   const {title, onPress, buttonMargin} = props;
   return (
-    <TouchableOpacity style={styles.buttonView}>
+    <TouchableOpacity style={[styles.buttonView]}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -25,11 +25,14 @@ const styles = StyleSheet.create({
     width: '70%',
     flex: 1,
     padding: 12,
+    // paddingVertical:16,
     borderRadius: 10,
     alignSelf: 'center',
-    marginTop: typeIOS === 'pad' ? '70%' : SCREEN_HEIGHT / 4,
+    // marginTop: SCREEN_HEIGHT / 4,
+    marginTop: SCREEN_HEIGHT / 4,
+    marginBottom: SCREEN_HEIGHT / 4,
     borderColor: '#00B4AC',
-    borderWidth: 1,
+    borderWidth: 2,
   },
   buttonText: {
     color: '#1CB4AC',

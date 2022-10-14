@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {PrimaryButton} from '../buttons';
 
@@ -21,42 +28,47 @@ const EmptyState: React.FunctionComponent<Props> = props => {
   let text2 = t('bookmark on  your screen, please add the');
   let text3 = t('from reading quran.');
   return (
-    <View
-      style={[
-        styles.mainView,
-        searchScreen ? {paddingTop: 128} : {paddingTop: 180},
-      ]}>
-      <View style={styles.imageView}>
-        <Image source={imageDisplay} style={{backgroundColor: 'transparent'}} />
-      </View>
-      <View style={styles.TextView}>
-        {searchScreen ? (
-          <Text style={styles.HeadingText}>{t('nothing to search')}</Text>
-        ) : (
-          <Text style={styles.HeadingText}>{`${t('add')} ${t(
-            textIdentifier,
-          )}`}</Text>
-        )}
-        {searchScreen ? (
-          <Text style={styles.descriptionText}>
-            {`${t('for search click on the above searchbar')}  ${'\n'} ${t(
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View
+        style={[
+          styles.mainView,
+          searchScreen ? {paddingTop: 128} : {paddingTop: 180},
+        ]}>
+        <View style={styles.imageView}>
+          <Image
+            source={imageDisplay}
+            style={{backgroundColor: 'transparent'}}
+          />
+        </View>
+        <View style={styles.TextView}>
+          {searchScreen ? (
+            <Text style={styles.HeadingText}>{t('nothing to search')}</Text>
+          ) : (
+            <Text style={styles.HeadingText}>{`${t('add')} ${t(
+              textIdentifier,
+            )}`}</Text>
+          )}
+          {searchScreen ? (
+            <Text style={styles.descriptionText}>
+              {`${t('for search click on the above searchbar')}  ${'\n'} ${t(
+                'for read quran, click on below button',
+              )}`}
+            </Text>
+          ) : (
+            <Text style={styles.descriptionText}>{`${text1} ${t(
+              textIdentifier,
+            )} ${text2} ${t(textIdentifier)} ${text3}  ${'\n'} ${t(
               'for read quran, click on below button',
-            )}`}
-          </Text>
-        ) : (
-          <Text style={styles.descriptionText}>{`${text1} ${t(
-            textIdentifier,
-          )} ${text2} ${t(textIdentifier)} ${text3}  ${'\n'} ${t(
-            'for read quran, click on below button',
-          )}`}</Text>
-        )}
-        <PrimaryButton
-          title={t(buttonTitle)}
-          onPress={onPress}
-          isFavoriteCalled={true}
-        />
+            )}`}</Text>
+          )}
+          <PrimaryButton
+            title={t(buttonTitle)}
+            onPress={onPress}
+            isFavoriteCalled={true}
+          />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

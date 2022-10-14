@@ -7,6 +7,7 @@ import HeaderDetail from '../components/Header/headerDetail';
 import {SurahDetailHook} from '../hooks/surahDetailHook';
 import bismillah from '../resources/bismillah.json';
 import {useTranslation} from 'react-i18next';
+import {SCREEN_WIDTH} from '../constants/index';
 
 type Props = {
   navigation: any;
@@ -50,74 +51,74 @@ const ParaDetailScreen: React.FunctionComponent<Props> = props => {
       />
       <View
         style={[
+          styles.mushafView,
           {
-            backgroundColor: '#57BBC1',
+            backgroundColor: 'rgba(255,255,255,0.4)',
             borderRadius: 16,
-            marginBottom: 128,
+            marginBottom: '30%',
+            zIndex: 20,
           },
         ]}>
-        <ScrollView>
-          <View style={[styles.mushafView, {marginTop: 0}]}>
-            <Text
-              style={{
-                flex: 1,
-                textAlign: 'right',
-              }}>
-              {paraDataDisplay &&
-                paraDataDisplay.map((element, index) => {
-                  let paraSurha = element.surah_name;
-                  let paraVerse = element.verses;
-                  return (
-                    <View>
-                      <View>
-                        <View style={styles.paraSurahTitleView}>
-                          <Text style={styles.paraSurahTitleText}>
-                            {paraSurha}
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {paraDataDisplay &&
+            paraDataDisplay.map((element, index) => {
+              let paraSurha = element.surah_name;
+              let paraVerse = element.verses;
+              return (
+                <View
+                  style={{
+                    marginBottom: '8%',
+                  }}>
+                  <View>
+                    <View style={styles.paraSurahTitleView}>
+                      <Text style={styles.paraSurahTitleText}>{paraSurha}</Text>
+                    </View>
+                    {element.surah_number !== 9 && (
+                      <View style={styles.bismillahView}>
+                        <Text style={styles.bismillahText}>
+                          {bismillahAyah}
+                        </Text>
+                        {element.surah_number === 1 && (
+                          <Text style={[styles.indexTextStyle]}>
+                            &#xFD3E;{t(`${1}`)} &#xFD3F;
                           </Text>
-                        </View>
-                        {element.surah_number !== 9 && (
-                          <View style={styles.bismillahView}>
-                            <Text style={styles.bismillahText}>
-                              {bismillahAyah}
-                            </Text>
-                            {element.surah_number === 1 && (
-                              <Text style={[styles.indexTextStyle]}>
-                                &#xFD3E;{t(`${1}`)} &#xFD3F;
-                              </Text>
-                            )}
-                          </View>
                         )}
                       </View>
-                      <Text>
-                        {paraVerse &&
-                          paraVerse.map((ayat: any, index: number) => {
-                            index = element.surahfirstayatindex + index;
-                            return (
+                    )}
+                  </View>
+                  <View
+                    style={{
+                      paddingHorizontal: 4,
+                    }}>
+                    <Text style={{}}>
+                      {paraVerse &&
+                        paraVerse.map((ayat: any, index: number) => {
+                          index = element.surahfirstayatindex + index;
+                          return (
+                            <Text
+                              key={index}
+                              allowFontScaling={false}
+                              selectable={true}>
                               <Text
-                                key={index}
-                                allowFontScaling={false}
-                                selectable={true}>
-                                <Text
-                                  selectable={true}
-                                  style={[styles.elementTextStyle]}>
-                                  {ayat}
-                                </Text>
-                                <Text style={[styles.indexTextStyle]}>
-                                  &#xFD3F;
-                                  {element.surah_number === 1
-                                    ? t(`${index + 2}`)
-                                    : t(`${index + 1}`)}
-                                  &#xFD3E;
-                                </Text>
+                                selectable={true}
+                                style={[styles.elementTextStyle]}>
+                                {ayat}
                               </Text>
-                            );
-                          })}
-                      </Text>
-                    </View>
-                  );
-                })}
-            </Text>
-          </View>
+                              <Text style={[styles.indexTextStyle]}>
+                                &#xFD3F;
+                                {element.surah_number === 1
+                                  ? t(`${index + 2}`)
+                                  : t(`${index + 1}`)}
+                                &#xFD3E;
+                              </Text>
+                            </Text>
+                          );
+                        })}
+                    </Text>
+                  </View>
+                </View>
+              );
+            })}
         </ScrollView>
       </View>
     </View>

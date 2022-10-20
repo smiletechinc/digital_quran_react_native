@@ -9,9 +9,11 @@ type PrimaryButtonProps = {
   onPress: any;
   isFavoriteCalled?: boolean;
   buttonMargin?: any;
+  buttonMarginBottom?: any;
 };
 const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
-  const {title, onPress, isFavoriteCalled, buttonMargin} = props;
+  const {title, onPress, isFavoriteCalled, buttonMargin, buttonMarginBottom} =
+    props;
   var marginTopValue = buttonMargin ? buttonMargin : '90%';
 
   return (
@@ -19,7 +21,8 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
       onPress={onPress}
       style={[
         styles.primaryButtonContainer,
-        isFavoriteCalled ? {marginTop: '10%'} : {marginTop: SCREEN_HEIGHT / 4},
+        isFavoriteCalled ? {marginTop: '10%'} : {marginTop: buttonMargin},
+        {marginBottom: buttonMarginBottom},
       ]}>
       <LinearGradient
         colors={['#00B4AC', '#007F79', '#006763']}

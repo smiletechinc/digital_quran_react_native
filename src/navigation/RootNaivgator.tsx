@@ -5,6 +5,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   SplashScreen,
   LandingScreen,
+  LandingScreenContainer,
+  SigninScreen,
+  SignupScreen,
   HomeScreen,
   SurahScreen,
   SuraReadingScreen,
@@ -181,6 +184,21 @@ const RootNavigator = () => {
           <Stack.Screen
             name="LandingScreen"
             component={LandingScreen}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="LandingScreenContainer"
+            component={LandingScreenContainer}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SigninScreen}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="Signup"
+            component={SignupScreen}
             options={{title: '', header: () => null}}
           />
           <Stack.Screen

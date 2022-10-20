@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
-import {typeIOS} from '../../constants/index';
+import {SCREEN_HEIGHT, typeIOS} from '../../constants/index';
 import {styles} from './index';
 import i18n from '../localization/i18n';
 import {useTranslation} from 'react-i18next';
@@ -96,7 +96,7 @@ const LanguagePicker: React.FunctionComponent<PickerProps> = props => {
       <PrimaryButton
         title={t('next')}
         onPress={onPress}
-        buttonMargin={typeIOS === 'pad' ? '75%' : '90%'}
+        buttonMargin={SCREEN_HEIGHT / 4}
       />
     </View>
   );

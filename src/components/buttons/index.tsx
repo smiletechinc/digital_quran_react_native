@@ -4,6 +4,7 @@ import MushafButton from './MushafButton';
 import HomeChoiceButton from './HomeChoiceButton';
 import SecondaryButton from './homeButton';
 import FloatingButton from './floatingButton';
+import TextButton from './forgotButton';
 
 export {
   PrimaryButton,
@@ -11,5 +12,6 @@ export {
   SecondaryButton,
   MushafButton,
   HomeChoiceButton,
+  TextButton,
   styles,
 };

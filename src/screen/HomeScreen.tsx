@@ -71,7 +71,11 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
             paraPress={() => paraArray()}
           />
           {surahSelectIconVisible || paraSelectIconVisible ? (
-            <PrimaryButton title={t('next')} onPress={LogFunc} />
+            <PrimaryButton
+              title={t('next')}
+              onPress={LogFunc}
+              buttonMargin={SCREEN_HEIGHT / 4}
+            />
           ) : (
             <SecondaryButton title={t('next')} />
           )}

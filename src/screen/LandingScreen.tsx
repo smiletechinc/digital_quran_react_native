@@ -46,7 +46,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   }, [navigation]);
 
   const LogFunc = () => {
-    navigation.replace('HomeScreen');
+    navigation.navigate('LandingScreenContainer');
   };
 
   return (

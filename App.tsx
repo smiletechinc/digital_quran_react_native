@@ -9,6 +9,7 @@ import {
   VerseContextProvider,
   SearchContextProvider,
   BookmarkVerseContextProvider,
+  AuthContextProvider,
 } from './src/context/index';
 const App = () => {
   return (
@@ -18,7 +19,9 @@ const App = () => {
           <ParaContextProvider>
             <VerseContextProvider>
               <SearchContextProvider>
-                <RootNavigator />
+                <AuthContextProvider>
+                  <RootNavigator />
+                </AuthContextProvider>
               </SearchContextProvider>
             </VerseContextProvider>
           </ParaContextProvider>

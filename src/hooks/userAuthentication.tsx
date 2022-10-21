@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  signOut,
 } from 'firebase/auth';
 
 interface Props {
@@ -16,12 +17,13 @@ export const userAuthencticationHook = () => {
   const [userCreateId, setUSerCreateID] = useState('');
   const [userCreateError, setUserCreateError] = useState('');
   const [userRegister, setUserRegistered] = useState(false);
-  const [userRegisterError, setUserRegisteredError] = useState('');
   const [getUserCredentialId, setGetUserCredentialId] = useState('');
   const [userRecievedObject, setUserRecievedObject] = useState({});
   const [userRecivedError, setUserRecievedError] = useState('');
   const [resetPasswordError, setResetPasswordError] = useState('');
   const [resetPasswordEmailSend, setResetPasswordSend] = useState(false);
+  const [logoutUser, setLogoutUser] = useState(false);
+  const [deleteAccountUser, setDeleteAccountUser] = useState(false);
 
   const SignUpService = async (authObject: AuthObject) => {
     try {
@@ -39,7 +41,7 @@ export const userAuthencticationHook = () => {
           .catch((error: {code: any; message: any}) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            setUserCreateError(JSON.stringify(errorMessage));
+            setUserCreateError(errorMessage);
             console.log('errorCode: ', JSON.stringify(errorCode));
             console.log('errorMessage: ', JSON.stringify(errorMessage));
           });
@@ -69,7 +71,6 @@ export const userAuthencticationHook = () => {
           .catch(error => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            setUserRegisteredError(JSON.stringify(error.message));
             console.log(
               'error while registering',
               JSON.stringify(error.message),
@@ -136,7 +137,7 @@ export const userAuthencticationHook = () => {
           .catch(error => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            setUserRegisteredError(JSON.stringify(error.message));
+            // setUserRegisteredError(JSON.stringify(error.message));
             console.log(
               'error while fetching data',
               JSON.stringify(error.message),
@@ -188,6 +189,66 @@ export const userAuthencticationHook = () => {
     }
   };
 
+  const logoutService = async () => {
+    try {
+      console.log(app);
+      if (app) {
+        const auth = getAuth();
+        signOut(auth)
+          .then(userCredential => {
+            setLogoutUser(true);
+            // Signed in
+            // onSuccess(userCredential);
+          })
+          .catch(error => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // onFailure(error);
+          });
+      } else {
+        const error: ErrorObject = {
+          message: 'Something went wrong while executing your request',
+        };
+        // onFailure(error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteAccountService = async () => {
+    try {
+      if (app) {
+        const db = getDatabase();
+        const auth = getAuth();
+        const branch = `/users/${auth.currentUser?.uid}`;
+        console.log('auth', auth.currentUser?.uid);
+        remove(ref(db, branch)).then(() => console.log('true'));
+        auth.currentUser
+          ?.delete()
+          .then(userCredential => {
+            setDeleteAccountUser(true);
+            // Signed in
+            console.log('deleteAccountService, ', userCredential);
+            // onSuccess(userCredential);
+          })
+          .catch(error => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log('account not deleted,');
+            // onFailure(error);
+          });
+      } else {
+        const error: ErrorObject = {
+          message: 'Something went wrong while executing your request',
+        };
+        // onFailure(error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     SignUpService,
     userCreateId,
@@ -204,5 +265,13 @@ export const userAuthencticationHook = () => {
     resetPasswordError,
     resetPasswordEmailSend,
     setResetPasswordSend,
+    userCreateError,
+    setUserCreateError,
+    logoutUser,
+    deleteAccountUser,
+    deleteAccountService,
+    setDeleteAccountUser,
+    logoutService,
+    setLogoutUser,
   };
 };

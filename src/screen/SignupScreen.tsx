@@ -22,8 +22,14 @@ type Props = {
 };
 const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   const {t} = useTranslation();
-  const {SignUpService, userCreateId, RegisterUser, userRegister} =
-    userAuthencticationHook();
+  const {
+    SignUpService,
+    userCreateId,
+    RegisterUser,
+    userRegister,
+    userCreateError,
+    setUserCreateError,
+  } = userAuthencticationHook();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPaswword] = useState('');
@@ -52,6 +58,17 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   }, [userCreateId]);
 
   useEffect(() => {
+    if (userCreateError != '') {
+      if (userCreateError === 'Firebase: Error (auth/invalid-email).') {
+        Alert.alert(
+          `${t('digital quran')}`,
+          `${t('enter the correct email.')}`,
+        );
+        setUserCreateError('');
+      }
+    }
+  }, [userCreateError]);
+  useEffect(() => {
     if (userRegister) {
       navigation.replace('SignIn');
     }
@@ -60,13 +77,13 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   const proceedToSignup = () => {
     if (password !== confirmpassword) {
       Alert.alert(
-        'Digtial Quran',
-        'Password and Confirm password does not match',
+        `${t('digital quran')}`,
+        `${t('password does not match with confirm password')}`,
       );
     } else if (password.length < 6) {
       Alert.alert(
-        'Digital Quran',
-        'Password should contain at-lease 6 characters.',
+        `${t('digital quran')}`,
+        `${t('password should contain at-lease 6 characters.')}`,
       );
     } else {
       const authObject = {
@@ -79,15 +96,15 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
 
   const LogFunc = () => {
     if (name.trim().length == 0) {
-      setNameError('Please Enter Name');
+      setNameError(t('please enter name'));
     } else if (email.trim().length == 0) {
-      setEmailError('please enter email');
+      setEmailError(t('please enter email'));
     } else if (password.trim().length == 0) {
       setPasswordError('Please enter password');
     } else if (confirmpassword.trim().length == 0) {
-      setConfirmPasswordError('Please enter confirm password');
+      setConfirmPasswordError(t('please enter confirm password'));
     } else if (password != confirmpassword) {
-      Alert.alert('Password does not match with Confirm Password');
+      Alert.alert(t('password does not match with confirm password'));
     } else {
       proceedToSignup();
     }
@@ -166,7 +183,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
               />
               <Text
                 style={{color: '#00B4AC', fontSize: 16, textAlign: 'center'}}>
-                Already Account
+                {t('already account')}
               </Text>
               <PrimaryButton
                 title={t('login')}

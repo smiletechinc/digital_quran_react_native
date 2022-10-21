@@ -70,15 +70,19 @@ const SigninScreen: FunctionComponent<Props> = props => {
     if (userRecivedError != '') {
       if (userRecivedError === 'Firebase: Error (auth/user-not-found).') {
         Alert.alert(
-          'Digital Quran',
-          'This user was not regiesterd. Please enter the correct email',
+          `${t('digital quran')}`,
+          `${t(
+            'this user was not regiesterd. please enter the correct email',
+          )}`,
         );
       } else if (
         userRecivedError === 'Firebase: Error (auth/wrong-password).'
       ) {
         Alert.alert(
-          'Digital Quran',
-          'Enter the Correct Password. Or Click on the Forgot password button to reset the password',
+          `${t('digital quran')}`,
+          `${t(
+            '    enter the correct password. Or click on the forgot password button to reset the password',
+          )}`,
         );
       }
       setUserRecievedError('');
@@ -95,9 +99,9 @@ const SigninScreen: FunctionComponent<Props> = props => {
 
   const loginCheck = () => {
     if (email.trim().length == 0) {
-      setEmailErroDisc('Please Enter Email');
+      setEmailErroDisc(t('please enter email'));
     } else if (password.trim().length == 0) {
-      setPasswordError('Please Enter Password');
+      setPasswordError(t('please enter password'));
     } else {
       proceedToLogin();
     }
@@ -162,10 +166,10 @@ const SigninScreen: FunctionComponent<Props> = props => {
               />
               <Text
                 style={{color: '#00B4AC', fontSize: 16, textAlign: 'center'}}>
-                If you have not register, then click on
+                {t('If you have not register, then click on')}
               </Text>
               <PrimaryButton
-                title={t('signup')}
+                title={t('signUp')}
                 onPress={() => {
                   navigation.navigate('Signup');
                 }}

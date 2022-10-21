@@ -11,6 +11,7 @@ import {
 // Custom UI components.
 import {COLORS, SCREEN_HEIGHT, SCREEN_WIDTH} from '../../constants';
 const avatarIcon = require('../../assets/images/avatar.png');
+import {userAuthencticationHook} from '../hooks/userAuthentication';
 
 import {AuthContext} from './../../context/auth-context';
 import ScreenWrapperWithHeader from '../../components/wrappers/screen_wrapper_with_header';
@@ -29,13 +30,21 @@ type Props = {
 
 const SignoutScreen: FunctionComponent<Props> = props => {
   const {navigation, route} = props;
+  const {
+    deleteAccountService,
+    logoutService,
+    deleteAccountUser,
+    setDeleteAccountUser,
+    logoutUser,
+    setLogoutUser,
+  } = userAuthencticationHook();
   const [logOutCheck, setLogOutCheck] = useState(false);
   const [deleteAccountCheck, setDeleteAccountCheck] = useState(false);
   const {
     authUser,
     authObject,
     setAuthUser: setUser,
-    logoutUser,
+    // logoutUser,
   } = React.useContext(AuthContext);
   const [userName, setUserName] = useState('User');
   useEffect(() => {
@@ -43,6 +52,30 @@ const SignoutScreen: FunctionComponent<Props> = props => {
       setUserName(`${authObject.firstName} ${authObject.lastName}`);
     }
   }, [authUser, authObject]);
+
+  useEffect(() => {
+    if (logoutUser) {
+      // logoutUser();
+      const userAuth: UserObject = {
+        id: '',
+        email: '',
+        name: '',
+      };
+      // add(userAuth);
+      setLogoutUser(false);
+      navigation.replace('LandingScreen');
+    }
+    if (deleteAccountUser) {
+      const userAuth: UserObject = {
+        id: '',
+        email: '',
+        name: '',
+      };
+      // add(userAuth);
+      setDeleteAccountUser(false);
+      navigation.replace('LandingScreen');
+    }
+  }, [logoutUser, deleteAccountUser]);
   const logoutSuccess = (userCredential?: any) => {
     console.log('Logout sucess from firebase');
     logoutUser();

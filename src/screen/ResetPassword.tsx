@@ -35,8 +35,10 @@ const ResetPasswordContainer: FunctionComponent<Props> = props => {
   useEffect(() => {
     if (resetPasswordEmailSend) {
       Alert.alert(
-        'Digital Quran',
-        'Send a password reset email to your registered email account. if not shown please check the spam',
+        `${t('digital quran')}`,
+        `${t(
+          'password reset email had sent to your registered email account. if you were not seen in inbox, please check the spam',
+        )}`,
       );
       setResetPasswordSend(false);
     }
@@ -44,7 +46,7 @@ const ResetPasswordContainer: FunctionComponent<Props> = props => {
   useEffect(() => {
     if (resetPasswordError != '') {
       if (resetPasswordError === 'Firebase: Error (auth/user-not-found).') {
-        Alert.alert('Digital Quran', `Account doesn't exist.`);
+        Alert.alert(`${t('digital quran')}`, `${t('account does not exist.')}`);
         setResetPasswordError('');
       }
     }
@@ -52,7 +54,7 @@ const ResetPasswordContainer: FunctionComponent<Props> = props => {
 
   const resetCheck = () => {
     if (email.trim().length == 0) {
-      setEmailErroDisc('Please Enter Email');
+      setEmailErroDisc(t('please enter password'));
     } else {
       resetPasswordSevice(email);
     }

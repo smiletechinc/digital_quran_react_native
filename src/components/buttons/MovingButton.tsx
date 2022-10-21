@@ -10,10 +10,17 @@ type PrimaryButtonProps = {
   isFavoriteCalled?: boolean;
   buttonMargin?: any;
   buttonMarginBottom?: any;
+  gradientExtraProps?: any;
 };
 const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
-  const {title, onPress, isFavoriteCalled, buttonMargin, buttonMarginBottom} =
-    props;
+  const {
+    title,
+    onPress,
+    isFavoriteCalled,
+    buttonMargin,
+    buttonMarginBottom,
+    gradientExtraProps,
+  } = props;
   var marginTopValue = buttonMargin ? buttonMargin : '90%';
 
   return (
@@ -28,7 +35,7 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = props => {
         colors={['#00B4AC', '#007F79', '#006763']}
         locations={[0.0, 0.7, 0.9]}
         style={[
-          styles.linearGradientStyle,
+          gradientExtraProps ? gradientExtraProps : styles.linearGradientStyle,
           !isFavoriteCalled && {
             flex: 1,
           },

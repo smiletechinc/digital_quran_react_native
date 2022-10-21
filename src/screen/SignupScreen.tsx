@@ -2,47 +2,28 @@ import React, {FunctionComponent, useState, useEffect} from 'react';
 import {
   Text,
   TouchableOpacity,
-  ActivityIndicator,
   View,
   ScrollView,
   Image,
-  Platform,
   Alert,
 } from 'react-native';
-// import AutoHeightImage from 'react-native-auto-height-image';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-// Custom UI components.
-// import {COLORS, SCREEN_WIDTH} from '../../constants';
-// import {TextInput} from '../../global-components/input';
-// import SignupFooterComponent from './components/SignupFooterComponent';
-// import PlayingStyle from './components/YourPlayingStyle';
 import {useTranslation} from 'react-i18next';
 import {PrimaryButton, TextButton} from '../components/buttons';
 import AppTextInput from '../components/input/colors_app_textinput';
 import {StatusBar} from 'expo-status-bar';
-// Custom Styles
-// import globalStyles from '../../global-styles';
 import styles from './ScreenStyles';
 import {AppImageHeader} from '../components/images';
 import {COLORS, SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
 import {backgroundAppImage, backBtn2} from '../constants/images';
 import {userAuthencticationHook} from '../hooks/userAuthentication';
-// import {StackActions, NavigationActions} from 'react-navigation';
-// import {
-//   signUpService,
-//   signInService,
-//   registerUserService,
-// } from './../../services/authenticationServices';
-// import {UserObject} from '../../types';
-// const signupMainImage = require('../../assets/images/small-logo.png');
-// const backIcon = require('../../assets/images/back-icon.png');
 
 type Props = {
   navigation: any;
 };
 const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   const {t} = useTranslation();
-  const {SignUpService} = userAuthencticationHook();
+  const {SignUpService, userCreateId, RegisterUser, userRegister} =
+    userAuthencticationHook();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPaswword] = useState('');
@@ -59,54 +40,41 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
     setConfirmPasswordError('');
   }, [name, email, password, confirmpassword]);
 
-  // const navigtaionNext = () => {
-  //   if (password !== confirmPassword) {
-  //     Alert.alert('Trainify', 'Password and Confirm password does not match');
-  //   } else if (password.length < 6) {
-  //     Alert.alert('Trainify', 'Password should contain at-lease 6 characters.');
-  //   } else {
-  //     const signupObject = {
-  //       email,
-  //       password,
-  //       firstName,
-  //       middleName,
-  //       lastName,
-  //       playerstyle: handStyle === 0 ? 'LeftHanded' : 'RightHanded',
-  //     };
+  useEffect(() => {
+    if (userCreateId != '') {
+      const userObject = {
+        id: userCreateId,
+        name,
+        email,
+      };
+      RegisterUser(userObject);
+    }
+  }, [userCreateId]);
 
-  //     const authObject = {
-  //       email,
-  //       password,
-  //     };
-  //     navigation.navigate('SignupContainer', {signupObject, authObject});
-  //   }
-  // };
+  useEffect(() => {
+    if (userRegister) {
+      navigation.replace('SignIn');
+    }
+  }, [userRegister]);
 
-  // const validateForInputs = () => {
-  //   if (email === '') {
-  //     return false;
-  //   }
-  //   if (password === '') {
-  //     return false;
-  //   }
-  //   if (confirmPassword === '') {
-  //     return false;
-  //   }
-  //   if (firstName === '') {
-  //     return false;
-  //   }
-  //   if (lastName === '') {
-  //     return false;
-  //   }
-  //   return true;
-  // };
   const proceedToSignup = () => {
-    const authObject = {
-      email,
-      password,
-    };
-    SignUpService(authObject);
-    // signUpService(authObject, authenticationSuccess, authenticationFailure); // Async function
+    if (password !== confirmpassword) {
+      Alert.alert(
+        'Digtial Quran',
+        'Password and Confirm password does not match',
+      );
+    } else if (password.length < 6) {
+      Alert.alert(
+        'Digital Quran',
+        'Password should contain at-lease 6 characters.',
+      );
+    } else {
+      const authObject = {
+        email,
+        password,
+      };
+      SignUpService(authObject);
+    }
   };
 
   const LogFunc = () => {
@@ -151,7 +119,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
             }}>
             <View>
               <AppTextInput
-                placeholder="Enter Full Name"
+                placeholder={`${t('enter full name')}`}
                 onChangeText={(text: any) => setName(text)}
                 defaultValue={name}
                 error={nameError}
@@ -159,7 +127,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
             </View>
             <View>
               <AppTextInput
-                placeholder="Enter Email"
+                placeholder={`${t('enter email')}`}
                 onChangeText={(text: any) => setEmail(text)}
                 defaultValue={email}
                 error={emailError}
@@ -167,7 +135,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
             </View>
             <View>
               <AppTextInput
-                placeholder="Enter Password"
+                placeholder={`${t('enter password')}`}
                 onChangeText={(text: any) => setPaswword(text)}
                 secureTextEntry={true}
                 defaultValue={password}
@@ -176,7 +144,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
             </View>
             <View>
               <AppTextInput
-                placeholder="Enter Confirm Password"
+                placeholder={`${t('enter confirm password')}`}
                 onChangeText={(text: any) => setConfirmPassword(text)}
                 secureTextEntry={true}
                 defaultValue={confirmpassword}
@@ -203,7 +171,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
               <PrimaryButton
                 title={t('login')}
                 onPress={() => {
-                  navigation.replace('Sigin');
+                  navigation.replace('SignIn');
                 }}
                 buttonMarginBottom={SCREEN_HEIGHT / 28}
               />

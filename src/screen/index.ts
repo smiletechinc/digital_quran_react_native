@@ -14,6 +14,7 @@ import CameraSearchScreen from './CameraSearchScreen';
 import LandingScreenContainer from './LandingScreen1';
 import SigninScreen from './SigninScreen';
 import SignupScreen from './SignupScreen';
+import ResetPasswordContainer from './ResetPassword';
 
 export {
   SplashScreen,
@@ -31,5 +32,6 @@ export {
   ParaReadingScreen,
   ParaDetailScreen,
   UserAccountScreen,
+  ResetPasswordContainer,
   styles,
 };

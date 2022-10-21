@@ -2,47 +2,24 @@ import React, {FunctionComponent, useState, useEffect} from 'react';
 import {
   Text,
   TouchableOpacity,
-  ActivityIndicator,
+  Alert,
   ScrollView,
   View,
   Image,
-  Platform,
-  Alert,
 } from 'react-native';
 import {PrimaryButton, TextButton} from '../components/buttons';
 import {useTranslation} from 'react-i18next';
 import {AppImageHeader} from '../components/images';
 import AppTextInput from '../components/input/colors_app_textinput';
 import {StatusBar} from 'expo-status-bar';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
-// import {setUserObject} from '../../redux/slices/AuthSlice';
 // Custom UI components.
 import {COLORS, SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
 import {backgroundAppImage, backBtn2} from '../constants/images';
-// import {TextInput} from '../../global-components/input';
-// import SigninFooterComponent from './components/SigninFooterComponent';
 import {AuthContext, AuthContextType} from '../context/authContext';
-
-// Custom Styles
-// import globalStyles from '../../global-styles';
 import styles from './ScreenStyles';
-
-const signinMainImage = require('../../assets/images/signin-main-image.png');
-const allowedCardNetworks = ['VISA', 'MASTERCARD'];
-const allowedCardAuthMethods = ['PAN_ONLY', 'CRYPTOGRAM_3DS'];
-
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {StackActions, NavigationActions} from 'react-navigation';
-
-// import {
-//   signInService,
-//   getUserWithIdService,
-// } from './../../services/authenticationServices';
+import {userAuthencticationHook} from '../hooks/userAuthentication';
 import {UserObject} from '../constants/type';
-// import {AuthContext} from './../../context/auth-context';
-// import {RootState} from '../../../store';
-// const backIcon = require('../../assets/images/back-icon.png');
 
 type Props = {
   navigation?: any;
@@ -50,7 +27,14 @@ type Props = {
 };
 
 const SigninScreen: FunctionComponent<Props> = props => {
-  // console.log('UserData: ', UserData);
+  const {
+    SignInService,
+    getUserCredentialId,
+    getUserDetail,
+    userRecievedObject,
+    userRecivedError,
+    setUserRecievedError,
+  } = userAuthencticationHook();
   const {t} = useTranslation();
   const {authUser, setAuthUser, setAuthObject} = React.useContext(
     AuthContext,
@@ -58,164 +42,55 @@ const SigninScreen: FunctionComponent<Props> = props => {
   const {navigation, route} = props;
   const [email, setEmail] = useState<string>(''); // Testing@gmail.com
   const [password, setPassword] = useState<string>(''); // 123456
-
   const [passwordError, setPasswordError] = useState('');
   const [emailErrorDisc, setEmailErroDisc] = useState('');
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     setEmailErroDisc('');
     setPasswordError('');
+    setUserRecievedError('');
   }, [email, password]);
-  // const goToHomePage = userObject => {
-  //   const user: UserObject = userObject;
-  //   console.log('userObject in home : ', user);
 
-  //   setAuthObject(userObject);
-  //   dispatch(setUserObject(user));
+  useEffect(() => {
+    if (getUserCredentialId != '') {
+      getUserDetail(JSON.parse(getUserCredentialId));
+    }
+  }, [getUserCredentialId]);
 
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [{name: 'MainApp'}],
-  //   });
-  //   // navigation.navigate('MainApp');
-  // };
+  useEffect(() => {
+    if (Object.values(userRecievedObject).length > 0) {
+      navigation.replace('HomeScreen');
+    }
+  }, [userRecievedObject]);
 
-  // const getUsrObject = userCredential => {
-  //   // console.log('userCredential : ', userCredential);
-  //   let uid = userCredential.uid;
-  //   // console.log('uid : ', uid);
-  //   setAuthUser(userCredential);
-  //   getUserWithIdService(uid, goToHomePage, fetchUserFailure);
-
-  //   // getUserWithIdService(uid, goToHomePage, authenticationFailure)
-  // };
-
-  // const authenticationSuccess = (userCredential?: any) => {
-  //   setLoading(false);
-  //   if (userCredential) {
-  //     setAuthObject(userCredential);
-  //     console.log('userCredential : ', userCredential);
-  //     const user = userCredential.user;
-  //     // Alert.alert("Trainify", `You've logged in successfully ${JSON.stringify(user)}`)
-  //     getUsrObject(userCredential);
-  //   } else {
-  //     Alert.alert('Trainify', 'Error in login!');
-  //   }
-  // };
-
-  // const fetchUserFailure = error => {
-  //   setLoading(false);
-  //   if (error) {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     if (errorCode === 'auth/user-not-found') {
-  //       Alert.alert(
-  //         'Trainify',
-  //         'Account not found, Please register for account!',
-  //       );
-  //     } else {
-  //       Alert.alert('Trainify', 'Error in fetching user data!');
-  //     }
-  //   } else {
-  //     Alert.alert('Trainify', 'Error in fetching user data!');
-  //   }
-  // };
-
-  // const authenticationFailure = error => {
-  //   setLoading(false);
-  //   if (error) {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     console.log('error in loging, ', error);
-  //     if (errorCode === 'auth/user-not-found') {
-  //       Alert.alert(
-  //         'Trainify',
-  //         'Account not found, Please register for account!',
-  //       );
-  //     } else {
-  //       Alert.alert('Trainify', 'Error in login');
-  //     }
-  //   } else {
-  //     Alert.alert('Trainify!', 'Error in login!');
-  //   }
-  // };
-
-  // const proceedToLogin = () => {
-  //   setLoading(true);
-  //   const authObject = {
-  //     email,
-  //     password,
-  //   };
-  //   signInService(authObject, authenticationSuccess, authenticationFailure);
-  // };
-
-  // const requestData = {
-  //   cardPaymentMethod: {
-  //     tokenizationSpecification: {
-  //       type: 'PAYMENT_GATEWAY',
-  //       // stripe (see Example):
-  //       gateway: 'stripe',
-  //       gatewayMerchantId: '',
-  //       stripe: {
-  //         publishableKey: 'pk_test_TYooMQauvdEDq54NiTphI7jx',
-  //         version: '2018-11-08',
-  //       },
-  //       // other:
-  //     },
-  //     allowedCardNetworks,
-  //     allowedCardAuthMethods,
-  //   },
-  //   transaction: {
-  //     totalPrice: '10',
-  //     totalPriceStatus: 'FINAL',
-  //     currencyCode: 'USD',
-  //   },
-  //   merchantName: 'Example Merchant',
-  // };
-  // const isGooglePayAvailable = () => {
-  //   GooglePay.setEnvironment(GooglePay.ENVIRONMENT_TEST);
-  //   GooglePay.isReadyToPay(allowedCardNetworks, allowedCardAuthMethods)
-  //     .then(ready => {
-  //       if (ready) {
-  //         // Request payment token
-  //         console.log('it is ready.', ready);
-  //         GooglePay.requestPayment(requestData)
-  //           .then((token: string) => {
-  //             console.log('token here: ', token);
-  //             // Send a token to your payment gateway
-  //           })
-  //           .catch(error =>
-  //             console.log('payment error: ', error.code, error.message),
-  //           );
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log('error: ', error);
-  //     });
-  // };
-
-  // const validateForInputs = () => {
-  //   if (email === '') {
-  //     return false;
-  //   }
-  //   if (password === '') {
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
+  useEffect(() => {
+    if (userRecivedError != '') {
+      if (userRecivedError === 'Firebase: Error (auth/user-not-found).') {
+        Alert.alert(
+          'Digital Quran',
+          'This user was not regiesterd. Please enter the correct email',
+        );
+      } else if (
+        userRecivedError === 'Firebase: Error (auth/wrong-password).'
+      ) {
+        Alert.alert(
+          'Digital Quran',
+          'Enter the Correct Password. Or Click on the Forgot password button to reset the password',
+        );
+      }
+      setUserRecievedError('');
+    }
+  }, [userRecivedError]);
   const proceedToLogin = () => {
-    // 1. check if user exists in database : authentication modue
-    // 2. create account
-    // 3. Create user in database : real time database
     console.log('proceedtologin function called');
     const authObject = {
       email,
       password,
     };
-    // signInService(authObject, authenticationSuccess, authenticationFailure); // Async function
+    SignInService(authObject);
   };
 
   const loginCheck = () => {
@@ -259,13 +134,13 @@ const SigninScreen: FunctionComponent<Props> = props => {
                 display: 'flex',
               }}>
               <AppTextInput
-                placeholder="Enter Email"
+                placeholder={`${t('enter email')}`}
                 onChangeText={(text: string) => setEmail(text)}
                 defaultValue={email}
                 error={emailErrorDisc}
               />
               <AppTextInput
-                placeholder="Enter Password"
+                placeholder={`${t('enter password')}`}
                 onChangeText={(text: string) => setPassword(text)}
                 secureTextEntry={true}
                 defaultValue={password}
@@ -299,12 +174,15 @@ const SigninScreen: FunctionComponent<Props> = props => {
             </View>
             <View style={{alignItems: 'flex-end'}}>
               <TextButton
-                title="Forgot Password"
-                onPress={console.log('signin')}
+                title={t('forgot password')}
+                onPress={() => {
+                  navigation.navigate('ResetPassword');
+                }}
               />
             </View>
           </View>
         </View>
+
         <View style={{position: 'absolute', opacity: 1}}>
           <Image
             source={backgroundAppImage}

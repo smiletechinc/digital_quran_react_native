@@ -14,6 +14,7 @@ import {
   ParaReadingScreen,
   ParaDetailScreen,
   CameraSearchScreen,
+  ResetPasswordContainer,
   UserAccountScreen,
 } from '../screen/index';
 import {TopicsScreen, SearchingScreen, SettingScreen} from '../screen/index';
@@ -199,6 +200,11 @@ const RootNavigator = () => {
           <Stack.Screen
             name="Signup"
             component={SignupScreen}
+            options={{title: '', header: () => null}}
+          />
+          <Stack.Screen
+            name="ResetPassword"
+            component={ResetPasswordContainer}
             options={{title: '', header: () => null}}
           />
           <Stack.Screen

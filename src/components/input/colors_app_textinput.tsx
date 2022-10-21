@@ -36,7 +36,7 @@ const AppTextInput: React.FunctionComponent<Input> = props => {
           defaultValue={defaultValue}
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
-          placeholderTextColor={'#00B4AC'}
+          placeholderTextColor={'#FFFFFF'}
         />
       </View>
       <Text style={{marginTop: -16, marginBottom: 8, color: 'red'}}>

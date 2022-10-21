@@ -1,84 +1,130 @@
-import React, { FunctionComponent, useState } from 'react';
-import { Text, TouchableOpacity, ActivityIndicator, View, Image, Platform, Alert } from 'react-native';
-import AutoHeightImage from 'react-native-auto-height-image';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import { GooglePay } from 'react-native-google-pay';
+import React, {FunctionComponent, useState, useEffect} from 'react';
+import {TouchableOpacity, View, ScrollView, Image, Alert} from 'react-native';
+import {StatusBar} from 'expo-status-bar';
+import {PrimaryButton, TextButton} from '../components/buttons';
+import {AppImageHeader} from '../components/images';
+import {useTranslation} from 'react-i18next';
+import AppTextInput from '../components/input/colors_app_textinput';
+import {COLORS, SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants/index';
+import styles from './ScreenStyles';
+import {backgroundAppImage, backBtn2} from '../constants/images';
+import {userAuthencticationHook} from '../hooks/userAuthentication';
 
-// Custom UI components.
-import { COLORS, SCREEN_WIDTH } from '../../constants';
-import {TextInput} from '../../global-components/input';
-import ResetPasswordFooterComponent from './components/ResetPasswordFooter';
-import {resetPasswordService} from './../../services/authenticationServices'
+type Props = {
+  navigation?: any;
+  route?: any;
+};
 
-// Custom Styles
-import globalStyles from '../../global-styles';
-import styles from './styles';
-
-const signinMainImage = require('../../assets/images/signin-main-image.png');
-
-const ResetPasswordContainer: FunctionComponent = ({ navigation }) => {
+const ResetPasswordContainer: FunctionComponent<Props> = props => {
+  const {navigation, route} = props;
   const [email, setEmail] = useState<string>('');
- 
-  const authenticationSuccess = () => {
-      Alert.alert("Trainify", `Reset password email sent.`)
-  }
-  
-  const authenticationFailure = (error) => {
-    if(error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      Alert.alert("Trainify", errorMessage)
+  const [emailErrorDisc, setEmailErroDisc] = useState('');
+  const {t} = useTranslation();
+  const {
+    resetPasswordError,
+    setResetPasswordError,
+    resetPasswordSevice,
+    resetPasswordEmailSend,
+    setResetPasswordSend,
+  } = userAuthencticationHook();
+
+  useEffect(() => {
+    setEmailErroDisc('');
+  }, [email]);
+
+  useEffect(() => {
+    if (resetPasswordEmailSend) {
+      Alert.alert(
+        'Digital Quran',
+        'Send a password reset email to your registered email account. if not shown please check the spam',
+      );
+      setResetPasswordSend(false);
     }
-  }
-  
-  const proceedToResetPassword = () => {
-    resetPasswordService(email, authenticationSuccess, authenticationFailure );
-  }
+  }, [resetPasswordEmailSend]);
+  useEffect(() => {
+    if (resetPasswordError != '') {
+      if (resetPasswordError === 'Firebase: Error (auth/user-not-found).') {
+        Alert.alert('Digital Quran', `Account doesn't exist.`);
+        setResetPasswordError('');
+      }
+    }
+  }, [resetPasswordError]);
 
-  return(
-    <View style={styles.login_main_container}>
-      <KeyboardAwareScrollView
-        bounces={false}
-        
-      >
-        <View style={{paddingHorizontal: SCREEN_WIDTH * 0.05}}>
-          <TouchableOpacity
-            style={styles.login_back_icon}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-
-          </TouchableOpacity>
+  const resetCheck = () => {
+    if (email.trim().length == 0) {
+      setEmailErroDisc('Please Enter Email');
+    } else {
+      resetPasswordSevice(email);
+    }
+  };
+  return (
+    <ScrollView
+      style={{backgroundColor: '#FFFFFF'}}
+      showsVerticalScrollIndicator={false}>
+      <View style={[styles.selectionContainer, {minHeight: SCREEN_HEIGHT}]}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{left: 16, zIndex: 50}}>
+          <Image source={backBtn2} style={{width: 32, height: 32}} />
+        </TouchableOpacity>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+            zIndex: 50,
+          }}>
+          <AppImageHeader />
+          <View
+            style={{
+              marginTop: '48%',
+              minHeight: SCREEN_HEIGHT / 2,
+              justifyContent: 'space-evenly',
+            }}>
+            <View
+              style={{
+                justifyContent: 'center',
+                display: 'flex',
+              }}>
+              <AppTextInput
+                placeholder={`${t('enter email')}`}
+                onChangeText={(text: string) => setEmail(text)}
+                defaultValue={email}
+                error={emailErrorDisc}
+              />
+            </View>
+            <View
+              style={{
+                justifyContent: 'center',
+                display: 'flex',
+                paddingTop: '4%',
+              }}>
+              <PrimaryButton
+                title={t('forgot password')}
+                onPress={() => {
+                  resetCheck();
+                }}
+                buttonMarginBottom={SCREEN_HEIGHT / 16}
+              />
+            </View>
+          </View>
         </View>
-        <View style={{marginTop: 47, paddingHorizontal: SCREEN_WIDTH * 0.05}}>
-          <AutoHeightImage 
-            source={signinMainImage}
-            width={SCREEN_WIDTH * 0.9}
-          />
-          <Text style={[globalStyles.title, globalStyles.bold, styles.reset_password_text]}>RESET PASSWORD</Text>
-          <Text styles={[globalStyles.medium, styles.reset_password_details]}>Enter Your Email Address Below To Reset Password</Text>
-          <TextInput
-            value={email}
-            onChangeText={(value: string) => {
-              setEmail(value);
+
+        <View style={{position: 'absolute', opacity: 1}}>
+          <Image
+            source={backgroundAppImage}
+            style={{
+              resizeMode: 'cover',
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT,
             }}
-            inputStyles={{
-              fontWeight: 'bold',
-            }}
-            inputParentStyles={{
-              marginTop: 42,
-            }}
-          />
-          
-          <ResetPasswordFooterComponent
-          proceedToResetPassword={proceedToResetPassword}
-            onPress={proceedToResetPassword}
           />
         </View>
-
-      </KeyboardAwareScrollView>
-    </View>
-  )
+        <StatusBar style="dark" />
+      </View>
+    </ScrollView>
+  );
 };
 export default ResetPasswordContainer;

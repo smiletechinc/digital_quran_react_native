@@ -2,23 +2,27 @@ import {act} from 'react-test-renderer';
 import {AnyAction} from 'redux';
 import * as actionTypes from '../action/actionTypes';
 
-const initialState: ParaState = {
-  parahs: [],
+const initialState: UserState = {
+  authUser: {
+    email: '',
+    id: '',
+    name: '',
+  },
 };
 
-const paraReducer = (
-  state: ParaState = initialState,
+const userReducer = (
+  state: UserState = initialState,
   action: AnyAction,
-): ParaState => {
+): UserState => {
   switch (action.type) {
-    case actionTypes.UPDATE_PARA:
+    case actionTypes.UPDATE_USER:
       return {
         ...state,
-        parahs: action.para,
+        authUser: action.user,
       };
     default:
       return state;
   }
 };
 
-export default paraReducer;
+export default userReducer;

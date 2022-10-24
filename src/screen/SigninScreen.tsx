@@ -19,7 +19,7 @@ import {backgroundAppImage, backBtn2} from '../constants/images';
 import {AuthContext, AuthContextType} from '../context/authContext';
 import styles from './ScreenStyles';
 import {userAuthencticationHook} from '../hooks/userAuthentication';
-import {UserObject} from '../constants/type';
+import {updateUser} from '../redux/action/userAction';
 
 type Props = {
   navigation?: any;
@@ -36,9 +36,7 @@ const SigninScreen: FunctionComponent<Props> = props => {
     setUserRecievedError,
   } = userAuthencticationHook();
   const {t} = useTranslation();
-  const {authUser, setAuthUser, setAuthObject} = React.useContext(
-    AuthContext,
-  ) as AuthContextType;
+  const {setAuthUser} = React.useContext(AuthContext) as AuthContextType;
   const {navigation, route} = props;
   const [email, setEmail] = useState<string>(''); // Testing@gmail.com
   const [password, setPassword] = useState<string>(''); // 123456
@@ -62,6 +60,8 @@ const SigninScreen: FunctionComponent<Props> = props => {
 
   useEffect(() => {
     if (Object.values(userRecievedObject).length > 0) {
+      setAuthUser(userRecievedObject);
+      dispatch(updateUser(userRecievedObject));
       navigation.replace('HomeScreen');
     }
   }, [userRecievedObject]);
@@ -89,7 +89,6 @@ const SigninScreen: FunctionComponent<Props> = props => {
     }
   }, [userRecivedError]);
   const proceedToLogin = () => {
-    console.log('proceedtologin function called');
     const authObject = {
       email,
       password,

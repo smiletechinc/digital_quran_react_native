@@ -14,24 +14,21 @@ import surahMeta from '../resources/surahMeta.json';
 import paraMeta from '../resources/paraMeta.json';
 import {updateSurah} from '../redux/action/surahAction';
 import {updatePara} from '../redux/action/paraAction';
-import {
-  MULTIPLIER,
-  SCREEN_WIDTH,
-  SCREEN_HEIGHT,
-  STATUS_BAR_HEIGHT,
-} from '../constants';
-import HeaderWithText from '../components/Header/header';
+import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
 import {backBtn2} from '../constants/images';
+import {AuthContext, AuthContextType} from '../context/authContext';
 
 type Props = {
   navigation: any;
   updateAyat: any;
   updateSurah: any;
   updatePara: any;
+  reduxUser: any;
 };
 
 const LandingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, updateAyat, updateSurah, updatePara} = props;
+  const {navigation, updateAyat, updateSurah, updatePara, reduxUser} = props;
+  const {setAuthUser} = React.useContext(AuthContext) as AuthContextType;
   const {textLanguage} = React.useContext(
     LanguageContext,
   ) as LanguageContextType;
@@ -46,7 +43,10 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   }, [navigation]);
 
   const LogFunc = () => {
-    navigation.navigate('LandingScreenContainer');
+    setAuthUser(reduxUser);
+    reduxUser.email === ''
+      ? navigation.replace('LandingScreenContainer')
+      : navigation.replace('HomeScreen');
   };
 
   return (
@@ -92,6 +92,12 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
+const maptStateToProps = (state: {userObject: {authUser: any}}) => {
+  return {
+    reduxUser: state.userObject.authUser,
+  };
+};
+
 const mapDispatchToProps = (
   dispatch: (arg0: {
     type: string;
@@ -113,4 +119,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect(null, mapDispatchToProps)(LandingScreen);
+export default connect(maptStateToProps, mapDispatchToProps)(LandingScreen);

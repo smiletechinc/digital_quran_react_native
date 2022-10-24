@@ -1,12 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  ScrollView,
-} from 'react-native';
+import {View} from 'react-native';
 import Toast from 'react-native-fast-toast';
 import {t} from 'i18next';
 import {FloatingButton} from '../components/buttons';
@@ -24,10 +17,6 @@ import {SearchContext, SearchContextType} from '../context/searchContext';
 // import SearchHeaderDetail from '../components/Header/searchHeader';
 import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
-import {VerseContext, QuranContextType} from '../context/quranContext';
-import {debounce} from 'lodash';
-import {SearchList} from '../components/List/index';
-import ContentLoader, {Rect} from 'react-content-loader/native';
 import HeaderWithText from '../components/Header/header';
 
 type Props = {
@@ -40,7 +29,6 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {searchInAdvanced} = SearchAyahHook();
-  // const [characters, setCharacters] = React.useState<any[]>([]);
   const [isImage, setIsImage] = useState<string | null>(null);
   const {
     startAnimation,
@@ -57,7 +45,6 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
       var textFetched = JSON.stringify(
         route.params.imageObject.apiText,
       ).replace(/([^\u0621-\u063A\u0641-\u064A\u0660-\u0669 0])/g, '');
-      console.log('textFetched', textFetched);
       setChangeText(textFetched.trim());
     }
   }, [route.params]);
@@ -88,7 +75,6 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    // <ScrollView style={{marginBottom: 8}} showsVerticalScrollIndicator={false}>
     <>
       <View style={[styles.selectionContainer, {backgroundColor: '#00B4AC'}]}>
         <Toast ref={toast} placement="bottom" />
@@ -135,7 +121,6 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
         <FloatingButton onPressImage={searchByImage} />
       </View>
     </>
-    // </ScrollView>
   );
 };
 

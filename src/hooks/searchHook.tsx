@@ -95,8 +95,6 @@ export const SearchAyahHook = () => {
     do {
       textSplit = stringSplitFunc(JSON.stringify(ayahSearchAdvanced));
       if (textSplit.length > 0) {
-        console.log('textSplit', textSplit);
-        console.log('searchAgainFunction', searchAgainFunction);
         ayatFind(textSplit);
       } else {
         setSearchAgainFunction(false);

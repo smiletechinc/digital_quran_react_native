@@ -17,7 +17,6 @@ const SurahContextProvider = ({children}: any) => {
 
   React.useEffect(() => {
     if (surahObject) {
-      console.log('surahObject in context Api', surahObject);
     }
   }, [surahObject]);
 

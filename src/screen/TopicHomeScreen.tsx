@@ -35,8 +35,6 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   const [lisDataObject, setListDataObject] = useState([]);
 
   useEffect(() => {
-    console.log('favoriteVerse', favoriteVerses);
-    console.log('favoriteSurah', favoriteSurahs);
     if (favoriteVerses || favoriteSurahs) {
       setFavouriteSurahsData(favoriteSurahs);
       setFavouriteVersesData(favoriteVerses);
@@ -51,7 +49,6 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
     } else {
       setListDataObject(favoriteVerses);
     }
-    // setListDataObject(surahState ? favouirteSurahsData : favouirteVerseData);
   }, []);
 
   const favFunctionCalled = (item: any) => {
@@ -156,21 +153,6 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
             )}
           </View>
         )}
-        {/* {lisDataObject.length > 0 ? (
-          <FlatList
-            style={[styles.listContainer]}
-            data={lisDataObject}
-            renderItem={renderItem}
-          />
-        ) : (
-          <EmptyState
-            buttonTitle={'read quran'}
-            onPress={LogFunc}
-            surahStateValue={surahState}
-            searchScreen={false}
-            imageDisplay={favEmptyStateImage}
-          />
-        )} */}
       </View>
     </ScrollView>
   );

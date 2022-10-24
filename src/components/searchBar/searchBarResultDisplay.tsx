@@ -13,7 +13,6 @@ const SearchBarDisplayResult = () => {
   const {copyToClipboard} = ClipboardHook();
 
   const renderItem = ({item}: any) => {
-    console.log('item', item);
     return (
       <SearchList surah={item} onPress={() => copyToClipboard(item.ayatText)} />
     );

@@ -28,10 +28,6 @@ const SearchContextProvider = ({children}: any) => {
   const [searchDatainFIle, setSearchDataFileInSearch] = React.useState(false);
   const [clicked, setClicked] = React.useState(false);
 
-  // const addSearchTextCharacter = (searchObject: any) => {
-  //   // console.log('searchObjectText', searchObject);
-  //   setCharacters(searchObject);
-  // };
   return (
     <SearchContext.Provider
       value={{

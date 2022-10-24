@@ -47,14 +47,10 @@ const LanguagePicker: React.FunctionComponent<PickerProps> = props => {
     },
   ]);
 
-  console.log(t);
-
   const proceedToChangeLanguage = (value: any) => {
-    console.log('value', value);
     i18n
       .changeLanguage(value)
       .then(() => {
-        console.log('value', value);
         setLanguage(value);
         setTextLanguage(value);
       })

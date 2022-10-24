@@ -30,11 +30,6 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
     FetchTextFromImageHook();
   const [imagePath, setImagePath] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   if (cancelRequest) {
-  //     navigation.goBack();
-  //   }
-  // }, [cancelRequest]);
   useEffect(() => {
     if (apiResponseTextData) {
       if (
@@ -45,7 +40,6 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
           imageCapture: imagePath,
           apiText: Object.values(apiResponseTextData)[1],
         };
-        console.log('imageObject', imageObject);
         navigation.navigate('home', {imageObject});
       } else if (Object.values(apiResponseTextData)[0]) {
         Alert.alert(
@@ -71,12 +65,9 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
       aspect: [1, 1],
       quality: 1,
     });
-    console.log('photo when upload picture', result);
     if (!result.cancelled) {
-      // setImage(result.uri);
       setImagePath(result.uri);
       let filename = result.uri ? result.uri.split('/').pop() : '';
-      // Infer the type of the image
       let match = filename?.split('.');
       let type = match ? `image/${match[1]}` : `image`;
       getAyahImageHook(result.uri, filename, type);
@@ -138,7 +129,6 @@ const styles = StyleSheet.create({
   selectionContainer: {
     display: 'flex',
     flex: 1,
-    // flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingTop: Platform.OS === 'ios' ? (SCREEN_WIDTH / 10) * 2 : 10,
     paddingHorizontal: SCREEN_WIDTH * 0.03,

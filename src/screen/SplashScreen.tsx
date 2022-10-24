@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {ActivityIndicator, View, Text, SafeAreaView} from 'react-native';
 import {styles} from './index';
 import {LogoImage} from '../components/images/index';
+import {connect, useDispatch} from 'react-redux';
 
 type Props = {
   navigation: any;
+  reduxUser: any;
 };
 
 const SplashScreen: React.FunctionComponent<Props> = props => {
-  const {navigation} = props;
+  const {navigation, reduxUser} = props;
   const [animating, setAnimating] = useState(false);
 
   navigation.setOptions({
@@ -18,6 +20,7 @@ const SplashScreen: React.FunctionComponent<Props> = props => {
   useEffect(() => {
     setTimeout(() => {
       setAnimating(true);
+
       navigation.replace('LandingScreen');
     }, 5000);
   }, []);

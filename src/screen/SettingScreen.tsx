@@ -7,20 +7,19 @@ import {PrimaryButton} from '../components/buttons/index';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../constants/';
 import {userAuthencticationHook} from '../hooks/userAuthentication';
 import LogoutAlertModal from '../model/LogoutAlerModel';
+import {connect} from 'react-redux';
+import {updateUser} from '../redux/action/userAction';
+import {StackActions} from '@react-navigation/native';
 
 type Props = {
   navigation: any;
-  updateSurah: any;
-  updateAyat: any;
   route: any;
-  reduxVerses: any;
-  reduxSurahs: any;
-  reduxParahs: any;
   updated: any;
+  updateUser?: any;
 };
 
 const SettingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, reduxSurahs, reduxParahs, reduxVerses} = props;
+  const {navigation, updateUser} = props;
   const {t} = useTranslation();
   const {
     deleteAccountService,
@@ -37,27 +36,30 @@ const SettingScreen: React.FunctionComponent<Props> = props => {
     if (logoutUser) {
       // logoutUser();
       const userAuth: UserObject = {
-        id: '',
         email: '',
+        id: '',
         name: '',
       };
       // add(userAuth);
       setLogoutUser(false);
-      navigation.replace('LandingScreen');
+      updateUser(userAuth);
+      navigation.dispatch(StackActions.replace('LandingScreen'));
     }
     if (deleteAccountUser) {
       const userAuth: UserObject = {
-        id: '',
         email: '',
+        id: '',
         name: '',
       };
       // add(userAuth);
       setDeleteAccountUser(false);
-      navigation.replace('LandingScreen');
+      updateUser(userAuth);
+      navigation.dispatch(StackActions.replace('LandingScreen'));
     }
   }, [logoutUser, deleteAccountUser]);
 
   const proceedToLogout = () => {
+    setLogOutCheck(false);
     logoutService();
   };
 
@@ -65,7 +67,7 @@ const SettingScreen: React.FunctionComponent<Props> = props => {
     deleteAccountService();
   };
   const LogFunc = () => {
-    navigation.navigate('LandingScreen');
+    navigation.replace('LandingScreen');
   };
 
   return (
@@ -137,4 +139,13 @@ const SettingScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default SettingScreen;
+const mapDispatchToProps = (
+  dispatch: (arg0: {type: string; user?: UserObject}) => void,
+) => {
+  return {
+    updateUser: (updateUserValue: UserObject) => {
+      dispatch(updateUser(updateUserValue));
+    },
+  };
+};
+export default connect(null, mapDispatchToProps)(SettingScreen);

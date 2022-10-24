@@ -12,10 +12,8 @@ type Props = {
 const ListItem: React.FunctionComponent<Props> = props => {
   const {surah, onPress} = props;
   const {t} = useTranslation();
-  console.log('surah', surah);
   return (
     <View style={[styles.gridView]}>
-      {/* <View> */}
       <View style={styles.circleView}>
         <Text style={styles.circleText}>{Number(surah.index)}</Text>
       </View>
@@ -24,9 +22,7 @@ const ListItem: React.FunctionComponent<Props> = props => {
           source={surah.type === 'Madaniyah' ? madinaIamge : makkahImage}
           style={{resizeMode: 'center', maxHeight: 20, maxWidth: 20}}
         />
-        {/* <Text style={styles.circleText1}>HI</Text> */}
       </View>
-      {/* </View> */}
 
       <View style={styles.rectangleView}>
         <TouchableOpacity onPress={onPress}>

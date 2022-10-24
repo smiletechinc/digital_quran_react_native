@@ -10,14 +10,6 @@ type Props = {
 const SearchHeaderDetail: FunctionComponent<Props> = props => {
   const {t} = useTranslation();
   const {navigation, styleOption, selectedImage} = props;
-  const [headerWidth, setHeaderWidth] = useState(0);
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const onLayout = (event: any) => {
-    const {x, y, height, width} = event.nativeEvent.layout;
-    console.log('Dimensions : ', x, y, height, width);
-    setHeaderWidth(width);
-    setHeaderHeight(height);
-  };
 
   return (
     <View

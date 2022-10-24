@@ -29,12 +29,6 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
   const {handleChange} = SearchAyahHook();
   const [clickTextInput, setClickTextInput] = useState(false);
 
-  // useEffect(() => {
-  //   if (characters.length > 0) {
-  //     console.log('charabcter', characters);
-  //   }
-  // }, [characters]);
-
   useEffect(() => {
     if (textValue != '') {
       textValueFunc(textValue);
@@ -42,7 +36,6 @@ const SearchBarText: React.FunctionComponent<SearchBarProps> = props => {
   }, [textValue]);
 
   const textValueFunc = (textString: string) => {
-    console.log('text', textString);
     handleChange(textString);
     setClicked(true);
   };

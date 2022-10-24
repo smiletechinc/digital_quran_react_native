@@ -36,7 +36,6 @@ const HeaderDetail: FunctionComponent<Props> = props => {
   const {checkSurahBookmarked} = React.useContext(
     BookmarkVerseContext,
   ) as BookmarkVerseContextType;
-  console.log('surahTitle', surahTitle);
   return (
     <View style={[styles.mainView, styleOption]}>
       <View>

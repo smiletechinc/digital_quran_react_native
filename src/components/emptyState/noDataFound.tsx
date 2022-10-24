@@ -21,7 +21,6 @@ const NoDataFound: React.FunctionComponent<Props> = props => {
   const {onPress, surahStateValue, buttonTitle, searchScreen, imageDisplay} =
     props;
   const {t} = useTranslation();
-  console.log('hi');
   let text1 = t('No Data Found');
   let textIdentifier = surahStateValue ? 'surah' : 'ayat';
   let text2 = t('bookmark on  your screen, please add the');

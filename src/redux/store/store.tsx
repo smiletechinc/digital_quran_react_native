@@ -8,12 +8,14 @@ import surahReducer from '../reducer/surahReducer';
 import verseReducer from '../reducer/verseReducer';
 import paraReducer from '../reducer/paraReducer';
 import favVerseReducer from '../reducer/favVerseReducer';
+import userReducer from '../reducer/userReducer';
 
 const rootReducer = combineReducers({
   surahs: surahReducer,
   verses: verseReducer,
   parahs: paraReducer,
   bookMarkVerses: favVerseReducer,
+  userObject: userReducer,
 });
 
 const persistConfig = {
@@ -30,7 +32,6 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   middleware: [thunk],
 });
-console.log('store state is ', store.getState());
 
 export {store};
 export type AppDispatch = typeof store.dispatch;

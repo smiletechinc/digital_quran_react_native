@@ -9,7 +9,6 @@ export const ClipboardHook = () => {
   const [textCopyStatus, setTextCopyStatus] = useState(false);
   const copyToClipboard = async (arabicText: any) => {
     try {
-      console.log('araci', arabicText);
       Clipboard.setString(arabicText);
       const text = await Clipboard.getString();
       setTextCopyStatus(true);

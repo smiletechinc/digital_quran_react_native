@@ -12,7 +12,6 @@ const paraReducer = (
 ): FavVerseState => {
   switch (action.type) {
     case actionTypes.ADD_FAV:
-      // console.log('favVerseReducer', action.favVerse);
       return {
         ...state,
         favVerses: state.favVerses.concat(action.favVerse),

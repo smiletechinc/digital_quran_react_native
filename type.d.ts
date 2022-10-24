@@ -94,6 +94,14 @@ type AuthObject = {
   password: string;
 };
 
+type AuthState = {
+  authUserObject: AuthObject;
+};
+
+type AuthAction = {
+  type: string;
+  authUserObject: UserObject;
+};
 type UserObject = {
   id: string;
   email: string;

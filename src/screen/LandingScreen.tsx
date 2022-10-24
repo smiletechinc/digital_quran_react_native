@@ -44,9 +44,14 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
 
   const LogFunc = () => {
     setAuthUser(reduxUser);
-    reduxUser.email === ''
-      ? navigation.replace('LandingScreenContainer')
-      : navigation.replace('HomeScreen');
+    console.log('reduxUSer', reduxUser);
+    if (reduxUser.email === '') {
+      navigation.replace('LandingScreenContainer');
+      console.log('login');
+    } else {
+      navigation.replace('HomeScreen');
+      console.log('home');
+    }
   };
 
   return (

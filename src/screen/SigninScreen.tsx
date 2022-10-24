@@ -59,7 +59,8 @@ const SigninScreen: FunctionComponent<Props> = props => {
   }, [getUserCredentialId]);
 
   useEffect(() => {
-    if (Object.values(userRecievedObject).length > 0) {
+    if (userRecievedObject.email != '') {
+      console.log('userRecievedObject', userRecievedObject);
       setAuthUser(userRecievedObject);
       dispatch(updateUser(userRecievedObject));
       navigation.replace('HomeScreen');

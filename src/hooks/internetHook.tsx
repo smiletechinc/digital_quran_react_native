@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import NetInfo from '@react-native-community/netinfo';
-import InternetConnectionAlert from 'react-native-internet-connection-alert';
+import {Alert} from 'react-native';
 
 interface Props {
   arabictext: any;
@@ -11,23 +11,24 @@ export const InternetCheckedHook = () => {
   const [internetCheckStatus, setInternetCheckStatus] = useState<
     boolean | null
   >();
+  const [internetConditionCheck, setInternetConditionCheck] = useState(false);
 
   const internetCheckFunction = async () => {
     try {
-      //   NetInfo.fetch().then(state => {
-      //     setInternetCheckStatus(state.isInternetReachable);
-      //     console.log('Connection type', state.type);
-      //     console.log('Is connected?', state.isConnected);
-      //     console.log('isInternetReachable?', state.isInternetReachable);
-      //   });
-
       NetInfo.addEventListener(state => {
         setInternetCheckStatus(state.isInternetReachable);
         console.log('Connection type', state.type);
         console.log('Is connected?', state.isConnected);
         console.log('Is isInternetReachable?', state.isInternetReachable);
       });
-      //   console.log('netInfo', netinfo);
+      if (internetCheckStatus) {
+        setInternetConditionCheck(internetCheckStatus);
+      } else {
+        Alert.alert(
+          'Digital Quran',
+          'Internet is not availble for this service',
+        );
+      }
     } catch (error) {
       console.log(error);
     }
@@ -37,5 +38,6 @@ export const InternetCheckedHook = () => {
     internetCheckFunction,
     internetCheckStatus,
     setInternetCheckStatus,
+    internetConditionCheck,
   };
 };

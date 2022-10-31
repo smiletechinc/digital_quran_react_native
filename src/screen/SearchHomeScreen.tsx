@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import Toast from 'react-native-fast-toast';
 import {t} from 'i18next';
 import {FloatingButton} from '../components/buttons';
@@ -14,7 +14,7 @@ import {
   SearchBarDisplayResult,
 } from '../components/searchBar/index';
 import {SearchContext, SearchContextType} from '../context/searchContext';
-// import SearchHeaderDetail from '../components/Header/searchHeader';
+import {InternetCheckedHook} from '../hooks/internetHook';
 import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
 import HeaderWithText from '../components/Header/header';
@@ -29,6 +29,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {searchInAdvanced} = SearchAyahHook();
+  const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
   const [isImage, setIsImage] = useState<string | null>(null);
   const {
     startAnimation,
@@ -57,6 +58,12 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   }, [clicked]);
 
   useEffect(() => {
+    if (internetConditionCheck) {
+      navigation.navigate('CameraSearchScreen');
+    }
+  }, [internetConditionCheck]);
+
+  useEffect(() => {
     if (textCopyStatus) {
       toast.current.show(`${t('copy to clipboard')}`, {
         type: 'success',
@@ -71,7 +78,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   const searchByImage = () => {
-    navigation.navigate('CameraSearchScreen');
+    internetCheckFunction();
   };
 
   return (

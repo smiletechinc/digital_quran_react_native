@@ -26,20 +26,24 @@ export const SurahDetailHook = () => {
 
   const surahDetaillMake = async () => {
     try {
+      console.log(
+        'surahObject in detailMakeHook',
+        Object.values(surahObject)[1],
+      );
       versesObject.forEach((element: any) => {
-        if (Object.values(surahObject)[5] === element.index) {
+        if (Object.values(surahObject)[1] === element.index) {
           setSurahData(Object.values(element.verse));
           setSurahVerseCount(element.count);
         }
       });
-      setSurahTitleArabic(Object.values(surahObject)[4]);
-      setSurahTitle(t(Object.values(surahObject)[3]));
+      setSurahTitleArabic(Object.values(surahObject)[6]);
+      setSurahTitle(t(Object.values(surahObject)[5]));
       setBismillahAyah(Object.values(bismillah[0]));
-      setSurahIndex(Number(Object.values(surahObject)[5]));
-      Object.values(surahObject)[5] === '001'
+      setSurahIndex(Number(Object.values(surahObject)[1]));
+      Object.values(surahObject)[1] === '001'
         ? setIsSurahFathia(true)
         : setIsSurahFathia(false);
-      Object.values(surahObject)[5] === '009'
+      Object.values(surahObject)[1] === '009'
         ? setIsSurahToba(false)
         : setIsSurahToba(true);
     } catch (error) {

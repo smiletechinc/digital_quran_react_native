@@ -10,10 +10,7 @@ import {backgroundAppImage} from '../constants/images';
 import {AppImageHeader} from '../components/images';
 import {LanguageContext, LanguageContextType} from '../context/languageContext';
 import {StatusBar} from 'expo-status-bar';
-import surahMeta from '../resources/surahMeta.json';
-import paraMeta from '../resources/paraMeta.json';
-import {updateSurah} from '../redux/action/surahAction';
-import {updatePara} from '../redux/action/paraAction';
+import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
 import {backBtn2} from '../constants/images';
 import {AuthContext, AuthContextType} from '../context/authContext';
@@ -27,8 +24,9 @@ type Props = {
 };
 
 const LandingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, updateAyat, updateSurah, updatePara, reduxUser} = props;
+  const {navigation, updateAyat, reduxUser} = props;
   const {setAuthUser} = React.useContext(AuthContext) as AuthContextType;
+  const {getSurahMetaData, getParaMeta} = FirebaseDataHook();
   const {textLanguage} = React.useContext(
     LanguageContext,
   ) as LanguageContextType;
@@ -37,20 +35,16 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
     Object.values(Quran.name).forEach(surahAyat => {
       updateAyat(surahAyat);
     });
-
-    updateSurah(Object.values(surahMeta));
-    updatePara(Object.values(paraMeta));
+    getSurahMetaData();
+    getParaMeta();
   }, [navigation]);
 
   const LogFunc = () => {
     setAuthUser(reduxUser);
-    console.log('reduxUSer', reduxUser);
     if (reduxUser.email === '') {
       navigation.replace('LandingScreenContainer');
-      console.log('login');
     } else {
       navigation.replace('HomeScreen');
-      console.log('home');
     }
   };
 
@@ -104,22 +98,11 @@ const maptStateToProps = (state: {userObject: {authUser: any}}) => {
 };
 
 const mapDispatchToProps = (
-  dispatch: (arg0: {
-    type: string;
-    surah?: SurahMeta;
-    ayat?: QuranMeta;
-    para?: ParaMeta;
-  }) => void,
+  dispatch: (arg0: {type: string; ayat?: QuranMeta}) => void,
 ) => {
   return {
     updateAyat: (updateVerseData: QuranMeta) => {
       dispatch(updateAyat(updateVerseData));
-    },
-    updateSurah: (updateSurahData: SurahMeta) => {
-      dispatch(updateSurah(updateSurahData));
-    },
-    updatePara: (updateParaData: ParaMeta) => {
-      dispatch(updatePara(updateParaData));
     },
   };
 };

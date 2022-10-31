@@ -96,6 +96,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     }
   };
   const renderItem = ({item, index}: any) => {
+    console.log('surahIndex', surahIndex);
     let indexNumber = isSurahFatiha ? index + 2 : index + 1;
     return (
       <SurahDetailList

@@ -1,19 +1,24 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
-import {styles} from './index';
-import {LanguagePicker} from '../components/picker';
-import {updateAyat} from '../redux/action/verseAction';
 import {connect, useDispatch} from 'react-redux';
-import Quran from '../resources/SurahIndex';
-import {backgroundAppImage} from '../constants/images';
-import {AppImageHeader} from '../components/images';
-import {LanguageContext, LanguageContextType} from '../context/languageContext';
 import {StatusBar} from 'expo-status-bar';
-import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
+////////////////////////////components//////////////////////////////////////////////
+import {AppImageHeader} from '../components/images';
+import {LanguagePicker} from '../components/picker';
+/////////////redux//////////////////////////////
+import {updateAyat} from '../redux/action/verseAction';
+///////////////////constant///////////////////////////////
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
-import {backBtn2} from '../constants/images';
+import {backgroundAppImage, backBtn2} from '../constants/images';
+//////////////////contextAPI///////////////////////////////////////////
 import {AuthContext, AuthContextType} from '../context/authContext';
+/////////////////HOOKS////////////////////////////////////////////
+import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
+//////////////Resources///////////////////////////////////////
+import Quran from '../resources/SurahIndex';
+///////////////Styles///////////////////////////////////////////
+import {styles} from './index';
 
 type Props = {
   navigation: any;
@@ -26,10 +31,7 @@ type Props = {
 const LandingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, updateAyat, reduxUser} = props;
   const {setAuthUser} = React.useContext(AuthContext) as AuthContextType;
-  const {getSurahMetaData, getParaMeta} = FirebaseDataHook();
-  const {textLanguage} = React.useContext(
-    LanguageContext,
-  ) as LanguageContextType;
+  const {getSurahMetaData, fetchBookmark, getParaMeta} = FirebaseDataHook();
 
   useEffect(() => {
     Object.values(Quran.name).forEach(surahAyat => {
@@ -37,9 +39,10 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
     });
     getSurahMetaData();
     getParaMeta();
+    fetchBookmark();
   }, [navigation]);
 
-  const LogFunc = () => {
+  const NextButtonFunction = () => {
     setAuthUser(reduxUser);
     if (reduxUser.email === '') {
       navigation.replace('LandingScreenContainer');
@@ -73,7 +76,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
             <Text style={styles.languageAppText}>Digital Quran</Text>
             <Text style={styles.selectionLanguageText}>Select Language</Text>
           </View>
-          <LanguagePicker onPress={LogFunc} />
+          <LanguagePicker onPress={NextButtonFunction} />
         </View>
         <View style={{position: 'absolute', opacity: 1}}>
           <Image

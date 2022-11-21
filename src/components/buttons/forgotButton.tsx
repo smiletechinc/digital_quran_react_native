@@ -4,12 +4,17 @@ import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 type ButtonProps = {
   title: string;
   onPress: any;
+  buttonStyle?: any;
 };
 
 const TextButton: React.FunctionComponent<ButtonProps> = props => {
-  const {title, onPress} = props;
+  const {title, onPress, buttonStyle} = props;
 
-  return <Button title={title} onPress={onPress} color={'#00B4AC'} />;
+  return (
+    <View style={buttonStyle}>
+      <Button title={title} onPress={onPress} color={'#00B4AC'} />
+    </View>
+  );
 };
 
 export default TextButton;

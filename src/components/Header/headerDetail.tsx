@@ -21,6 +21,7 @@ type Props = {
   fromSurah?: boolean;
   onPress?: any;
   surahIndex?: number;
+  ayahLishtHeader?: boolean;
 };
 const HeaderDetail: FunctionComponent<Props> = props => {
   const {t} = useTranslation();
@@ -32,6 +33,7 @@ const HeaderDetail: FunctionComponent<Props> = props => {
     fromSurah,
     onPress,
     surahIndex,
+    ayahLishtHeader,
   } = props;
   const {checkSurahBookmarked} = React.useContext(
     BookmarkVerseContext,
@@ -62,7 +64,9 @@ const HeaderDetail: FunctionComponent<Props> = props => {
           </View>
         ) : (
           <View style={[styles.textView, {marginBottom: 12}]}>
-            <Text style={styles.surahText}>{t(surahTitle)}</Text>
+            <Text style={styles.surahText}>
+              {ayahLishtHeader ? surahTitle : t(surahTitle)}
+            </Text>
             <Text style={[styles.countText, {textAlign: 'right'}]}>
               {surahVerseCount}
             </Text>

@@ -1,5 +1,9 @@
 export const UPDATE_SURAH = 'UPDATE_SURAH';
 export const UPDATE_AYATS = 'UPDATE_AYATS';
 export const UPDATE_PARA = 'UPDATE_PARA';
-export const ADD_FAV = 'ADD_FAV';
 export const UPDATE_USER = 'UPDATE_USER';
+export const ADD_FAV_BOOK = 'ADD_FAV_BOOk';
+export const DELETE_FAV_BOOK = 'DELETE_FAV_BOOk';
+export const UPDATE_FAV_BOOK = 'UPDATE_FAV_BOOK';
+export const ADD_NEW_BOOk = 'ADD_NEW_BOOk';
+export const DELETE_AYAT_BOOK = 'DELETE_AYAT_BOOK';

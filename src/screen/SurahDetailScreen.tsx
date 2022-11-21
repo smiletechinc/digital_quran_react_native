@@ -1,37 +1,41 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
-import {Text, View, FlatList, ScrollView} from 'react-native';
+import {Text, View, FlatList, ScrollView, Alert} from 'react-native';
 import {styles} from './index';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import {SurahDetailList} from '../components/List/index';
 import HeaderDetail from '../components/Header/headerDetail';
 import MusufView from '../components/musuafView';
 import {SurahDetailHook} from '../hooks/surahDetailHook';
+import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {ClipboardHook} from '../hooks/clipboardHook';
 import Toast from 'react-native-fast-toast';
-import {connect, useDispatch} from 'react-redux';
-import {addFavVerse} from '../redux/action/favVerseAction';
 import {
   BookmarkVerseContext,
   BookmarkVerseContextType,
 } from '../context/favouriteVerseContext';
-import {favIcon, favSelectIcon} from '../constants/images';
 import {useTranslation} from 'react-i18next';
+import BookmarkModel from '../model/bookmarkOptionModel';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import {InternetCheckedHook} from '../hooks/internetHook';
 
 type Props = {
   navigation: any;
   route: any;
   reduxVerses: any;
   updated: boolean;
-  addFavVerse: any;
 };
 
 const SurahScreen: React.FunctionComponent<Props> = props => {
   const {t} = useTranslation();
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
+  const {addAyatInBookmark, getAyahId, fetchAyahObjectID} = FirebaseDataHook();
+  const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
   const toast = useRef(null);
-  const {navigation, addFavVerse} = props;
+  const {navigation} = props;
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
+  const [verseString, setVerseString] = useState('');
+
   const {
     surahDetaillMake,
     surahData,
@@ -44,7 +48,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     surahTitleArabic,
     surahObject,
   } = SurahDetailHook();
-
+  const refRBSheet = useRef();
   const {
     addInVerseBook,
     checkBookmarked,
@@ -53,6 +57,13 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     addInSurahBook,
     checkSurahBookmarked,
   } = React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
+
+  useEffect(() => {
+    if (internetConditionCheck) {
+      getAyahId(verseString);
+      refRBSheet.current.open();
+    }
+  }, [internetConditionCheck]);
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -64,28 +75,28 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     }
   }, [textCopyStatus]);
 
+  useEffect(() => {
+    surahDetaillMake();
+  }, [navigation]);
+
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
     selectedIndexValue === 1 ? setMushafState(false) : setMushafState(true);
   };
 
-  useEffect(() => {
-    surahDetaillMake();
-  }, [navigation]);
-
   const favFunctionCalled = (verseSelect: string, verseNumber: Number) => {
-    var bookVerse = {
-      surahNumber: surahIndex,
-      ayatNumber: verseNumber,
-      ayatText: verseSelect,
-      surahName: surahTitleArabic,
-    };
+    internetCheckFunction();
+    setVerseString(verseSelect);
+  };
 
-    if (!checkBookmarked(bookVerse)) {
-      addInVerseBook(bookVerse);
-    } else {
-      removeInVerseBook(bookVerse);
-    }
+  const createFunction = (libraryName: string) => {
+    addAyatInBookmark([Object.keys(fetchAyahObjectID)[0]], libraryName);
+    refRBSheet.current.close();
+  };
+
+  const doneFunction = () => {
+    refRBSheet.current.close();
+    Alert.alert('Saved');
   };
 
   const surahFavFunction = () => {
@@ -96,7 +107,6 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     }
   };
   const renderItem = ({item, index}: any) => {
-    console.log('surahIndex', surahIndex);
     let indexNumber = isSurahFatiha ? index + 2 : index + 1;
     return (
       <SurahDetailList
@@ -181,17 +191,28 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
           />
         )}
       </View>
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={true}
+        height={400}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+        }}>
+        <BookmarkModel
+          onCreateButton={createFunction}
+          onCancelButtonFunc={() => refRBSheet.current.close()}
+          ayatId={Object.keys(fetchAyahObjectID)[0]}
+          onDoneButton={doneFunction}
+        />
+      </RBSheet>
     </View>
   );
 };
-const mapDispatchToProps = (
-  dispatch: (arg0: {type: string; favVerseSelect?: FavVerseMeta}) => void,
-) => {
-  return {
-    addFavVerse: (addFavourite: FavVerseMeta) => {
-      dispatch(addFavVerse(addFavourite));
-    },
-  };
-};
 
-export default connect(null, mapDispatchToProps)(SurahScreen);
+export default SurahScreen;

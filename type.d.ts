@@ -76,19 +76,23 @@ type SurahsAction = {
   surah: SurahMeta;
 };
 
-type FavVerseMeta = {
-  surahNumber: Number;
-  ayatNumber: Number;
-  ayatText: any;
+type FavBookMeta = {
+  bookId?: String;
+  isCheck?: any;
+  librarData?: any[];
+  libraryName?: String;
+  createdId?: String;
 };
 
-type FavVerseState = {
-  favVerses: FavVerseMeta[];
+type FavBookState = {
+  favBooks: FavBookMeta[];
 };
-type FavVerseAction = {
+
+type FavBookAction = {
   type: string;
-  favVerse: FavVerseMeta;
+  favBook: FavBookMeta;
 };
+
 type AuthObject = {
   email: string;
   password: string;

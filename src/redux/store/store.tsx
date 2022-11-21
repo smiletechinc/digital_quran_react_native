@@ -7,14 +7,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import surahReducer from '../reducer/surahReducer';
 import verseReducer from '../reducer/verseReducer';
 import paraReducer from '../reducer/paraReducer';
-import favVerseReducer from '../reducer/favVerseReducer';
+import favReducer from '../reducer/favVerseReducer';
 import userReducer from '../reducer/userReducer';
 
 const rootReducer = combineReducers({
   surahs: surahReducer,
   verses: verseReducer,
   parahs: paraReducer,
-  bookMarkVerses: favVerseReducer,
+  bookMarkVerses: favReducer,
   userObject: userReducer,
 });
 

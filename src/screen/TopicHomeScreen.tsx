@@ -10,19 +10,23 @@ import {
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import EmptyState from '../components/emptyState';
 import {SurahContext, SurahContextType} from '../context/surahContext';
+import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {favEmptyStateImage} from '../constants/images';
 import {useTranslation} from 'react-i18next';
+import {deleteFavBook} from '../redux/action/favVerseAction';
+import {InternetCheckedHook} from '../hooks/internetHook';
 
 type Props = {
   navigation: any;
   updated: boolean;
   reduxFavouriteVerse: any;
+  deleteFavBook: any;
 };
 
 let updatedOuter = false;
 
 const TopicsScreen: React.FunctionComponent<Props> = props => {
-  const {navigation} = props;
+  const {navigation, reduxFavouriteVerse, deleteFavBook} = props;
   const {t} = useTranslation();
   const {favoriteVerses, removeInVerseBook, favoriteSurahs, removeInSurahBook} =
     React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
@@ -30,36 +34,29 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   const [favouirteVerseData, setFavouriteVersesData] = useState([]);
   const [favouirteSurahsData, setFavouriteSurahsData] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isInternet, setIsInternet] = useState(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
   const [surahState, setSurahState] = useState<boolean>(true);
-  const [lisDataObject, setListDataObject] = useState([]);
+  const {removeBookmark} = FirebaseDataHook();
+  const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
+
+  useEffect(() => {
+    setFavouriteVersesData(reduxFavouriteVerse);
+    if (internetConditionCheck) {
+      setIsInternet(true);
+    }
+  }, [selectedIndexValue, internetConditionCheck]);
 
   useEffect(() => {
     if (favoriteVerses || favoriteSurahs) {
       setFavouriteSurahsData(favoriteSurahs);
-      setFavouriteVersesData(favoriteVerses);
       setIsFavorite(false);
     }
   }, [favoriteVerses, isFavorite, favoriteSurahs]);
 
-  useEffect(() => {
-    console.log('listObject', lisDataObject);
-    if (surahState) {
-      setListDataObject(favoriteSurahs);
-    } else {
-      setListDataObject(favoriteVerses);
-    }
-  }, []);
-
   const favFunctionCalled = (item: any) => {
     if (!surahState) {
-      var bookVerse = {
-        surahNumber: item.surahNumber,
-        ayatNumber: item.ayatNumber,
-        ayatText: item.ayatText,
-      };
-      removeInVerseBook(bookVerse);
-      setIsFavorite(true);
+      removeBookmark(item.id);
     } else {
       removeInSurahBook(Number(item.index));
       setIsFavorite(true);
@@ -68,23 +65,29 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
 
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
+    internetCheckFunction();
     selectedIndexValue === 0 ? setSurahState(false) : setSurahState(true);
   };
 
   const moveFunction = (surahdata: any) => {
-    setSurahObject(surahdata);
-    navigation.navigate('SurahScreen');
+    if (surahState) {
+      setSurahObject(surahdata);
+      navigation.navigate('SurahScreen');
+    } else {
+      navigation.navigate('AyahList', {surahdata});
+    }
   };
 
-  const renderItem = ({item}: any) => {
+  const renderItem = ({item, index}: any) => {
     return (
       <BookmarkListItem
         ayaObject={item}
+        itemIndex={index}
         onPress={() => {
           favFunctionCalled(item);
         }}
         isSurah={surahState ? true : false}
-        onTouchEnd={() => {
+        onSurahTouchEnd={() => {
           moveFunction(item);
         }}
       />
@@ -104,7 +107,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         ]}>
         <View style={styles.segementedView}>
           <SegmentedControlTab
-            values={[`${t('surah')}`, `${t('ayat')}`]}
+            values={[`${t('surah')}`, `${t('AyahList')}`]}
             selectedIndex={selectedIndexValue}
             onTabPress={value => MushafNavigation(value)}
             tabsContainerStyle={styles.tabsContainerStyle}
@@ -136,7 +139,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         )}
         {selectedIndexValue === 1 && (
           <View>
-            {favouirteVerseData?.length > 0 ? (
+            {isInternet && favouirteVerseData?.length > 0 ? (
               <FlatList
                 style={[styles.listContainer]}
                 data={favouirteVerseData}
@@ -157,10 +160,22 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
     </ScrollView>
   );
 };
-const mapStateToProps = (state: {bookMarkVerses: {favVerses: any}}) => {
+
+const mapDispatchToProps = (
+  dispatch: (arg0: {type: string; ayatID?: String}) => void,
+) => {
   return {
-    reduxFavouriteVerse: state.bookMarkVerses.favVerses,
+    deleteFavBook: (deleteFavBookData: String) => {
+      dispatch(deleteFavBook(deleteFavBookData));
+    },
+  };
+};
+
+const mapStateToProps = (state: {bookMarkVerses: {favBooks: any}}) => {
+  console.log('redux form list', state.bookMarkVerses.favBooks);
+  return {
+    reduxFavouriteVerse: state.bookMarkVerses.favBooks,
     updated: !updatedOuter,
   };
 };
-export default connect(mapStateToProps, null)(TopicsScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TopicsScreen);

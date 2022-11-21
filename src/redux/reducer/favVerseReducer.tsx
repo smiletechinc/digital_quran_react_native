@@ -2,23 +2,44 @@ import {act} from 'react-test-renderer';
 import {AnyAction} from 'redux';
 import * as actionTypes from '../action/actionTypes';
 
-const initialState: FavVerseState = {
-  favVerses: [],
+const initialState: FavBookState = {
+  favBooks: [],
 };
 
-const paraReducer = (
-  state: FavVerseState = initialState,
+const favReducer = (
+  state: FavBookState = initialState,
   action: AnyAction,
-): FavVerseState => {
+): FavBookState => {
   switch (action.type) {
-    case actionTypes.ADD_FAV:
+    case actionTypes.ADD_NEW_BOOk:
       return {
         ...state,
-        favVerses: state.favVerses.concat(action.favVerse),
+        favBooks: state.favBooks.concat(action.favBook),
+      };
+    case actionTypes.UPDATE_FAV_BOOK:
+      return {
+        ...state,
+        favBooks: state.favBooks.map(element =>
+          Object.values(element)[1] === action.bookId
+            ? {
+                ...element,
+                libraryData: action.favUpdateAyahArray,
+              }
+            : element,
+        ),
+      };
+    case actionTypes.DELETE_FAV_BOOK:
+      var updatedArray = state.favBooks.filter((element, index) => {
+        return Object.values(element)[1] != action.bookId;
+      });
+      console.log('array id', updatedArray);
+      return {
+        ...state,
+        favBooks: updatedArray,
       };
     default:
       return state;
   }
 };
 
-export default paraReducer;
+export default favReducer;

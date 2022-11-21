@@ -11,7 +11,8 @@ export const InternetCheckedHook = () => {
   const [internetCheckStatus, setInternetCheckStatus] = useState<
     boolean | null
   >();
-  const [internetConditionCheck, setInternetConditionCheck] = useState(false);
+  const [internetConditionCheck, setInternetConditionCheck] =
+    useState<boolean>();
 
   const internetCheckFunction = async () => {
     try {

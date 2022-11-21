@@ -15,6 +15,7 @@ import LandingScreenContainer from './LandingScreen1';
 import SigninScreen from './SigninScreen';
 import SignupScreen from './SignupScreen';
 import ResetPasswordContainer from './ResetPassword';
+import AyahListScreen from './AyahListScreen';
 
 export {
   SplashScreen,
@@ -25,6 +26,7 @@ export {
   HomeScreen,
   SettingScreen,
   TopicsScreen,
+  AyahListScreen,
   SearchingScreen,
   CameraSearchScreen,
   SurahScreen,

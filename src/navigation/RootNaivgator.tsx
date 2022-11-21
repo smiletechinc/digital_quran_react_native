@@ -15,6 +15,7 @@ import {
   ParaDetailScreen,
   CameraSearchScreen,
   ResetPasswordContainer,
+  AyahListScreen,
   UserAccountScreen,
 } from '../screen/index';
 import {TopicsScreen, SearchingScreen, SettingScreen} from '../screen/index';
@@ -28,6 +29,7 @@ const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const SearchStack = createNativeStackNavigator();
 const ParaStack = createNativeStackNavigator();
+const TopicStack = createNativeStackNavigator();
 
 const MyTheme = {
   ...DefaultTheme,
@@ -88,6 +90,25 @@ const RootNavigator = () => {
     );
   }
 
+  function TopicStackScreen() {
+    return (
+      <TopicStack.Navigator>
+        <TopicStack.Screen
+          name="Topics"
+          component={TopicsScreen}
+          options={{
+            header: () => null,
+          }}
+        />
+        <TopicStack.Screen
+          name="AyahList"
+          component={AyahListScreen}
+          options={{header: () => null}}
+        />
+      </TopicStack.Navigator>
+    );
+  }
+
   function ReadingTabs() {
     return (
       <Tab.Navigator
@@ -124,7 +145,7 @@ const RootNavigator = () => {
         <Tab.Screen name="Surah" component={ReadingStackScreen} />
         <Tab.Screen name="Para" component={ParaStackScreen} />
         <Tab.Screen name="Search" component={SearchStackScreen} />
-        <Tab.Screen name="Topics" component={TopicsScreen} />
+        <Tab.Screen name="Topics" component={TopicStackScreen} />
         <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
     );
@@ -167,7 +188,7 @@ const RootNavigator = () => {
         <Tab.Screen name="Surah" component={ReadingStackScreen} />
         <Tab.Screen name="Para" component={ParaStackScreen} />
         <Tab.Screen name="Search" component={SearchStackScreen} />
-        <Tab.Screen name="Topics" component={TopicsScreen} />
+        <Tab.Screen name="Topics" component={TopicStackScreen} />
         <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
     );

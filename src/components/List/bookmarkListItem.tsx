@@ -7,38 +7,56 @@ type Props = {
   onPress?: any;
   ayaObject: any;
   isSurah: boolean;
-  onTouchEnd: any;
+  itemIndex: number;
+  onSurahTouchEnd: any;
+  // onTopicTouchEnd: any;
 };
 
 const BookmarkListItem: React.FunctionComponent<Props> = props => {
-  const {onPress, onTouchEnd, ayaObject, isSurah} = props;
+  const {
+    onPress,
+    onSurahTouchEnd,
+    // onTopicTouchEnd,
+    ayaObject,
+    isSurah,
+    itemIndex,
+  } = props;
   const {t} = useTranslation();
   return isSurah ? (
     <View style={[styles.itemContainer]}>
       <TouchableOpacity style={{padding: 32}} onPress={onPress}>
         <Image source={favSelectIcon} />
       </TouchableOpacity>
-      <View style={styles.textView} onTouchEnd={onTouchEnd}>
+      <View style={styles.textView} onTouchEnd={onSurahTouchEnd}>
         <Text style={styles.ayatText}>{t(ayaObject.title)}</Text>
         <Text style={styles.ayatIndex}>{Number(t(ayaObject.index))}</Text>
       </View>
     </View>
   ) : (
-    <View
-      style={[
-        styles.itemContainer,
-        {justifyContent: 'flex-start', paddingHorizontal: 0},
-      ]}>
-      <TouchableOpacity
-        style={{padding: 32, position: 'absolute'}}
-        onPress={onPress}>
+    // <View
+    //   style={[
+    //     styles.itemContainer,
+    //     {justifyContent: 'flex-start', paddingHorizontal: 0},
+    //   ]}>
+    //   <TouchableOpacity
+    //     style={{padding: 32, position: 'absolute'}}
+    //     onPress={onPress}>
+    //     <Image source={favSelectIcon} />
+    //   </TouchableOpacity>
+    //   <View style={{marginEnd: 64}}>
+    //     <Text style={styles.ayatText1}>{ayaObject.ayatText}</Text>
+    //     <Text style={styles.ayatIndex1}>{` (${t(ayaObject.surahName)}:${t(
+    //       ayaObject.ayatNumber,
+    //     )})`}</Text>
+    //   </View>
+    // </View>
+    <View style={[styles.itemContainer]}>
+      <TouchableOpacity style={{padding: 32}} onPress={onPress}>
         <Image source={favSelectIcon} />
       </TouchableOpacity>
-      <View style={{marginEnd: 64}}>
-        <Text style={styles.ayatText1}>{ayaObject.ayatText}</Text>
-        <Text style={styles.ayatIndex1}>{` (${t(ayaObject.surahName)}:${t(
-          ayaObject.ayatNumber,
-        )})`}</Text>
+      <View style={styles.textView} onTouchEnd={onSurahTouchEnd}>
+        <Text style={styles.ayatText}>{ayaObject.libraryName}</Text>
+        <Text style={styles.ayatIndex}>{itemIndex + 1}</Text>
       </View>
     </View>
   );

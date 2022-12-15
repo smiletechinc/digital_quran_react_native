@@ -79,6 +79,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
 
   const searchByImage = () => {
     console.log('hellsso');
+    // Alert.alert('heello');
     navigation.navigate('CameraSearchScreen');
   };
 

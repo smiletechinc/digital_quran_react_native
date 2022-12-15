@@ -90,7 +90,6 @@ const SigninScreen: FunctionComponent<Props> = props => {
     }
   }, [userRecivedError]);
   const proceedToLogin = () => {
-    Alert.alert('wait for logging');
     const authObject = {
       email,
       password,

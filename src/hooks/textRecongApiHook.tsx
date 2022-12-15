@@ -13,8 +13,8 @@ export const FetchTextFromImageHook = () => {
     photoType: any,
   ) => {
     setFetching(true);
-    // setApiResponseTextData({});
-    new Promise(async (resolve, reject) => {
+    setApiResponseTextData({});
+    new Promise(async () => {
       try {
         const URL_ = BASE_URL;
         var headers = {
@@ -40,6 +40,7 @@ export const FetchTextFromImageHook = () => {
             headers: headers,
           })
           .then((resonse: any) => {
+            console.log('resonse', resonse);
             const responseCheck = resonse.data.IsErroredOnProcessing;
             var rawResponse;
             if (!responseCheck) {
@@ -65,6 +66,7 @@ export const FetchTextFromImageHook = () => {
             }
           })
           .catch((e: any) => {
+            console.log('e', e.toString());
             responseObject = {
               isErrorProcessing: true,
               text: e.toString(),

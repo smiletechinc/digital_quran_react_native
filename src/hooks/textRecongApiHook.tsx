@@ -13,7 +13,7 @@ export const FetchTextFromImageHook = () => {
     photoType: any,
   ) => {
     setFetching(true);
-    setApiResponseTextData({});
+    // setApiResponseTextData({});
     new Promise(async (resolve, reject) => {
       try {
         const URL_ = BASE_URL;

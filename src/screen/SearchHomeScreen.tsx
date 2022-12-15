@@ -14,7 +14,7 @@ import {
   SearchBarDisplayResult,
 } from '../components/searchBar/index';
 import {SearchContext, SearchContextType} from '../context/searchContext';
-import {InternetCheckedHook} from '../hooks/internetHook';
+// import {InternetCheckedHook} from '../hooks/internetHook';
 import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
 import HeaderWithText from '../components/Header/header';
@@ -29,7 +29,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const toast = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {searchInAdvanced} = SearchAyahHook();
-  const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
+  // const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
   const [isImage, setIsImage] = useState<string | null>(null);
   const {
     startAnimation,
@@ -57,11 +57,11 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     }
   }, [clicked]);
 
-  useEffect(() => {
-    if (internetConditionCheck) {
-      navigation.navigate('CameraSearchScreen');
-    }
-  }, [internetConditionCheck]);
+  // useEffect(() => {
+  // if (internetConditionCheck) {
+  // navigation.navigate('CameraSearchScreen');
+  // }
+  // }, [internetConditionCheck]);
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -78,7 +78,8 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   const searchByImage = () => {
-    internetCheckFunction();
+    console.log('hellsso');
+    navigation.navigate('CameraSearchScreen');
   };
 
   return (

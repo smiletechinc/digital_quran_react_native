@@ -16,6 +16,7 @@ import * as ImagePicker from 'expo-image-picker';
 import {CameraClickIcon, Folder} from '../components/cameraIcons';
 import {FetchTextFromImageHook} from '../hooks/textRecongApiHook';
 import ContentLoader, {Rect} from 'react-content-loader/native';
+import axios from 'axios';
 
 type Props = {
   navigation: any;
@@ -26,6 +27,7 @@ let camera: Camera;
 
 const CameraSearchScreen: React.FunctionComponent<Props> = props => {
   const {navigation} = props;
+  // const [fetching, setFetching] = useState(false);
   const {getAyahImageHook, apiResponseTextData, fetching} =
     FetchTextFromImageHook();
   const [imagePath, setImagePath] = useState<string | null>(null);
@@ -57,7 +59,97 @@ const CameraSearchScreen: React.FunctionComponent<Props> = props => {
     console.log('photo when take picture', photo);
     // launchEditor(photo.uri);
   };
+  // const getAyahImageHook = async (
+  //   photoUri: any,
+  //   photoName: any,
+  //   photoType: any,
+  // ) => {
+  //   setFetching(true);
+  //   // setApiResponseTextData({});
 
+  //   // new Promise(async (resolve, reject) => {
+  //   try {
+  //     const URL_ = 'https://api.ocr.space/parse/image';
+  //     var headers = {
+  //       'Content-Type': 'multipart/form-data',
+  //       apikey: 'K88634971788957',
+  //     };
+  //     const imageToSend = {
+  //       uri: photoUri,
+  //       type: photoType,
+  //       name: photoName,
+  //     };
+  //     var formBody = new FormData();
+  //     formBody.append('url', imageToSend.uri);
+  //     formBody.append('file', imageToSend);
+  //     formBody.append('language', 'ara');
+  //     formBody.append('scale', 'true');
+  //     var responseObject = {
+  //       isErrorProcessing: false,
+  //       text: '',
+  //     };
+  //     axios
+  //       .post(URL_, formBody, {
+  //         headers: headers,
+  //       })
+  //       .then((resonse: any) => {
+  //         console.log('resonse.data.IsErroredOnProcessing', resonse);
+  //         const responseCheck = resonse.data.IsErroredOnProcessing;
+  //         // var rawResponse;
+  //         // if (!responseCheck) {
+  //         //   Object.values(resonse.data).forEach((resoponseData: any) => {
+  //         //     Object.values(resoponseData).forEach(
+  //         //       (responseDataInnder: any) => {
+  //         //         if (Object.values(responseDataInnder)[3]) {
+  //         //           rawResponse = Object.values(responseDataInnder)[3];
+  //         //           responseObject = {
+  //         //             isErrorProcessing: false,
+  //         //             text: JSON.stringify(rawResponse),
+  //         //           };
+  //         //         }
+  //         //       },
+  //         //     );
+  //         //   });
+  //         // } else {
+  //         //   rawResponse = Object.values(resonse.data.ErrorMessage);
+  //         //   responseObject = {
+  //         //     isErrorProcessing: true,
+  //         //     text: rawResponse.toString(),
+  //         //   };
+  //         // }
+  //       })
+  //       .catch((e: any) => {
+  //         console.log('error', e);
+  //         responseObject = {
+  //           isErrorProcessing: true,
+  //           text: e.toString(),
+  //         };
+  //       });
+  //     // if (responseObject) {
+  //     //   if (
+  //     //     !Object.values(responseObject)[0] &&
+  //     //     Object.values(responseObject)[1] != undefined
+  //     //   ) {
+  //     //     const imageObject = {
+  //     //       imageCapture: imagePath,
+  //     //       apiText: Object.values(responseObject)[1],
+  //     //     };
+  //     //     navigation.navigate('home', {imageObject});
+  //     //   } else if (Object.values(responseObject)[0]) {
+  //     //     Alert.alert(
+  //     //       'Oops',
+  //     //       `${Object.values(responseObject)[1]}, Please Try Again`,
+  //     //     );
+  //     //   }
+  //     // }
+  //     // setApiResponseTextData(responseObject);
+  //     setFetching(false);
+  //   } catch (err) {
+  //     setFetching(false);
+  //     console.log(err);
+  //   }
+  //   // });
+  // };
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,

@@ -45,7 +45,7 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
   const NextButtonFunction = () => {
     setAuthUser(reduxUser);
     if (reduxUser.email === '') {
-      navigation.replace('LandingScreenContainer');
+      navigation.navigate('LandingScreenContainer');
     } else {
       navigation.replace('HomeScreen');
     }

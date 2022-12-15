@@ -16,7 +16,7 @@ import {
 import {useTranslation} from 'react-i18next';
 import BookmarkModel from '../model/bookmarkOptionModel';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import {InternetCheckedHook} from '../hooks/internetHook';
+// import {InternetCheckedHook} from '../hooks/internetHook';
 
 type Props = {
   navigation: any;
@@ -29,7 +29,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   const {t} = useTranslation();
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {addAyatInBookmark, getAyahId, fetchAyahObjectID} = FirebaseDataHook();
-  const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
+  // const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
   const toast = useRef(null);
   const {navigation} = props;
   const [mushafState, setMushafState] = useState<boolean>(false);
@@ -58,12 +58,12 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     checkSurahBookmarked,
   } = React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
 
-  useEffect(() => {
-    if (internetConditionCheck) {
-      getAyahId(verseString);
-      refRBSheet.current.open();
-    }
-  }, [internetConditionCheck]);
+  // useEffect(() => {
+  //   if (internetConditionCheck) {
+  //     getAyahId(verseString);
+  //     refRBSheet.current.open();
+  //   }
+  // }, [internetConditionCheck]);
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -85,8 +85,10 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   };
 
   const favFunctionCalled = (verseSelect: string, verseNumber: Number) => {
-    internetCheckFunction();
-    setVerseString(verseSelect);
+    // internetCheckFunction();
+    // setVerseString(verseSelect);
+    getAyahId(verseSelect);
+    refRBSheet.current.open();
   };
 
   const createFunction = (libraryName: string) => {

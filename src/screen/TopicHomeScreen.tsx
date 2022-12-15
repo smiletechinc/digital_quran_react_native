@@ -14,7 +14,7 @@ import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {favEmptyStateImage} from '../constants/images';
 import {useTranslation} from 'react-i18next';
 import {deleteFavBook} from '../redux/action/favVerseAction';
-import {InternetCheckedHook} from '../hooks/internetHook';
+// import {InternetCheckedHook} from '../hooks/internetHook';
 
 type Props = {
   navigation: any;
@@ -34,22 +34,23 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   const [favouirteVerseData, setFavouriteVersesData] = useState([]);
   const [favouirteSurahsData, setFavouriteSurahsData] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isInternet, setIsInternet] = useState(false);
+  // const [isInternet, setIsInternet] = useState(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
   const [surahState, setSurahState] = useState<boolean>(true);
   const {removeBookmark} = FirebaseDataHook();
-  const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
+  // const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
 
-  useEffect(() => {
-    setFavouriteVersesData(reduxFavouriteVerse);
-    if (internetConditionCheck) {
-      setIsInternet(true);
-    }
-  }, [selectedIndexValue, internetConditionCheck]);
+  // useEffect(() => {
+  //   setFavouriteVersesData(reduxFavouriteVerse);
+  //   if (internetConditionCheck) {
+  //     setIsInternet(true);
+  //   }
+  // }, [selectedIndexValue, internetConditionCheck]);
 
   useEffect(() => {
     if (favoriteVerses || favoriteSurahs) {
       setFavouriteSurahsData(favoriteSurahs);
+      setFavouriteVersesData(reduxFavouriteVerse);
       setIsFavorite(false);
     }
   }, [favoriteVerses, isFavorite, favoriteSurahs]);
@@ -65,7 +66,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
 
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
-    internetCheckFunction();
+    // internetCheckFunction();
     selectedIndexValue === 0 ? setSurahState(false) : setSurahState(true);
   };
 
@@ -139,7 +140,7 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         )}
         {selectedIndexValue === 1 && (
           <View>
-            {isInternet && favouirteVerseData?.length > 0 ? (
+            {favouirteVerseData?.length > 0 ? (
               <FlatList
                 style={[styles.listContainer]}
                 data={favouirteVerseData}

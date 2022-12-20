@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useEffect, useRef, useState} from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet, FlatList, ScrollView} from 'react-native';
 import {SCREEN_WIDTH} from '../constants/index';
 import {TextButton} from '../components/buttons';
 import TextInputModel from './textInputModel';

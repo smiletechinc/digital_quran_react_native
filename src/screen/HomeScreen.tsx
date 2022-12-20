@@ -20,6 +20,7 @@ import {
   BookmarkVerseContext,
   BookmarkVerseContextType,
 } from '../context/favouriteVerseContext';
+import {useNetInfo} from '@react-native-community/netinfo';
 
 type Props = {
   navigation: any;
@@ -56,14 +57,17 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
   const {bookVerseValues} = React.useContext(
     BookmarkVerseContext,
   ) as BookmarkVerseContextType;
+  const netInfo = useNetInfo();
 
   React.useEffect(() => {
     if (reduxVerses) {
       setVersesObject(reduxVerses);
       makePara(reduxVerses, reduxParahs, reduxSurahs);
-      fetchBookmark(reduxUser.id);
-      console.log('red', reduxfavVerses);
-      bookVerseValues(reduxfavVerses);
+      if (netInfo.isConnected && netInfo.isInternetReachable) {
+        fetchBookmark(reduxUser.id);
+      } else {
+        bookVerseValues(reduxfavVerses);
+      }
     }
   }, [navigation]);
 

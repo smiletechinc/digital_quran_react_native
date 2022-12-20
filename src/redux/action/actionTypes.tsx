@@ -7,3 +7,4 @@ export const DELETE_FAV_BOOK = 'DELETE_FAV_BOOk';
 export const UPDATE_FAV_BOOK = 'UPDATE_FAV_BOOK';
 export const ADD_NEW_BOOk = 'ADD_NEW_BOOk';
 export const DELETE_AYAT_BOOK = 'DELETE_AYAT_BOOK';
+export const BOOKS_UPDATE = 'BOOKS_UPDATE';

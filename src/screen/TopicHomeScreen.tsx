@@ -1,56 +1,45 @@
 import React, {useEffect, useState} from 'react';
 import {View, ScrollView, FlatList} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
+import {useNetInfo} from '@react-native-community/netinfo';
+
 import {styles} from './index';
-import {connect, useDispatch} from 'react-redux';
+import EmptyState from '../components/emptyState';
 import {BookmarkListItem} from '../components/List';
+import {SurahContext, SurahContextType} from '../context/surahContext';
 import {
   BookmarkVerseContext,
   BookmarkVerseContextType,
 } from '../context/favouriteVerseContext';
-import SegmentedControlTab from 'react-native-segmented-control-tab';
-import EmptyState from '../components/emptyState';
-import {SurahContext, SurahContextType} from '../context/surahContext';
-import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {favEmptyStateImage} from '../constants/images';
-import {useTranslation} from 'react-i18next';
-import {deleteFavBook} from '../redux/action/favVerseAction';
-// import {InternetCheckedHook} from '../hooks/internetHook';
+import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 
 type Props = {
   navigation: any;
   updated: boolean;
-  reduxFavouriteVerse: any;
-  deleteFavBook: any;
 };
 
-let updatedOuter = false;
-
 const TopicsScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, reduxFavouriteVerse, deleteFavBook} = props;
+  const {navigation} = props;
   const {t} = useTranslation();
-  const {favoriteVerses, removeInVerseBook, favoriteSurahs, removeInSurahBook} =
-    React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
+  const {favoriteVerses, favoriteSurahs, removeInSurahBook} = React.useContext(
+    BookmarkVerseContext,
+  ) as BookmarkVerseContextType;
   const {setSurahObject} = React.useContext(SurahContext) as SurahContextType;
   const [favouirteVerseData, setFavouriteVersesData] = useState([]);
   const [favouirteSurahsData, setFavouriteSurahsData] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-  // const [isInternet, setIsInternet] = useState(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
   const [surahState, setSurahState] = useState<boolean>(true);
   const {removeBookmark} = FirebaseDataHook();
-  // const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
 
-  // useEffect(() => {
-  //   setFavouriteVersesData(reduxFavouriteVerse);
-  //   if (internetConditionCheck) {
-  //     setIsInternet(true);
-  //   }
-  // }, [selectedIndexValue, internetConditionCheck]);
+  const netInfo = useNetInfo();
 
   useEffect(() => {
     if (favoriteVerses || favoriteSurahs) {
       setFavouriteSurahsData(favoriteSurahs);
-      setFavouriteVersesData(reduxFavouriteVerse);
+      setFavouriteVersesData(favoriteVerses);
       setIsFavorite(false);
     }
   }, [favoriteVerses, isFavorite, favoriteSurahs]);
@@ -66,7 +55,6 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
 
   const MushafNavigation = (value: any) => {
     setSelectedIndexValue(value);
-    // internetCheckFunction();
     selectedIndexValue === 0 ? setSurahState(false) : setSurahState(true);
   };
 
@@ -77,6 +65,10 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
     } else {
       navigation.navigate('AyahList', {surahdata});
     }
+  };
+
+  const LogFunc = () => {
+    navigation.navigate('Surah');
   };
 
   const renderItem = ({item, index}: any) => {
@@ -93,10 +85,6 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         }}
       />
     );
-  };
-
-  const LogFunc = () => {
-    navigation.navigate('Surah');
   };
 
   return (
@@ -140,7 +128,9 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
         )}
         {selectedIndexValue === 1 && (
           <View>
-            {favouirteVerseData?.length > 0 ? (
+            {favouirteVerseData?.length > 0 &&
+            netInfo.isConnected &&
+            netInfo.isInternetReachable ? (
               <FlatList
                 style={[styles.listContainer]}
                 data={favouirteVerseData}
@@ -162,21 +152,4 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-const mapDispatchToProps = (
-  dispatch: (arg0: {type: string; ayatID?: String}) => void,
-) => {
-  return {
-    deleteFavBook: (deleteFavBookData: String) => {
-      dispatch(deleteFavBook(deleteFavBookData));
-    },
-  };
-};
-
-const mapStateToProps = (state: {bookMarkVerses: {favBooks: any}}) => {
-  console.log('redux form list', state.bookMarkVerses.favBooks);
-  return {
-    reduxFavouriteVerse: state.bookMarkVerses.favBooks,
-    updated: !updatedOuter,
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(TopicsScreen);
+export default TopicsScreen;

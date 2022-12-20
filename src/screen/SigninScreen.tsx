@@ -16,7 +16,6 @@ import {useDispatch, useSelector} from 'react-redux';
 // Custom UI components.
 import {COLORS, SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
 import {backgroundAppImage, backBtn2} from '../constants/images';
-import {AuthContext, AuthContextType} from '../context/authContext';
 import styles from './ScreenStyles';
 import {userAuthencticationHook} from '../hooks/userAuthentication';
 import {updateUser} from '../redux/action/userAction';
@@ -36,7 +35,6 @@ const SigninScreen: FunctionComponent<Props> = props => {
     setUserRecievedError,
   } = userAuthencticationHook();
   const {t} = useTranslation();
-  const {setAuthUser} = React.useContext(AuthContext) as AuthContextType;
   const {navigation, route} = props;
   const [email, setEmail] = useState<string>(''); // Testing@gmail.com
   const [password, setPassword] = useState<string>(''); // 123456
@@ -61,7 +59,6 @@ const SigninScreen: FunctionComponent<Props> = props => {
   useEffect(() => {
     if (userRecievedObject.email != '') {
       console.log('userRecievedObject', userRecievedObject);
-      setAuthUser(userRecievedObject);
       dispatch(updateUser(userRecievedObject));
       navigation.replace('HomeScreen');
     }

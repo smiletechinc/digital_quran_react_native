@@ -32,6 +32,9 @@ const SettingScreen: React.FunctionComponent<Props> = props => {
   const [logOutCheck, setLogOutCheck] = useState(false);
   const [deleteAccountCheck, setDeleteAccountCheck] = useState(false);
 
+  // useEffect(() => {
+  //   console.log('userID', Object.values());
+  // }, []);
   useEffect(() => {
     if (logoutUser) {
       // logoutUser();
@@ -138,7 +141,14 @@ const SettingScreen: React.FunctionComponent<Props> = props => {
     </ScrollView>
   );
 };
-
+const mapStateToProps = (state: {userObject: {authUser: any}}) => {
+  console.log('user', state.userObject.authUser.id);
+  // return {
+  //   updateUser: (updateUserValue: UserObject) => {
+  //     dispatch(updateUser(updateUserValue));
+  //   },
+  // };
+};
 const mapDispatchToProps = (
   dispatch: (arg0: {type: string; user?: UserObject}) => void,
 ) => {
@@ -148,4 +158,4 @@ const mapDispatchToProps = (
     },
   };
 };
-export default connect(null, mapDispatchToProps)(SettingScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingScreen);

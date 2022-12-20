@@ -27,7 +27,7 @@ const SurahDetailList: React.FunctionComponent<Props> = props => {
     ayaObject,
   } = props;
   const {t} = useTranslation();
-  const {isBookmarked, checkBookmarked} = React.useContext(
+  const {isBookmarked} = React.useContext(
     BookmarkVerseContext,
   ) as BookmarkVerseContextType;
   const [isFavorite, setIsFavorite] = useState(isBookmarked);
@@ -44,7 +44,7 @@ const SurahDetailList: React.FunctionComponent<Props> = props => {
         onPress={() => {
           setIsFavorite(!isFavorite), favButtonPress();
         }}>
-        <Image source={checkBookmarked(ayaObject) ? favSelectIcon : favIcon} />
+        <Image source={favIcon} />
       </TouchableOpacity>
       <Text style={styles.itemText} onPress={onPress}>
         {verse}

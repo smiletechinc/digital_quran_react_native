@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   getDatabase,
   ref,
@@ -18,19 +18,22 @@ import {updatePara} from '../redux/action/paraAction';
 import {
   addNewBook,
   updateBook,
+  updateWholeBook,
   deleteFavBook,
 } from '../redux/action/favVerseAction';
-
-interface Props {
-  arabictext: any;
-}
+import {
+  BookmarkVerseContext,
+  BookmarkVerseContextType,
+} from '../context/favouriteVerseContext';
 
 export const FirebaseDataHook = () => {
   const [fetchAyahObjectID, setFetchAyahObjectID] = useState({});
   const [fetchBookObject, setFetchBookObject] = useState({});
   const [fetchAyahObject, setFetchAyahObject] = useState({});
+  const {addInVerseBook, removeInVerseBook, updateVerseBookLibrary} =
+    React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
   const dispatch = useDispatch();
-  var a = {};
+
   const getSurahMetaData = async () => {
     try {
       const branch = `/surahMeta/`;
@@ -125,14 +128,19 @@ export const FirebaseDataHook = () => {
     }
   };
 
-  const fetchBookmark = async () => {
+  const fetchBookmark = async (userId: string) => {
+    console.log('userIdasfasf', userId);
     const branch = '/BookmarkLibrary/';
     const db = getDatabase(app);
     if (db) {
-      get(ref(db, branch))
+      const queryRef = query(
+        ref(db, branch),
+        orderByChild('createdId'),
+        equalTo(userId),
+      );
+      get(queryRef)
         .then(snapShot => {
-          // console.log('v', snapShot.val());
-          // dispatch(addFavBook(snapShot.val()));
+          dispatch(updateWholeBook(snapShot.val()));
           setFetchBookObject(snapShot.val());
         })
         .catch(error => {
@@ -143,7 +151,11 @@ export const FirebaseDataHook = () => {
     }
   };
 
-  const addAyatInBookmark = async (libraryData: any, libraryName: string) => {
+  const addAyatInBookmark = async (
+    libraryData: any,
+    libraryName: string,
+    createdId: string,
+  ) => {
     try {
       const db = getDatabase(app);
       const branch = `/BookmarkLibrary/`;
@@ -152,6 +164,7 @@ export const FirebaseDataHook = () => {
         var updateBookLibrary = {
           libraryData,
           id: getBookID,
+          createdId: createdId,
           isCheck: false,
           libraryName: libraryName,
         };
@@ -159,6 +172,7 @@ export const FirebaseDataHook = () => {
         set(ref(db, `/BookmarkLibrary/${getBookID}`), updateBookLibrary)
           .then(() => {
             dispatch(addNewBook(updateBookLibrary));
+            addInVerseBook(updateBookLibrary);
           })
           .catch(() => {});
       } else {
@@ -190,10 +204,10 @@ export const FirebaseDataHook = () => {
               ref(db, `/BookmarkLibrary/${libraryIdKey}/libraryData`),
               librayUpdateObj,
             ).then(() => {
+              updateVerseBookLibrary(librayUpdateObj, libraryIdKey);
               dispatch(updateBook(librayUpdateObj, libraryIdKey));
             });
           }
-          // console.log('values in book ', snapShot.val());
         });
       }
     } catch (error) {
@@ -217,7 +231,6 @@ export const FirebaseDataHook = () => {
   };
 
   const removeBookmark = async (verseId: string) => {
-    // setFetchAyahObject({});
     console.log('bookId', verseId);
     const branch = `/BookmarkLibrary/${verseId}`;
     const db = getDatabase(app);
@@ -225,8 +238,8 @@ export const FirebaseDataHook = () => {
       remove(ref(db, branch))
         .then(snapshot => {
           dispatch(deleteFavBook(verseId));
+          removeInVerseBook(verseId);
           console.log('deleted');
-          // setFetchAyahObject(snapshot.val());
         })
         .catch(error => console.log('errro', error));
     }

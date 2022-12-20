@@ -16,7 +16,8 @@ import {
 import {useTranslation} from 'react-i18next';
 import BookmarkModel from '../model/bookmarkOptionModel';
 import RBSheet from 'react-native-raw-bottom-sheet';
-// import {InternetCheckedHook} from '../hooks/internetHook';
+import {useNetInfo} from '@react-native-community/netinfo';
+import {useSelector} from 'react-redux';
 
 type Props = {
   navigation: any;
@@ -29,12 +30,12 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   const {t} = useTranslation();
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {addAyatInBookmark, getAyahId, fetchAyahObjectID} = FirebaseDataHook();
-  // const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
-  const toast = useRef(null);
+  const toast: any = useRef(null);
   const {navigation} = props;
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
   const [verseString, setVerseString] = useState('');
+  const netInfo = useNetInfo();
 
   const {
     surahDetaillMake,
@@ -48,22 +49,18 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     surahTitleArabic,
     surahObject,
   } = SurahDetailHook();
-  const refRBSheet = useRef();
+  const refRBSheet: any = useRef();
+  const userCreatedId = useSelector(
+    (state: {userObject: {authUser: any}}) => state.userObject.authUser.id,
+  );
   const {
     addInVerseBook,
-    checkBookmarked,
+    // checkBookmarked,
     removeInVerseBook,
     removeInSurahBook,
     addInSurahBook,
     checkSurahBookmarked,
   } = React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
-
-  // useEffect(() => {
-  //   if (internetConditionCheck) {
-  //     getAyahId(verseString);
-  //     refRBSheet.current.open();
-  //   }
-  // }, [internetConditionCheck]);
 
   useEffect(() => {
     if (textCopyStatus) {
@@ -85,14 +82,23 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   };
 
   const favFunctionCalled = (verseSelect: string, verseNumber: Number) => {
-    // internetCheckFunction();
-    // setVerseString(verseSelect);
-    getAyahId(verseSelect);
-    refRBSheet.current.open();
+    if (netInfo.isConnected && netInfo.isInternetReachable) {
+      getAyahId(verseSelect);
+      refRBSheet.current.open();
+    } else {
+      Alert.alert(
+        'No Internet',
+        'This Feature is available when device is connected with Internet',
+      );
+    }
   };
 
   const createFunction = (libraryName: string) => {
-    addAyatInBookmark([Object.keys(fetchAyahObjectID)[0]], libraryName);
+    addAyatInBookmark(
+      [Object.keys(fetchAyahObjectID)[0]],
+      libraryName,
+      userCreatedId,
+    );
     refRBSheet.current.close();
   };
 
@@ -211,6 +217,7 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
           onCancelButtonFunc={() => refRBSheet.current.close()}
           ayatId={Object.keys(fetchAyahObjectID)[0]}
           onDoneButton={doneFunction}
+          userId={userCreatedId}
         />
       </RBSheet>
     </View>

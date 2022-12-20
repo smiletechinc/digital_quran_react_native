@@ -14,10 +14,10 @@ import {
   SearchBarDisplayResult,
 } from '../components/searchBar/index';
 import {SearchContext, SearchContextType} from '../context/searchContext';
-// import {InternetCheckedHook} from '../hooks/internetHook';
 import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
 import HeaderWithText from '../components/Header/header';
+import {useNetInfo} from '@react-native-community/netinfo';
 
 type Props = {
   navigation: any;
@@ -26,10 +26,9 @@ type Props = {
 
 const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route} = props;
-  const toast = useRef(null);
+  const toast: any = useRef(null);
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {searchInAdvanced} = SearchAyahHook();
-  // const {internetCheckFunction, internetConditionCheck} = InternetCheckedHook();
   const [isImage, setIsImage] = useState<string | null>(null);
   const {
     startAnimation,
@@ -39,6 +38,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     clicked,
     setChangeText,
   } = React.useContext(SearchContext) as SearchContextType;
+  const netInfo = useNetInfo();
 
   useEffect(() => {
     if (route.params) {
@@ -57,12 +57,6 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
     }
   }, [clicked]);
 
-  // useEffect(() => {
-  // if (internetConditionCheck) {
-  // navigation.navigate('CameraSearchScreen');
-  // }
-  // }, [internetConditionCheck]);
-
   useEffect(() => {
     if (textCopyStatus) {
       toast.current.show(`${t('copy to clipboard')}`, {
@@ -78,9 +72,12 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   const searchByImage = () => {
-    console.log('hellsso');
-    // Alert.alert('heello');
-    navigation.navigate('CameraSearchScreen');
+    netInfo.isConnected && netInfo.isInternetReachable
+      ? navigation.navigate('CameraSearchScreen')
+      : Alert.alert(
+          'No Internet',
+          'This Feature is available when device is connected',
+        );
   };
 
   return (

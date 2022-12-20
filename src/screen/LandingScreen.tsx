@@ -12,7 +12,11 @@ import {updateAyat} from '../redux/action/verseAction';
 import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../constants';
 import {backgroundAppImage, backBtn2} from '../constants/images';
 //////////////////contextAPI///////////////////////////////////////////
-import {AuthContext, AuthContextType} from '../context/authContext';
+// import {AuthContext, AuthContextType} from '../context/authContext';
+// import {
+//   BookmarkVerseContext,
+//   BookmarkVerseContextType,
+// } from '../context/favouriteVerseContext';
 /////////////////HOOKS////////////////////////////////////////////
 import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 //////////////Resources///////////////////////////////////////
@@ -30,8 +34,7 @@ type Props = {
 
 const LandingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, updateAyat, reduxUser} = props;
-  const {setAuthUser} = React.useContext(AuthContext) as AuthContextType;
-  const {getSurahMetaData, fetchBookmark, getParaMeta} = FirebaseDataHook();
+  const {getSurahMetaData, getParaMeta} = FirebaseDataHook();
 
   useEffect(() => {
     Object.values(Quran.name).forEach(surahAyat => {
@@ -39,11 +42,9 @@ const LandingScreen: React.FunctionComponent<Props> = props => {
     });
     getSurahMetaData();
     getParaMeta();
-    fetchBookmark();
   }, [navigation]);
 
   const NextButtonFunction = () => {
-    setAuthUser(reduxUser);
     if (reduxUser.email === '') {
       navigation.navigate('LandingScreenContainer');
     } else {

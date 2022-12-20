@@ -10,7 +10,7 @@ interface Props {
 export const InternetCheckedHook = () => {
   const [internetCheckStatus, setInternetCheckStatus] = useState<
     boolean | null
-  >();
+  >(false);
   const [internetConditionCheck, setInternetConditionCheck] =
     useState<boolean>();
 

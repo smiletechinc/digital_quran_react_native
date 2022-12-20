@@ -11,6 +11,7 @@ import {styles} from './index';
 import AyahHeader from '../components/Header/ayahHeader';
 import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {favSelectIcon} from '../constants/images';
+import {useSelector} from 'react-redux';
 
 type Props = {
   navigation: any;
@@ -30,7 +31,9 @@ const AyahListScreen: React.FunctionComponent<Props> = props => {
     fetchBookObject,
     updateAyatInBookmark,
   } = FirebaseDataHook();
-
+  const userId = useSelector(
+    (state: {userObject: {authUser: any}}) => state.userObject.authUser.id,
+  );
   useEffect(() => {
     const libraryDataIdArray: [] = route.params.surahdata.libraryData;
     setAyahDataDisplay([]);
@@ -81,7 +84,8 @@ const AyahListScreen: React.FunctionComponent<Props> = props => {
 
   const ayahDeleteFunc = (index: number) => {
     setItemIndex(index);
-    fetchBookmark();
+    console.log('user', userId);
+    fetchBookmark(userId);
   };
   const renderItem = ({item, index}: any) => {
     return (

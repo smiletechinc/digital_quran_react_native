@@ -12,7 +12,6 @@ const paraReducer = (
 ): ParaState => {
   switch (action.type) {
     case actionTypes.UPDATE_PARA:
-      // console.log('para', action.para);
       return {
         ...state,
         parahs: action.para,

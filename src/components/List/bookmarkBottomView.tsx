@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import CheckBox from '@react-native-community/checkbox';
 
@@ -13,17 +13,19 @@ type Props = {
 const BottomViewList: React.FunctionComponent<Props> = props => {
   const {itemName, itemCheck, itemChangeFunc, itemIndex} = props;
   return (
-    <View style={styles.mainView}>
-      <CheckBox
-        disabled={itemCheck ? true : false}
-        value={itemCheck}
-        onValueChange={newValue => itemChangeFunc(itemIndex, newValue)}
-        boxType="square"
-      />
-      <View style={{left: '32%'}}>
-        <Text>{itemName}</Text>
+    <ScrollView showsVerticalScrollIndicator={true}>
+      <View style={styles.mainView}>
+        <CheckBox
+          disabled={itemCheck ? true : false}
+          value={itemCheck}
+          onValueChange={newValue => itemChangeFunc(itemIndex, newValue)}
+          boxType="square"
+        />
+        <View style={{left: '32%'}}>
+          <Text>{itemName}</Text>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

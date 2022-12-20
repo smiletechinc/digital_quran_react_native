@@ -8,12 +8,13 @@ export const deleteFavBook = (bookId: String) => {
   };
 };
 
-// export const addFavBook = (favBook: FavBookMeta) => {
-//   return {
-//     type: actionTypes.ADD_FAV_BOOK,
-//     favBook,
-//   };
-// };
+export const updateWholeBook = (allFavBooks: FavBookMeta) => {
+  console.log('jh', allFavBooks);
+  return {
+    type: actionTypes.BOOKS_UPDATE,
+    allFavBooks,
+  };
+};
 
 export const addNewBook = (favBook: FavBookMeta) => {
   return {

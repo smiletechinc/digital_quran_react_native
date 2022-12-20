@@ -10,7 +10,8 @@ export type BookmarkVerseContextType = {
   setFavoriteVerses: (setVerse: any) => void;
   addInVerseBook: (favouriteVerseObj: any) => void;
   addInSurahBook: (favouriteSurahObj: any) => void;
-  checkBookmarked: (favouriteVerseObj: any) => boolean;
+  bookVerseValues: (favouriteVerse: any) => void;
+  updateVerseBookLibrary: (libraryData: any, id: string) => void;
   checkSurahBookmarked: (favouriteSurahObj: any) => boolean;
   removeInVerseBook: (favouriteVerseObj: any) => void;
   removeInSurahBook: (surahIndex: number) => void;
@@ -19,6 +20,7 @@ export type BookmarkVerseContextType = {
 import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
+import {AnyMap} from 'immer/dist/internal';
 
 export const BookmarkVerseContext =
   React.createContext<BookmarkVerseContextType | null>(null);
@@ -33,11 +35,6 @@ const BookmarkVerseContextProvider = ({children}: any) => {
 
   useEffect(() => {
     try {
-      AsyncStorage.getItem('QURAN_APP::FAVOURITE_AYATS').then(value => {
-        if (value) {
-          setFavoriteVerses(JSON.parse(value));
-        }
-      });
       AsyncStorage.getItem('QURAN_APP::FAVOURITE_SURAHS').then(value => {
         if (value) {
           setFavoriteSurahs(JSON.parse(value));
@@ -47,18 +44,6 @@ const BookmarkVerseContextProvider = ({children}: any) => {
   }, []);
 
   useEffect(() => {
-    if (isUpdatedAyat) {
-      if (favoriteVerses != null || favoriteVerses != undefined) {
-        let valueStoredStorage = JSON.stringify(favoriteVerses);
-        try {
-          AsyncStorage.setItem(
-            'QURAN_APP::FAVOURITE_AYATS',
-            `${valueStoredStorage}`,
-          );
-          setIsUpdatedAyat(false);
-        } catch (error) {}
-      }
-    }
     if (isUpdatedSurah) {
       if (favoriteSurahs != null || favoriteSurahs != undefined) {
         let valueStoredStorage = JSON.stringify(favoriteSurahs);
@@ -74,6 +59,7 @@ const BookmarkVerseContextProvider = ({children}: any) => {
   }, [isUpdatedAyat, isUpdatedSurah]);
 
   const addInVerseBook = (favouriteVerseObject: any) => {
+    console.log('value', favouriteVerseObject);
     let favoriteVerses_: any = [];
     favoriteVerses.forEach(verse => {
       favoriteVerses_.push(verse);
@@ -83,6 +69,9 @@ const BookmarkVerseContextProvider = ({children}: any) => {
     setIsUpdatedAyat(true);
   };
 
+  const bookVerseValues = (favoriteBooks: any) => {
+    setFavoriteVerses(favoriteBooks);
+  };
   const addInSurahBook = (favoriteSurahObject: any) => {
     let favoriteSurah_: any = [];
     favoriteSurahs.forEach(surah => {
@@ -95,9 +84,7 @@ const BookmarkVerseContextProvider = ({children}: any) => {
 
   const removeInVerseBook = (favouriteVerseObject: any) => {
     const index = favoriteVerses.findIndex(
-      (element: any) =>
-        element.surahNumber === favouriteVerseObject.surahNumber &&
-        element.ayatNumber === favouriteVerseObject.ayatNumber,
+      (element: any) => element.id === favouriteVerseObject,
     );
     favoriteVerses.splice(index, 1);
     setIsUpdatedAyat(true);
@@ -120,18 +107,16 @@ const BookmarkVerseContextProvider = ({children}: any) => {
     return isTrue;
   };
 
-  const checkBookmarked = (favouriteVerseObject: any) => {
-    var res = favoriteVerses.find(
-      (verseBook: {ayatNumber: any; surahNumber: any}) => {
-        return (
-          verseBook.ayatNumber === favouriteVerseObject.ayatNumber &&
-          verseBook.surahNumber === favouriteVerseObject.surahNumber
-        );
+  const updateVerseBookLibrary = (libraryaUpdate: any, bookId: string) => {
+    favoriteVerses.map(
+      (element: {id: string; name: string; libraryData: any}) => {
+        if (element.id === bookId) {
+          console.log('eleme', element);
+          element.libraryData = libraryaUpdate;
+        }
       },
     );
-    let isTrue = false;
-    res ? (isTrue = true) : (isTrue = false);
-    return isTrue;
+    console.log('after updation favoriteVerse', favoriteVerses);
   };
 
   return (
@@ -141,10 +126,12 @@ const BookmarkVerseContextProvider = ({children}: any) => {
         isBookmarked,
         favoriteVerses,
         favoriteSurahs,
+        bookVerseValues,
         addInSurahBook,
         addInVerseBook,
         checkSurahBookmarked,
-        checkBookmarked,
+        updateVerseBookLibrary,
+        // checkBookmarked,
         removeInVerseBook,
         removeInSurahBook,
       }}>

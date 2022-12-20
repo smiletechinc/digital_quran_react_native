@@ -12,9 +12,14 @@ import {
 } from '../components/buttons';
 import {useTranslation} from 'react-i18next';
 import {updateSurah} from '../redux/action/surahAction';
-import {connect, useDispatch} from 'react-redux';
+import {connect} from 'react-redux';
+import {FirebaseDataHook} from '../hooks/useFirebaseDataHook';
 import {ParaMakeHook} from '../hooks/paraMakeHook';
 import {SCREEN_HEIGHT, SCREEN_WIDTH, typeIOS} from '../constants/index';
+import {
+  BookmarkVerseContext,
+  BookmarkVerseContextType,
+} from '../context/favouriteVerseContext';
 
 type Props = {
   navigation: any;
@@ -24,13 +29,22 @@ type Props = {
   reduxVerses: any;
   reduxSurahs: any;
   reduxParahs: any;
+  reduxfavVerses: any;
+  reduxUser: any;
   updated: any;
 };
 
 let updatedOuter = false;
 
 const HomeScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, reduxSurahs, reduxParahs, reduxVerses} = props;
+  const {
+    navigation,
+    reduxSurahs,
+    reduxParahs,
+    reduxVerses,
+    reduxfavVerses,
+    reduxUser,
+  } = props;
   const {t} = useTranslation();
   const {setVersesObject} = React.useContext(VerseContext) as QuranContextType;
   const [surahSelectIconVisible, setSurahSelectIconVisible] =
@@ -38,11 +52,18 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
   const [paraSelectIconVisible, setParaSelectIconVisible] =
     React.useState(false);
   const {makePara} = ParaMakeHook();
+  const {fetchBookmark} = FirebaseDataHook();
+  const {bookVerseValues} = React.useContext(
+    BookmarkVerseContext,
+  ) as BookmarkVerseContextType;
 
   React.useEffect(() => {
     if (reduxVerses) {
       setVersesObject(reduxVerses);
       makePara(reduxVerses, reduxParahs, reduxSurahs);
+      fetchBookmark(reduxUser.id);
+      console.log('red', reduxfavVerses);
+      bookVerseValues(reduxfavVerses);
     }
   }, [navigation]);
 
@@ -100,11 +121,15 @@ const mapStateToProps = (state: {
   verses: {verses: any};
   parahs: {parahs: any};
   surahs: {surahs: any};
+  bookMarkVerses: {favBooks: any};
+  userObject: {authUser: any};
 }) => {
   return {
     reduxVerses: state.verses.verses,
     reduxParahs: state.parahs.parahs,
     reduxSurahs: state.surahs.surahs,
+    reduxfavVerses: state.bookMarkVerses.favBooks,
+    reduxUser: state.userObject.authUser,
     updated: !updatedOuter,
   };
 };

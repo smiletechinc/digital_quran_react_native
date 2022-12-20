@@ -6,7 +6,6 @@ export const SCREEN_WIDTH = Dimensions.get('window').width;
 export const SCREEN_HEIGHT = Dimensions.get('window').height;
 export const SMALL_DEVICE = SCREEN_WIDTH <= 420 && SCREEN_HEIGHT <= 695;
 export const MULTIPLIER = SMALL_DEVICE ? 1.0 : 1.25;
-
 export const STATUS_BAR_HEIGHT = getStatusBarHeight();
 
 export const typeIOS =

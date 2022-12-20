@@ -29,13 +29,18 @@ const favReducer = (
         ),
       };
     case actionTypes.DELETE_FAV_BOOK:
-      var updatedArray = state.favBooks.filter((element, index) => {
+      var updatedArray = state.favBooks.filter(element => {
         return Object.values(element)[1] != action.bookId;
       });
       console.log('array id', updatedArray);
       return {
         ...state,
         favBooks: updatedArray,
+      };
+    case actionTypes.BOOKS_UPDATE:
+      return {
+        ...state,
+        favBooks: Object.values(action.allFavBooks),
       };
     default:
       return state;

@@ -16,6 +16,7 @@ type IconButtonProps = {
   paraSelectIconVisible: boolean;
   setParaSelectIconVisible: any;
   paraPress: any;
+  surahPress: any;
 };
 
 const HomeChoiceButton: React.FunctionComponent<IconButtonProps> = props => {
@@ -25,11 +26,13 @@ const HomeChoiceButton: React.FunctionComponent<IconButtonProps> = props => {
     paraSelectIconVisible,
     setParaSelectIconVisible,
     paraPress,
+    surahPress,
   } = props;
   const {t} = useTranslation();
   const selectFunction = () => {
     setSurahSelectIconVisible(true);
     setParaSelectIconVisible(false);
+    surahPress();
   };
   return (
     <View style={{top: '4%'}}>

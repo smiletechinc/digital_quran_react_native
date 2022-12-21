@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  ActivityIndicator,
   Image,
   Alert,
 } from 'react-native';
@@ -38,6 +39,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setNameError('');
@@ -70,6 +72,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   }, [userCreateError]);
   useEffect(() => {
     if (userRegister) {
+      setIsLoading(false);
       navigation.replace('SignIn');
     }
   }, [userRegister]);
@@ -95,20 +98,27 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
   };
 
   const LogFunc = () => {
+    setIsLoading(true);
     if (name.trim().length == 0) {
       setNameError(t('please enter name'));
+      setIsLoading(false);
     } else if (email.trim().length == 0) {
       setEmailError(t('please enter email'));
+      setIsLoading(false);
     } else if (password.trim().length == 0) {
       setPasswordError('Please enter password');
+      setIsLoading(false);
     } else if (confirmpassword.trim().length == 0) {
       setConfirmPasswordError(t('please enter confirm password'));
+      setIsLoading(false);
     } else if (password != confirmpassword) {
       Alert.alert(t('password does not match with confirm password'));
+      setIsLoading(false);
     } else {
       proceedToSignup();
     }
   };
+
   return (
     <ScrollView
       style={{backgroundColor: '#FFFFFF'}}
@@ -176,6 +186,7 @@ const SignupScreen: FunctionComponent<Props> = ({navigation}) => {
               }}>
               <PrimaryButton
                 title={t('register')}
+                isLoading={isLoading}
                 onPress={() => {
                   LogFunc();
                 }}

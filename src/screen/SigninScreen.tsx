@@ -58,6 +58,7 @@ const SigninScreen: FunctionComponent<Props> = props => {
 
   useEffect(() => {
     if (userRecievedObject.email != '') {
+      setLoading(false);
       console.log('userRecievedObject', userRecievedObject);
       dispatch(updateUser(userRecievedObject));
       navigation.replace('HomeScreen');
@@ -95,10 +96,13 @@ const SigninScreen: FunctionComponent<Props> = props => {
   };
 
   const loginCheck = () => {
+    setLoading(true);
     if (email.trim().length == 0) {
       setEmailErroDisc(t('please enter email'));
+      setLoading(false);
     } else if (password.trim().length == 0) {
       setPasswordError(t('please enter password'));
+      setLoading(false);
     } else {
       proceedToLogin();
     }
@@ -159,6 +163,7 @@ const SigninScreen: FunctionComponent<Props> = props => {
                 onPress={() => {
                   loginCheck();
                 }}
+                isLoading={loading}
                 buttonMarginBottom={SCREEN_HEIGHT / 16}
               />
               <Text

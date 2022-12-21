@@ -63,15 +63,11 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
     if (reduxVerses) {
       setVersesObject(reduxVerses);
       makePara(reduxVerses, reduxParahs, reduxSurahs);
-      if (netInfo.isConnected && netInfo.isInternetReachable) {
-        fetchBookmark(reduxUser.id);
-      } else {
-        bookVerseValues(reduxfavVerses);
-      }
     }
   }, [navigation]);
 
   const LogFunc = () => {
+    bookVerseValues(reduxfavVerses);
     if (surahSelectIconVisible) {
       navigation.navigate('SuraReadingScreen');
     } else if (paraSelectIconVisible) {
@@ -79,7 +75,12 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const surahArray = () => {
+    netInfo.isConnected && fetchBookmark(reduxUser.id);
+  };
+
   const paraArray = () => {
+    netInfo.isConnected && fetchBookmark(reduxUser.id);
     setParaSelectIconVisible(true), setSurahSelectIconVisible(false);
   };
 
@@ -94,6 +95,7 @@ const HomeScreen: React.FunctionComponent<Props> = props => {
             paraSelectIconVisible={paraSelectIconVisible}
             setParaSelectIconVisible={setParaSelectIconVisible}
             paraPress={() => paraArray()}
+            surahPress={() => surahArray()}
           />
           {surahSelectIconVisible || paraSelectIconVisible ? (
             <PrimaryButton

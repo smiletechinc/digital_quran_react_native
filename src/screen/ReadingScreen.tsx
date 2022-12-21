@@ -14,12 +14,13 @@ type Props = {
   route: any;
   reduxSurahs: any;
   updated: boolean;
+  reduxfavVerses: any;
 };
 
 let updatedOuter = false;
 
 const SuraReadingScreen: React.FunctionComponent<Props> = props => {
-  const {navigation, route, reduxSurahs, updated} = props;
+  const {navigation, route, reduxSurahs, reduxfavVerses, updated} = props;
   const [surahIntro, setSurahInto] = useState();
   const {setSurahObject} = React.useContext(SurahContext) as SurahContextType;
   const [textValue, setChangeText] = React.useState('');
@@ -29,6 +30,7 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
       cardStyle: {backgroundColor: 'yellow'},
     });
     setSurahInto(reduxSurahs);
+    console.log('favRedux', reduxfavVerses);
   }, [navigation]);
 
   const moveFunction = (surahdata: any) => {
@@ -72,9 +74,13 @@ const SuraReadingScreen: React.FunctionComponent<Props> = props => {
   );
 };
 
-const mapStateToProps = (state: {surahs: {surahs: any}}) => {
+const mapStateToProps = (state: {
+  surahs: {surahs: any};
+  bookMarkVerses: {favBooks: any};
+}) => {
   return {
     reduxSurahs: state.surahs.surahs,
+    reduxfavVerses: state.bookMarkVerses.favBooks,
     updated: !updatedOuter,
   };
 };

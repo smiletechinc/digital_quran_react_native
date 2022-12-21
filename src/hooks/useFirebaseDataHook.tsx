@@ -30,8 +30,12 @@ export const FirebaseDataHook = () => {
   const [fetchAyahObjectID, setFetchAyahObjectID] = useState({});
   const [fetchBookObject, setFetchBookObject] = useState({});
   const [fetchAyahObject, setFetchAyahObject] = useState({});
-  const {addInVerseBook, removeInVerseBook, updateVerseBookLibrary} =
-    React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
+  const {
+    addInVerseBook,
+    removeInVerseBook,
+    updateVerseBookLibrary,
+    bookVerseValues,
+  } = React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
   const dispatch = useDispatch();
 
   const getSurahMetaData = async () => {

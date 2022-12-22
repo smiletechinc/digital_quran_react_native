@@ -18,6 +18,7 @@ import BookmarkModel from '../model/bookmarkOptionModel';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {useNetInfo} from '@react-native-community/netinfo';
 import {useSelector} from 'react-redux';
+import {BottomSheet} from 'react-native-btr';
 
 type Props = {
   navigation: any;
@@ -35,8 +36,8 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
   const [verseString, setVerseString] = useState('');
+  const [visible, setVisible] = useState(false);
   const netInfo = useNetInfo();
-
   const {
     surahDetaillMake,
     surahData,
@@ -84,7 +85,8 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   const favFunctionCalled = (verseSelect: string, verseNumber: Number) => {
     if (netInfo.isConnected && netInfo.isInternetReachable) {
       getAyahId(verseSelect);
-      refRBSheet.current.open();
+      // refRBSheet.current.open();
+      toggleButtonNavigationView();
     } else {
       Alert.alert(
         'No Internet',
@@ -99,11 +101,13 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
       libraryName,
       userCreatedId,
     );
-    refRBSheet.current.close();
+    // refRBSheet.current.close();
+    toggleButtonNavigationView();
   };
 
   const doneFunction = () => {
-    refRBSheet.current.close();
+    toggleButtonNavigationView();
+    // refRBSheet.current.close();
     Alert.alert('Saved');
   };
 
@@ -132,6 +136,9 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     );
   };
 
+  const toggleButtonNavigationView = () => {
+    setVisible(!visible);
+  };
   return (
     <View
       style={[
@@ -199,27 +206,27 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
           />
         )}
       </View>
-      <RBSheet
-        ref={refRBSheet}
-        closeOnDragDown={true}
-        closeOnPressMask={true}
-        height={400}
-        customStyles={{
-          wrapper: {
-            backgroundColor: 'transparent',
-          },
-          draggableIcon: {
-            backgroundColor: '#000',
-          },
-        }}>
-        <BookmarkModel
-          onCreateButton={createFunction}
-          onCancelButtonFunc={() => refRBSheet.current.close()}
-          ayatId={Object.keys(fetchAyahObjectID)[0]}
-          onDoneButton={doneFunction}
-          userId={userCreatedId}
-        />
-      </RBSheet>
+      <BottomSheet
+        visible={visible}
+        onBackButtonPress={toggleButtonNavigationView}
+        onBackdropPress={toggleButtonNavigationView}>
+        <View
+          style={{
+            // borderWidth: 2,
+            // borderColor: 'red',
+            backgroundColor: 'white',
+            height: 400,
+            // marginBottom: '8%',
+          }}>
+          <BookmarkModel
+            onCreateButton={createFunction}
+            onCancelButtonFunc={() => refRBSheet.current.close()}
+            ayatId={Object.keys(fetchAyahObjectID)[0]}
+            onDoneButton={doneFunction}
+            userId={userCreatedId}
+          />
+        </View>
+      </BottomSheet>
     </View>
   );
 };

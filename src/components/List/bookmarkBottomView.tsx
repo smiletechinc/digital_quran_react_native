@@ -13,19 +13,19 @@ type Props = {
 const BottomViewList: React.FunctionComponent<Props> = props => {
   const {itemName, itemCheck, itemChangeFunc, itemIndex} = props;
   return (
-    <ScrollView showsVerticalScrollIndicator={true}>
-      <View style={styles.mainView}>
-        <CheckBox
-          disabled={itemCheck ? true : false}
-          value={itemCheck}
-          onValueChange={newValue => itemChangeFunc(itemIndex, newValue)}
-          boxType="square"
-        />
-        <View style={{left: '32%'}}>
-          <Text>{itemName}</Text>
-        </View>
+    // <ScrollView showsVerticalScrollIndicator={true}>
+    <View style={styles.mainView}>
+      <CheckBox
+        disabled={itemCheck ? true : false}
+        value={itemCheck}
+        onValueChange={newValue => itemChangeFunc(itemIndex, newValue)}
+        boxType="square"
+      />
+      <View style={{left: '32%'}}>
+        <Text>{itemName}</Text>
       </View>
-    </ScrollView>
+    </View>
+    // </ScrollView>
   );
 };
 

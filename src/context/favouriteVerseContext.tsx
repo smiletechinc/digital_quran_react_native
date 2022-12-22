@@ -7,6 +7,8 @@ export type BookmarkVerseContextType = {
   favoriteVerses: any;
   favoriteSurahs: any;
   isBookmarked: boolean;
+  isUpdatedAyat: boolean;
+  setIsUpdatedAyat: (value: boolean) => void;
   setFavoriteVerses: (setVerse: any) => void;
   addInVerseBook: (favouriteVerseObj: any) => void;
   addInSurahBook: (favouriteSurahObj: any) => void;
@@ -66,7 +68,7 @@ const BookmarkVerseContextProvider = ({children}: any) => {
     });
     favoriteVerses_.push(favouriteVerseObject);
     setFavoriteVerses(favoriteVerses_);
-    setIsUpdatedAyat(true);
+    // setIsUpdatedAyat(true);
   };
 
   const bookVerseValues = (favoriteBooks: any) => {
@@ -83,17 +85,19 @@ const BookmarkVerseContextProvider = ({children}: any) => {
   };
 
   const removeInVerseBook = (favouriteVerseObject: any) => {
-    const index = favoriteVerses.findIndex(
-      (element: any) => element.id === favouriteVerseObject,
-    );
+    // setIsUpdatedAyat(false);
+    const index = favoriteVerses.findIndex((element: any) => {
+      return element.id === favouriteVerseObject;
+    });
+    console.log('itemC', index);
     favoriteVerses.splice(index, 1);
     setIsUpdatedAyat(true);
   };
 
   const removeInSurahBook = (surahIndex: number) => {
-    const index = favoriteSurahs.findIndex(
-      (element: any) => Number(element.surahNumber) === surahIndex,
-    );
+    const index = favoriteSurahs.findIndex((element: any) => {
+      return Number(element.index) === surahIndex;
+    });
     favoriteSurahs.splice(index, 1);
     setIsUpdatedSurah(true);
   };
@@ -126,6 +130,8 @@ const BookmarkVerseContextProvider = ({children}: any) => {
         isBookmarked,
         favoriteVerses,
         favoriteSurahs,
+        isUpdatedAyat,
+        setIsUpdatedAyat,
         bookVerseValues,
         addInSurahBook,
         addInVerseBook,

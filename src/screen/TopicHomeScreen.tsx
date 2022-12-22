@@ -23,9 +23,13 @@ type Props = {
 const TopicsScreen: React.FunctionComponent<Props> = props => {
   const {navigation} = props;
   const {t} = useTranslation();
-  const {favoriteVerses, favoriteSurahs, removeInSurahBook} = React.useContext(
-    BookmarkVerseContext,
-  ) as BookmarkVerseContextType;
+  const {
+    favoriteVerses,
+    isUpdatedAyat,
+    favoriteSurahs,
+    setIsUpdatedAyat,
+    removeInSurahBook,
+  } = React.useContext(BookmarkVerseContext) as BookmarkVerseContextType;
   const {setSurahObject} = React.useContext(SurahContext) as SurahContextType;
   const [favouirteVerseData, setFavouriteVersesData] = useState([]);
   const [favouirteSurahsData, setFavouriteSurahsData] = useState([]);
@@ -44,8 +48,16 @@ const TopicsScreen: React.FunctionComponent<Props> = props => {
     }
   }, [favoriteVerses, isFavorite, favoriteSurahs]);
 
+  useEffect(() => {
+    if (isUpdatedAyat) {
+      setFavouriteVersesData(favoriteVerses);
+      setIsUpdatedAyat(false);
+    }
+  }, [isUpdatedAyat]);
+
   const favFunctionCalled = (item: any) => {
     if (!surahState) {
+      console.log('item', item);
       removeBookmark(item.id);
     } else {
       removeInSurahBook(Number(item.index));

@@ -9,6 +9,8 @@ import {
   BookmarkVerseContext,
   BookmarkVerseContextType,
 } from '../context/favouriteVerseContext';
+import {Separator} from 'react-native-btr';
+
 type Props = {
   onCreateButton?: any;
   onDoneButton?: any;
@@ -94,7 +96,7 @@ const BookmarkOptionModel: FunctionComponent<Props> = props => {
         <FlatList
           data={listData}
           renderItem={renderItem}
-          overScrollMode="auto"
+          // overScrollMode="auto"
         />
       </View>
       {createTextModelVisible && (
@@ -123,13 +125,15 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH * 0.95,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: '8%',
-    paddingBottom: '8%',
+    marginTop: '4%',
+    // paddingBottom: '8%',
   },
   flatView: {
     paddingHorizontal: '4%',
     minWidth: '90%',
     left: '4%',
+    marginTop: '2%',
+    maxHeight: '75%',
   },
   TextInput: {
     marginLeft: 20,

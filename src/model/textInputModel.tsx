@@ -36,8 +36,13 @@ const TextInputModel: FunctionComponent<Props> = props => {
             <TextButton
               title="Create"
               onPress={() => onAcceptButton(textValue)}
+              buttonStyle={{marginLeft: 4}}
             />
-            <TextButton title="Cancel" onPress={onCancelButton} />
+            <TextButton
+              title="Cancel"
+              onPress={onCancelButton}
+              buttonStyle={{marginRight: 4}}
+            />
           </View>
         </View>
       </View>

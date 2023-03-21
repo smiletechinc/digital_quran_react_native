@@ -19,6 +19,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import {useNetInfo} from '@react-native-community/netinfo';
 import {useSelector} from 'react-redux';
 import {BottomSheet} from 'react-native-btr';
+import {SCREEN_HEIGHT} from '../constants/';
 
 type Props = {
   navigation: any;
@@ -30,12 +31,17 @@ type Props = {
 const SurahScreen: React.FunctionComponent<Props> = props => {
   const {t} = useTranslation();
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
-  const {addAyatInBookmark, getAyahId, fetchAyahObjectID} = FirebaseDataHook();
+  const {
+    addAyatInBookmark,
+    getAyahId,
+    setFetchAyahObjectID,
+    fetchAyahObjectID,
+  } = FirebaseDataHook();
   const toast: any = useRef(null);
   const {navigation} = props;
   const [mushafState, setMushafState] = useState<boolean>(false);
   const [selectedIndexValue, setSelectedIndexValue] = useState(0);
-  const [verseString, setVerseString] = useState('');
+  const [verseIDBook, setVerseIDBook] = useState('');
   const [visible, setVisible] = useState(false);
   const netInfo = useNetInfo();
   const {
@@ -82,11 +88,16 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
     selectedIndexValue === 1 ? setMushafState(false) : setMushafState(true);
   };
 
+  useEffect(() => {
+    if (Object.values(fetchAyahObjectID).length > 0) {
+      setVerseIDBook(Object.keys(fetchAyahObjectID)[0]);
+      toggleButtonNavigationView();
+    }
+  }, [fetchAyahObjectID]);
+
   const favFunctionCalled = (verseSelect: string, verseNumber: Number) => {
     if (netInfo.isConnected && netInfo.isInternetReachable) {
       getAyahId(verseSelect);
-      // refRBSheet.current.open();
-      toggleButtonNavigationView();
     } else {
       Alert.alert(
         'No Internet',
@@ -96,13 +107,14 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
   };
 
   const createFunction = (libraryName: string) => {
+    console.log('libraryName', libraryName);
     addAyatInBookmark(
       [Object.keys(fetchAyahObjectID)[0]],
       libraryName,
       userCreatedId,
     );
     // refRBSheet.current.close();
-    toggleButtonNavigationView();
+    // toggleButtonNavigationView();
   };
 
   const doneFunction = () => {
@@ -212,16 +224,13 @@ const SurahScreen: React.FunctionComponent<Props> = props => {
         onBackdropPress={toggleButtonNavigationView}>
         <View
           style={{
-            // borderWidth: 2,
-            // borderColor: 'red',
             backgroundColor: 'white',
-            height: 400,
-            // marginBottom: '8%',
+            height: SCREEN_HEIGHT * 0.4,
           }}>
           <BookmarkModel
             onCreateButton={createFunction}
-            onCancelButtonFunc={() => refRBSheet.current.close()}
-            ayatId={Object.keys(fetchAyahObjectID)[0]}
+            onCancelButtonFunc={() => toggleButtonNavigationView()}
+            ayatId={verseIDBook}
             onDoneButton={doneFunction}
             userId={userCreatedId}
           />

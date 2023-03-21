@@ -165,6 +165,7 @@ export const FirebaseDataHook = () => {
       const branch = `/BookmarkLibrary/`;
       if (db) {
         const getBookID = push(ref(db, branch)).key;
+        console.log('bookId', getBookID);
         var updateBookLibrary = {
           libraryData,
           id: getBookID,
@@ -172,20 +173,22 @@ export const FirebaseDataHook = () => {
           isCheck: false,
           libraryName: libraryName,
         };
-
+        console.log('updateBookLibrary', updateBookLibrary);
         set(ref(db, `/BookmarkLibrary/${getBookID}`), updateBookLibrary)
           .then(() => {
             dispatch(addNewBook(updateBookLibrary));
             addInVerseBook(updateBookLibrary);
           })
-          .catch(() => {});
+          .catch(error => {
+            console.log('error in set values', error);
+          });
       } else {
         const error: ErrorObject = {
           message: 'Something went wrong while executing your request',
         };
       }
     } catch (error) {
-      console.log('error in starrt', error);
+      console.log('error in starrt', JSON.stringify(error));
     }
   };
 
@@ -258,6 +261,7 @@ export const FirebaseDataHook = () => {
     addAyatInBookmark,
     removeBookmark,
     fetchAyahObjectID,
+    setFetchAyahObjectID,
     fetchBookObject,
     fetchAyahObject,
     fetchBookmark,

@@ -24,7 +24,12 @@ const BookmarkOptionModel: FunctionComponent<Props> = props => {
     props;
   const [createTextModelVisible, setCreateTextModelVisible] = useState(false);
   const [listData, setListData] = useState<any>({});
-  const {fetchBookmark, updateAyatInBookmark} = FirebaseDataHook();
+  const {
+    fetchBookmark,
+    fetchBookObject,
+    fetchAyahObjectID,
+    updateAyatInBookmark,
+  } = FirebaseDataHook();
   const {updateVerseBookLibrary, favoriteVerses} = React.useContext(
     BookmarkVerseContext,
   ) as BookmarkVerseContextType;
@@ -64,7 +69,7 @@ const BookmarkOptionModel: FunctionComponent<Props> = props => {
   const checkFunction = (itemIndex: number, isCheck: boolean) => {
     console.log('itemIndex', itemIndex);
     console.log('isCheck', isCheck);
-    // console.log('product', Object.values(fetchBookObject));
+    console.log('product', Object.values(fetchBookObject));
     Object.values(favoriteVerses).map((product: any, index: number) => {
       if (itemIndex === index && isCheck) {
         if (product.libraryData != undefined) {

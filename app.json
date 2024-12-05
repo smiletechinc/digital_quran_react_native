@@ -1,4 +1,8 @@
 {
   "name": "digital_quran_react_native",
-  "displayName": "digital_quran_react_native"
+  "displayName": "digital_quran_react_native",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-8599850727582126~5635299971",
+    "ios_app_id": "ca-app-pub-8599850727582126~1470476649"
+  }
 }

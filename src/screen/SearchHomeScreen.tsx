@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {Alert, View} from 'react-native';
+import {Alert, Platform, View} from 'react-native';
 import Toast from 'react-native-fast-toast';
 import {t} from 'i18next';
 import {FloatingButton} from '../components/buttons';
@@ -18,11 +18,26 @@ import {SearchAyahHook} from '../hooks/searchHook';
 import {SCREEN_HEIGHT, MULTIPLIER} from '../constants/';
 import HeaderWithText from '../components/Header/header';
 import {useNetInfo} from '@react-native-community/netinfo';
+import {
+  InterstitialAd,
+  AdEventType,
+  TestIds,
+} from 'react-native-google-mobile-ads';
 
 type Props = {
   navigation: any;
   route?: any;
 };
+
+const adUnitId = __DEV__
+  ? TestIds.INTERSTITIAL
+  : Platform.OS === 'ios'
+  ? 'ca-app-pub-8599850727582126/7878319933'
+  : 'ca-app-pub-8599850727582126/5292325672';
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+  keywords: ['fashion', 'clothing'],
+});
 
 const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {navigation, route} = props;
@@ -30,6 +45,7 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   const {copyToClipboard, textCopyStatus, setTextCopyStatus} = ClipboardHook();
   const {searchInAdvanced} = SearchAyahHook();
   const [isImage, setIsImage] = useState<string | null>(null);
+  const [loaded, setLoaded] = useState(false);
   const {
     startAnimation,
     characters,
@@ -58,6 +74,19 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   }, [clicked]);
 
   useEffect(() => {
+    if (loaded) {
+      interstitial.show();
+      setLoaded(false);
+      netInfo.isConnected && netInfo.isInternetReachable
+        ? navigation.navigate('CameraSearchScreen')
+        : Alert.alert(
+            'No Internet',
+            'This Feature is available when device is connected',
+          );
+    }
+  }, [loaded]);
+
+  useEffect(() => {
     if (textCopyStatus) {
       toast.current.show(`${t('copy to clipboard')}`, {
         type: 'success',
@@ -72,12 +101,25 @@ const SearchingScreen: React.FunctionComponent<Props> = props => {
   };
 
   const searchByImage = () => {
-    netInfo.isConnected && netInfo.isInternetReachable
-      ? navigation.navigate('CameraSearchScreen')
-      : Alert.alert(
-          'No Internet',
-          'This Feature is available when device is connected',
-        );
+    if (!interstitial.loaded) {
+      interstitial.load();
+      interstitial.addAdEventListener(AdEventType.LOADED, () => {
+        setLoaded(true);
+      });
+    }
+
+    // if (interstitial.loaded) {
+    //   interstitial.show();
+    //   netInfo.isConnected && netInfo.isInternetReachable
+    //     ? navigation.navigate('CameraSearchScreen')
+    //     : Alert.alert(
+    //         'No Internet',
+    //         'This Feature is available when device is connected',
+    //       );
+    // } else {
+    //   setLoaded(false);
+
+    // }
   };
 
   return (
